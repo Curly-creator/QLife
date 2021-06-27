@@ -55,7 +55,7 @@ namespace QLifeC_Datatool
                     StreamReader reader = new StreamReader(dataStream);
                     string responseString = reader.ReadToEnd();
                     dynamic jsonObj = new JavaScriptSerializer().Deserialize<Object>(responseString);
-                    //var city= jsonObj[""];
+                    double taxi = jsonObj["categories"][3]["data"][9]["currency_dollar_value"];
                 }
             }
         }
