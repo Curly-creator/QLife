@@ -23,6 +23,8 @@ namespace QLifeC_Datatool
         public MainWindow()
         {
             InitializeComponent();
+
+            Dgd_MainGrid.ItemsSource = citylist;
         }
     }
 }
