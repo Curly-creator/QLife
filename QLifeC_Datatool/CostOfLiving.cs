@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QLifeC_Datatool
 {
-    class CostOfLiving
+    public class CostOfLiving
     {
         //all decimals are Currency Values
 

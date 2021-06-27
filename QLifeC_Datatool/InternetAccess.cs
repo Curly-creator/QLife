@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QLifeC_Datatool
 {
-    class InternetAccess
+    public class InternetAccess
     {
         private double _downloadSpeed;
         private double _uploadSpeed;

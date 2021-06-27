@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QLifeC_Datatool
 {
-    class TravelConnectivity
+    public class TravelConnectivity
     {
         //ic = InterCity
 

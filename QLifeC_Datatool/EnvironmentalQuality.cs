@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QLifeC_Datatool
 {
-    class EnvironmentalQuality
+    public class EnvironmentalQuality
     {
         private double _airQualityScore;
         private double _cleanlinessScore;
