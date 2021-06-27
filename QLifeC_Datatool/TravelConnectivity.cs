@@ -7,7 +7,7 @@ namespace QLifeC_Datatool
     public class TravelConnectivity
     {
         //ic = InterCity
-
+       
         private double _airportHub;
         private double _airportHubScore;
         private double _icTrainConnectScore;
