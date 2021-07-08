@@ -13,13 +13,13 @@ namespace QLifeC_Datatool
         private double _lifeExpectancyInYears;
         private double _lifeExpectancyScore;
 
-        public HealthCare(double hcExpendScore, double hcQualityScore, double lifeExpectancyInYears, double lifeExpectancyScore)
-        {
-            HcExpendScore = hcExpendScore;
-            HcQualityScore = hcQualityScore;
-            LifeExpectancyInYears = lifeExpectancyInYears;
-            LifeExpectancyScore = lifeExpectancyScore;
-        }
+        //public HealthCare(double hcExpendScore, double hcQualityScore, double lifeExpectancyInYears, double lifeExpectancyScore)
+        //{
+        //    HcExpendScore = hcExpendScore;
+        //    HcQualityScore = hcQualityScore;
+        //    LifeExpectancyInYears = lifeExpectancyInYears;
+        //    LifeExpectancyScore = lifeExpectancyScore;
+        //}
 
         public double HcExpendScore { get => _hcExpendScore; set => _hcExpendScore = value; }
         public double HcQualityScore { get => _hcQualityScore; set => _hcQualityScore = value; }

@@ -24,14 +24,24 @@ namespace QLifeC_Datatool
 
 
         //constructor
-        public City(CostOfLiving costOfLiving, EnvironmentalQuality environmentalQuality, TravelConnectivity travelConnectivity, HealthCare healthCare, InternetAccess internetAccess, Outdoors outdoors)
+        //public City(CostOfLiving costOfLiving, EnvironmentalQuality environmentalQuality, TravelConnectivity travelConnectivity, HealthCare healthCare, InternetAccess internetAccess, Outdoors outdoors)
+        //{
+        //    CostOfLiving = costOfLiving;
+        //    EnvironmentalQuality = environmentalQuality;
+        //    TravelConnectivity = travelConnectivity;
+        //    HealthCare = healthCare;
+        //    InternetAccess = internetAccess;
+        //    Outdoors = outdoors;
+        //}
+
+        public City()
         {
-            CostOfLiving = costOfLiving;
-            EnvironmentalQuality = environmentalQuality;
-            TravelConnectivity = travelConnectivity;
-            HealthCare = healthCare;
-            InternetAccess = internetAccess;
-            Outdoors = outdoors;
+            _costOfLiving = new CostOfLiving();
+            _environmentalQuality = new EnvironmentalQuality();
+            _healthCare = new HealthCare();
+            _internetAccess = new InternetAccess();
+            _outdoors = new Outdoors();
+            _travelConnectivity = new TravelConnectivity();
         }
     }
 }

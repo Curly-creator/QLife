@@ -11,13 +11,13 @@ namespace QLifeC_Datatool
         private double _drinkingWaterQualityScore;
         private double _urbanGreeneryScore;
 
-        public EnvironmentalQuality(double airQualityScore, double cleanlinessScore, double drinkingWaterQualityScore, double urbanGreeneryScore)
-        {
-            AirQualityScore = airQualityScore;
-            CleanlinessScore = cleanlinessScore;
-            DrinkingWaterQualityScore = drinkingWaterQualityScore;
-            UrbanGreeneryScore = urbanGreeneryScore;
-        }
+        //public EnvironmentalQuality(double airQualityScore, double cleanlinessScore, double drinkingWaterQualityScore, double urbanGreeneryScore)
+        //{
+        //    AirQualityScore = airQualityScore;
+        //    CleanlinessScore = cleanlinessScore;
+        //    DrinkingWaterQualityScore = drinkingWaterQualityScore;
+        //    UrbanGreeneryScore = urbanGreeneryScore;
+        //}
 
         public double AirQualityScore { get => _airQualityScore; set => _airQualityScore = value; }
         public double CleanlinessScore { get => _cleanlinessScore; set => _cleanlinessScore = value; }

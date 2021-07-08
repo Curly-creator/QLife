@@ -8,27 +8,27 @@ namespace QLifeC_Datatool
     {
         private double _elevation;
         private double _medianPeakInM;
-        private bool _presenceOfHillsInCity;
-        private bool _presenceOfMountainsInCity;
+        private double _presenceOfHillsInCity;
+        private double _presenceOfMountainsInCity;
         private double _urbanAreaElevation;
         private double _waterAccess;
 
         public double Elevation { get => _elevation; set => _elevation = value; }
         public double MedianPeakInM { get => _medianPeakInM; set => _medianPeakInM = value; }
-        public bool PresenceOfHillsInCity { get => _presenceOfHillsInCity; set => _presenceOfHillsInCity = value; }
-        public bool PresenceOfMountainsInCity { get => _presenceOfMountainsInCity; set => _presenceOfMountainsInCity = value; }
+        public double PresenceOfHillsInCity { get => _presenceOfHillsInCity; set => _presenceOfHillsInCity = value; }
+        public double PresenceOfMountainsInCity { get => _presenceOfMountainsInCity; set => _presenceOfMountainsInCity = value; }
         public double UrbanAreaElevation { get => _urbanAreaElevation; set => _urbanAreaElevation = value; }
         public double WaterAccess { get => _waterAccess; set => _waterAccess = value; }
 
-        public Outdoors(double elevation, double medianPeakInM, bool presenceOfHillsInCity, bool presenceOfMountainsInCity, double urbanAreaElevation, double waterAccess)
-        {
-            _elevation = elevation;
-            _medianPeakInM = medianPeakInM;
-            _presenceOfHillsInCity = presenceOfHillsInCity;
-            _presenceOfMountainsInCity = presenceOfMountainsInCity;
-            _urbanAreaElevation = urbanAreaElevation;
-            _waterAccess = waterAccess;
-        }
+        //public Outdoors(double elevation, double medianPeakInM, bool presenceOfHillsInCity, bool presenceOfMountainsInCity, double urbanAreaElevation, double waterAccess)
+        //{
+        //    Elevation = elevation;
+        //    MedianPeakInM = medianPeakInM;
+        //    PresenceOfHillsInCity = presenceOfHillsInCity;
+        //    PresenceOfMountainsInCity = presenceOfMountainsInCity;
+        //    UrbanAreaElevation = urbanAreaElevation;
+        //    WaterAccess = waterAccess;
+        //}
 
         
     }
