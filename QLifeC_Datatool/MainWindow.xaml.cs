@@ -195,10 +195,24 @@ namespace QLifeC_Datatool
             AddCity addCityWindow = new AddCity();
             addCityWindow.ShowDialog();
 
-            //Dgd_MainGrid.ItemsSource = testCityList;
-            // personen_lb.Items.Refresh()
-            Dgd_MainGrid.Items.Refresh();
-            //refresh testCityList
+            Dgd_MainGrid.Items.Refresh();              //refresh testCityList im View
+        }
+
+        private void deleteCity_btn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to continue?", "Deleting Chosen City", MessageBoxButton.YesNo);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    int i= (Dgd_MainGrid.SelectedIndex);
+                    testCityList.RemoveAt(i);                
+                    break;
+                case MessageBoxResult.No:
+                    MessageBox.Show("The city is still here.", "Deleting Chosen City");
+                    break;
+            }
+            Dgd_MainGrid.Items.Refresh();                   // refresh the datagrid (after deleting the selected city)
+
         }
     }
 }
