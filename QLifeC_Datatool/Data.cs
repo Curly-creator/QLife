@@ -26,12 +26,12 @@ namespace QLifeC_Datatool
 
         public override string ToString()
         {
-            string value = "";
+            string value;
 
             if (Type == "string" || Type == "url") value = StringValue;
             else value = Math.Round(_NumberValue, 2).ToString();
 
-            return Label + ": " + value;
+            return Label + ": " + value + "\n";
         }
     }
 }

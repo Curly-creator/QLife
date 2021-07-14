@@ -28,7 +28,7 @@ namespace QLifeC_Datatool
     {
       
         public List<City> cityList = new List<City>();
-        public CategorieID categorieID = new CategorieID();
+        public CategoryID categorieID = new CategoryID();
 
         public MainWindow()
         {
@@ -39,7 +39,7 @@ namespace QLifeC_Datatool
             int indexCity = 0;
             foreach (var item in cityList)
             { 
-                API_GetCategorieScores(cityList[indexCity]);
+                API_GetCategoryScores(cityList[indexCity]);
                 indexCity++;
             }
            
@@ -79,7 +79,7 @@ namespace QLifeC_Datatool
             };
         }
 
-        public void API_GetCategorieScores(City city)
+        public void API_GetCategoryScores(City city)
         {
             var url = cityList[cityList.IndexOf(city)].Url + "scores/";
 
@@ -96,7 +96,7 @@ namespace QLifeC_Datatool
                 {
                     if (scores[indexScore]["name"] == name)
                     {
-                        Categorie categorie = new Categorie();                                                    
+                        Category categorie = new Category();                                                    
                         categorie.Score.Color = scores[indexScore]["color"];
                         categorie.Score.Name = scores[indexScore]["name"];
                         categorie.Score.ScoreOutOf10 = scores[indexScore]["score_out_of_10"];                   

@@ -4,12 +4,12 @@ using System.Text;
 
 namespace QLifeC_Datatool
 {
-    public class CategorieID
+    public class CategoryID
     {
         string[] _ID;
         string[] _Name;
 
-        public CategorieID()
+        public CategoryID()
         {
             ID = new string[] { "COST-OF-LIVING", "HEALTHCARE", "NETWORK", "POLLUTION", "TRAVEL-CONNECTIVITY", "OUTDOORS"};
             Name = new string[] { "Cost of Living", "Healthcare", "Internet Access", "Environmental Quality", "Travel Connectivity", "Outdoors" };

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QLifeC_Datatool
 {
-    public class Categorie
+    public class Category
     {
         List<Data> _Data;
         Score _Score;
@@ -13,7 +13,7 @@ namespace QLifeC_Datatool
         private string _Tooltip;
         
 
-        public Categorie()
+        public Category()
         {
             Data = new List<Data>();
             Score = new Score();
@@ -33,15 +33,15 @@ namespace QLifeC_Datatool
         {
             get
             {
-                return "helloworld";
+                string result = "";
+                int i = 0;
+                foreach (var item in Data)
+                {
+                    result += Data[i].ToString();
+                    i++;
+                }
+                return result;
             }
-            //set => _Tooltip = "Helloworld";
-            //{
-            //    //foreach (var item in Data)
-            //    //{
-            //    //    _Tooltip += Data.ToString();
-            //    //}
-            //}
         }
     }
 }

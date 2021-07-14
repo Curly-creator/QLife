@@ -1,16 +1,15 @@
-﻿
-    <Window x:Class="QLifeC_Datatool.MainWindow"
+﻿<Window x:Class="QLifeC_Datatool.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLifeC_Datatool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1000">
-        
-        
+        Title="MainWindow" Height="600" Width="1000">
 
     <Grid>
+
+        <!--Defining the grid structure with number of columns and rows-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
@@ -21,7 +20,6 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
-        
 
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -40,11 +38,23 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-       
+        <!--All search & filter options can go in this stack panel-->
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2">
+            <Label Content="Search Bar" />
+            <TextBox x:Name="tbx_SearchBar" Background="Beige" TextAlignment="Left"/>
+        </StackPanel>
 
+        <!--All the main buttons are in this stack panel. Easier to make changes to multiple buttons at once-->
+        <StackPanel Grid.Column="6" Grid.ColumnSpan="1" Grid.Row="4" Grid.RowSpan="8">
+            <Button x:Name="btn_NewEntry" Content="Add" Height="30" Margin="20 10 20 10"/>
+            <Button x:Name="btn_UpdEntry" Content="Edit" Height="30" Margin="20 5 20 10"/>
+            <Button x:Name="btn_DelEntry" Content="Delete" Height="30" Margin="20 5 20 10"/>
+            <Button x:Name="btn_Download" Content="Export" Height="30" Margin="20 40 20 10"/>
+            <Button x:Name="btn_Import" Content="Import" Height="30" Margin="20 5 20 10"/>
+        </StackPanel>
 
-
-        <DataGrid x:Name="Dgd_MainGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" Grid.RowSpan="8" AutoGenerateColumns="False" >
+        <!--Main Grid-->
+        <DataGrid x:Name="Dgd_MainGrid" AutoGenerateColumns="False" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8" BorderThickness="1" BorderBrush="Gray">
 
             <DataGrid.Columns>
 
@@ -53,7 +63,7 @@
                 <DataGridTextColumn Header="Cost of Living" Binding="{Binding Categories[0]}">
                     <DataGridTextColumn.CellStyle>
                             <Style TargetType="DataGridCell">
-                                <Setter Property="ToolTip" Value="{Binding Categorie.Tooltip}"/>
+                                <Setter Property="ToolTip" Value="{Binding Categories[0].Tooltip}"/>
                             </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
@@ -61,13 +71,7 @@
                 <DataGridTextColumn Header="Healthcare" Binding="{Binding Categories[1]}">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip">
-                                <Setter.Value>
-                                    <UniformGrid Columns="2">
-                                        <TextBlock Text="{Binding Tooltip}"/>
-                                    </UniformGrid>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="ToolTip" Value="{Binding Categories[1].Tooltip}"/>
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
@@ -75,7 +79,7 @@
                 <DataGridTextColumn Header="Internet Access" Binding="{Binding Categories[2]}">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="neeeds binding"/>
+                            <Setter Property="ToolTip" Value="{Binding Categories[2].Tooltip}"/>
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
@@ -83,7 +87,7 @@
                 <DataGridTextColumn Header="Environmental Quality" Binding="{Binding Categories[3]}">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="neeeds binding"/>
+                            <Setter Property="ToolTip" Value="{Binding Categories[3].Tooltip}"/>
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
@@ -91,7 +95,7 @@
                 <DataGridTextColumn Header="Travel Connectivity" Binding="{Binding Categories[4]}">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="neeeds binding"/>
+                            <Setter Property="ToolTip" Value="{Binding Categories[4].Tooltip}"/>
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
@@ -99,7 +103,7 @@
                 <DataGridTextColumn Header="Outdoors" Binding="{Binding Categories[5]}">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="neeeds binding"/>
+                            <Setter Property="ToolTip" Value="{Binding Categories[5].Tooltip}"/>
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
