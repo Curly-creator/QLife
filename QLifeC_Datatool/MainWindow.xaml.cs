@@ -200,5 +200,25 @@ namespace QLifeC_Datatool
             Dgd_MainGrid.Items.Refresh();
             //refresh testCityList
         }
+
+        private void export_btn_Click(object sender, RoutedEventArgs e)
+        {
+            using StreamWriter exportCSV = new StreamWriter(@".\QLifeC_Datatool_export_test.csv");
+            //path: C:\Users\ThinkPad T540p\UI Coding\2.Semester Prog 2\QLifeC Datatool App\QLifeC_Datatool\bin\Debug\netcoreapp3.1
+            {
+
+                exportCSV.WriteLine("[Name],[URL],[Categories]");
+
+                foreach (TestCity testcity in testCityList)
+                {
+                    //string testcity_Name = 
+                    string nameWithoutComma = testcity.Name.ToString().Replace(",", "");
+                    exportCSV.WriteLine(nameWithoutComma + "," + testcity.Url + "," + testcity.Categories);
+                }
+
+            }
+
+            MessageBox.Show("Export finished");
+        }
     }
 }
