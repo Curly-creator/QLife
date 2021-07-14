@@ -10,11 +10,18 @@ namespace QLifeC_Datatool
         private string _Url;
 
         List<Categorie> _Categories;
-        
+
+        //constructor
+        public TestCity(string name)
+        {
+            _Name = name;
+           // _Url = url;
+        }
         public TestCity()
         {
             Categories = new List<Categorie>();
         }
+        
 
         public string Name { get => _Name; set => _Name = value; }
         public string Url { get => _Url; set => _Url = value; }

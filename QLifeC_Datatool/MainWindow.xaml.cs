@@ -24,7 +24,7 @@ namespace QLifeC_Datatool
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<TestCity> testCityList = new List<TestCity>();
+        public List<TestCity> testCityList = new List<TestCity>();
 
         public MainWindow()
         {
@@ -188,6 +188,17 @@ namespace QLifeC_Datatool
             //city.Outdoors.WaterAccess = jsonObj["categories"][14]["data"][5]["float_value"];
 
             //cityList.Add(city);
+        }
+
+        private void addCity_btn_Click(object sender, RoutedEventArgs e)
+        {
+            AddCity addCityWindow = new AddCity();
+            addCityWindow.ShowDialog();
+
+            //Dgd_MainGrid.ItemsSource = testCityList;
+            // personen_lb.Items.Refresh()
+            Dgd_MainGrid.Items.Refresh();
+            //refresh testCityList
         }
     }
 }

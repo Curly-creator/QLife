@@ -34,14 +34,15 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-		
-		
+
+
 
         <DataGrid x:Name="Dgd_MainGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" Grid.RowSpan="8">
             <DataGrid.Columns>
-                
+
             </DataGrid.Columns>
         </DataGrid>
-        
+        <Button x:Name="addCity_btn" Content="Add City" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="11" VerticalAlignment="Center" Width="97" Click="addCity_btn_Click"/>
+
     </Grid>
 </Window>
