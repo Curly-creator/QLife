@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QLifeC_Datatool
 {
-    class Data
+    public class Data
     {
 
         private string _Id;
