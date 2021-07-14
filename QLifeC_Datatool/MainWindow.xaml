@@ -49,13 +49,61 @@
             <DataGrid.Columns>
 
                 <DataGridTextColumn Header="City" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Cost of Living" Binding="{Binding Categories[0]}"/>
-                <DataGridTextColumn Header="Healthcare" Binding="{Binding Categories[1]}"/>
-                <DataGridTextColumn Header="Internet Access" Binding="{Binding Categories[2]}"/>
-                <DataGridTextColumn Header="Environmental Quality" Binding="{Binding Categories[3]}"/>
-                <DataGridTextColumn Header="Travel Connectivity" Binding="{Binding Categories[4]}"/>
-                <DataGridTextColumn Header="Outdoors" Binding="{Binding Categories[5]}"/>
+
+                <DataGridTextColumn Header="Cost of Living" Binding="{Binding Categories[0]}">
+                    <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding Categorie.Tooltip}"/>
+                            </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Healthcare" Binding="{Binding Categories[1]}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="ToolTip">
+                                <Setter.Value>
+                                    <UniformGrid Columns="2">
+                                        <TextBlock Text="{Binding Tooltip}"/>
+                                    </UniformGrid>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Internet Access" Binding="{Binding Categories[2]}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="ToolTip" Value="neeeds binding"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
                 
+                <DataGridTextColumn Header="Environmental Quality" Binding="{Binding Categories[3]}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="ToolTip" Value="neeeds binding"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Travel Connectivity" Binding="{Binding Categories[4]}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="ToolTip" Value="neeeds binding"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Outdoors" Binding="{Binding Categories[5]}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="ToolTip" Value="neeeds binding"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+
             </DataGrid.Columns>
         </DataGrid>
         

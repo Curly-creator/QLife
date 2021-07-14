@@ -10,6 +10,7 @@ namespace QLifeC_Datatool
         Score _Score;
         private string _Id;
         private string _Label;
+        private string _Tooltip;
         
 
         public Categorie()
@@ -26,6 +27,22 @@ namespace QLifeC_Datatool
         public string Id { get => _Id; set => _Id = value; }
         public string Label { get => _Label; set => _Label = value; }
         public Score Score { get => _Score; set => _Score = value; }
-        internal List<Data> Data { get => _Data; set => _Data = value; }
+        public List<Data> Data { get => _Data; set => _Data = value; }
+
+        public string Tooltip
+        {
+            get
+            {
+                return "helloworld";
+            }
+            //set => _Tooltip = "Helloworld";
+            //{
+            //    //foreach (var item in Data)
+            //    //{
+            //    //    _Tooltip += Data.ToString();
+            //    //}
+            //}
+        }
     }
 }
+
