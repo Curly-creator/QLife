@@ -19,7 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-//using Newtonsoft.Json;
+
 
 namespace QLifeC_Datatool
 {
@@ -44,8 +44,8 @@ namespace QLifeC_Datatool
                 API_GetCategoryScores(cityList[indexCity]);
                 indexCity++;
             }
+            
 
-            cmb_Filter.ItemsSource = CategoryName.Name;
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }
@@ -143,7 +143,6 @@ namespace QLifeC_Datatool
                             
                             SubCategory subCategory = new SubCategory
                             {
-                                //Id = datapoint["id"],
                                 Type = datapoint["type"],
                                 Label = datapoint["label"]
                             };
@@ -163,49 +162,53 @@ namespace QLifeC_Datatool
 
         public void SearchCity()
         {
-            SearchCity Search = new SearchCity();
-            List<City> FilterList = new List<City>();
+            ComparerCity compareCity = new ComparerCity();
+            List<City> searchList = new List<City>();
                       
-            City searchingCity = new City
+            City searchObject = new City
             {
                 Name = tbx_SearchBar.Text
             };
 
-            FilterList.Add(searchingCity);
+            searchList.Add(searchObject);
 
-            int index = cityList.BinarySearch(searchingCity, Search);
+            int index = cityList.BinarySearch(searchObject, compareCity);
 
             if (index >= 0)
             {
-                FilterList[0] = cityList[index];
-                Dgd_MainGrid.ItemsSource = FilterList;
+                searchList[0] = cityList[index];
+                Dgd_MainGrid.ItemsSource = searchList;
             }
             else Dgd_MainGrid.ItemsSource = cityList;
 
             Dgd_MainGrid.Items.Refresh();
         }
 
-        public void Filter_Min()
-        {
-            List<City> FilterList = new List<City>();
-
-            foreach (var city in cityList)
-            {
-                if (city.Categories[cmb_Filter.SelectedIndex].Score.ScoreOutOf10 < int.Parse(tbx_Filter.Text)) FilterList.Add(city);
-            }
-
-            Dgd_MainGrid.ItemsSource = FilterList;
-            Dgd_MainGrid.Items.Refresh();
-        }
-
-        public void Filter(bool reverse)
+        public void Filter()
         {
             List<City> FilterList = new List<City>();
             
             foreach (var city in cityList)
             {
-                if (reverse && city.Categories[cmb_Filter.SelectedIndex].Score.ScoreOutOf10 > int.Parse(tbx_Filter.Text)) FilterList.Add(city);
-                if (!reverse && city.Categories[cmb_Filter.SelectedIndex].Score.ScoreOutOf10 < int.Parse(tbx_Filter.Text)) FilterList.Add(city);
+                if (city.Categories[0].Score.ScoreOutOf10 > sl_CoLFilter.Value)
+                {
+                    if (city.Categories[1].Score.ScoreOutOf10 > sl_HCFilter.Value)
+                    {
+                        if (city.Categories[2].Score.ScoreOutOf10 > sl_IAFilter.Value)
+                        {
+                            if (city.Categories[3].Score.ScoreOutOf10 > sl_EQFilter.Value)
+                            {
+                                if (city.Categories[4].Score.ScoreOutOf10 > sl_TCFilter.Value)
+                                {
+                                    if (city.Categories[5].Score.ScoreOutOf10 > sl_OFilter.Value)
+                                    {
+                                        FilterList.Add(city);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }              
             }
            
             Dgd_MainGrid.ItemsSource = FilterList;
@@ -220,24 +223,38 @@ namespace QLifeC_Datatool
 
         private void btn_Filter_Click(object sender, RoutedEventArgs e)
         {
-            if(tbx_Filter.Text != null)
-            {
-                if (int.Parse(tbx_Filter.Text) >= 0 && int.Parse(tbx_Filter.Text) < 10)
-                {
-                    if ((bool)cb_FilterMax.IsChecked) Filter(true);
-                    if ((bool)cb_FilterMin.IsChecked) Filter(false);
-                }
-            }                           
+            Filter();
         }
 
-        private void cb_FilterMin_Checked(object sender, RoutedEventArgs e)
+        private void sl_CoLFilter_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            cb_FilterMax.IsChecked = false;
+            lbl_CoL.Content = Math.Round(sl_CoLFilter.Value, 1);            
         }
 
-        private void cb_FilterMax_Checked(object sender, RoutedEventArgs e)
+        private void sl_HCFilter_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            cb_FilterMin.IsChecked = false;
+            lbl_HC.Content = Math.Round(sl_HCFilter.Value, 1);            
+        }
+
+        private void sl_IAFilter_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {           
+            lbl_IA.Content = Math.Round(sl_IAFilter.Value, 1);
+        }
+
+        private void sl_EQFilter_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            lbl_EQ.Content = Math.Round(sl_EQFilter.Value, 1);
+            
+        }
+
+        private void sl_TCFilter_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            lbl_TC.Content = Math.Round(sl_TCFilter.Value, 1);
+        }
+
+        private void sl_OFilter_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            lbl_O.Content = Math.Round(sl_OFilter.Value, 1);
         }
     }
 }
