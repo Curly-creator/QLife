@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QLifeC_Datatool
 {
-    class Data
+    public class Data
     {
 
         private string _Id;
@@ -23,5 +23,15 @@ namespace QLifeC_Datatool
         public string Type { get => _Type; set => _Type = value; }
         public double NumberValue { get => _NumberValue; set => _NumberValue = value; }
         public string StringValue { get => _StringValue; set => _StringValue = value; }
+
+        public override string ToString()
+        {
+            string value;
+
+            if (Type == "string" || Type == "url") value = StringValue;
+            else value = Math.Round(_NumberValue, 2).ToString();
+
+            return Label + ": " + value + "\n";
+        }
     }
 }

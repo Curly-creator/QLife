@@ -6,42 +6,21 @@ namespace QLifeC_Datatool
 {
     public class City
     {
-        private CostOfLiving _costOfLiving;
-        private EnvironmentalQuality _environmentalQuality;
-        private TravelConnectivity _travelConnectivity;
-        private HealthCare _healthCare;
-        private InternetAccess _internetAccess;
-        private Outdoors _outdoors;
-
-
-        //getter, setter
-        public CostOfLiving CostOfLiving { get => _costOfLiving; set => _costOfLiving = value; }
-        public EnvironmentalQuality EnvironmentalQuality { get => _environmentalQuality; set => _environmentalQuality = value; }
-        public TravelConnectivity TravelConnectivity { get => _travelConnectivity; set => _travelConnectivity = value; }
-        public HealthCare HealthCare { get => _healthCare; set => _healthCare = value; }
-        public InternetAccess InternetAccess { get => _internetAccess; set => _internetAccess = value; }
-        public Outdoors Outdoors { get => _outdoors; set => _outdoors = value; }
-
-
-        //constructor
-        //public City(CostOfLiving costOfLiving, EnvironmentalQuality environmentalQuality, TravelConnectivity travelConnectivity, HealthCare healthCare, InternetAccess internetAccess, Outdoors outdoors)
-        //{
-        //    CostOfLiving = costOfLiving;
-        //    EnvironmentalQuality = environmentalQuality;
-        //    TravelConnectivity = travelConnectivity;
-        //    HealthCare = healthCare;
-        //    InternetAccess = internetAccess;
-        //    Outdoors = outdoors;
-        //}
-
+        private string _Name;
+        private string _Url;
+        private Category categorie;
+        List<Category> _Categories;
+        
         public City()
         {
-            _costOfLiving = new CostOfLiving();
-            _environmentalQuality = new EnvironmentalQuality();
-            _healthCare = new HealthCare();
-            _internetAccess = new InternetAccess();
-            _outdoors = new Outdoors();
-            _travelConnectivity = new TravelConnectivity();
+            Categories = new List<Category>();
+            
         }
+       
+        public string Name { get => _Name; set => _Name = value; }
+        public string Url { get => _Url; set => _Url = value; }
+        public List<Category> Categories { get => _Categories; set => _Categories = value; }
+        public Category Categorie { get => categorie; set => categorie = value; }
     }
 }
+
