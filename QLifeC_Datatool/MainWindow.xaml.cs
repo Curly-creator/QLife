@@ -1,4 +1,6 @@
 ﻿using Nancy.Json;
+using Nancy.ModelBinding.DefaultBodyDeserializers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,19 +26,26 @@ namespace QLifeC_Datatool
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<TestCity> testCityList = new List<TestCity>();
+      
+        public List<City> cityList = new List<City>();
+        public CategoryID categorieID = new CategoryID();
 
         public MainWindow()
         {
             InitializeComponent();
-            Dgd_MainGrid.ItemsSource = testCityList;
-
+        
             API_GetCityList();
+            
+            int indexCity = 0;
+            foreach (var item in cityList)
+            { 
+                API_GetCategoryScores(cityList[indexCity]);
+                indexCity++;
+            }
+           
 
-            for(int i = 0; i < testCityList.Count; i += 8)
-            {
-                API_GetCityData(testCityList[i]);
-            }                  
+            Dgd_MainGrid.ItemsSource = cityList;
+            Dgd_MainGrid.Items.Refresh();
         }
 
         public dynamic API_UrlToJsonObj(string url)
@@ -58,136 +67,97 @@ namespace QLifeC_Datatool
             dynamic jsonObj = API_UrlToJsonObj(url);
            
             var cities = jsonObj["_links"]["ua:item"];
-
-            foreach (var item in cities)
-            {
-                TestCity testCity = new TestCity
+            
+            for(int i = 0; i <= 200; i += 10)
+            {          
+                City testCity = new City
                 {
-                    Url = item["href"],
-                    Name = item["name"]
+                    Url = cities[i]["href"],
+                    Name = cities[i]["name"]
                 };
-                testCityList.Add(testCity);
-            }
+                cityList.Add(testCity);
+            };
         }
 
-        public void API_GetCategorieScores(TestCity city)
+        public void API_GetCategoryScores(City city)
         {
-            var url = testCityList[testCityList.IndexOf(city)].Url + "scores/";
+            var url = cityList[cityList.IndexOf(city)].Url + "scores/";
 
             dynamic jsonObj = API_UrlToJsonObj(url);
 
             var scores = jsonObj["categories"];
-            int indexScore = 0;
-            foreach (var score in scores)
-            {
-                Score categorieScore = new Score
-                {
-                    Color = scores[indexScore]["color"],
-                    Name = scores[indexScore]["name"],
-                    ScoreOutOf10 = scores[indexScore]["score_out_of_10"]
-                };
-                city.Categories[indexScore].Score = categorieScore;
 
+            int indexScore = 0;
+        
+            
+            foreach (var item in scores)
+            {             
+                foreach (var name in categorieID.Name)
+                {
+                    if (scores[indexScore]["name"] == name)
+                    {
+                        Category categorie = new Category();                                                    
+                        categorie.Score.Color = scores[indexScore]["color"];
+                        categorie.Score.Name = scores[indexScore]["name"];
+                        categorie.Score.ScoreOutOf10 = scores[indexScore]["score_out_of_10"];                   
+                        city.Categories.Add(categorie);
+                        }                   
+                }
                 indexScore++;
             }
+            API_GetCityData(city);
         }
 
-        public void API_GetCityData(TestCity city)
+        public void API_GetCityData(City city)
         {
-            var url = testCityList[testCityList.IndexOf(city)].Url + "details/";
+            var url = cityList[cityList.IndexOf(city)].Url + "details/";
 
             dynamic jsonObj = API_UrlToJsonObj(url);
 
             var categories = jsonObj["categories"];
 
             int indexCategorie = 0;
-
+            
             foreach (var item in categories)
             {
-                Categorie categorie = new Categorie
+                int indexName = 0;
+                foreach ( var id in categorieID.Name)
                 {
-                    Lable = categories[indexCategorie]["label"],
-                    Id = categories[indexCategorie]["id"]
-                };
-
-                var datapoints = jsonObj["categories"][indexCategorie]["data"];
-                indexCategorie++;
-                foreach (var datapoint in datapoints)
-                {
-                    string type = datapoint["type"];
-                    Data data = new Data
+                    if (categories[indexCategorie]["label"] == id)
                     {
-                        Id = datapoint["id"],
-                        Type = datapoint["type"],
-                        Label = datapoint["label"]
-                    };
+                        int i = 0;
+                        foreach (var attribute in city.Categories)
+                        {
+                            if (city.Categories[i].Score.Name == id) break;
+                            i++;
+                        }
+                        city.Categories[i].Label = categories[indexCategorie]["label"];
+                        city.Categories[i].Id = categories[indexCategorie]["id"];
+                        
+                        var datapoints = jsonObj["categories"][indexCategorie]["data"];
+                        
+                        foreach (var datapoint in datapoints)
+                        {
+                            string type = datapoint["type"];
+                            
+                            Data data = new Data
+                            {
+                                Id = datapoint["id"],
+                                Type = datapoint["type"],
+                                Label = datapoint["label"]
+                            };
 
-                    if (data.Id != "WEATHER-SUNSHINE-AMOUNT") //Datenquelle fehlerhaft, "WHEATHER-SUNSHINE-AMOUNT" ist als float angegeben wird aber als string übergeben
-                    {
-                        if (type == "url" || type == "string") data.StringValue = datapoint[type + "_value"];
+                            if (type == "url" || type == "string") data.StringValue = datapoint[type + "_value"];
 
-                        else data.NumberValue = datapoint[type + "_value"];
+                            else data.NumberValue = datapoint[type + "_value"];
+
+                            city.Categories[indexName].Data.Add(data);
+                        }
                     }
-                    categorie.Data.Add(data);
+                    indexName++;
                 }
-                city.Categories.Add(categorie);
+                indexCategorie++;
             }
-
-            API_GetCategorieScores(city);
-
-            //List<City> cityList = new List<City>();
-            //City city = new City();
-
-            //categories.Add(jsonObj["categories"]);                   
-            //Data data = JsonConvert.DeserializeObject<Data>(responseString);
-
-
-
-            ////CostOfLiving
-            //city.CostOfLiving.InflationScore = jsonObj["categories"][3]["data"][0]["float_value"];
-            //city.CostOfLiving.AKgApples = jsonObj["categories"][3]["data"][1]["currency_dollar_value"];
-            //city.CostOfLiving.Bread = jsonObj["categories"][3]["data"][2]["currency_dollar_value"];
-            //city.CostOfLiving.ACappucchino = jsonObj["categories"][3]["data"][3]["currency_dollar_value"];
-            //city.CostOfLiving.MovieTicket = jsonObj["categories"][3]["data"][4]["currency_dollar_value"];
-            //city.CostOfLiving.MthlyFitnessClubMmbship = jsonObj["categories"][3]["data"][5]["currency_dollar_value"];
-            //city.CostOfLiving.ABeer = jsonObj["categories"][3]["data"][6]["currency_dollar_value"];
-            //city.CostOfLiving.MthlyPublicTransport = jsonObj["categories"][3]["data"][7]["currency_dollar_value"];
-            //city.CostOfLiving.Lunch = jsonObj["categories"][3]["data"][8]["currency_dollar_value"];
-            //city.CostOfLiving.A5kmTaxiRide = jsonObj["categories"][3]["data"][9]["currency_dollar_value"];
-            //city.CostOfLiving.MealInRestaurant = jsonObj["categories"][3]["data"][10]["currency_dollar_value"];
-
-            ////EnviromentalQualitiy
-            //city.EnvironmentalQuality.AirQualityScore = jsonObj["categories"][15]["data"][0]["float_value"];
-            //city.EnvironmentalQuality.CleanlinessScore = jsonObj["categories"][15]["data"][1]["float_value"];
-            //city.EnvironmentalQuality.DrinkingWaterQualityScore = jsonObj["categories"][15]["data"][2]["float_value"];
-            //city.EnvironmentalQuality.UrbanGreeneryScore = jsonObj["categories"][15]["data"][3]["float_value"];
-
-            ////TravelConnectivity
-            //city.TravelConnectivity.AirportHub = jsonObj["categories"][20]["data"][0]["int_value"];
-            //city.TravelConnectivity.AirportHubScore = jsonObj["categories"][20]["data"][1]["float_value"];
-            //city.TravelConnectivity.IcTrainConnectScore = jsonObj["categories"][20]["data"][2]["float_value"];
-
-            ////HealthCare
-            //city.HealthCare.HcExpendScore = jsonObj["categories"][7]["data"][0]["float_value"];
-            //city.HealthCare.LifeExpectancyInYears = jsonObj["categories"][7]["data"][1]["float_value"];
-            //city.HealthCare.LifeExpectancyScore = jsonObj["categories"][7]["data"][2]["float_value"];
-            //city.HealthCare.HcQualityScore = jsonObj["categories"][7]["data"][3]["float_value"];
-
-            ////InternetAcess
-            //city.InternetAccess.DownloadSpeed = jsonObj["categories"][13]["data"][0]["float_value"];
-            //city.InternetAccess.DownloadScore = jsonObj["categories"][13]["data"][1]["float_value"];
-            //city.InternetAccess.UploadSpeed = jsonObj["categories"][13]["data"][2]["float_value"];
-            //city.InternetAccess.UploadScore = jsonObj["categories"][13]["data"][3]["float_value"];
-
-            ////Outdoors 
-            //city.Outdoors.UrbanAreaElevation = jsonObj["categories"][14]["data"][0]["float_value"];
-            //city.Outdoors.PresenceOfHillsInCity = jsonObj["categories"][14]["data"][1]["float_value"];
-            //city.Outdoors.PresenceOfMountainsInCity = jsonObj["categories"][14]["data"][2]["float_value"];
-            //city.Outdoors.MedianPeakInM = jsonObj["categories"][14]["data"][3]["float_value"];
-            //city.Outdoors.Elevation = jsonObj["categories"][14]["data"][4]["float_value"];
-            //city.Outdoors.WaterAccess = jsonObj["categories"][14]["data"][5]["float_value"];
-
-            //cityList.Add(city);
         }
 
         private void addCity_btn_Click(object sender, RoutedEventArgs e)
