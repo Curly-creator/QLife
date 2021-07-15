@@ -41,7 +41,7 @@
         <!--All search & filter options can go in this stack panel-->
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2">
             <Label Content="Search Bar" />
-            <TextBox x:Name="tbx_SearchBar" Background="Beige" TextAlignment="Left"/>
+            <TextBox x:Name="tbx_SearchBar" Background="Beige" TextAlignment="Left" TextChanged="tbx_SearchBar_TextChanged"/>
         </StackPanel>
 
         <!--All the main buttons are in this stack panel. Easier to make changes to multiple buttons at once-->
@@ -62,9 +62,9 @@
 
                 <DataGridTextColumn Header="Cost of Living" Binding="{Binding Categories[0]}">
                     <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="ToolTip" Value="{Binding Categories[0].Tooltip}"/>
-                            </Style>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="ToolTip" Value="{Binding Categories[0].Tooltip}"/>
+                        </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
@@ -83,7 +83,7 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                
+
                 <DataGridTextColumn Header="Environmental Quality" Binding="{Binding Categories[3]}">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
@@ -110,6 +110,11 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        
+        <TextBox x:Name="tbx_Filter" Grid.Column="2" HorizontalAlignment="Left" Margin="40,23,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cmb_Filter" Grid.Column="2" HorizontalAlignment="Left" Margin="40,45,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Grid.RowSpan="2"/>
+        <CheckBox x:Name="cb_FilterMin" Content="Min Value" Grid.Column="3" HorizontalAlignment="Left" Margin="10,7,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="cb_FilterMin_Checked"/>
+        <CheckBox x:Name="cb_FilterMax" Content="Max Value" Grid.Column="3" HorizontalAlignment="Left" Margin="9,25,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="cb_FilterMax_Checked"/>
+        <Button x:Name="btn_Filter" Content="Filter" Grid.Column="3" HorizontalAlignment="Left" Margin="107,0,0,0" Grid.Row="2" VerticalAlignment="Center" Click="btn_Filter_Click"/>
+
     </Grid>
 </Window>

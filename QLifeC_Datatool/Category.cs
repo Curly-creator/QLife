@@ -6,16 +6,16 @@ namespace QLifeC_Datatool
 {
     public class Category
     {
-        List<Data> _Data;
+        List<SubCategory> _SubCategory;
         Score _Score;
         private string _Id;
         private string _Label;
-        private string _Tooltip;
+        
         
 
         public Category()
         {
-            Data = new List<Data>();
+            SubCategory = new List<SubCategory>();
             Score = new Score();
         }
 
@@ -27,7 +27,7 @@ namespace QLifeC_Datatool
         public string Id { get => _Id; set => _Id = value; }
         public string Label { get => _Label; set => _Label = value; }
         public Score Score { get => _Score; set => _Score = value; }
-        public List<Data> Data { get => _Data; set => _Data = value; }
+        public List<SubCategory> SubCategory { get => _SubCategory; set => _SubCategory = value; }
 
         public string Tooltip
         {
@@ -35,9 +35,9 @@ namespace QLifeC_Datatool
             {
                 string result = "";
                 int i = 0;
-                foreach (var item in Data)
+                foreach (var item in SubCategory)
                 {
-                    result += Data[i].ToString();
+                    result += SubCategory[i].ToString();
                     i++;
                 }
                 return result;
