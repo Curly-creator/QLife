@@ -26,13 +26,9 @@ namespace QLifeC_Datatool
     /// </summary>
     public partial class MainWindow : Window
     {
-<<<<<<< HEAD
-        public List<TestCity> testCityList = new List<TestCity>();
-=======
       
         public List<City> cityList = new List<City>();
         public CategoryID categorieID = new CategoryID();
->>>>>>> API
 
         public MainWindow()
         {
@@ -164,35 +160,46 @@ namespace QLifeC_Datatool
             }
         }
 
-        private void addCity_btn_Click(object sender, RoutedEventArgs e)
-        {
-            AddCity addCityWindow = new AddCity();
-            addCityWindow.ShowDialog();
+       
 
-            //Dgd_MainGrid.ItemsSource = testCityList;
-            // personen_lb.Items.Refresh()
-            Dgd_MainGrid.Items.Refresh();
-            //refresh testCityList
-        }
-
-        private void export_btn_Click(object sender, RoutedEventArgs e)
+        private void btn_Download_Click(object sender, RoutedEventArgs e)
         {
             using StreamWriter exportCSV = new StreamWriter(@".\QLifeC_Datatool_export_test.csv");
-            //path: C:\Users\ThinkPad T540p\UI Coding\2.Semester Prog 2\QLifeC Datatool App\QLifeC_Datatool\bin\Debug\netcoreapp3.1
+        //path: C: \Users\ThinkPad T540p\UI Coding\2.Semester Prog 2\QLifeC Datatool App\QLifeC_Datatool\bin\Debug\netcoreapp3.1
             {
+                //first line of CSV, declaring the column names
+                exportCSV.Write("City,");
 
-                exportCSV.WriteLine("[Name],[URL],[Categories]");
-
-                foreach (TestCity testcity in testCityList)
+                foreach (string nameOfCategory in categorieID.Name)
                 {
-                    //string testcity_Name = 
-                    string nameWithoutComma = testcity.Name.ToString().Replace(",", "");
-                    exportCSV.WriteLine(nameWithoutComma + "," + testcity.Url + "," + testcity.Categories);
+                    exportCSV.Write(nameOfCategory + ",");
                 }
+                exportCSV.WriteLine("");
 
+                //following lines of CSV, entering names and score values
+                foreach (City city in cityList)
+                {
+                    
+                    string cityNameForCsv = city.Name.ToString().Replace(",", "");
+                    exportCSV.Write(cityNameForCsv + ",");
+
+                    for (int i = 0; i <= 5; i++)
+                    {
+                        decimal scoreAsDecimal = (decimal) Math.Round(city.Categories[i].Score.ScoreOutOf10, 2);
+                        string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
+                        exportCSV.Write(scoreForCsv + ",");
+                    }
+                    exportCSV.WriteLine("");
+
+                //LIST OF REFERENCES
+                // *1 ---> "F2" for always 2 places after comma or dot
+                //https://stackoverflow.com/questions/36619121/convert-string-to-decimal-to-always-have-2-decimal-places
+
+                }
+                MessageBox.Show("Thanks for the download");
             }
 
-            MessageBox.Show("Export finished");
+            
         }
     }
 }

@@ -37,11 +37,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-<<<<<<< HEAD
+ 
 
-
-=======
->>>>>>> API
 
         <!--All search & filter options can go in this stack panel-->
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2">
@@ -54,7 +51,7 @@
             <Button x:Name="btn_NewEntry" Content="Add" Height="30" Margin="20 10 20 10"/>
             <Button x:Name="btn_UpdEntry" Content="Edit" Height="30" Margin="20 5 20 10"/>
             <Button x:Name="btn_DelEntry" Content="Delete" Height="30" Margin="20 5 20 10"/>
-            <Button x:Name="btn_Download" Content="Export" Height="30" Margin="20 40 20 10"/>
+            <Button x:Name="btn_Download" Content="Download" Height="30" Margin="20 40 20 10" Click="btn_Download_Click"/>
             <Button x:Name="btn_Import" Content="Import" Height="30" Margin="20 5 20 10"/>
         </StackPanel>
 
@@ -63,15 +60,15 @@
 
             <DataGrid.Columns>
 
-<<<<<<< HEAD
-=======
+                <!--<<<<<<< HEAD
+=======-->
                 <DataGridTextColumn Header="City" Binding="{Binding Name}"/>
 
                 <DataGridTextColumn Header="Cost of Living" Binding="{Binding Categories[0]}">
                     <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="ToolTip" Value="{Binding Categories[0].Tooltip}"/>
-                            </Style>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="ToolTip" Value="{Binding Categories[0].Tooltip}"/>
+                        </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
@@ -90,7 +87,7 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                
+
                 <DataGridTextColumn Header="Environmental Quality" Binding="{Binding Categories[3]}">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
@@ -115,11 +112,8 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
->>>>>>> API
+                <!-->>>>>>> API-->
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="addCity_btn" Content="Add City" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="11" VerticalAlignment="Center" Width="97" Click="addCity_btn_Click"/>
-        <Button x:Name="export_btn" Content="Export file" Grid.Column="5" HorizontalAlignment="Left" Height="20" Margin="22,0,0,0" Grid.Row="11" VerticalAlignment="Center" Width="93" Click="export_btn_Click"/>
-
     </Grid>
 </Window>
