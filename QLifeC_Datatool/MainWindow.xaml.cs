@@ -166,7 +166,7 @@ namespace QLifeC_Datatool
         private void btn_Download_Click(object sender, RoutedEventArgs e)
         {
 
-            Stream csvStream;
+            Stream qLifeStream;
             SaveFileDialog downloadDialog = new SaveFileDialog();
 
             //saveFileDialog1.InitialDirectory = @".\*";
@@ -179,26 +179,33 @@ namespace QLifeC_Datatool
             {
                 if (downloadDialog.FileName.EndsWith("csv") == true)
                 {
-                    if ((csvStream = downloadDialog.OpenFile()) != null)
+                    if ((qLifeStream = downloadDialog.OpenFile()) != null)
                     {
                         {
-                            WriteToCSV(csvStream);
-                            MessageBox.Show("Download complete. Your file can be found here: " + downloadDialog.FileName);
+                            WriteToCSV(qLifeStream);
+                            MessageBox.Show("Your file can be found here: " + downloadDialog.FileName, "CSV download complete", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     }
                 }
                     
                 else if (downloadDialog.FileName.EndsWith("xml") == true)
                 {
-                    MessageBox.Show("xml file saving in development");
+                    if ((qLifeStream = downloadDialog.OpenFile()) != null)
+                    {
+                        {
+                            WriteToXML(qLifeStream);
+                            MessageBox.Show("Your file can be found here: " + downloadDialog.FileName, "XML download complete", MessageBoxButton.OK ,MessageBoxImage.Information);
+                        }
+                    }
+                    
                 }
             }
         }
 
-        public void WriteToCSV(Stream csvStream)
+        public void WriteToCSV(Stream qLifeCsvStream)
         {
 
-            using StreamWriter exportCSV = new StreamWriter(csvStream);
+            using StreamWriter exportCSV = new StreamWriter(qLifeCsvStream);
             //path: C: \Users\ThinkPad T540p\UI Coding\2.Semester Prog 2\QLifeC Datatool App\QLifeC_Datatool\bin\Debug\netcoreapp3.1
             {
                 //first line of CSV, declaring the column names
@@ -231,6 +238,14 @@ namespace QLifeC_Datatool
 
                 }
             }
+        }
+
+        public void WriteToXML(Stream qLifeXmlStream)
+        {
+            System.Xml.Serialization.XmlSerializer writer =
+            new System.Xml.Serialization.XmlSerializer(typeof(List<City>));
+
+            writer.Serialize(qLifeXmlStream, cityList);
         }
     }
 }
