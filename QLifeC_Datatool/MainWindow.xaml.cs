@@ -1,4 +1,5 @@
-﻿using Nancy.Json;
+﻿using Microsoft.Win32;
+using Nancy.Json;
 using Nancy.ModelBinding.DefaultBodyDeserializers;
 using Newtonsoft.Json;
 using System;
@@ -164,8 +165,41 @@ namespace QLifeC_Datatool
 
         private void btn_Download_Click(object sender, RoutedEventArgs e)
         {
-            using StreamWriter exportCSV = new StreamWriter(@".\QLifeC_Datatool_export_test.csv");
-        //path: C: \Users\ThinkPad T540p\UI Coding\2.Semester Prog 2\QLifeC Datatool App\QLifeC_Datatool\bin\Debug\netcoreapp3.1
+
+            Stream csvStream;
+            SaveFileDialog downloadDialog = new SaveFileDialog();
+
+            //saveFileDialog1.InitialDirectory = @".\*";
+            downloadDialog.Filter = "csv files (*.csv)|*.csv|xml files (*.xml)|*.xml";
+            downloadDialog.FilterIndex = 2;
+            downloadDialog.RestoreDirectory = true;
+            downloadDialog.Title = "Download QLifeC file";
+            
+            if (downloadDialog.ShowDialog() == true)
+            {
+                if (downloadDialog.FileName.EndsWith("csv") == true)
+                {
+                    if ((csvStream = downloadDialog.OpenFile()) != null)
+                    {
+                        {
+                            WriteToCSV(csvStream);
+                            MessageBox.Show("Download complete. Your file can be found here: " + downloadDialog.FileName);
+                        }
+                    }
+                }
+                    
+                else if (downloadDialog.FileName.EndsWith("xml") == true)
+                {
+                    MessageBox.Show("xml file saving in development");
+                }
+            }
+        }
+
+        public void WriteToCSV(Stream csvStream)
+        {
+
+            using StreamWriter exportCSV = new StreamWriter(csvStream);
+            //path: C: \Users\ThinkPad T540p\UI Coding\2.Semester Prog 2\QLifeC Datatool App\QLifeC_Datatool\bin\Debug\netcoreapp3.1
             {
                 //first line of CSV, declaring the column names
                 exportCSV.Write("City,");
@@ -179,27 +213,24 @@ namespace QLifeC_Datatool
                 //following lines of CSV, entering names and score values
                 foreach (City city in cityList)
                 {
-                    
+
                     string cityNameForCsv = city.Name.ToString().Replace(",", "");
                     exportCSV.Write(cityNameForCsv + ",");
 
                     for (int i = 0; i <= 5; i++)
                     {
-                        decimal scoreAsDecimal = (decimal) Math.Round(city.Categories[i].Score.ScoreOutOf10, 2);
+                        decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score.ScoreOutOf10, 2);
                         string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
                         exportCSV.Write(scoreForCsv + ",");
                     }
                     exportCSV.WriteLine("");
 
-                //LIST OF REFERENCES
-                // *1 ---> "F2" for always 2 places after comma or dot
-                //https://stackoverflow.com/questions/36619121/convert-string-to-decimal-to-always-have-2-decimal-places
+                    //LIST OF REFERENCES
+                    // *1 ---> "F2" for always 2 places after comma or dot
+                    //https://stackoverflow.com/questions/36619121/convert-string-to-decimal-to-always-have-2-decimal-places
 
                 }
-                MessageBox.Show("Thanks for the download");
             }
-
-            
         }
     }
 }
