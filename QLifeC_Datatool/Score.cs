@@ -12,7 +12,7 @@ namespace QLifeC_Datatool
 
         public Score()
         {
-
+            
         }
 
         public string Color { get => _Color; set => _Color = value; }

@@ -17,7 +17,7 @@ namespace QLifeC_Datatool
     /// </summary>
     public partial class AddCity : Window
     {
-        public TestCity cityToBeAdded;
+        public City cityToBeAdded;
         public AddCity()
         {
             InitializeComponent();
@@ -25,8 +25,30 @@ namespace QLifeC_Datatool
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            cityToBeAdded = new TestCity(cityName_tb.Text);
-            ((MainWindow)Application.Current.MainWindow).testCityList.Add(cityToBeAdded); //here the city is manually added to your testCityList
+            Category tmpCat0 = new Category();
+            Category tmpCat1 = new Category();
+            Category tmpCat2 = new Category();
+            Category tmpCat3 = new Category();
+            Category tmpCat4 = new Category();
+            Category tmpCat5 = new Category();
+
+            cityToBeAdded = new City(cityName_tb.Text);
+
+            cityToBeAdded.Categories.Add(tmpCat0);
+            cityToBeAdded.Categories.Add(tmpCat1);
+            cityToBeAdded.Categories.Add(tmpCat2);
+            cityToBeAdded.Categories.Add(tmpCat3);
+            cityToBeAdded.Categories.Add(tmpCat4);
+            cityToBeAdded.Categories.Add(tmpCat5);
+
+            cityToBeAdded.Categories[0].Score.ScoreOutOf10 = double.Parse(col_tb.Text);
+            cityToBeAdded.Categories[1].Score.ScoreOutOf10 = double.Parse(h_tb.Text);
+            cityToBeAdded.Categories[2].Score.ScoreOutOf10 = double.Parse(ia_tb.Text);
+            cityToBeAdded.Categories[3].Score.ScoreOutOf10 = double.Parse(eq_tb.Text);
+            cityToBeAdded.Categories[4].Score.ScoreOutOf10 = double.Parse(tc_tb.Text);
+            cityToBeAdded.Categories[5].Score.ScoreOutOf10 = double.Parse(o_tb.Text);
+
+            ((MainWindow)Application.Current.MainWindow).cityList.Add(cityToBeAdded); //here the city is manually added to your testCityList
 
             this.Close();
         }

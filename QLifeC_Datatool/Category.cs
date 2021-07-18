@@ -7,11 +7,9 @@ namespace QLifeC_Datatool
     public class Category
     {
         List<Data> _Data;
-        Score _Score;
+        private Score _Score;
         private string _Id;
         private string _Label;
-        private string _Tooltip;
-        
 
         public Category()
         {

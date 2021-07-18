@@ -160,7 +160,7 @@ namespace QLifeC_Datatool
             }
         }
 
-        private void addCity_btn_Click(object sender, RoutedEventArgs e)
+        private void btn_NewEntry_Click(object sender, RoutedEventArgs e)
         {
             AddCity addCityWindow = new AddCity();
             addCityWindow.ShowDialog();
@@ -168,21 +168,25 @@ namespace QLifeC_Datatool
             Dgd_MainGrid.Items.Refresh();              //refresh testCityList im View
         }
 
-        private void deleteCity_btn_Click(object sender, RoutedEventArgs e)
+        private void btn_DelEntry_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to continue?", "Deleting Chosen City", MessageBoxButton.YesNo);
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    int i= (Dgd_MainGrid.SelectedIndex);
-                    testCityList.RemoveAt(i);                
+                    int i = (Dgd_MainGrid.SelectedIndex);
+                    cityList.RemoveAt(i);
                     break;
                 case MessageBoxResult.No:
                     MessageBox.Show("The city is still here.", "Deleting Chosen City");
                     break;
             }
             Dgd_MainGrid.Items.Refresh();                   // refresh the datagrid (after deleting the selected city)
+        }
 
+        private void btn_UpdEntry_Click(object sender, RoutedEventArgs e)
+        {
+            //messagebox "function is soon to come"
         }
     }
 }
