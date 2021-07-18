@@ -88,21 +88,22 @@ namespace QLifeC_Datatool
             var scores = jsonObj["categories"];
 
             int indexScore = 0;
-        
-            
+
+            int indexArray = 0;
             foreach (var item in scores)
             {             
                 foreach (var name in categorieID.Name)
                 {
                     if (scores[indexScore]["name"] == name)
                     {
-                        Category categorie = new Category();                                                    
-                        categorie.Score.Color = scores[indexScore]["color"];
-                        categorie.Score.Name = scores[indexScore]["name"];
-                        categorie.Score.ScoreOutOf10 = scores[indexScore]["score_out_of_10"];                   
-                        city.Categories.Add(categorie);
-                        }                   
-                }
+                        Category category = new Category();                                                    
+                        category.Score.Color = scores[indexScore]["color"];
+                        category.Score.Name = scores[indexScore]["name"];
+                        category.Score.ScoreOutOf10 = scores[indexScore]["score_out_of_10"];
+                        city.Categories[indexArray] = category;
+                        indexArray++;
+                    }                   
+                }        
                 indexScore++;
             }
             API_GetCityData(city);
