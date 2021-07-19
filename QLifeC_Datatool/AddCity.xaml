@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLifeC_Datatool"
         mc:Ignorable="d"
-        Title="AddCity" Height="450" Width="800">
+        Title="AddCity" Height="617" Width="1242">
     <Grid x:Name="col_sl">
         <!--Defining the grid structure with number of columns and rows-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -28,55 +29,129 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <!--All the labels are in this stack panel-->
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Grid.RowSpan="7">
-            <Label Content="City Name:" HorizontalAlignment="Left" Margin="15 15 10 10"/>
-            <Label Content="Cost Of Living:" HorizontalAlignment="Left" Margin="15 20 10 10"/>
-            <Label Content="Healthcare:" HorizontalAlignment="Left" Margin="15 20 10 10"/>
-            <Label Content="Internet Access:" HorizontalAlignment="Left" Margin="15 20 10 10"/>
-            <Label Content="Enviromental Quality:" HorizontalAlignment="Left" Margin="15 20 10 10"/>
-            <Label Content="Travel Connectivity:" HorizontalAlignment="Left" Margin="15 20 10 10"/>
-            <Label Content="Outdoors:" HorizontalAlignment="Left" Margin="15 20 10 10"/>
-        </StackPanel>
+        <!--All the labels are in this stack panel
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Grid.RowSpan="7"> -->
+            <Label Content="City Name:" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left"/>
+            <Label Content="COST OF LIVING:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Label Content="Healthcare:" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Label Content="Internet Access:" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Label Content="Enviromental Quality:" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Label Content="Travel Connectivity:" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Label Content="Outdoors:" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <!--</StackPanel>-->
+
+        <Label Content="Inflation [Teleport score]:" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBox x:Name="col1_tb" Grid.Column="1" Grid.Row="3" Background="Beige" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <Label Content="A kilogram of Apples:" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
+        <TextBox x:Name="col2_tb" Grid.Column="1" Grid.Row="3" Background="Beige" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Content="Bread:" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="col3_tb" Grid.Column="1" Grid.Row="3" Background="Beige" Width="100" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Label Content="A Cappuccino:" Grid.Column="1" Grid.Row="4" VerticalAlignment="Top"/>
+        <TextBox x:Name="col4_tb" Grid.Column="1" Grid.Row="4" Background="Beige" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <Label Content="Movie Ticket:" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
+        <TextBox x:Name="col5_tb" Grid.Column="1" Grid.Row="4" Background="Beige" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Content="Monthly fitness club membership:" Grid.Column="1" Grid.Row="4" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="col6_tb" Grid.Column="1" Grid.Row="4" Background="Beige" Width="100" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Label Content="A beer:" Grid.Column="1" Grid.Row="5" VerticalAlignment="Top"/>
+        <TextBox x:Name="col7_tb" Grid.Column="1" Grid.Row="5" Background="Beige" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <Label Content="Monthly public transport:" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+        <TextBox x:Name="col8_tb" Grid.Column="1" Grid.Row="5" Background="Beige" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Content="Lunch:" Grid.Column="1" Grid.Row="5" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="col9_tb" Grid.Column="1" Grid.Row="5" Background="Beige" Width="100" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Label Content="5km taxi ride:" Grid.Column="1" Grid.Row="6" VerticalAlignment="Top"/>
+        <TextBox x:Name="col10_tb" Grid.Column="1" Grid.Row="6" Background="Beige" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <Label Content="Price of a meal at a restaurant:" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"/>
+        <TextBox x:Name="col11_tb" Grid.Column="1" Grid.Row="6" Background="Beige" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+        <Label Content="Healthcare expenditure [Teleport score]:" Grid.Column="2" Grid.Row="3" VerticalAlignment="Top"/>
+        <TextBox x:Name="h1_tb" Grid.Column="2" Grid.Row="3" Background="Beige" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <Label Content="Life expectancy (years):" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center"/>
+        <TextBox x:Name="h2_tb" Grid.Column="2" Grid.Row="3" Background="Beige" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Content="Life expectancy [Teleport score]:" Grid.Column="2" Grid.Row="3" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="h3_tb" Grid.Column="2" Grid.Row="3" Background="Beige" Width="100" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Label Content="Healthcare quality [Teleport score]:" Grid.Column="2" Grid.Row="4" VerticalAlignment="Top"/>
+        <TextBox x:Name="h4_tb" Grid.Column="2" Grid.Row="4" Background="Beige" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+
+        <Label Content="Download speed (Mbps):" Grid.Column="2" Grid.Row="5" VerticalAlignment="Top"/>
+        <TextBox x:Name="ia1_tb" Grid.Column="2" Grid.Row="5" Background="Beige" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <Label Content="Internet access (download) [Teleport score]:" Grid.Column="2" Grid.Row="5" VerticalAlignment="Center"/>
+        <TextBox x:Name="ia2_tb" Grid.Column="2" Grid.Row="5" Background="Beige" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Content="Upload speed (Mbps):" Grid.Column="2" Grid.Row="5" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="ia3_tb" Grid.Column="2" Grid.Row="5" Background="Beige" Width="100" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Label Content="Internet access (upload) [Teleport score]:" Grid.Column="2" Grid.Row="6" VerticalAlignment="Top"/>
+        <TextBox x:Name="ia4_tb" Grid.Column="2" Grid.Row="6" Background="Beige" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+
+        <Label Content="Air quality [Teleport score]:" Grid.Column="3" Grid.Row="3" VerticalAlignment="Top"/>
+        <TextBox x:Name="eq1_tb" Grid.Column="3" Grid.Row="3" Background="Beige" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <Label Content="Cleanliness [Teleport score]:" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center"/>
+        <TextBox x:Name="eq2_tb" Grid.Column="3" Grid.Row="3" Background="Beige" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Content="Drinking water quality [Teleport score]:" Grid.Column="3" Grid.Row="3" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="eq3_tb" Grid.Column="3" Grid.Row="3" Background="Beige" Width="100" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Label Content="Urban greenery [Teleport score]:" Grid.Column="3" Grid.Row="4" VerticalAlignment="Top"/>
+        <TextBox x:Name="eq4_tb" Grid.Column="3" Grid.Row="4" Background="Beige" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+
+        <Label Content="Airport hub:" Grid.Column="3" Grid.Row="5" VerticalAlignment="Top"/>
+        <TextBox x:Name="tc1_tb" Grid.Column="3" Grid.Row="5" Background="Beige" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <Label Content="Airport hub [Teleport score]:" Grid.Column="3" Grid.Row="5" VerticalAlignment="Center"/>
+        <TextBox x:Name="tc2_tb" Grid.Column="3" Grid.Row="5" Background="Beige" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Content="Intercity train connectivity [Teleport score]:" Grid.Column="3" Grid.Row="5" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="tc3_tb" Grid.Column="3" Grid.Row="5" Background="Beige" Width="100" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+
+        <Label Content="Urban area elevation (meters):" Grid.Column="4" Grid.Row="3" VerticalAlignment="Top"/>
+        <TextBox x:Name="o1_tb" Grid.Column="4" Grid.Row="3" Background="Beige" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <Label Content="Presence of hills in city:" Grid.Column="4" Grid.Row="3" VerticalAlignment="Center"/>
+        <TextBox x:Name="o2_tb" Grid.Column="4" Grid.Row="3" Background="Beige" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Content="Presence  of moutains in city:" Grid.Column="4" Grid.Row="3" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="o3_tb" Grid.Column="4" Grid.Row="3" Background="Beige" Width="100" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Label Content="Median peak in meters:" Grid.Column="4" Grid.Row="4" VerticalAlignment="Top"/>
+        <TextBox x:Name="o4_tb" Grid.Column="4" Grid.Row="4" Background="Beige" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <Label Content="Elevation (hills or mountains) [Teleport Score]:" Grid.Column="4" Grid.Row="4" VerticalAlignment="Center"/>
+        <TextBox x:Name="o5_tb" Grid.Column="4" Grid.Row="4" Background="Beige" Width="100" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Content="Water access [Teleport Score]:" Grid.Column="4" Grid.Row="4" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="o6_tb" Grid.Column="4" Grid.Row="4" Background="Beige" Width="100" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Label Content="Seaside access:" Grid.Column="4" Grid.Row="5" VerticalAlignment="Top"/>
+        <TextBox x:Name="o7_tb" Grid.Column="4" Grid.Row="5" Background="Beige" Width="100" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        
 
         <!--All the textboxes are in this stack panel-->
         <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="1" Grid.RowSpan="7">
             <TextBox x:Name="cityName_tb" Background="Beige" TextAlignment="Left" Margin="10 22 10 10"/>
-            <TextBox x:Name="col_tb" Background="Beige" TextAlignment="Left" Margin="10 27 10 10"/>
+            <!--        <TextBox x:Name="col_tb" Background="Beige" TextAlignment="Left" Margin="10 27 10 10"/>
             <TextBox x:Name="h_tb" Background="Beige" TextAlignment="Left" Margin="10 27 10 10"/>
             <TextBox x:Name="ia_tb" Background="Beige" TextAlignment="Left" Margin="10 27 10 10"/>
             <TextBox x:Name="eq_tb" Background="Beige" TextAlignment="Left" Margin="10 27 10 10"/>
             <TextBox x:Name="tc_tb" Background="Beige" TextAlignment="Left" Margin="10 27 10 10"/>
             <TextBox x:Name="o_tb" Background="Beige" TextAlignment="Left" Margin="10 27 10 10"/>
+-->
         </StackPanel>
 
 
         <!--All the Sliders and the button are in this grid column 3 (or 2)-->
         <Button Content="Add To List" Click="Button_Click" Grid.Column="3" Grid.Row="1" Width="120" Height="30"/>
 
-        <Slider x:Name="col_sd" Grid.Column="3" Grid.Row="2" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="col_sd_ValueChanged"/>
-        <Label x:Name="col_lb" Content="0" Grid.Column="3" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center"/>
-        <CheckBox x:Name="col_cb" Content="N/A" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="CheckBox_Checked"/>
+        <Slider x:Name="col_sd" Grid.Column="1" Grid.Row="7" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="col_sd_ValueChanged"/>
+        <Label x:Name="col_lb" Content="0" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="7" VerticalAlignment="Center"/>
+        <CheckBox x:Name="col_cb" Content="N/A" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="CheckBox_Checked" Unchecked="col_cb_Unchecked"/>
 
-        <Slider x:Name="h_sd" Grid.Row="3" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="h_sd_ValueChanged"/>
-        <Label x:Name="h_lb" Content="0" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <CheckBox x:Name="h_cb" Content="no value" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="h_cb_Checked"/>
+        <Slider x:Name="h_sd" Grid.Row="4" Grid.Column="2" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="h_sd_ValueChanged"/>
+        <Label x:Name="h_lb" Content="0" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <CheckBox x:Name="h_cb" Content="N/A" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="h_cb_Checked" Unchecked="h_cb_Unchecked"/>
 
-        <Slider x:Name="ia_sd" Grid.Row="4" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="ia_sd_ValueChanged"/>
-        <Label x:Name="ia_lb" Content="0" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <CheckBox x:Name="ia_cb" Content="no value" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="ia_cb_Checked"/>
+        <Slider x:Name="ia_sd" Grid.Row="7" Grid.Column="2" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="ia_sd_ValueChanged"/>
+        <Label x:Name="ia_lb" Content="0" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <CheckBox x:Name="ia_cb" Content="N/A" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="ia_cb_Checked" Unchecked="ia_cb_Unchecked"/>
 
-        <Slider x:Name="eq_sd" Grid.Row="5" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="eq_sd_ValueChanged"/>
-        <Label x:Name="eq_lb" Content="0" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <CheckBox x:Name="eq_cb" Content="no value" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="eq_cb_Checked"/>
+        <Slider x:Name="eq_sd" Grid.Row="4" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="eq_sd_ValueChanged"/>
+        <Label x:Name="eq_lb" Content="0" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <CheckBox x:Name="eq_cb" Content="N/A" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="eq_cb_Checked" Unchecked="eq_cb_Unchecked"/>
 
-        <Slider x:Name="tc_sd" Grid.Row="6" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="tc_sd_ValueChanged"/>
-        <Label Name="tc_lb" Content="0" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <CheckBox x:Name="tc_cb" Content="no value" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="tc_cb_Checked"/>
+        <Slider x:Name="tc_sd" Grid.Row="7" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="tc_sd_ValueChanged"/>
+        <Label Name="tc_lb" Content="0" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <CheckBox x:Name="tc_cb" Content="N/A" Grid.Column="3" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="tc_cb_Checked" Unchecked="tc_cb_Unchecked"/>
 
-        <Slider x:Name="o_sd" Grid.Row="7" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="o_sd_ValueChanged"/>
-        <Label Name="o_lb" Content="0" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <CheckBox x:Name="o_cb" Content="no value" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="o_cb_Checked"/>
+        <Slider x:Name="o_sd" Grid.Row="7" Grid.Column="4" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="o_sd_ValueChanged"/>
+        <Label Name="o_lb" Content="0" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <CheckBox x:Name="o_cb" Content="N/A" Grid.Column="4" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="o_cb_Checked" Unchecked="o_cb_Unchecked"/>
 
 
     </Grid>

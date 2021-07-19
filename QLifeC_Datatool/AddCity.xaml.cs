@@ -80,11 +80,19 @@ namespace QLifeC_Datatool
             col_sd.IsEnabled = false;
             col_sd.Value = 0;
         }
+        private void col_cb_Unchecked(object sender, RoutedEventArgs e)
+        {
+            col_sd.IsEnabled = true;
+        }
 
         private void h_cb_Checked(object sender, RoutedEventArgs e)
         {
             h_sd.IsEnabled = false;
             h_sd.Value = 0;
+        }
+        private void h_cb_Unchecked(object sender, RoutedEventArgs e)
+        {
+            h_sd.IsEnabled = true;
         }
 
         private void ia_cb_Checked(object sender, RoutedEventArgs e)
@@ -92,11 +100,19 @@ namespace QLifeC_Datatool
             ia_sd.IsEnabled = false;
             ia_sd.Value = 0;
         }
+        private void ia_cb_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ia_sd.IsEnabled = true;
+        }
 
         private void eq_cb_Checked(object sender, RoutedEventArgs e)
         {
             eq_sd.IsEnabled = false;
             eq_sd.Value = 0;
+        }
+        private void eq_cb_Unchecked(object sender, RoutedEventArgs e)
+        {
+            eq_sd.IsEnabled = true;
         }
 
         private void tc_cb_Checked(object sender, RoutedEventArgs e)
@@ -104,10 +120,20 @@ namespace QLifeC_Datatool
             tc_sd.IsEnabled = false;
             tc_sd.Value = 0;
         }
+        private void tc_cb_Unchecked(object sender, RoutedEventArgs e)
+        {
+            tc_sd.IsEnabled = true;
+        }
+
         private void o_cb_Checked(object sender, RoutedEventArgs e)
         {
             o_sd.IsEnabled = false;
             o_sd.Value = 0;
         }
+        private void o_cb_Unchecked(object sender, RoutedEventArgs e)
+        {
+            o_sd.IsEnabled = true;
+        }
+
     }
 }
