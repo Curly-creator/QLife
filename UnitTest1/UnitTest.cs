@@ -1,7 +1,5 @@
 using System;
 using Xunit;
-//using QLifeC_Datatool;
-
 
 namespace Unittest
 {

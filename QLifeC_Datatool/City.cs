@@ -6,20 +6,26 @@ namespace QLifeC_Datatool
 {
     public class City
     {
-        private string _Name;
+        private string _Name; 
         private string _Url;
         Category[] _Categories;
-        
+
+        Category COL = new Category();
+        Category H = new Category();
+        Category IA = new Category();
+        Category EQ = new Category();
+        Category TC = new Category();
+        Category O = new Category();
+
         public City()
         {
-
+            Categories = new Category[] { COL, H, IA, EQ, TC, O };
         }
 
-        //constructor1: only name
-        public City(string name)
+        public City(string name) :base()
         {
-            _Name = name;
-            //_Categories[0].Score.ScoreOutOf10 = scoreinput;
+            Name = name;
+            Categories = new Category[] { COL, H, IA, EQ, TC, O }; 
         }
 
 

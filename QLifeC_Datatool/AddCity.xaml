@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:QLifeC_Datatool"
         mc:Ignorable="d"
         Title="AddCity" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="col_sl">
         <!--Defining the grid structure with number of columns and rows-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -50,7 +50,34 @@
             <TextBox x:Name="o_tb" Background="Beige" TextAlignment="Left" Margin="10 27 10 10"/>
         </StackPanel>
 
+
+        <!--All the Sliders and the button are in this grid column 3 (or 2)-->
         <Button Content="Add To List" Click="Button_Click" Grid.Column="3" Grid.Row="1" Width="120" Height="30"/>
-        
+
+        <Slider x:Name="col_sd" Grid.Column="3" Grid.Row="2" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="col_sd_ValueChanged"/>
+        <Label x:Name="col_lb" Content="0" Grid.Column="3" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center"/>
+        <CheckBox x:Name="col_cb" Content="N/A" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="CheckBox_Checked"/>
+
+        <Slider x:Name="h_sd" Grid.Row="3" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="h_sd_ValueChanged"/>
+        <Label x:Name="h_lb" Content="0" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <CheckBox x:Name="h_cb" Content="no value" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="h_cb_Checked"/>
+
+        <Slider x:Name="ia_sd" Grid.Row="4" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="ia_sd_ValueChanged"/>
+        <Label x:Name="ia_lb" Content="0" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <CheckBox x:Name="ia_cb" Content="no value" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="ia_cb_Checked"/>
+
+        <Slider x:Name="eq_sd" Grid.Row="5" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="eq_sd_ValueChanged"/>
+        <Label x:Name="eq_lb" Content="0" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <CheckBox x:Name="eq_cb" Content="no value" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="eq_cb_Checked"/>
+
+        <Slider x:Name="tc_sd" Grid.Row="6" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="tc_sd_ValueChanged"/>
+        <Label Name="tc_lb" Content="0" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <CheckBox x:Name="tc_cb" Content="no value" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="tc_cb_Checked"/>
+
+        <Slider x:Name="o_sd" Grid.Row="7" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="o_sd_ValueChanged"/>
+        <Label Name="o_lb" Content="0" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <CheckBox x:Name="o_cb" Content="no value" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="o_cb_Checked"/>
+
+
     </Grid>
 </Window>
