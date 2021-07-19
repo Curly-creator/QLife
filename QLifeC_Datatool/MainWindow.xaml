@@ -39,7 +39,11 @@
         </Grid.RowDefinitions>
 
         <!--All search & filter options can go in this stack panel-->
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2"/>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4"/>
+        <Button x:Name="btn_Filter" Content="Filter" Height="30"  Click="btn_Filter_Click" Margin="20,10,20,3"  Grid.Column="5" Grid.Row="3"/>
+
+
+        <ComboBox Name="cmb_Sub1" Width="120" Height="20" Grid.Column="1" Grid.Row="1"></ComboBox>
 
         <!--All the main buttons are in this stack panel. Easier to make changes to multiple buttons at once-->
         <StackPanel Grid.Column="6" Grid.ColumnSpan="1" Grid.Row="4" Grid.RowSpan="8">
@@ -52,20 +56,43 @@
 
         <!--Main Grid-->
         <DataGrid x:Name="Dgd_MainGrid" AutoGenerateColumns="False" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8" BorderThickness="1" BorderBrush="Gray" IsReadOnly="True">
-
             <DataGrid.Columns>
 
-                <DataGridTextColumn Header="City" Binding="{Binding Name}"/>
+                <DataGridTextColumn Binding="{Binding Name}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Width="100">
+                            <TextBlock Text="City" HorizontalAlignment="Center"/>
+                            <TextBlock />
+                            <TextBox Name="tbx_SearchBar" Background="Beige" TextAlignment="Left" TextChanged="tbx_SearchBar_TextChanged"  />
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                    
 
-                <DataGridTextColumn Header="Cost of Living" Binding="{Binding Categories[0]}">
+                <DataGridTextColumn Binding="{Binding Categories[0]}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Width="100">
+                            <TextBlock Text="Cost of Living" HorizontalAlignment="Center"/>
+                            <Slider Name="sl_CoLFilter" Orientation="Horizontal" ValueChanged="sl_CoLFilter_ValueChanged"/>
+                            <Label Name="lbl_CoL" Content="0" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="ToolTip" Value="{Binding Categories[0].Tooltip}"/>
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
+                
 
-                <DataGridTextColumn Header="Healthcare" Binding="{Binding Categories[1]}">
+                <DataGridTextColumn Binding="{Binding Categories[1]}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Width="100">
+                            <TextBlock Text="Healthcare" HorizontalAlignment="Center"></TextBlock>
+                            <Slider Name="sl_HCFilter" Orientation="Horizontal" ValueChanged="sl_HCFilter_ValueChanged"/>
+                            <Label Name="lbl_HC" Content="0" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="ToolTip" Value="{Binding Categories[1].Tooltip}"/>
@@ -73,7 +100,14 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Internet Access" Binding="{Binding Categories[2]}">
+                <DataGridTextColumn Binding="{Binding Categories[2]}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Width="100">
+                            <TextBlock Text="Internet Access" HorizontalAlignment="Center"></TextBlock>
+                            <Slider Name="sl_IAFilter" Orientation="Horizontal" ValueChanged="sl_IAFilter_ValueChanged"/>
+                            <Label Name="lbl_IA" Content="0" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="ToolTip" Value="{Binding Categories[2].Tooltip}"/>
@@ -81,7 +115,14 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Environmental Quality" Binding="{Binding Categories[3]}">
+                <DataGridTextColumn Binding="{Binding Categories[3]}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Width="120">
+                            <TextBlock Text="Environmental Quality" HorizontalAlignment="Center"></TextBlock>
+                            <Slider Name="sl_EQFilter" Orientation="Horizontal" ValueChanged="sl_EQFilter_ValueChanged"/>
+                            <Label Name="lbl_EQ" Content="0" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="ToolTip" Value="{Binding Categories[3].Tooltip}"/>
@@ -89,7 +130,14 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Travel Connectivity" Binding="{Binding Categories[4]}">
+                <DataGridTextColumn Binding="{Binding Categories[4]}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Width="100">
+                            <TextBlock Text="Travel Connectivity" HorizontalAlignment="Center"></TextBlock>
+                            <Slider Name="sl_TCFilter" Orientation="Horizontal" ValueChanged="sl_TCFilter_ValueChanged"/>
+                            <Label Name="lbl_TC" Content="0" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="ToolTip" Value="{Binding Categories[4].Tooltip}"/>
@@ -97,7 +145,14 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Outdoors" Binding="{Binding Categories[5]}">
+                <DataGridTextColumn Binding="{Binding Categories[5]}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Width="100">
+                            <TextBlock Text="Outdoors" HorizontalAlignment="Center"></TextBlock>
+                            <Slider Name="sl_OFilter" Orientation="Horizontal" ValueChanged="sl_OFilter_ValueChanged"/>
+                            <Label Name="lbl_O" Content="0" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="ToolTip" Value="{Binding Categories[5].Tooltip}"/>
@@ -107,25 +162,6 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        
-        
-        <Button x:Name="btn_Filter" Content="Filter" Grid.Column="4" HorizontalAlignment="Left" Margin="95,5,0,0" Grid.Row="3" VerticalAlignment="Top" Click="btn_Filter_Click"/>
-        <Slider x:Name="sl_CoLFilter" Grid.Column="1" HorizontalAlignment="Left" Margin="45,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="20" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="1" Orientation="Vertical" Height="65" Grid.RowSpan="2" ValueChanged="sl_CoLFilter_ValueChanged"/>
-        <Slider x:Name="sl_HCFilter" Grid.Column="1" HorizontalAlignment="Left" Margin="140,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="20" AutoToolTipPrecision="1" AutoToolTipPlacement="TopLeft" Orientation="Vertical" Height="65" Grid.RowSpan="2" ValueChanged="sl_HCFilter_ValueChanged"/>
-        <Slider x:Name="sl_IAFilter" Width="20" Grid.Column="2" Margin="70,10,70,16" Grid.Row="2" AutoToolTipPrecision="1" AutoToolTipPlacement="TopLeft" Orientation="Vertical" Grid.RowSpan="2" Height="65" ValueChanged="sl_IAFilter_ValueChanged"/>
-        <Slider x:Name="sl_EQFilter" Grid.Column="3" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="20" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="1" Orientation="Vertical" Height="65" Grid.RowSpan="2" ValueChanged="sl_EQFilter_ValueChanged"/>
-        <Slider x:Name="sl_TCFilter" Grid.Column="3" HorizontalAlignment="Left" Margin="130,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="20" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="1" Orientation="Vertical" Height="65" Grid.RowSpan="2" ValueChanged="sl_TCFilter_ValueChanged"/>
-        <Slider x:Name="sl_OFilter" Grid.Column="4" HorizontalAlignment="Left" Margin="46,18,0,0" Grid.Row="2" VerticalAlignment="Top" Width="20" AutoToolTipPrecision="1" AutoToolTipPlacement="TopLeft" Orientation="Vertical" Height="65" Grid.RowSpan="2" ValueChanged="sl_OFilter_ValueChanged"/>
-        <Label Content="Search Bar" Grid.Column="1" Margin="0,0,0,20" Grid.Row="1" />
-        <TextBox x:Name="tbx_SearchBar" Background="Beige" TextAlignment="Left" TextChanged="tbx_SearchBar_TextChanged" Grid.Column="1" Margin="0,26,0,3" Grid.Row="1"/>
-
-        <Label x:Name="lbl_CoL" Content="0" Grid.Column="1" HorizontalAlignment="Left" Margin="70,16,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_HC" Content="0" Grid.Column="2" HorizontalAlignment="Left" Margin="0,16,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_IA" Content="0" Grid.Column="2" HorizontalAlignment="Left" Margin="80,16,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_EQ" Content="0" Grid.Column="3" HorizontalAlignment="Left" Margin="12,0,0,0" Grid.Row="2" VerticalAlignment="Center"/>
-        <Label x:Name="lbl_O" Content="0" Grid.Column="4" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center"/>
-        <Label x:Name="lbl_TC" Content="0" Grid.Column="4" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center"/>
-
 
     </Grid>
 </Window>

@@ -35,17 +35,30 @@ namespace QLifeC_Datatool
         public MainWindow()
         {
             InitializeComponent();
-        
+
             API_GetCityList();
-            
+
             int indexCity = 0;
             foreach (var item in cityList)
-            { 
+            {
                 API_GetCategoryScores(cityList[indexCity]);
                 indexCity++;
             }
-            
 
+            //List<SubCategory> SubCat = new List<SubCategory>();
+
+            //foreach (object item in cityList[0].Categories[0].SubCategory)
+            //{
+            //    SubCat.Add((SubCategory)item);                  
+            //}
+            //cmb_Sub1.ItemsSource = SubCat;
+            //int i = 0;
+            //foreach (object item in cityList)
+            //{
+            //    SubCat.Add((SubCategory)cityList[i].Categories[0].SubCategory[0]);
+            //        i++;
+            //}
+                    
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }

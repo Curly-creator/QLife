@@ -37,7 +37,7 @@ namespace QLifeC_Datatool
                 int i = 0;
                 foreach (var item in SubCategory)
                 {
-                    result += SubCategory[i].ToString();
+                    result += SubCategory[i].GetTooltip();
                     i++;
                 }
                 return result;

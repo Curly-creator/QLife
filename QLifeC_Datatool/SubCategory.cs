@@ -26,6 +26,11 @@ namespace QLifeC_Datatool
 
         public override string ToString()
         {
+            return Label;
+        }
+
+        public string GetTooltip()
+        {
             string value;
 
             if (Type == "string" || Type == "url") value = StringValue;
