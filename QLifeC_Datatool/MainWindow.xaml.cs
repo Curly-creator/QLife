@@ -165,7 +165,6 @@ namespace QLifeC_Datatool
 
         private void btn_Download_Click(object sender, RoutedEventArgs e)
         {
-
             Stream qLifeStream;
             SaveFileDialog downloadDialog = new SaveFileDialog();
 
@@ -179,6 +178,7 @@ namespace QLifeC_Datatool
             {
                 if (downloadDialog.FileName.EndsWith("csv") == true)
                 {
+
                     if ((qLifeStream = downloadDialog.OpenFile()) != null)
                     {
                         {
@@ -204,6 +204,7 @@ namespace QLifeC_Datatool
 
         public void WriteToCSV(Stream qLifeCsvStream)
         {
+            int amountCategories = categorieID.Name.Length;
 
             using StreamWriter exportCSV = new StreamWriter(qLifeCsvStream);
             //path: C: \Users\ThinkPad T540p\UI Coding\2.Semester Prog 2\QLifeC Datatool App\QLifeC_Datatool\bin\Debug\netcoreapp3.1
@@ -217,6 +218,8 @@ namespace QLifeC_Datatool
                 }
                 exportCSV.WriteLine("");
 
+                
+
                 //following lines of CSV, entering names and score values
                 foreach (City city in cityList)
                 {
@@ -224,7 +227,7 @@ namespace QLifeC_Datatool
                     string cityNameForCsv = city.Name.ToString().Replace(",", "");
                     exportCSV.Write(cityNameForCsv + ",");
 
-                    for (int i = 0; i <= 5; i++)
+                    for (int i = 0; i < amountCategories; i++)
                     {
                         decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score.ScoreOutOf10, 2);
                         string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
