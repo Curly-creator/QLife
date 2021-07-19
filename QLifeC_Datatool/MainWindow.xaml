@@ -60,8 +60,7 @@
 
             <DataGrid.Columns>
 
-                <!--<<<<<<< HEAD
-=======-->
+                <!--<<<<<<< HEAD =======-->
                 <DataGridTextColumn Header="City" Binding="{Binding Name}"/>
 
                 <DataGridTextColumn Header="Cost of Living" Binding="{Binding Categories[0]}">

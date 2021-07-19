@@ -228,6 +228,10 @@ namespace QLifeC_Datatool
                     string cityNameForCsv = city.Name.ToString().Replace(",", "");
                     exportCSV.Write(cityNameForCsv + ",");
 
+                    foreach (Data subcat in city.Categorie.Data)
+
+
+
                     for (int i = 0; i < amountCategories; i++)
                     {
                         decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score.ScoreOutOf10, 2);

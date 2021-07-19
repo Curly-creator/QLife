@@ -10,8 +10,6 @@ namespace QLifeC_Datatool
         Score _Score;
         private string _Id;
         private string _Label;
-        private string _Tooltip;
-        
 
         public Category()
         {
@@ -21,7 +19,7 @@ namespace QLifeC_Datatool
 
         public override string ToString()
         { 
-            return Math.Round(Score.ScoreOutOf10, 2).ToString(); ;
+            return Math.Round(Score.ScoreOutOf10, 2).ToString();
         }
 
         public string Id { get => _Id; set => _Id = value; }
