@@ -72,9 +72,19 @@
                 <DataGridTextColumn Binding="{Binding Categories[0]}">
                     <DataGridTextColumn.Header>
                         <StackPanel Width="100">
-                            <TextBlock Text="Cost of Living" HorizontalAlignment="Center"/>
-                            <Slider Name="sl_CoLFilter" Orientation="Horizontal" ValueChanged="sl_CoLFilter_ValueChanged"/>
-                            <Label Name="lbl_CoL" Content="0" HorizontalAlignment="Center"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <TextBlock Text="Cost of Living" Grid.Row="0" HorizontalAlignment="Center"/>
+                                <Slider Name="sl_CoLFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="sl_CoLFilter_ValueChanged"/>
+                                <CheckBox Name="cb_CoLFilter" Grid.Row="2" VerticalAlignment="Center"/>
+                                <Label Name="lbl_CoL" Content="Filtervalue: 0"  Grid.Row="2" HorizontalAlignment="Right"/>
+                                
+                            </Grid>
                         </StackPanel>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
@@ -88,9 +98,19 @@
                 <DataGridTextColumn Binding="{Binding Categories[1]}">
                     <DataGridTextColumn.Header>
                         <StackPanel Width="100">
-                            <TextBlock Text="Healthcare" HorizontalAlignment="Center"></TextBlock>
-                            <Slider Name="sl_HCFilter" Orientation="Horizontal" ValueChanged="sl_HCFilter_ValueChanged"/>
-                            <Label Name="lbl_HC" Content="0" HorizontalAlignment="Center"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <TextBlock Text="Healthcare" Grid.Row="0"  HorizontalAlignment="Center"></TextBlock>
+                                <Slider Name="sl_HCFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="sl_HCFilter_ValueChanged"/>
+                                <CheckBox Name="cb_HCFilter" Grid.Row="2" VerticalAlignment="Center"/>
+                                <Label Name="lbl_HC" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
+                                
+                            </Grid>
                         </StackPanel>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
@@ -103,9 +123,21 @@
                 <DataGridTextColumn Binding="{Binding Categories[2]}">
                     <DataGridTextColumn.Header>
                         <StackPanel Width="100">
-                            <TextBlock Text="Internet Access" HorizontalAlignment="Center"></TextBlock>
-                            <Slider Name="sl_IAFilter" Orientation="Horizontal" ValueChanged="sl_IAFilter_ValueChanged"/>
-                            <Label Name="lbl_IA" Content="0" HorizontalAlignment="Center"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Internet Access" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
+                                <Slider Name="sl_IAFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="sl_IAFilter_ValueChanged"/>
+                                <CheckBox Name="cb_IAFilter" Grid.Row="2" VerticalAlignment="Center"/>
+                                <Label Name="lbl_IA" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
+                                
+                            </Grid>
+                            
+                            
                         </StackPanel>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
@@ -118,9 +150,20 @@
                 <DataGridTextColumn Binding="{Binding Categories[3]}">
                     <DataGridTextColumn.Header>
                         <StackPanel Width="120">
-                            <TextBlock Text="Environmental Quality" HorizontalAlignment="Center"></TextBlock>
-                            <Slider Name="sl_EQFilter" Orientation="Horizontal" ValueChanged="sl_EQFilter_ValueChanged"/>
-                            <Label Name="lbl_EQ" Content="0" HorizontalAlignment="Center"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <TextBlock Text="Environmental Quality" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
+                                <Slider Name="sl_EQFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="sl_EQFilter_ValueChanged"/>
+                                <CheckBox Name="cb_EQFilter" Grid.Row="2" VerticalAlignment="Center"/>
+                                <Label Name="lbl_EQ" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
+                                
+                            </Grid>
+                            
                         </StackPanel>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
@@ -133,9 +176,20 @@
                 <DataGridTextColumn Binding="{Binding Categories[4]}">
                     <DataGridTextColumn.Header>
                         <StackPanel Width="100">
-                            <TextBlock Text="Travel Connectivity" HorizontalAlignment="Center"></TextBlock>
-                            <Slider Name="sl_TCFilter" Orientation="Horizontal" ValueChanged="sl_TCFilter_ValueChanged"/>
-                            <Label Name="lbl_TC" Content="0" HorizontalAlignment="Center"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Travel Connectivity" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
+                                <Slider Name="sl_TCFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="sl_TCFilter_ValueChanged"/>
+                                <CheckBox Name="cb_TCFilter" Grid.Row="2" VerticalAlignment="Center"/>
+                                <Label Name="lbl_TC" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
+                                
+                            </Grid>
+                            
                         </StackPanel>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
@@ -148,9 +202,20 @@
                 <DataGridTextColumn Binding="{Binding Categories[5]}">
                     <DataGridTextColumn.Header>
                         <StackPanel Width="100">
-                            <TextBlock Text="Outdoors" HorizontalAlignment="Center"></TextBlock>
-                            <Slider Name="sl_OFilter" Orientation="Horizontal" ValueChanged="sl_OFilter_ValueChanged"/>
-                            <Label Name="lbl_O" Content="0" HorizontalAlignment="Center"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Outdoors" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
+                                <Slider Name="sl_OFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="sl_OFilter_ValueChanged"/>
+                                <CheckBox Name="cb_OFilter" Grid.Row="2" VerticalAlignment="Center"/>
+                                <Label Name="lbl_O" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
+                                
+                            </Grid>
+                            
                         </StackPanel>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
