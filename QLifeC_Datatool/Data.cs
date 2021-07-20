@@ -10,16 +10,20 @@ namespace QLifeC_Datatool
         private string _Id;
         private double _NumberValue;
         private string _StringValue;
-        private string _Lable;
+        private string _Label;
         private string _Type;
 
         public Data()
         {
 
         }
+        public Data(string label)
+        {
+            Label = label;
+        }
 
         public string Id { get => _Id; set => _Id = value; }
-        public string Label { get => _Lable; set => _Lable = value; }
+        public string Label { get => _Label; set => _Label = value; }
         public string Type { get => _Type; set => _Type = value; }
         public double NumberValue { get => _NumberValue; set => _NumberValue = value; }
         public string StringValue { get => _StringValue; set => _StringValue = value; }
