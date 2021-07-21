@@ -31,8 +31,9 @@ namespace QLifeC_Datatool
         
         public List<City> cityList = new List<City>();
         public CategoryName CategoryName = new CategoryName();
-        public List<Slider> SliderList;
-        public List<CheckBox> CheckBoxList;
+        public Slider[] FilterSliderArray;
+        public CheckBox[] FilterCheckBoxArray;
+        public Label[] FilterLabelArray;
 
         public MainWindow()
         {
@@ -47,8 +48,9 @@ namespace QLifeC_Datatool
                 indexOfCity++;
             }
 
-            SliderList = new List<Slider> { sl_CoLFilter, sl_HCFilter, sl_IAFilter, sl_EQFilter, sl_TCFilter,  sl_OFilter };
-            CheckBoxList = new List<CheckBox> { cb_CoLFilter, cb_HCFilter, cb_IAFilter, cb_EQFilter, cb_TCFilter, cb_OFilter };
+            FilterSliderArray = new Slider[] { sl_CoLFilter, sl_HCFilter, sl_IAFilter, sl_EQFilter, sl_TCFilter,  sl_OFilter };
+            FilterCheckBoxArray = new CheckBox[] { cb_CoLFilter, cb_HCFilter, cb_IAFilter, cb_EQFilter, cb_TCFilter, cb_OFilter };
+            FilterLabelArray = new Label[] { lbl_CoL, lbl_HC, lbl_IA, lbl_EQ, lbl_TC, lbl_O };
 
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
@@ -187,15 +189,15 @@ namespace QLifeC_Datatool
             Dgd_MainGrid.Items.Refresh();
         }
 
-        public bool Filter(City city, int indexOfCategory)
+        public bool FilterByScore(City city, int indexOfCategory)
         {   
             if (indexOfCategory < 5)
             {
-                if ((bool)CheckBoxList[indexOfCategory].IsChecked)
+                if ((bool)FilterCheckBoxArray[indexOfCategory].IsChecked)
                 {
-                    if (city.Categories[indexOfCategory].Score.ScoreOutOf10 >= SliderList[indexOfCategory].Value)
+                    if (city.Categories[indexOfCategory].Score.ScoreOutOf10 >= FilterSliderArray[indexOfCategory].Value)
                     {
-                        if (Filter(city, indexOfCategory + 1)) return true;
+                        if (FilterByScore(city, indexOfCategory + 1)) return true;
 
                         else return false;
                     }
@@ -217,43 +219,22 @@ namespace QLifeC_Datatool
             List<City> FilterList = new List<City>();
             foreach (var city in cityList)
             {
-                if (Filter(city, 0)) FilterList.Add(city);
+                if (FilterByScore(city, 0)) FilterList.Add(city);
             }
                        
             Dgd_MainGrid.ItemsSource = FilterList;
             Dgd_MainGrid.Items.Refresh();           
         }
 
-        private void sl_CoLFilter_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        public void SliderValueChanged(object slider, RoutedPropertyChangedEventArgs<double> e)
         {
-           lbl_CoL.Content = "Filtervalue: " + Math.Round(sl_CoLFilter.Value, 1);        
-           
-        }
-
-        private void sl_HCFilter_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            lbl_HC.Content = "Filtervalue: " + Math.Round(sl_HCFilter.Value, 1);            
-        }
-
-        private void sl_IAFilter_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {           
-            lbl_IA.Content = "Filtervalue: " + Math.Round(sl_IAFilter.Value, 1);
-        }
-
-        private void sl_EQFilter_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            lbl_EQ.Content = "Filtervalue: " + Math.Round(sl_EQFilter.Value, 1);
-            
-        }
-
-        private void sl_TCFilter_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            lbl_TC.Content = "Filtervalue: " + Math.Round(sl_TCFilter.Value, 1);
-        }
-
-        private void sl_OFilter_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            lbl_O.Content = "Filtervalue: " + Math.Round(sl_OFilter.Value, 1);
+            for (int i = 0; i < FilterSliderArray.Length; i++)
+            {
+                if (slider == FilterSliderArray[i])
+                {
+                    FilterLabelArray[i].Content = String.Format("Filtervalue: {0,1:N1}", Math.Round(FilterSliderArray[i].Value, 1));
+                }    
+            }        
         }
     }
 }

@@ -42,9 +42,6 @@
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4"/>
         <Button x:Name="btn_Filter" Content="Filter" Height="30"  Click="btn_Filter_Click" Margin="20,10,20,3"  Grid.Column="5" Grid.Row="3"/>
 
-
-        <ComboBox Name="cmb_Sub1" Width="120" Height="20" Grid.Column="1" Grid.Row="1"></ComboBox>
-
         <!--All the main buttons are in this stack panel. Easier to make changes to multiple buttons at once-->
         <StackPanel Grid.Column="6" Grid.ColumnSpan="1" Grid.Row="4" Grid.RowSpan="8">
             <Button x:Name="btn_NewEntry" Content="Add" Height="30" Margin="20 10 20 10"/>
@@ -80,9 +77,9 @@
                                 </Grid.RowDefinitions>
                                 
                                 <TextBlock Text="Cost of Living" Grid.Row="0" HorizontalAlignment="Center"/>
-                                <Slider Name="sl_CoLFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="sl_CoLFilter_ValueChanged"/>
+                                <Slider Name="sl_CoLFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
                                 <CheckBox Name="cb_CoLFilter" Grid.Row="2" VerticalAlignment="Center"/>
-                                <Label Name="lbl_CoL" Content="Filtervalue: 0"  Grid.Row="2" HorizontalAlignment="Right"/>
+                                <Label Name="lbl_CoL" Content="Filtervalue: 0.0"  Grid.Row="2" HorizontalAlignment="Right"/>
                                 
                             </Grid>
                         </StackPanel>
@@ -106,7 +103,7 @@
                                 </Grid.RowDefinitions>
                                 
                                 <TextBlock Text="Healthcare" Grid.Row="0"  HorizontalAlignment="Center"></TextBlock>
-                                <Slider Name="sl_HCFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="sl_HCFilter_ValueChanged"/>
+                                <Slider Name="sl_HCFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
                                 <CheckBox Name="cb_HCFilter" Grid.Row="2" VerticalAlignment="Center"/>
                                 <Label Name="lbl_HC" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
                                 
@@ -131,7 +128,7 @@
                                 </Grid.RowDefinitions>
 
                                 <TextBlock Text="Internet Access" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
-                                <Slider Name="sl_IAFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="sl_IAFilter_ValueChanged"/>
+                                <Slider Name="sl_IAFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
                                 <CheckBox Name="cb_IAFilter" Grid.Row="2" VerticalAlignment="Center"/>
                                 <Label Name="lbl_IA" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
                                 
@@ -158,7 +155,7 @@
                                 </Grid.RowDefinitions>
                                 
                                 <TextBlock Text="Environmental Quality" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
-                                <Slider Name="sl_EQFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="sl_EQFilter_ValueChanged"/>
+                                <Slider Name="sl_EQFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
                                 <CheckBox Name="cb_EQFilter" Grid.Row="2" VerticalAlignment="Center"/>
                                 <Label Name="lbl_EQ" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
                                 
@@ -184,7 +181,7 @@
                                 </Grid.RowDefinitions>
 
                                 <TextBlock Text="Travel Connectivity" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
-                                <Slider Name="sl_TCFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="sl_TCFilter_ValueChanged"/>
+                                <Slider Name="sl_TCFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
                                 <CheckBox Name="cb_TCFilter" Grid.Row="2" VerticalAlignment="Center"/>
                                 <Label Name="lbl_TC" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
                                 
@@ -210,7 +207,7 @@
                                 </Grid.RowDefinitions>
 
                                 <TextBlock Text="Outdoors" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
-                                <Slider Name="sl_OFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="sl_OFilter_ValueChanged"/>
+                                <Slider Name="sl_OFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
                                 <CheckBox Name="cb_OFilter" Grid.Row="2" VerticalAlignment="Center"/>
                                 <Label Name="lbl_O" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
                                 
