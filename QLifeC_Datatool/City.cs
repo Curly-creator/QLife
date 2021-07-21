@@ -8,18 +8,23 @@ namespace QLifeC_Datatool
     {
         private string _Name;
         private string _Url;
-        
-        List<Category> _Categories;
-        
+    
+        Category[] _Categories;
         public City()
         {
-            Categories = new List<Category>();        
+            Categories = new Category[] {
+            new Category("Cost of Living"),
+            new Category("Healthcare"),
+            new Category("Internet Access"),
+            new Category("Environmental Quality"),
+            new Category("Travel Connectivity"),
+            new Category("Outdoors"),
+            };           
         }
        
         public string Name { get => _Name; set => _Name = value; }
         public string Url { get => _Url; set => _Url = value; }
-        public List<Category> Categories { get => _Categories; set => _Categories = value; }
-
+        public Category[] Categories { get => _Categories; set => _Categories = value; }
     }
 }
 

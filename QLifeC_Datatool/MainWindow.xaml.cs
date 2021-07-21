@@ -27,8 +27,7 @@ namespace QLifeC_Datatool
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-        
+    {    
         public List<City> cityList = new List<City>();
         public CategoryName CategoryName = new CategoryName();
         public Slider[] FilterSliderArray;
@@ -38,15 +37,8 @@ namespace QLifeC_Datatool
         public MainWindow()
         {
             InitializeComponent();
-       
-            API_GetCityList();
 
-            int indexOfCity = 0;
-            foreach (var item in cityList)
-            {
-                API_GetCategoryScores(cityList[indexOfCity]);
-                indexOfCity++;
-            }
+            API_GetCityData();
 
             FilterSliderArray = new Slider[] { sl_CoLFilter, sl_HCFilter, sl_IAFilter, sl_EQFilter, sl_TCFilter,  sl_OFilter };
             FilterCheckBoxArray = new CheckBox[] { cb_CoLFilter, cb_HCFilter, cb_IAFilter, cb_EQFilter, cb_TCFilter, cb_OFilter };
@@ -68,20 +60,30 @@ namespace QLifeC_Datatool
             return jsonObj;
         }
 
+        public void API_GetData()
+        {
+            API_GetCityList();
+            foreach (var city in cityList)
+            {
+                API_GetCategoryScores(city);
+                API_GetCategoryDetails(city);
+            }
+        }      
+
         public void API_GetCityList()
         {    
             var url = "https://api.teleport.org/api/urban_areas";
 
             dynamic jsonObj = API_UrlToJsonObj(url);
            
-            var cities = jsonObj["_links"]["ua:item"];
+            var jsonCities = jsonObj["_links"]["ua:item"];
             
             for(int i = 0; i <= 200; i += 10)
             {          
                 City city = new City
                 {
-                    Url = cities[i]["href"],
-                    Name = cities[i]["name"]
+                    Url = jsonCities[i]["href"],
+                    Name = jsonCities[i]["name"]
                 };
                 cityList.Add(city);
             };
@@ -93,75 +95,62 @@ namespace QLifeC_Datatool
 
             dynamic jsonObj = API_UrlToJsonObj(url);
 
-            var scores = jsonObj["categories"];
+            var jsonCategoryScores = jsonObj["categories"];
+ 
+            int counter = 0;
 
-            int indexScore = 0;
-        
-            
-            foreach (var item in scores)
-            {             
-                foreach (var name in CategoryName.Name)
+            foreach (var jsonScore in jsonCategoryScores)
+            {
+                for (int i = 0; i < city.Categories.Length; i++)
                 {
-                    if (scores[indexScore]["name"] == name)
+                    if (jsonScore["name"] == city.Categories[i].Label)
                     {
-                        Category categorie = new Category();                                                                           
-                        categorie.Score.Name = scores[indexScore]["name"];
-                        categorie.Score.ScoreOutOf10 = scores[indexScore]["score_out_of_10"];                   
-                        city.Categories.Add(categorie);
-                        }                   
+                        city.Categories[i].Score = jsonScore["score_out_of_10"];
+                        counter++;
+                        break;
+                    }
                 }
-                indexScore++;
-            }
-            API_GetCityData(city);
+                if (counter == city.Categories.Length) break;
+            }          
         }
 
-        public void API_GetCityData(City city)
+        public void API_GetCategoryDetails(City city)
         {
             var url = cityList[cityList.IndexOf(city)].Url + "details/";
 
             dynamic jsonObj = API_UrlToJsonObj(url);
 
-            var categories = jsonObj["categories"];
+            var jsonCategories = jsonObj["categories"];
 
-            int indexOfCategorie = 0;           
-            foreach (var category in categories)
+            int counter = 0;
+       
+            foreach (var jsonCategory in jsonCategories)
             {
-                int indexOfName = 0;
-                foreach ( var name in CategoryName.Name)
-                {
-                    if (categories[indexOfCategorie]["label"] == name)
+                for (int i = 0; i < city.Categories.Length; i++){
+                    if (jsonCategory["label"] == city.Categories[i].Label)
                     {
-                        int i = 0;
-                        foreach (var attribute in city.Categories)
-                        {
-                            if (city.Categories[i].Score.Name == name) break;
-                            i++;
-                        }
-                        city.Categories[i].Label = categories[indexOfCategorie]["label"];
-                        city.Categories[i].Id = categories[indexOfCategorie]["id"];
-                        
-                        var datapoints = jsonObj["categories"][indexOfCategorie]["data"];
-                        
-                        foreach (var datapoint in datapoints)
-                        {
-                            string type = datapoint["type"];
-                            
-                            SubCategory subCategory = new SubCategory
-                            {
-                                Type = datapoint["type"],
-                                Label = datapoint["label"]
-                            };
-
-                            if (type == "url" || type == "string") subCategory.StringValue = datapoint[type + "_value"];
-
-                            else subCategory.NumberValue = datapoint[type + "_value"];
-
-                            city.Categories[indexOfName].SubCategory.Add(subCategory);
-                        }
+                        API_AddSubCategories(city.Categories[i], jsonCategory);
+                        counter++;
+                        break;
                     }
-                    indexOfName++;
                 }
-                indexOfCategorie++;
+                if (counter == city.Categories.Length) break;
+            }
+        }
+
+        public void API_AddSubCategories(Category category, dynamic jsonCategory)
+        {
+            foreach (var jsonSubCategory in jsonCategory["data"])
+            {
+                string type = jsonSubCategory["type"];
+
+                SubCategory subCategory = new SubCategory
+                {
+                    Type = jsonSubCategory["type"],
+                    Label = jsonSubCategory["label"],
+                };
+
+                           
             }
         }
 
