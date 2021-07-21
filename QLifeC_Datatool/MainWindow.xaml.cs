@@ -29,7 +29,7 @@ namespace QLifeC_Datatool
     public partial class MainWindow : Window
     {    
         public List<City> cityList = new List<City>();
-        public CategoryName CategoryName = new CategoryName();
+        
         public Slider[] FilterSliderArray;
         public CheckBox[] FilterCheckBoxArray;
         public Label[] FilterLabelArray;
@@ -38,7 +38,7 @@ namespace QLifeC_Datatool
         {
             InitializeComponent();
 
-            API_GetCityData();
+            API_GetData();
 
             FilterSliderArray = new Slider[] { sl_CoLFilter, sl_HCFilter, sl_IAFilter, sl_EQFilter, sl_TCFilter,  sl_OFilter };
             FilterCheckBoxArray = new CheckBox[] { cb_CoLFilter, cb_HCFilter, cb_IAFilter, cb_EQFilter, cb_TCFilter, cb_OFilter };
@@ -148,9 +148,7 @@ namespace QLifeC_Datatool
                 {
                     Type = jsonSubCategory["type"],
                     Label = jsonSubCategory["label"],
-                };
-
-                           
+                };                         
             }
         }
 
@@ -179,28 +177,20 @@ namespace QLifeC_Datatool
         }
 
         public bool FilterByScore(City city, int indexOfCategory)
-        {   
-            if (indexOfCategory < 5)
+        {
+            if (indexOfCategory < city.Categories.Length)
             {
                 if ((bool)FilterCheckBoxArray[indexOfCategory].IsChecked)
                 {
-                    if (city.Categories[indexOfCategory].Score.ScoreOutOf10 >= FilterSliderArray[indexOfCategory].Value)
+                    if (city.Categories[indexOfCategory].Score >= FilterSliderArray[indexOfCategory].Value)
                     {
-                        if (FilterByScore(city, indexOfCategory + 1)) return true;
-
-                        else return false;
+                        return FilterByScore(city, indexOfCategory + 1);   
                     }
                     else return false;
                 }
-                else return true;
+                else return FilterByScore(city, indexOfCategory + 1);
             }
             return true;
-        }
-
-
-        private void tbx_SearchBar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            SearchCity();
         }
 
         private void btn_Filter_Click(object sender, RoutedEventArgs e)
@@ -210,9 +200,14 @@ namespace QLifeC_Datatool
             {
                 if (FilterByScore(city, 0)) FilterList.Add(city);
             }
-                       
+
             Dgd_MainGrid.ItemsSource = FilterList;
-            Dgd_MainGrid.Items.Refresh();           
+            Dgd_MainGrid.Items.Refresh();
+        }
+
+        private void tbx_SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchCity();
         }
 
         public void SliderValueChanged(object slider, RoutedPropertyChangedEventArgs<double> e)
