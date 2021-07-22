@@ -8,31 +8,104 @@ namespace UnitTest
 {
     public class AddingDeletingFeatureTesting
     {
-        [Fact]
-        public void TestAdding()
+        public bool CheckIfNameIsInTitleCase(string cityName)
         {
-            //Arrange
-            City cityToBeAdded;
-            List<City> cityList = new List<City>();
-            int citiesInList1 = cityList.Count;
-            cityToBeAdded = new City("Berlin");
-            cityToBeAdded.Categories[0].Score.ScoreOutOf10 = 9.0;
-            cityToBeAdded.Categories[1].Score.ScoreOutOf10 = 4.1;
-            cityToBeAdded.Categories[2].Score.ScoreOutOf10 = 4.2;
-            cityToBeAdded.Categories[3].Score.ScoreOutOf10 = 4.3;
-            cityToBeAdded.Categories[4].Score.ScoreOutOf10 = 4.4;
-            cityToBeAdded.Categories[5].Score.ScoreOutOf10 = 4.5;
-            cityList.Add(cityToBeAdded);            
-            int citiesInList2 = cityList.Count;
+            bool firstLetterIsUp;
+            bool otherLettersAreLow=false;
 
-            //Act
-            string before = (citiesInList1+1).ToString();
-            string after = citiesInList2.ToString();
-            
-            //Assert: testing the city counts
-            Assert.Equal(before, after);
+            if (char.IsUpper(cityName[0])) //methode for cities with easy names - not yet for 'Bad Mergentheim' ->string an leerstelle aufteilen in array
+                firstLetterIsUp = true;
+            else firstLetterIsUp = false;
+
+            for (int i = 1; i < cityName.Length; i++)
+            {
+                if (char.IsLower(cityName[i])) otherLettersAreLow = true;
+                else
+                {
+                    otherLettersAreLow = false;
+                    break;
+                }
+            }
+
+            if (firstLetterIsUp && otherLettersAreLow) return true;
+            else return false;
         }
 
+        public bool CheckIfNameIsEmpty(string cityName)
+        {
+            bool tmp_isEmpty = false;
+            if (cityName == "")
+            {
+                tmp_isEmpty = true;
+                //MessageBox.Show("Please type in a valid city name."); //unittest
+            }
+            //else AddCityToList();
+            return tmp_isEmpty;
+        }
+        public bool CheckIfContainsNoSymbols(string cityName)
+        {
+            char[] symbols = new char[] { '?', '!', '.', '°', '^', '"', '§', '$', '%', '&', '/', '(', ')', '=', '`', '´', '+', '*', '~', '}', ']', '[', '{', '#', '-', '_', ':', ',', ';', '<', '>', '}' };// ohne backslash ohne '\
+            bool containsNoSymbol = true;
+            for (int i = 0; i < cityName.Length; i++)
+            {
+                for (int c = 0; c < symbols.Length; c++)
+                {
+                    if (symbols[c] == cityName[i]) containsNoSymbol = false;
+                }
+            }
+            return containsNoSymbol;
+        }
+        [Fact]
+        public void TestTitleCaseMethod()
+        {
+            //Arrange
+            bool expected = false;
+
+            //Act
+            bool actual = CheckIfNameIsInTitleCase("berlin");
+            
+            //Assert:
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void TestTitleCaseMethod2()
+        {
+            //Arrange
+            bool expected = false;
+
+            //Act
+            bool actual = CheckIfNameIsInTitleCase("BERLIN");
+
+            //Assert:
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void TestNameIsEmptyMethod()
+        {
+            //Arrange
+            bool expected = true;
+
+            //Act
+            bool actual = CheckIfNameIsEmpty("");
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void TestContainsNoSymbolsMethod()
+        {
+            //Arrange
+            bool expected = false;
+
+            //Act
+            bool actual = CheckIfContainsNoSymbols("Berl?n");
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
         /*[Fact]
         public void TestDeleting()
         {
@@ -40,7 +113,8 @@ namespace UnitTest
             double expected = 13.0;
 
             //Act
-            double actual = 13.0;
+            double actual = 
+            //CheckIfNameIsEmpty()
 
             //Assert
             Assert.Equal(expected, actual);
