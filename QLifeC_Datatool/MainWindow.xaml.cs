@@ -141,16 +141,6 @@ namespace QLifeC_Datatool
                     Label = jsonSubCategory["label"],
                 };
 
-                            if (type == "url" || type == "string") data.StringValue = datapoint[type + "_value"];
-
-                            else data.NumberValue = datapoint[type + "_value"];
-
-                            city.Categories[indexName].Data.Add(data);
-                        }
-                    }
-                    indexName++;
-                }
-                indexCategorie++;
             }
         }
 
@@ -197,7 +187,9 @@ namespace QLifeC_Datatool
 
         public void WriteToCSV(Stream qLifeCsvStream)
         {
-            int amountCategories = categorieID.Name.Length;
+            
+            City x = new City();
+            int amountCategories = x.Categories.Length;
 
             using StreamWriter exportCSV = new StreamWriter(qLifeCsvStream);
             //path: C: \Users\ThinkPad T540p\UI Coding\2.Semester Prog 2\QLifeC Datatool App\QLifeC_Datatool\bin\Debug\netcoreapp3.1
@@ -210,16 +202,16 @@ namespace QLifeC_Datatool
 
                 for (int i = 0; i < amountCategories; i++)
                 {
-                    string categoryNameCsv = categorieID.Name[i].ToString();
-                    decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score.ScoreOutOf10, 2);
+                    string categoryNameCsv = x.Categories[i].Label;
+                    decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score, 2);
                     string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
                     exportCSV.WriteLine("" + "," + categoryNameCsv + "," + scoreForCsv + ",");
                     exportCSV.WriteLine();
 
-                    for (int j = 0; j < city.Categories[i].Data.Count(); j++)
+                    for (int j = 0; j < city.Categories[i].SubCategories.Count(); j++)
                     {
-                        string subcatLabelCsv = city.Categories[i].Data[j].Label.ToString();
-                        string subcatScoreCsv = city.Categories[i].Data[j].NumberValue.ToString("F2").Replace(",", ".");
+                        string subcatLabelCsv = city.Categories[i].SubCategories[j].Label.ToString();
+                        string subcatScoreCsv = city.Categories[i].SubCategories[j].Value.ToString("F2").Replace(",", ".");
                         exportCSV.WriteLine("" + "," + subcatLabelCsv + "," + subcatScoreCsv + ",");
                     }
                     exportCSV.WriteLine();
