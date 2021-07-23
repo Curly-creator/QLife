@@ -37,7 +37,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
- 
+
 
 
         <!--All search & filter options can go in this stack panel-->
@@ -60,8 +60,7 @@
 
             <DataGrid.Columns>
 
-                <!--<<<<<<< HEAD
-=======-->
+                <!--<<<<<<< HEAD =======-->
                 <DataGridTextColumn Header="City" Binding="{Binding Name}"/>
 
                 <DataGridTextColumn Header="Cost of Living" Binding="{Binding Categories[0]}">

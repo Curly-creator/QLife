@@ -18,7 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-//using Newtonsoft.Json;
+
 
 namespace QLifeC_Datatool
 {
@@ -26,24 +26,14 @@ namespace QLifeC_Datatool
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-      
+    {    
         public List<City> cityList = new List<City>();
-        public CategoryID categorieID = new CategoryID();
 
         public MainWindow()
         {
             InitializeComponent();
-        
-            API_GetCityList();
-            
-            int indexCity = 0;
-            foreach (var item in cityList)
-            { 
-                API_GetCategoryScores(cityList[indexCity]);
-                indexCity++;
-            }
-           
+
+            API_GetData();
 
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
@@ -61,22 +51,32 @@ namespace QLifeC_Datatool
             return jsonObj;
         }
 
+        public void API_GetData()
+        {
+            API_GetCityList();
+            foreach (var city in cityList)
+            {
+                API_GetCategoryScores(city);
+                API_GetCategoryDetails(city);
+            }
+        }      
+
         public void API_GetCityList()
         {    
             var url = "https://api.teleport.org/api/urban_areas";
 
             dynamic jsonObj = API_UrlToJsonObj(url);
            
-            var cities = jsonObj["_links"]["ua:item"];
+            var jsonCities = jsonObj["_links"]["ua:item"];
             
-            for(int i = 0; i <= 200; i += 10)
+            for(int i = 0; i <= 200; i += 40)
             {          
-                City testCity = new City
+                City city = new City
                 {
-                    Url = cities[i]["href"],
-                    Name = cities[i]["name"]
+                    Url = jsonCities[i]["href"],
+                    Name = jsonCities[i]["name"]
                 };
-                cityList.Add(testCity);
+                cityList.Add(city);
             };
         }
 
@@ -86,78 +86,61 @@ namespace QLifeC_Datatool
 
             dynamic jsonObj = API_UrlToJsonObj(url);
 
-            var scores = jsonObj["categories"];
+            var jsonCategoryScores = jsonObj["categories"];
+ 
+            int counter = 0;
 
-            int indexScore = 0;
-        
-            
-            foreach (var item in scores)
-            {             
-                foreach (var name in categorieID.Name)
+            foreach (var jsonScore in jsonCategoryScores)
+            {
+                for (int i = 0; i < city.Categories.Length; i++)
                 {
-                    if (scores[indexScore]["name"] == name)
+                    if (jsonScore["name"] == city.Categories[i].Label)
                     {
-                        Category categorie = new Category();                                                    
-                        categorie.Score.Color = scores[indexScore]["color"];
-                        categorie.Score.Name = scores[indexScore]["name"];
-                        categorie.Score.ScoreOutOf10 = scores[indexScore]["score_out_of_10"];                   
-                        city.Categories.Add(categorie);
-                        }                   
+                        city.Categories[i].Score = jsonScore["score_out_of_10"];
+                        counter++;
+                        break;
+                    }
                 }
-                indexScore++;
-            }
-            API_GetCityData(city);
+                if (counter == city.Categories.Length) break;
+            }          
         }
 
-        public void API_GetCityData(City city)
+        public void API_GetCategoryDetails(City city)
         {
             var url = cityList[cityList.IndexOf(city)].Url + "details/";
 
             dynamic jsonObj = API_UrlToJsonObj(url);
 
-            var categories = jsonObj["categories"];
+            var jsonCategories = jsonObj["categories"];
 
-            int indexCategorie = 0;
-            
-            foreach (var item in categories)
+            int counter = 0;
+       
+            foreach (var jsonCategory in jsonCategories)
             {
-                int indexName = 0;
-                foreach ( var id in categorieID.Name)
-                {
-                    if (categories[indexCategorie]["label"] == id)
+                for (int i = 0; i < city.Categories.Length; i++){
+                    if (jsonCategory["label"] == city.Categories[i].Label)
                     {
-                        int i = 0;
-                        foreach (var attribute in city.Categories)
-                        {
-                            if (city.Categories[i].Score.Name == id) break;
-                            i++;
-                        }
-                        city.Categories[i].Label = categories[indexCategorie]["label"];
-                        city.Categories[i].Id = categories[indexCategorie]["id"];
-                        
-                        var datapoints = jsonObj["categories"][indexCategorie]["data"];
-                        
-                        foreach (var datapoint in datapoints)
-                        {
-                            string type = datapoint["type"];
-                            
-                            Data data = new Data
-                            {
-                                Id = datapoint["id"],
-                                Type = datapoint["type"],
-                                Label = datapoint["label"]
-                            };
-
-                            if (type == "url" || type == "string") data.StringValue = datapoint[type + "_value"];
-
-                            else data.NumberValue = datapoint[type + "_value"];
-
-                            city.Categories[indexName].Data.Add(data);
-                        }
+                        API_AddSubCategories(city.Categories[i], jsonCategory);
+                        counter++;
+                        break;
                     }
-                    indexName++;
                 }
-                indexCategorie++;
+                if (counter == city.Categories.Length) break;
+            }
+        }
+
+        public void API_AddSubCategories(Category category, dynamic jsonCategory)
+        {
+            foreach (var jsonSubCategory in jsonCategory["data"])
+            {
+                string type = jsonSubCategory["type"];
+
+                SubCategory subCategory = new SubCategory
+                {
+                    Type = jsonSubCategory["type"],
+                    Label = jsonSubCategory["label"],
+                };
+
             }
         }
 
@@ -165,11 +148,10 @@ namespace QLifeC_Datatool
 
         private void btn_Download_Click(object sender, RoutedEventArgs e)
         {
-
             Stream qLifeStream;
             SaveFileDialog downloadDialog = new SaveFileDialog();
 
-            //saveFileDialog1.InitialDirectory = @".\*";
+            downloadDialog.InitialDirectory = @"C:\";
             downloadDialog.Filter = "csv files (*.csv)|*.csv|xml files (*.xml)|*.xml";
             downloadDialog.FilterIndex = 2;
             downloadDialog.RestoreDirectory = true;
@@ -179,6 +161,7 @@ namespace QLifeC_Datatool
             {
                 if (downloadDialog.FileName.EndsWith("csv") == true)
                 {
+
                     if ((qLifeStream = downloadDialog.OpenFile()) != null)
                     {
                         {
@@ -204,41 +187,43 @@ namespace QLifeC_Datatool
 
         public void WriteToCSV(Stream qLifeCsvStream)
         {
+            
+            City x = new City();
+            int amountCategories = x.Categories.Length;
 
             using StreamWriter exportCSV = new StreamWriter(qLifeCsvStream);
             //path: C: \Users\ThinkPad T540p\UI Coding\2.Semester Prog 2\QLifeC Datatool App\QLifeC_Datatool\bin\Debug\netcoreapp3.1
+
+            foreach (City city in cityList)
             {
-                //first line of CSV, declaring the column names
-                exportCSV.Write("City,");
+                string cityNameForCsv = city.Name.ToString().Replace(",", "");
+                exportCSV.WriteLine(cityNameForCsv + ",");
 
-                foreach (string nameOfCategory in categorieID.Name)
+
+                for (int i = 0; i < amountCategories; i++)
                 {
-                    exportCSV.Write(nameOfCategory + ",");
-                }
-                exportCSV.WriteLine("");
+                    string categoryNameCsv = x.Categories[i].Label;
+                    decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score, 2);
+                    string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
+                    exportCSV.WriteLine("" + "," + categoryNameCsv + "," + scoreForCsv + ",");
+                    exportCSV.WriteLine();
 
-                //following lines of CSV, entering names and score values
-                foreach (City city in cityList)
-                {
-
-                    string cityNameForCsv = city.Name.ToString().Replace(",", "");
-                    exportCSV.Write(cityNameForCsv + ",");
-
-                    for (int i = 0; i <= 5; i++)
+                    for (int j = 0; j < city.Categories[i].SubCategories.Count(); j++)
                     {
-                        decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score.ScoreOutOf10, 2);
-                        string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
-                        exportCSV.Write(scoreForCsv + ",");
+                        string subcatLabelCsv = city.Categories[i].SubCategories[j].Label.ToString();
+                        string subcatScoreCsv = city.Categories[i].SubCategories[j].Value.ToString("F2").Replace(",", ".");
+                        exportCSV.WriteLine("" + "," + subcatLabelCsv + "," + subcatScoreCsv + ",");
                     }
-                    exportCSV.WriteLine("");
-
-                    //LIST OF REFERENCES
-                    // *1 ---> "F2" for always 2 places after comma or dot
-                    //https://stackoverflow.com/questions/36619121/convert-string-to-decimal-to-always-have-2-decimal-places
-
+                    exportCSV.WriteLine();
                 }
+                exportCSV.WriteLine();
+
             }
         }
+
+        //LIST OF REFERENCES
+        // *1 ---> "F2" for always 2 places after comma or dot
+        //https://stackoverflow.com/questions/36619121/convert-string-to-decimal-to-always-have-2-decimal-places
 
         public void WriteToXML(Stream qLifeXmlStream)
         {
@@ -247,5 +232,7 @@ namespace QLifeC_Datatool
 
             writer.Serialize(qLifeXmlStream, cityList);
         }
+
+        
     }
 }
