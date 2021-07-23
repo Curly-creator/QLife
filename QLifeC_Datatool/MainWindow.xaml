@@ -37,7 +37,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
- 
+
 
 
         <!--All search & filter options can go in this stack panel-->

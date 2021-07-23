@@ -69,7 +69,7 @@ namespace QLifeC_Datatool
            
             var cities = jsonObj["_links"]["ua:item"];
             
-            for(int i = 0; i <= 200; i += 10)
+            for(int i = 0; i <= 200; i += 40)
             {          
                 City testCity = new City
                 {
@@ -169,7 +169,7 @@ namespace QLifeC_Datatool
             Stream qLifeStream;
             SaveFileDialog downloadDialog = new SaveFileDialog();
 
-            //saveFileDialog1.InitialDirectory = @".\*";
+            downloadDialog.InitialDirectory = @"C:\";
             downloadDialog.Filter = "csv files (*.csv)|*.csv|xml files (*.xml)|*.xml";
             downloadDialog.FilterIndex = 2;
             downloadDialog.RestoreDirectory = true;
@@ -209,44 +209,37 @@ namespace QLifeC_Datatool
 
             using StreamWriter exportCSV = new StreamWriter(qLifeCsvStream);
             //path: C: \Users\ThinkPad T540p\UI Coding\2.Semester Prog 2\QLifeC Datatool App\QLifeC_Datatool\bin\Debug\netcoreapp3.1
+
+            foreach (City city in cityList)
             {
-                //first line of CSV, declaring the column names
-                exportCSV.Write("City,");
+                string cityNameForCsv = city.Name.ToString().Replace(",", "");
+                exportCSV.WriteLine(cityNameForCsv + ",");
 
-                foreach (string nameOfCategory in categorieID.Name)
+
+                for (int i = 0; i < amountCategories; i++)
                 {
-                    exportCSV.Write(nameOfCategory + ",");
-                }
-                exportCSV.WriteLine("");
+                    string categoryNameCsv = categorieID.Name[i].ToString();
+                    decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score.ScoreOutOf10, 2);
+                    string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
+                    exportCSV.WriteLine("" + "," + categoryNameCsv + "," + scoreForCsv + ",");
+                    exportCSV.WriteLine();
 
-                
-
-                //following lines of CSV, entering names and score values
-                foreach (City city in cityList)
-                {
-
-                    string cityNameForCsv = city.Name.ToString().Replace(",", "");
-                    exportCSV.Write(cityNameForCsv + ",");
-
-                    foreach (Data subcat in city.Categorie.Data)
-
-
-
-                    for (int i = 0; i < amountCategories; i++)
+                    for (int j = 0; j < city.Categories[i].Data.Count(); j++)
                     {
-                        decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score.ScoreOutOf10, 2);
-                        string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
-                        exportCSV.Write(scoreForCsv + ",");
+                        string subcatLabelCsv = city.Categories[i].Data[j].Label.ToString();
+                        string subcatScoreCsv = city.Categories[i].Data[j].NumberValue.ToString("F2").Replace(",", ".");
+                        exportCSV.WriteLine("" + "," + subcatLabelCsv + "," + subcatScoreCsv + ",");
                     }
-                    exportCSV.WriteLine("");
-
-                    //LIST OF REFERENCES
-                    // *1 ---> "F2" for always 2 places after comma or dot
-                    //https://stackoverflow.com/questions/36619121/convert-string-to-decimal-to-always-have-2-decimal-places
-
+                    exportCSV.WriteLine();
                 }
+                exportCSV.WriteLine();
+
             }
         }
+
+        //LIST OF REFERENCES
+        // *1 ---> "F2" for always 2 places after comma or dot
+        //https://stackoverflow.com/questions/36619121/convert-string-to-decimal-to-always-have-2-decimal-places
 
         public void WriteToXML(Stream qLifeXmlStream)
         {
@@ -255,5 +248,7 @@ namespace QLifeC_Datatool
 
             writer.Serialize(qLifeXmlStream, cityList);
         }
+
+        
     }
 }
