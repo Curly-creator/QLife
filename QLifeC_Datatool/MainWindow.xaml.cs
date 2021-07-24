@@ -140,7 +140,8 @@ namespace QLifeC_Datatool
                     Type = jsonSubCategory["type"],
                     Label = jsonSubCategory["label"],
                 };
-
+                subCategory.Value = jsonSubCategory[type + "_value"];
+                category.SubCategories.Add(subCategory);
             }
         }
 
@@ -149,17 +150,18 @@ namespace QLifeC_Datatool
         private void btn_Download_Click(object sender, RoutedEventArgs e)
         {
             Stream qLifeStream;
-            SaveFileDialog downloadDialog = new SaveFileDialog();
+            SaveFileDialog downloadDialog = new SaveFileDialog
+            {
+                InitialDirectory = @"C:\",
+                Filter = "csv files (*.csv)|*.csv|xml files (*.xml)|*.xml",
+                FilterIndex = 2,
+                RestoreDirectory = true,
+                Title = "Download QLifeC file"
+            };
 
-            downloadDialog.InitialDirectory = @"C:\";
-            downloadDialog.Filter = "csv files (*.csv)|*.csv|xml files (*.xml)|*.xml";
-            downloadDialog.FilterIndex = 2;
-            downloadDialog.RestoreDirectory = true;
-            downloadDialog.Title = "Download QLifeC file";
-            
             if (downloadDialog.ShowDialog() == true)
             {
-                if (downloadDialog.FileName.EndsWith("csv") == true)
+                if (downloadDialog.FileName.EndsWith("csv"))
                 {
 
                     if ((qLifeStream = downloadDialog.OpenFile()) != null)
@@ -171,7 +173,7 @@ namespace QLifeC_Datatool
                     }
                 }
                     
-                else if (downloadDialog.FileName.EndsWith("xml") == true)
+                else if (downloadDialog.FileName.EndsWith("xml"))
                 {
                     if ((qLifeStream = downloadDialog.OpenFile()) != null)
                     {
@@ -180,7 +182,6 @@ namespace QLifeC_Datatool
                             MessageBox.Show("Your file can be found here: " + downloadDialog.FileName, "XML download complete", MessageBoxButton.OK ,MessageBoxImage.Information);
                         }
                     }
-                    
                 }
             }
         }
@@ -188,23 +189,19 @@ namespace QLifeC_Datatool
         public void WriteToCSV(Stream qLifeCsvStream)
         {
             
-            City x = new City();
-            int amountCategories = x.Categories.Length;
-
             using StreamWriter exportCSV = new StreamWriter(qLifeCsvStream);
-            //path: C: \Users\ThinkPad T540p\UI Coding\2.Semester Prog 2\QLifeC Datatool App\QLifeC_Datatool\bin\Debug\netcoreapp3.1
 
             foreach (City city in cityList)
             {
                 string cityNameForCsv = city.Name.ToString().Replace(",", "");
                 exportCSV.WriteLine(cityNameForCsv + ",");
 
-
-                for (int i = 0; i < amountCategories; i++)
+                for (int i = 0; i < city.Categories.Length; i++)
                 {
-                    string categoryNameCsv = x.Categories[i].Label;
+                    string categoryNameCsv = city.Categories[i].Label;
                     decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score, 2);
                     string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
+
                     exportCSV.WriteLine("" + "," + categoryNameCsv + "," + scoreForCsv + ",");
                     exportCSV.WriteLine();
 
@@ -217,7 +214,6 @@ namespace QLifeC_Datatool
                     exportCSV.WriteLine();
                 }
                 exportCSV.WriteLine();
-
             }
         }
 
@@ -233,6 +229,5 @@ namespace QLifeC_Datatool
             writer.Serialize(qLifeXmlStream, cityList);
         }
 
-        
     }
 }
