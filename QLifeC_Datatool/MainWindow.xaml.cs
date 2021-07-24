@@ -28,7 +28,7 @@ namespace QLifeC_Datatool
     {
       
         public List<City> cityList = new List<City>();
-        public CategoryID categorieID = new CategoryID();
+        public CategoryID categorieID = new CategoryID();        
 
         public MainWindow()
         {
@@ -187,7 +187,16 @@ namespace QLifeC_Datatool
 
         private void btn_UpdEntry_Click(object sender, RoutedEventArgs e)
         {
-            //messagebox "function is soon to come"
+            if (Dgd_MainGrid.SelectedValue != null)
+            {
+                
+                AddCity editCityWindow = new AddCity(cityList[Dgd_MainGrid.SelectedIndex]);
+                editCityWindow.ShowDialog();
+                Dgd_MainGrid.Items.Refresh();
+            }
+            else
+                MessageBox.Show("Please first select a city that you would like to edit");
+
         }
     }
 }
