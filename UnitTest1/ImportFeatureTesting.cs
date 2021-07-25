@@ -9,15 +9,18 @@ namespace UnitTest
     public class ImportFeatureTesting
     {
         [Fact]
-        public void Test1()
+        //Unit test to check if xml upload works
+        //Unit test to validate xml file success
+        public void OpenFileDialog_ShouldReturn_FilePath()
         {
-            //Arrange
-            double expected = 13.0;
+            //Arrange: With this action, you prepare all the required data and preconditions.
+            string expected = ".xml";
 
-            //Act
-            double actual = 13.0;
+            //Act: This action performs the actual test.
+            
+            string actual = "";
 
-            //Assert
+            //Assert: This final action checks if the expected result has occurred.
             Assert.Equal(expected, actual);
         }
     }

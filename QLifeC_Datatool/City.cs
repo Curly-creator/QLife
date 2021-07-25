@@ -25,6 +25,10 @@ namespace QLifeC_Datatool
         public string Name { get => _Name; set => _Name = value; }
         public string Url { get => _Url; set => _Url = value; }
         public Category[] Categories { get => _Categories; set => _Categories = value; }
+        public string GetSpecificRequest()
+        {
+            return "Specific request.";
+        }
     }
 }
 

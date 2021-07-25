@@ -33,7 +33,7 @@ namespace QLifeC_Datatool
         {
             InitializeComponent();
 
-            API_GetData();
+            //API_GetData();
 
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
@@ -69,7 +69,7 @@ namespace QLifeC_Datatool
            
             var jsonCities = jsonObj["_links"]["ua:item"];
             
-            for(int i = 0; i <= 200; i += 40)
+            for(int i = 0; i <= 200; i += 10)
             {          
                 City city = new City
                 {
@@ -140,6 +140,8 @@ namespace QLifeC_Datatool
                     Type = jsonSubCategory["type"],
                     Label = jsonSubCategory["label"],
                 };
+                subCategory.Value = jsonSubCategory[type + "_value"];
+                category.SubCategories.Add(subCategory);
 
             }
         }
@@ -194,10 +196,12 @@ namespace QLifeC_Datatool
             using StreamWriter exportCSV = new StreamWriter(qLifeCsvStream);
             //path: C: \Users\ThinkPad T540p\UI Coding\2.Semester Prog 2\QLifeC Datatool App\QLifeC_Datatool\bin\Debug\netcoreapp3.1
 
+            exportCSV.WriteLine("City_Name" + "," + "Category_Name" + "," + "Overall_Category_Score" + "," + "SubCategory_Label" + "," + "SubCategory_Score");
+
             foreach (City city in cityList)
             {
                 string cityNameForCsv = city.Name.ToString().Replace(",", "");
-                exportCSV.WriteLine(cityNameForCsv + ",");
+                //exportCSV.WriteLine(cityNameForCsv + ",");
 
 
                 for (int i = 0; i < amountCategories; i++)
@@ -205,19 +209,18 @@ namespace QLifeC_Datatool
                     string categoryNameCsv = x.Categories[i].Label;
                     decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score, 2);
                     string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
-                    exportCSV.WriteLine("" + "," + categoryNameCsv + "," + scoreForCsv + ",");
-                    exportCSV.WriteLine();
+                    //exportCSV.WriteLine(cityNameForCsv + "," + categoryNameCsv + "," + scoreForCsv + ",");
+                    //exportCSV.WriteLine();
 
                     for (int j = 0; j < city.Categories[i].SubCategories.Count(); j++)
                     {
                         string subcatLabelCsv = city.Categories[i].SubCategories[j].Label.ToString();
                         string subcatScoreCsv = city.Categories[i].SubCategories[j].Value.ToString("F2").Replace(",", ".");
-                        exportCSV.WriteLine("" + "," + subcatLabelCsv + "," + subcatScoreCsv + ",");
+                        exportCSV.WriteLine(cityNameForCsv + "," + categoryNameCsv + "," + scoreForCsv + "," + subcatLabelCsv + "," + subcatScoreCsv);
                     }
-                    exportCSV.WriteLine();
+                    //exportCSV.WriteLine();
                 }
-                exportCSV.WriteLine();
-
+                //exportCSV.WriteLine();
             }
         }
 
@@ -233,6 +236,77 @@ namespace QLifeC_Datatool
             writer.Serialize(qLifeXmlStream, cityList);
         }
 
-        
+        private void btn_Import_Click(object sender, RoutedEventArgs e)
+        {
+            //https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=net-5.0
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            {
+                ITarget target = new AdapterFileImport();
+
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "CSV files (*.csv)|*.csv|XML files (*.xml)|*.xml";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    //Getting the path of the selected file.
+                    target.ImportFilePath = openFileDialog.FileName;
+                    target.ImportFileExt = System.IO.Path.GetExtension(target.ImportFilePath).ToLower();
+                    target.FileName = System.IO.Path.GetFileNameWithoutExtension(target.ImportFilePath);
+                    
+                    //Read the contents of the file into a stream
+                    //var fileStream = openFileDialog.OpenFile();
+
+                    string[] csvlines = System.IO.File.ReadAllLines(target.ImportFilePath);
+
+                    string[,] csvtable = new string[csvlines.Length-1,5];
+
+                    for (int i = 1; i < csvlines.Length; i++)
+                    {
+                        string[] data = csvlines[i].Split(",");
+                        
+                        for (int y = 0; y < data.Length; y++)
+                        {
+                            csvtable[i-1,y] = data[y];
+                        }
+                    }
+
+                    City city = new City();
+                    
+                    for (int i = 0; i < csvtable.GetLength(0); i++)
+                    {
+                        if (i != 0)
+                        {
+                            if (csvtable[i, 0] != csvtable[i - 1, 0])
+                            {
+                                cityList.Add(city);
+                                city = new City();
+                            }
+                        }
+
+                        city.Name = csvtable[i, 0];
+
+                        foreach (var category in city.Categories)
+                        {
+                            if (category.Label == csvtable[i, 1])
+                            {
+                                category.Score = double.Parse(csvtable[i, 2].Replace(".",","));
+                                SubCategory subcategory = new SubCategory();
+                                subcategory.Label = csvtable[i, 3];
+                                subcategory.Value = double.Parse(csvtable[i, 4].Replace(".", ","));
+                                category.SubCategories.Add(subcategory);
+                                break;
+                            }
+                        }
+                    }
+                    cityList.Add(city);
+                }
+                Dgd_MainGrid.ItemsSource = cityList;
+                Dgd_MainGrid.Items.Refresh();
+            }
+            MessageBox.Show("The CSV import was successful.");
+        }
     }
 }
