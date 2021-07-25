@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLifeC_Datatool", "QLifeC_Datatool\QLifeC_Datatool.csproj", "{C9B647CC-68A6-4AE6-9779-A9430788E3BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest1\UnitTest.csproj", "{D1FEEE34-00F8-4654-868B-75EFA7D242C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest", "UnitTest1\UnitTest.csproj", "{D1FEEE34-00F8-4654-868B-75EFA7D242C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ADBF4EA5-8360-4296-87D4-8C463E74A9F7}"
+	ProjectSection(SolutionItems) = preProject
+		UploadedFileStream.xml = UploadedFileStream.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

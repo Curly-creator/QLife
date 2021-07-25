@@ -18,7 +18,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Xml;
+using System.Xml.Schema;
 
 namespace QLifeC_Datatool
 {
@@ -26,7 +27,7 @@ namespace QLifeC_Datatool
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {    
+    {
         public List<City> cityList = new List<City>();
 
         public MainWindow()
@@ -255,58 +256,47 @@ namespace QLifeC_Datatool
                     target.ImportFilePath = openFileDialog.FileName;
                     target.ImportFileExt = System.IO.Path.GetExtension(target.ImportFilePath).ToLower();
                     target.FileName = System.IO.Path.GetFileNameWithoutExtension(target.ImportFilePath);
-                    
+
                     //Read the contents of the file into a stream
-                    //var fileStream = openFileDialog.OpenFile();
+                    target.ImportFileStream = openFileDialog.OpenFile();
 
-                    string[] csvlines = System.IO.File.ReadAllLines(target.ImportFilePath);
+                    //using (StreamReader reader = new StreamReader(target.ImportFileStream))
+                    //{
+                    //    var fileContent = reader.ReadToEnd();
+                    //}
 
-                    string[,] csvtable = new string[csvlines.Length-1,5];
-
-                    for (int i = 1; i < csvlines.Length; i++)
+                    //Checking if the file type matches the allowed file types.
+                    //If file extension is .xml.
+                    if (target.ImportFileExt == target.FileTypeAllowed[0])
                     {
-                        string[] data = csvlines[i].Split(",");
-                        
-                        for (int y = 0; y < data.Length; y++)
+                        XmlDocument xmlDocument = new XmlDocument();
+                        xmlDocument.Load(target.ImportFileStream);
+
+                        target.ValidateXML(target.ImportFileStream);
+                        if (target.Validationstatus == false)
                         {
-                            csvtable[i-1,y] = data[y];
+                            MessageBox.Show(target.ValidationstatusNotification);
                         }
                     }
-
-                    City city = new City();
-                    
-                    for (int i = 0; i < csvtable.GetLength(0); i++)
+                    //If file extension is .csv
+                    else if (target.ImportFileExt == target.FileTypeAllowed[1])
                     {
-                        if (i != 0)
-                        {
-                            if (csvtable[i, 0] != csvtable[i - 1, 0])
-                            {
-                                cityList.Add(city);
-                                city = new City();
-                            }
-                        }
-
-                        city.Name = csvtable[i, 0];
-
-                        foreach (var category in city.Categories)
-                        {
-                            if (category.Label == csvtable[i, 1])
-                            {
-                                category.Score = double.Parse(csvtable[i, 2].Replace(".",","));
-                                SubCategory subcategory = new SubCategory();
-                                subcategory.Label = csvtable[i, 3];
-                                subcategory.Value = double.Parse(csvtable[i, 4].Replace(".", ","));
-                                category.SubCategories.Add(subcategory);
-                                break;
-                            }
-                        }
+                        target.ReadParseCSV(target.ImportFilePath);
+                        MessageBox.Show("Import successful.");
                     }
-                    cityList.Add(city);
+                    else
+                    {
+                        MessageBox.Show("The selected file type is not allowed. Import failed.");
+                    }
                 }
-                Dgd_MainGrid.ItemsSource = cityList;
+                Dgd_MainGrid.ItemsSource = target.cityList;
                 Dgd_MainGrid.Items.Refresh();
             }
-            MessageBox.Show("The CSV import was successful.");
+        }
+
+        private void schema(object sender, ValidationEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
