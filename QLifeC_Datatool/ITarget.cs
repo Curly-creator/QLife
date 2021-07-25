@@ -22,5 +22,6 @@ namespace QLifeC_Datatool
         string ValidationstatusNotification { get; set; }
         void ValidateXML(Stream stream);
         void ReadParseCSV(string Importfilepath);
+        void DeserializeXML(string Importfilepath);
     }
 }

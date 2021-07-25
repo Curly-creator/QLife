@@ -258,25 +258,21 @@ namespace QLifeC_Datatool
                     target.FileName = System.IO.Path.GetFileNameWithoutExtension(target.ImportFilePath);
 
                     //Read the contents of the file into a stream
-                    target.ImportFileStream = openFileDialog.OpenFile();
-
-                    //using (StreamReader reader = new StreamReader(target.ImportFileStream))
-                    //{
-                    //    var fileContent = reader.ReadToEnd();
-                    //}
+                    //target.ImportFileStream = openFileDialog.OpenFile();
 
                     //Checking if the file type matches the allowed file types.
                     //If file extension is .xml.
                     if (target.ImportFileExt == target.FileTypeAllowed[0])
                     {
-                        XmlDocument xmlDocument = new XmlDocument();
-                        xmlDocument.Load(target.ImportFileStream);
-
-                        target.ValidateXML(target.ImportFileStream);
-                        if (target.Validationstatus == false)
-                        {
-                            MessageBox.Show(target.ValidationstatusNotification);
-                        }
+                        //XmlDocument xmlDocument = new XmlDocument();
+                        //xmlDocument.Load(target.ImportFileStream);
+                        target.DeserializeXML(target.ImportFilePath);
+                        MessageBox.Show("Import successful.");
+                        //target.ValidateXML(target.ImportFileStream);
+                        //if (target.Validationstatus == false)
+                        //{
+                        //    MessageBox.Show(target.ValidationstatusNotification);
+                        //}
                     }
                     //If file extension is .csv
                     else if (target.ImportFileExt == target.FileTypeAllowed[1])

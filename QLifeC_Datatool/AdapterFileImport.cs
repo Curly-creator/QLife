@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using System.Xml;
 using System.Xml.Schema;
+using System.Xml.Serialization;
 
 namespace QLifeC_Datatool
 {
@@ -103,6 +104,16 @@ namespace QLifeC_Datatool
                 }
             }
             cityList.Add(city);
+        }
+
+        public void DeserializeXML(string Importfilepath)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<City>));
+            
+            using (FileStream stream = File.Open(Importfilepath, FileMode.Open))
+            {
+                cityList = (List<City>)serializer.Deserialize(stream);
+            }
         }
 
         public void ValidateXML(Stream stream)
