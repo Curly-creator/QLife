@@ -10,17 +10,15 @@ namespace QLifeC_Datatool
     public interface ITarget
     {
         //These are signature lines. Signature method and signature properties. https://refactoring.guru/design-patterns/adapter/csharp/example
-        string GetRequest();
-        
         List<City> cityList { get; set; }
-        string FileName { get; set; }
+        string ImportFileName { get; set; }
         string ImportFilePath { get; set; }
         string ImportFileExt { get; set; }
         Stream ImportFileStream { get; set; }
-        bool Validationstatus { get; set; }
+        bool MethodStatus { get; set; }
         string[] FileTypeAllowed { get; set; }
-        string ValidationstatusNotification { get; set; }
-        void ValidateXML(Stream stream);
+        string StatusNotification { get; set; }
+        void ValidateXML(string Importfilepath);
         void ReadParseCSV(string Importfilepath);
         void DeserializeXML(string Importfilepath);
     }

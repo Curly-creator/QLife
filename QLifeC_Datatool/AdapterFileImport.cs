@@ -10,13 +10,13 @@ namespace QLifeC_Datatool
 {
     public class AdapterFileImport : ITarget
     {
-        City _city;
+        //City _city;
         private List<City> _cityList;
         public List<City> cityList { get => _cityList; set => _cityList = value; }
 
         //Name of the file to be imported.
         private string _FileName;
-        public string FileName { get => _FileName; set => _FileName = value; }
+        public string ImportFileName { get => _FileName; set => _FileName = value; }
 
         //Extensions allowed for the user to import.
         public string[] FileTypeAllowed { get; set; } = { ".xml", ".csv" };
@@ -31,32 +31,21 @@ namespace QLifeC_Datatool
         private Stream _ImportFileStream;
         public Stream ImportFileStream { get => _ImportFileStream; set => _ImportFileStream = value; }
 
-        private bool _Validationstatus;
-        public bool Validationstatus { get => _Validationstatus; set => _Validationstatus = value; }
+        private bool _MethodStatus;
+        public bool MethodStatus { get => _MethodStatus; set => _MethodStatus = value; }
 
-        private string _ValidationstatusNotification;
-        public string ValidationstatusNotification { get => _ValidationstatusNotification; set => _ValidationstatusNotification = value; }
-        
-
-
-
-        //Path where the file will be stored.
-        //private string _StorePath;
+        private string _StatusNotification;
+        public string StatusNotification { get => _StatusNotification; set => _StatusNotification = value; }
 
         public AdapterFileImport()
         {
 
         }
 
-        public AdapterFileImport(City cityadaptee)
-        {
-            this._city = cityadaptee;
-        }
-
-        public string GetRequest()
-        {
-            return $"This is '{this._city.GetSpecificRequest()}'";
-        }
+        //public AdapterFileImport(City cityadaptee)
+        //{
+        //    this._city = cityadaptee;
+        //}
 
         public void ReadParseCSV(string Importfilepath)
         {
@@ -104,6 +93,8 @@ namespace QLifeC_Datatool
                 }
             }
             cityList.Add(city);
+            MethodStatus = true;
+            //if (MethodStatus == false) StatusNotification = "CSV Parse Failed";
         }
 
         public void DeserializeXML(string Importfilepath)
@@ -114,71 +105,54 @@ namespace QLifeC_Datatool
             {
                 cityList = (List<City>)serializer.Deserialize(stream);
             }
+            MethodStatus = true;
+            //if (MethodStatus == false) StatusNotification = "XML Parse Failed";
         }
 
-        public void ValidateXML(Stream stream)
+        public void ValidateXML(string Importfilepath)
         {
-            //Reading the XML File. XML reader reads the document one line at a time given the file stream and settings.
-            XmlReader xmlReader = null;
-
+            //https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmlreadersettings.schemas?view=net-5.0
             try
             {
-                //Defining the settings to parse the xml file.
-                XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
+                XmlReaderSettings validationsettings = new XmlReaderSettings();
+                validationsettings.Schemas.Add("http://www.w3.org/2001/XMLSchema", "ExportedXML_Test.xsd");
+                validationsettings.ValidationType = ValidationType.Schema;
+                validationsettings.ValidationEventHandler += new ValidationEventHandler(CityArraySettingsValidationEventHandler);
 
-                //Several ways to parse xml. E.g. Well Formed, DTD & XSD. In this case, we validate against XSD Schema.
-                xmlReaderSettings.ValidationType = ValidationType.Schema;
-                //Finding the schema associated with the XML file.
-                xmlReaderSettings.ValidationFlags |= System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation;
-                xmlReaderSettings.ValidationFlags |= System.Xml.Schema.XmlSchemaValidationFlags.ReportValidationWarnings;
-                xmlReaderSettings.ValidationEventHandler += new System.Xml.Schema.ValidationEventHandler(this.ValidationEventHandle);
+                //Reading the XML File. XML reader reads the document one line at a time given the file stream and settings.
+                XmlReader reader = XmlReader.Create(Importfilepath, validationsettings);
 
-                //Actual validation of the file against the above defined settings.
-                xmlReader = XmlReader.Create(stream, xmlReaderSettings);                
+                while (reader.Read()) { }
 
-                //Iterating over the xml. If there is a validation error in the while loop, it will jump to catch.
-                while (xmlReader.Read()) { }
-                
-                ValidationstatusNotification = "Validation was successful";
-                Validationstatus = true;
+                StatusNotification = "Validation successful.";
+                MethodStatus = true;
 
-            } 
+                reader.Close();
+            }
             catch (Exception ex)
             {
-                ValidationstatusNotification = "Error validating: " + ex.Message;
-                Validationstatus = false;
-            } 
+                StatusNotification = "Error validation: " + ex.Message;
+                MethodStatus = false;
+            }
             finally
             {
-                if (xmlReader != null)
+                //
+            }
+        }
+
+        static void CityArraySettingsValidationEventHandler(object sender, ValidationEventArgs e)
+        {
+                if (e.Severity == XmlSeverityType.Warning)
                 {
-                    xmlReader.Close();
+                    Console.Write("WARNING: ");
+                    Console.WriteLine(e.Message);
                 }
-            }
-
+                else if (e.Severity == XmlSeverityType.Error)
+                {
+                    Console.Write("ERROR: ");
+                    Console.WriteLine(e.Message);
+                }
         }
 
-        private void ValidationEventHandle(object sender, ValidationEventArgs args)
-        {
-            //If this method is evoked, something is wrong with the XML.
-            string error = "Validation Error:" + args.Message;
-
-            throw new Exception(error);
-        }
-
-        private void XmlReaderSettings_ValidationEventHandler(object sender, System.Xml.Schema.ValidationEventArgs e)
-        {
-            //https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument.validate?view=net-5.0
-            string error;
-            switch (e.Severity)
-            {
-                case XmlSeverityType.Error:
-                    error = "Error: {0}" + e.Message;
-                    break;
-                case XmlSeverityType.Warning:
-                    error = "Warning {0}" + e.Message;
-                    break;
-            }
-        }
     }
 }

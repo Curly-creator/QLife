@@ -199,6 +199,7 @@ namespace QLifeC_Datatool
 
             exportCSV.WriteLine("City_Name" + "," + "Category_Name" + "," + "Overall_Category_Score" + "," + "SubCategory_Label" + "," + "SubCategory_Score");
 
+
             foreach (City city in cityList)
             {
                 string cityNameForCsv = city.Name.ToString().Replace(",", "");
@@ -255,44 +256,39 @@ namespace QLifeC_Datatool
                     //Getting the path of the selected file.
                     target.ImportFilePath = openFileDialog.FileName;
                     target.ImportFileExt = System.IO.Path.GetExtension(target.ImportFilePath).ToLower();
-                    target.FileName = System.IO.Path.GetFileNameWithoutExtension(target.ImportFilePath);
-
-                    //Read the contents of the file into a stream
-                    //target.ImportFileStream = openFileDialog.OpenFile();
+                    target.ImportFileName = System.IO.Path.GetFileNameWithoutExtension(target.ImportFilePath);
 
                     //Checking if the file type matches the allowed file types.
                     //If file extension is .xml.
                     if (target.ImportFileExt == target.FileTypeAllowed[0])
                     {
-                        //XmlDocument xmlDocument = new XmlDocument();
-                        //xmlDocument.Load(target.ImportFileStream);
+                        target.ValidateXML(target.ImportFilePath);
+                        MessageBox.Show(target.StatusNotification);
+                        
                         target.DeserializeXML(target.ImportFilePath);
-                        MessageBox.Show("Import successful.");
-                        //target.ValidateXML(target.ImportFileStream);
-                        //if (target.Validationstatus == false)
-                        //{
-                        //    MessageBox.Show(target.ValidationstatusNotification);
-                        //}
+                        MessageBox.Show("XML Import successful."); 
                     }
+
                     //If file extension is .csv
                     else if (target.ImportFileExt == target.FileTypeAllowed[1])
                     {
                         target.ReadParseCSV(target.ImportFilePath);
-                        MessageBox.Show("Import successful.");
+                        MessageBox.Show("CSV Import successful.");
                     }
                     else
                     {
                         MessageBox.Show("The selected file type is not allowed. Import failed.");
                     }
                 }
-                Dgd_MainGrid.ItemsSource = target.cityList;
+                cityList = target.cityList;
+                Dgd_MainGrid.ItemsSource = cityList;
                 Dgd_MainGrid.Items.Refresh();
             }
         }
 
-        private void schema(object sender, ValidationEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //private void schema(object sender, ValidationEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
