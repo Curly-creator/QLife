@@ -30,6 +30,23 @@ namespace QLifeC_Datatool
             bool checkedCity = false; 
             int errorCounter = 0;
 
+            //testen ob name schon existiert.
+            for (int i = 0; i < ((MainWindow)Application.Current.MainWindow).cityList.Count; i++)   //mit schleife durch alle namen der bisherigen liste gehen
+            {
+                if (((MainWindow)Application.Current.MainWindow).cityList[i].Name == cityName_tb.Text)  //if it is same as in nametextbox -> frage mit result
+                {
+                    MessageBoxResult result = MessageBox.Show("This City Name already exists, do you still want to add the city?", "City Name Already Exists", MessageBoxButton.YesNo);
+                    switch (result)
+                    {
+                        case MessageBoxResult.Yes:
+                            break;
+                        case MessageBoxResult.No:
+                            errorCounter++;
+                            break;
+                    }
+                }
+            }
+
             if (CheckIfNameIsEmpty(cityName_tb.Text))
             {
                 errorCounter++;

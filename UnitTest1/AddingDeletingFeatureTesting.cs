@@ -37,9 +37,7 @@ namespace UnitTest
             if (cityName == "")
             {
                 tmp_isEmpty = true;
-                //MessageBox.Show("Please type in a valid city name."); //unittest
             }
-            //else AddCityToList();
             return tmp_isEmpty;
         }
         public bool CheckIfContainsNoSymbols(string cityName)
