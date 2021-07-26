@@ -16,10 +16,11 @@ namespace QLifeC_Datatool
         string ImportFileExt { get; set; }
         Stream ImportFileStream { get; set; }
         bool MethodStatus { get; set; }
-        string[] FileTypeAllowed { get; set; }
+        //string[] FileTypeAllowed { get; set; }
         string StatusNotification { get; set; }
-        void ValidateXML(string Importfilepath);
-        void ReadParseCSV(string Importfilepath);
-        void DeserializeXML(string Importfilepath);
+        void CallImportAdapter(string FileExtension);
+        //void ValidateXML(string Importfilepath);
+        //void ReadParseCSV(string Importfilepath);
+        //void DeserializeXML(string Importfilepath);
     }
 }

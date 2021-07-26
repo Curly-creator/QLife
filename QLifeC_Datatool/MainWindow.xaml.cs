@@ -258,37 +258,14 @@ namespace QLifeC_Datatool
                     target.ImportFileExt = System.IO.Path.GetExtension(target.ImportFilePath).ToLower();
                     target.ImportFileName = System.IO.Path.GetFileNameWithoutExtension(target.ImportFilePath);
 
-                    //Checking if the file type matches the allowed file types.
-                    //If file extension is .xml.
-                    if (target.ImportFileExt == target.FileTypeAllowed[0])
-                    {
-                        target.ValidateXML(target.ImportFilePath);
-                        MessageBox.Show(target.StatusNotification);
-                        
-                        target.DeserializeXML(target.ImportFilePath);
-                        MessageBox.Show("XML Import successful."); 
-                    }
-
-                    //If file extension is .csv
-                    else if (target.ImportFileExt == target.FileTypeAllowed[1])
-                    {
-                        target.ReadParseCSV(target.ImportFilePath);
-                        MessageBox.Show("CSV Import successful.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("The selected file type is not allowed. Import failed.");
-                    }
+                    //Calling import adapter via the interface to implement import.
+                    target.CallImportAdapter(target.ImportFileExt);
+                    MessageBox.Show(target.StatusNotification);
                 }
                 cityList = target.cityList;
                 Dgd_MainGrid.ItemsSource = cityList;
                 Dgd_MainGrid.Items.Refresh();
             }
         }
-
-        //private void schema(object sender, ValidationEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

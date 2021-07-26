@@ -10,7 +10,6 @@ namespace QLifeC_Datatool
 {
     public class AdapterFileImport : ITarget
     {
-        //City _city;
         private List<City> _cityList;
         public List<City> cityList { get => _cityList; set => _cityList = value; }
 
@@ -21,19 +20,23 @@ namespace QLifeC_Datatool
         //Extensions allowed for the user to import.
         public string[] FileTypeAllowed { get; set; } = { ".xml", ".csv" };
 
-        //Extension of the file user is trying to upload.
+        //Path of the file user is trying to import.
         private string _ImportFilePath;
         public string ImportFilePath { get => _ImportFilePath; set => _ImportFilePath = value; }
 
+        //Extension of the file user is trying to import.
         private string _ImportFileExt;
         public string ImportFileExt { get => _ImportFileExt; set => _ImportFileExt = value; }
 
         private Stream _ImportFileStream;
         public Stream ImportFileStream { get => _ImportFileStream; set => _ImportFileStream = value; }
 
+        //Status of a method. This is used for unit tests. If the method is successfully implemented, MethodStatus returns TRUE.
+        //In case of exception MethodStatus returns FALSE.
         private bool _MethodStatus;
         public bool MethodStatus { get => _MethodStatus; set => _MethodStatus = value; }
 
+        //This is the string variable that saved the exception.
         private string _StatusNotification;
         public string StatusNotification { get => _StatusNotification; set => _StatusNotification = value; }
 
@@ -42,101 +45,138 @@ namespace QLifeC_Datatool
 
         }
 
-        //public AdapterFileImport(City cityadaptee)
-        //{
-        //    this._city = cityadaptee;
-        //}
+        public void CallImportAdapter(string FileExtension)
+        {
+            //File Extension is .xml
+            if (FileExtension == FileTypeAllowed[0])
+            {
+                ValidateXML(ImportFilePath);
+                DeserializeXML(ImportFilePath);
+                StatusNotification = "XML Validation & Import successful.";
+                MethodStatus = true;
+            }
+            //File Extension is .csv
+            else if (FileExtension == FileTypeAllowed[1])
+            {
+                ReadParseCSV(ImportFilePath);
+                StatusNotification = "CSV Import successful";
+                MethodStatus = true;
+            }
+            else
+            {
+                StatusNotification = "The selected file type is not allowed. Import failed.";
+                MethodStatus = false;
+            }
+        }
+
 
         public void ReadParseCSV(string Importfilepath)
         {
-            string[] csvlines = System.IO.File.ReadAllLines(Importfilepath);
-
-            string[,] csvtable = new string[csvlines.Length - 1, 5];
-
-            for (int i = 1; i < csvlines.Length; i++)
+            try
             {
-                string[] data = csvlines[i].Split(",");
+                //Reading the CSV Line by Line
+                string[] csvlines = System.IO.File.ReadAllLines(Importfilepath);
 
-                for (int y = 0; y < data.Length; y++)
+                //Initializing an array to parse the CSV.
+                string[,] csvtable = new string[csvlines.Length - 1, 5];
+
+                for (int i = 1; i < csvlines.Length; i++)
                 {
-                    csvtable[i - 1, y] = data[y];
-                }
-            }
+                    string[] data = csvlines[i].Split(",");
 
-            City city = new City();
-            cityList = new List<City>();
-
-            for (int i = 0; i < csvtable.GetLength(0); i++)
-            {
-                if (i != 0)
-                {
-                    if (csvtable[i, 0] != csvtable[i - 1, 0])
+                    for (int y = 0; y < data.Length; y++)
                     {
-                        cityList.Add(city);
-                        city = new City();
+                        csvtable[i - 1, y] = data[y];
                     }
                 }
 
-                city.Name = csvtable[i, 0];
+                City city = new City();
+                cityList = new List<City>();
 
-                foreach (var category in city.Categories)
+                //Parsing the CSV array into City List.
+                for (int i = 0; i < csvtable.GetLength(0); i++)
                 {
-                    if (category.Label == csvtable[i, 1])
+                    if (i != 0)
                     {
-                        category.Score = double.Parse(csvtable[i, 2].Replace(".", ","));
-                        SubCategory subcategory = new SubCategory();
-                        subcategory.Label = csvtable[i, 3];
-                        subcategory.Value = double.Parse(csvtable[i, 4].Replace(".", ","));
-                        category.SubCategories.Add(subcategory);
-                        break;
+                        if (csvtable[i, 0] != csvtable[i - 1, 0])
+                        {
+                            cityList.Add(city);
+                            city = new City();
+                        }
+                    }
+
+                    city.Name = csvtable[i, 0];
+
+                    foreach (var category in city.Categories)
+                    {
+                        if (category.Label == csvtable[i, 1])
+                        {
+                            category.Score = double.Parse(csvtable[i, 2].Replace(".", ","));
+                            SubCategory subcategory = new SubCategory();
+                            subcategory.Label = csvtable[i, 3];
+                            subcategory.Value = double.Parse(csvtable[i, 4].Replace(".", ","));
+                            category.SubCategories.Add(subcategory);
+                            break;
+                        }
                     }
                 }
+                cityList.Add(city);
+                //If the parse is successful, this variable will be set to TRUE.
+                MethodStatus = true;
             }
-            cityList.Add(city);
-            MethodStatus = true;
-            //if (MethodStatus == false) StatusNotification = "CSV Parse Failed";
+            catch (Exception ex)
+            {
+                StatusNotification = "CSV Parse Error: " + ex.Message;
+                MethodStatus = false;
+            }
         }
 
         public void DeserializeXML(string Importfilepath)
         {
+            //Initializing Serializer.
             XmlSerializer serializer = new XmlSerializer(typeof(List<City>));
             
-            using (FileStream stream = File.Open(Importfilepath, FileMode.Open))
+            try
             {
-                cityList = (List<City>)serializer.Deserialize(stream);
+                using (FileStream stream = File.Open(Importfilepath, FileMode.Open))
+                {
+                    cityList = (List<City>)serializer.Deserialize(stream);
+                }
+                MethodStatus = true;
             }
-            MethodStatus = true;
-            //if (MethodStatus == false) StatusNotification = "XML Parse Failed";
+            catch (Exception ex)
+            {
+                StatusNotification = "XML Deserialize Error: " + ex.Message;
+                MethodStatus = false;
+            }
         }
 
         public void ValidateXML(string Importfilepath)
         {
             //https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmlreadersettings.schemas?view=net-5.0
-            try
-            {
+
                 XmlReaderSettings validationsettings = new XmlReaderSettings();
                 validationsettings.Schemas.Add("http://www.w3.org/2001/XMLSchema", "ExportedXML_Test.xsd");
                 validationsettings.ValidationType = ValidationType.Schema;
                 validationsettings.ValidationEventHandler += new ValidationEventHandler(CityArraySettingsValidationEventHandler);
 
-                //Reading the XML File. XML reader reads the document one line at a time given the file stream and settings.
+                //Reading the XML File. XMLreader reads the document one line at a time given the file stream and settings.
                 XmlReader reader = XmlReader.Create(Importfilepath, validationsettings);
-
+            try
+            {
                 while (reader.Read()) { }
 
                 StatusNotification = "Validation successful.";
                 MethodStatus = true;
-
-                reader.Close();
             }
             catch (Exception ex)
             {
-                StatusNotification = "Error validation: " + ex.Message;
+                StatusNotification = "Validation Error: " + ex.Message;
                 MethodStatus = false;
             }
             finally
             {
-                //
+                reader.Close();
             }
         }
 
