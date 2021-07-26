@@ -27,46 +27,76 @@ namespace QLifeC_Datatool
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            bool checkedCity = true; //oder error counter, jedes mal wenn false, dann +1 und wenn er nicht =0
+            bool checkedCity = false; 
             int errorCounter = 0;
-            if (CheckIfNameIsInTitleCase(cityName_tb.Text)) checkedCity = true;
-            else
-            {
-                MessageBoxResult result = MessageBox.Show("The City Name was in a wrong format, should this automatically be fixed?", "City Name to Title Case", MessageBoxButton.YesNo);
-                switch (result)
-                {
-                    case MessageBoxResult.Yes:
-                        checkedCity = false;
-                        ConvertToTitleCase(cityName_tb.Text);
-                        checkedCity = true;
-                        break;
-                    case MessageBoxResult.No:
-                        break;
-                }
-                errorCounter++;
-            }
 
             if (CheckIfNameIsEmpty(cityName_tb.Text))
             {
-                checkedCity = false;
+                errorCounter++;
+                MessageBox.Show("Please type in a valid city name.");
+            }
+
+                if (!CheckIfNameIsInTitleCase(cityName_tb.Text))
+                {
+                    MessageBoxResult result = MessageBox.Show("The City Name was in a wrong format, should this automatically be fixed?", "City Name to Title Case", MessageBoxButton.YesNo);
+                    switch (result)
+                    {
+                        case MessageBoxResult.Yes:
+                            ConvertToTitleCase(cityName_tb.Text);
+                            break;
+                        case MessageBoxResult.No:
+                            break;
+                    }
+                }
+            
+            if (!CheckIfContainsNoSymbols(cityName_tb.Text))   //if NAME contains symbols which are not letters:
+            { 
                 errorCounter++;
             }
-            else checkedCity = true;
 
-            if (CheckIfContainsNoSymbols(cityName_tb.Text)) checkedCity = true;
-            else
+            if (!CheckIfContainsOnlyNumbers())
             {
-                //if name contains symbols which are not letters:
-                checkedCity = false;
                 errorCounter++;
             }
 
-                //test if cityName_tb has text
-                //bool containsText = CheckIfContainsLetters(allthesubcategorieTextBoxes)           
+            if (errorCounter == 0)
+            {
+                checkedCity = true;
+            }
+
+            if (checkedCity)
+            {
+                AddCityToList();
+            }
 
             this.Close();
-
-            //bool invalidName = cityName_tb.Text.Contains('?');
+        }
+        public bool CheckIfContainsOnlyNumbers()
+        {
+            bool containsOnlyNumbers=true;
+            List<TextBox> cat0tblist = new List<TextBox> { col1_tb, col2_tb, col3_tb, col4_tb, col5_tb, col6_tb, col7_tb, col8_tb, col9_tb, col10_tb, col11_tb };
+            List<TextBox> cat1tblist = new List<TextBox> { h1_tb, h2_tb, h3_tb, h4_tb };
+            List<TextBox> cat2tblist = new List<TextBox> { ia1_tb, ia2_tb, ia3_tb, ia4_tb };
+            List<TextBox> cat3tblist = new List<TextBox> { eq1_tb, eq2_tb, eq3_tb, eq4_tb };
+            List<TextBox> cat4tblist = new List<TextBox> { tc1_tb, tc2_tb, tc3_tb };
+            List<TextBox> cat5tblist = new List<TextBox> { o1_tb, o2_tb, o3_tb, o4_tb, o5_tb, o6_tb, o7_tb };
+            List<List<TextBox>> catTextBoxListOfList = new List<List<TextBox>> { cat0tblist, cat1tblist, cat2tblist, cat3tblist, cat4tblist, cat5tblist };
+            for (int j = 0; j < catTextBoxListOfList.Count; j++)
+            {
+                for (int i = 0; i < catTextBoxListOfList[j].Count; i++)
+                {
+                    string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜabcdefghijklmnopqrstuvwxyzäöüß";
+                    for (int k = 0; k < alphabet.Length; k++)
+                    {
+                        if (catTextBoxListOfList[j][i].Text.Contains(alphabet[k]))
+                        {
+                            MessageBox.Show("Values for Subcategories can only contain numbers. But it is:"+catTextBoxListOfList[j][i].Text);                 
+                            containsOnlyNumbers = false;
+                        }
+                    }
+                }
+            }
+            return containsOnlyNumbers;
         }
         public bool CheckIfContainsNoSymbols(string cityName)
         {
@@ -76,8 +106,11 @@ namespace QLifeC_Datatool
            {
                 for(int c=0; c<symbols.Length; c++)
                 {
-                    if (symbols[c] == cityName[i]) containsNoSymbol = false;
-                    MessageBox.Show("Oh, your City Name contained a not-valid Symbol: "+cityName[i]);
+                    if (symbols[c] == cityName[i])
+                    {
+                        containsNoSymbol = false;
+                        MessageBox.Show("Oh, your City Name contained a not-valid Symbol: " + cityName[i]);
+                    }
                 }
            }
            return containsNoSymbol;
@@ -112,13 +145,13 @@ namespace QLifeC_Datatool
         }
         public bool CheckIfNameIsEmpty(string cityName)
         {
-            bool tmp_isEmpty =false;
+            bool tmp_isEmpty;
             if (cityName == "")
             {
                 tmp_isEmpty = true;
-                MessageBox.Show("Please type in a valid city name."); //unittest
             }
-            else AddCityToList();
+            else tmp_isEmpty = false;
+               // AddCityToList();
             return tmp_isEmpty;
         }
         private void AddCityToList()
@@ -126,7 +159,6 @@ namespace QLifeC_Datatool
             try
             {
                 cityToBeAdded = new City(cityName_tb.Text);
-                //zahlen oder sonderzeichen abfangen und dann noch wegen unittests fragen -unittest für addData-Funktion?
 
                 List<Slider> allSliders = new List<Slider> { col_sd, h_sd, ia_sd, eq_sd, tc_sd, o_sd };
                 for(int i=0; i<6; i++)
@@ -175,7 +207,7 @@ namespace QLifeC_Datatool
             }
             catch(System.FormatException)
             {
-                MessageBox.Show("Nice try. Every subcategorie has to has a value, even if it's 0.");
+                MessageBox.Show("Nice try. Every subcategorie has to has a value, even if it's 0. AND NO LETTERS.");
             }            
             ((MainWindow)Application.Current.MainWindow).cityList.Add(cityToBeAdded); //here the city is manually added to your testCityList
         }
