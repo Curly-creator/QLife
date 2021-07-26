@@ -51,6 +51,7 @@
             <Button x:Name="btn_DelEntry" Content="Delete" Height="30" Margin="20 5 20 10"/>
             <Button x:Name="btn_Download" Content="Export" Height="30" Margin="20 40 20 10"/>
             <Button x:Name="btn_Import" Content="Import" Height="30" Margin="20 5 20 10"/>
+            <Button x:Name="btn_DownloadAPI" Content="Download" Height="30" Margin="20 5 20 10" Click="btn_DownloadAPI_Click"/
         </StackPanel>
 
         <!--Main Grid-->

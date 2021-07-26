@@ -31,9 +31,6 @@ namespace QLifeC_Datatool
         public MainWindow()
         {
             InitializeComponent();
-
-            API_GetData();
-
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }
@@ -57,11 +54,14 @@ namespace QLifeC_Datatool
             } 
         }
 
+
         public void API_GetData()
-        {
+        {  
+            cityList.Clear();
             API_GetCityList();
             foreach (var city in cityList)
             {
+          
                 API_GetCategoryScores(city);
                 API_GetCategoryDetails(city);
             }
@@ -72,8 +72,8 @@ namespace QLifeC_Datatool
             var url = "https://api.teleport.org/api/urban_areas";
             
             dynamic jsonObj = API_UrlToJsonObj(url);
-           
-            if(jsonObj != null)
+
+            if (jsonObj != null)
             {
                 var jsonCities = jsonObj["_links"]["ua:item"];
 
@@ -85,8 +85,7 @@ namespace QLifeC_Datatool
                         Name = jsonCities[i]["name"]
                     };
                     cityList.Add(city);
-                };
-
+                }
             }            
         }
 
@@ -96,7 +95,7 @@ namespace QLifeC_Datatool
 
             dynamic jsonObj = API_UrlToJsonObj(url);
 
-            if(jsonObj != 0)
+            if(jsonObj != null)
             {
                 var jsonCategoryScores = jsonObj["categories"];
 
@@ -161,6 +160,12 @@ namespace QLifeC_Datatool
                 subCategory.Value = jsonSubCategory[type + "_value"];
                 category.SubCategories.Add(subCategory);
             }    
-        }       
+        }
+
+        private void btn_DownloadAPI_Click(object sender, RoutedEventArgs e)
+        {
+            API_GetData();
+            Dgd_MainGrid.Items.Refresh();
+        }
     }
 }
