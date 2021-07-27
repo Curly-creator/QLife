@@ -17,6 +17,7 @@ namespace QLifeC_Datatool
             SubCategories = new List<SubCategory>();
         }
 
+        //the following parameterless constructor is needed for xml serialization
         public Category()
         {
 

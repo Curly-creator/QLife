@@ -28,6 +28,7 @@ namespace QLifeC_Datatool
     public partial class MainWindow : Window
     {    
         public List<City> cityList = new List<City>();
+        public List<City> nullCityList;
 
         public MainWindow()
         {
@@ -150,6 +151,7 @@ namespace QLifeC_Datatool
         private void btn_Download_Click(object sender, RoutedEventArgs e)
         {
             Stream qLifeStream;
+
             SaveFileDialog downloadDialog = new SaveFileDialog
             {
                 InitialDirectory = @"C:\",
@@ -159,17 +161,20 @@ namespace QLifeC_Datatool
                 Title = "Download QLifeC file"
             };
 
+
             if (downloadDialog.ShowDialog() == true)
             {
                 if (downloadDialog.FileName.EndsWith("csv"))
                 {
-
                     if ((qLifeStream = downloadDialog.OpenFile()) != null)
                     {
+                        CsvFile fileToSave = new CsvFile
                         {
-                            WriteToCSV(qLifeStream);
-                            MessageBox.Show("Your file can be found here: " + downloadDialog.FileName, "CSV download complete", MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
+                            Filename = downloadDialog.FileName.ToString(),
+                            CSVStream = qLifeStream,
+                            SourceForCsv = cityList
+                        };
+                        fileToSave.WriteToCSV();
                     }
                 }
                     
@@ -177,57 +182,63 @@ namespace QLifeC_Datatool
                 {
                     if ((qLifeStream = downloadDialog.OpenFile()) != null)
                     {
+                        XmlFile fileToSave = new XmlFile
                         {
-                            WriteToXML(qLifeStream);
-                            MessageBox.Show("Your file can be found here: " + downloadDialog.FileName, "XML download complete", MessageBoxButton.OK ,MessageBoxImage.Information);
-                        }
+                            Filename = downloadDialog.FileName.ToString(),
+                            XMLStream = qLifeStream,
+                            SourceForXml = nullCityList
+                        };
+                        fileToSave.WriteToXML();
                     }
                 }
             }
         }
 
-        public void WriteToCSV(Stream qLifeCsvStream)
-        {
+        //public void WriteToCSV(Stream qLifeCsvStream)
+        //{
+        //    using StreamWriter exportCSV = new StreamWriter(qLifeCsvStream);
+        //    try
+        //    {
+        //        exportCSV.WriteLine("City_Name, Category_Name, Overall_Category_Score, SubCategory_Label, SubCategory_Score");
+
+        //        foreach (City city in cityList)
+        //        {
+        //            for (int i = 0; i < city.Categories.Length; i++)
+        //            {
+        //                for (int j = 0; j < city.Categories[i].SubCategories.Count(); j++)
+        //                {
+        //                    string cityNameForCsv = city.Name.ToString().Replace(",", "");
+        //                    string categoryNameCsv = city.Categories[i].Label;
+        //                    decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score, 2);
+        //                    string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
+        //                    string subcatLabelCsv = city.Categories[i].SubCategories[j].Label.ToString();
+        //                    string subcatScoreCsv = city.Categories[i].SubCategories[j].Value.ToString("F2").Replace(",", ".");
+        //                    exportCSV.WriteLine(cityNameForCsv + "," + categoryNameCsv + "," + scoreForCsv + "," + subcatLabelCsv + "," + subcatScoreCsv);
+        //                }
+        //            }
+        //        }
+        //        result = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error CSV export" + ex.Message);
+        //        result = false;
+
+        //    }
             
-            using StreamWriter exportCSV = new StreamWriter(qLifeCsvStream);
-
-            foreach (City city in cityList)
-            {
-                string cityNameForCsv = city.Name.ToString().Replace(",", "");
-                exportCSV.WriteLine(cityNameForCsv + ",");
-
-                for (int i = 0; i < city.Categories.Length; i++)
-                {
-                    string categoryNameCsv = city.Categories[i].Label;
-                    decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score, 2);
-                    string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
-
-                    exportCSV.WriteLine("" + "," + categoryNameCsv + "," + scoreForCsv + ",");
-                    exportCSV.WriteLine();
-
-                    for (int j = 0; j < city.Categories[i].SubCategories.Count(); j++)
-                    {
-                        string subcatLabelCsv = city.Categories[i].SubCategories[j].Label.ToString();
-                        string subcatScoreCsv = city.Categories[i].SubCategories[j].Value.ToString("F2").Replace(",", ".");
-                        exportCSV.WriteLine("" + "," + subcatLabelCsv + "," + subcatScoreCsv + ",");
-                    }
-                    exportCSV.WriteLine();
-                }
-                exportCSV.WriteLine();
-            }
-        }
+        //}
 
         //LIST OF REFERENCES
         // *1 ---> "F2" for always 2 places after comma or dot
         //https://stackoverflow.com/questions/36619121/convert-string-to-decimal-to-always-have-2-decimal-places
 
-        public void WriteToXML(Stream qLifeXmlStream)
-        {
-            System.Xml.Serialization.XmlSerializer writer =
-            new System.Xml.Serialization.XmlSerializer(typeof(List<City>));
+        //public void WriteToXML(Stream qLifeXmlStream)
+        //{
+        //    System.Xml.Serialization.XmlSerializer writer =
+        //    new System.Xml.Serialization.XmlSerializer(typeof(List<City>));
 
-            writer.Serialize(qLifeXmlStream, cityList);
-        }
+        //    writer.Serialize(qLifeXmlStream, cityList);
+        //}
 
     }
 }
