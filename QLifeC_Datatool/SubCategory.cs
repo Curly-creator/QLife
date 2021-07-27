@@ -19,7 +19,7 @@ namespace QLifeC_Datatool
         public string Type { get => _Type; set => _Type = value; }
         public double Value { get => _Value; set => _Value = value; }
 
-        public override string ToString()
+        public string ToolTip()
         {
             return Label;
         }

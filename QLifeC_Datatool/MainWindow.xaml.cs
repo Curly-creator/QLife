@@ -33,6 +33,9 @@ namespace QLifeC_Datatool
         public Label[] FilterLabelArray;
 
         public CityList cityList = new CityList();
+    {    
+        public List<City> cityList = new List<City>();
+        public API_Request test = new API_Request("https://api.teleport.org/api/urban_areas");
 
         public double[] FilterValues;
         public MainWindow()
@@ -67,130 +70,10 @@ namespace QLifeC_Datatool
             return FilterStatus;
         }
 
-        public dynamic API_UrlToJsonObj(string url)
+        private void btn_Download_Click(object sender, RoutedEventArgs e)
         {
-            WebRequest request = WebRequest.Create(url);
-            WebResponse response = request.GetResponse();
-            using Stream dataStreay = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStreay);
-            string responseString = reader.ReadToEnd();
-
-            dynamic jsonObj = new JavaScriptSerializer().Deserialize<Object>(responseString);
-            return jsonObj;
-        }
-
-        public void API_GetData()
-        {
-            API_GetCityList();
-            foreach (var city in cityList)
-            {
-                API_GetCategoryScores(city);
-                API_GetCategoryDetails(city);
-            }
-        }      
-
-        public void API_GetCityList()
-        {    
-            var url = "https://api.teleport.org/api/urban_areas";
-
-            dynamic jsonObj = API_UrlToJsonObj(url);
-           
-            var jsonCities = jsonObj["_links"]["ua:item"];
-            
-            for(int i = 0; i <= 200; i += 10)
-            {          
-                City city = new City
-                {
-                    Url = jsonCities[i]["href"],
-                    Name = jsonCities[i]["name"]
-                };
-                cityList.Add(city);
-            };
-        }
-
-        public void API_GetCategoryScores(City city)
-        {
-            var url = cityList[cityList.IndexOf(city)].Url + "scores/";
-
-            dynamic jsonObj = API_UrlToJsonObj(url);
-
-            var jsonCategoryScores = jsonObj["categories"];
- 
-            int counter = 0;
-
-            foreach (var jsonScore in jsonCategoryScores)
-            {
-                for (int i = 0; i < city.Categories.Length; i++)
-                {
-                    if (jsonScore["name"] == city.Categories[i].Label)
-                    {
-                        city.Categories[i].Score = jsonScore["score_out_of_10"];
-                        counter++;
-                        break;
-                    }
-                }
-                if (counter == city.Categories.Length) break;
-            }          
-        }
-
-        public void API_GetCategoryDetails(City city)
-        {
-            var url = cityList[cityList.IndexOf(city)].Url + "details/";
-
-            dynamic jsonObj = API_UrlToJsonObj(url);
-
-            var jsonCategories = jsonObj["categories"];
-
-            int counter = 0;
-       
-            foreach (var jsonCategory in jsonCategories)
-            {
-                for (int i = 0; i < city.Categories.Length; i++){
-                    if (jsonCategory["label"] == city.Categories[i].Label)
-                    {
-                        API_AddSubCategories(city.Categories[i], jsonCategory);
-                        counter++;
-                        break;
-                    }
-                }
-                if (counter == city.Categories.Length) break;
-            }
-        }
-
-        public void API_AddSubCategories(Category category, dynamic jsonCategory)
-        {
-            foreach (var jsonSubCategory in jsonCategory["data"])
-            {
-                string type = jsonSubCategory["type"];
-                SubCategory subCategory = new SubCategory
-                {
-                    Value = jsonSubCategory[type + "_value"],
-                    Label = jsonSubCategory["label"],
-                };
-                category.SubCategories.Add(subCategory);
-            }
-        }
-
-        private void btn_Filter_Click(object sender, RoutedEventArgs e)
-        {
-            Dgd_MainGrid.ItemsSource = cityList.Filter(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
-            Dgd_MainGrid.Items.Refresh();
-        }
-
-        public void SliderValueChanged(object slider, RoutedPropertyChangedEventArgs<double> e)
-        {
-            for (int i = 0; i < FilterSliderArray.Length; i++)
-            {
-                if (slider == FilterSliderArray[i])
-                {
-                    FilterLabelArray[i].Content = String.Format("Filtervalue: {0,1:N1}", Math.Round(FilterSliderArray[i].Value, 1));
-                }    
-            }        
-        }
-
-        private void tbx_SearchBar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Dgd_MainGrid.ItemsSource = cityList.SearchCity(tbx_SearchBar.Text);
+            cityList = test.GetCityData();
+            Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }
     }

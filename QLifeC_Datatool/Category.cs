@@ -38,9 +38,7 @@ namespace QLifeC_Datatool
                 }
                 return ToolTip;
             }
-        }
-
-        
+        }     
     }
 }
 
