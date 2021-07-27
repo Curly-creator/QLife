@@ -60,7 +60,7 @@
                         <StackPanel Width="100">
                             <TextBlock Text="City" HorizontalAlignment="Center"/>
                             <TextBlock />
-                            <TextBox Name="tbx_SearchBar" Background="Beige" TextAlignment="Left" TextChanged="tbx_SearchBar_TextChanged"  />
+                            <TextBox Name="tbx_SearchBar" Background="Beige" TextAlignment="Left" TextChanged="tbx_SearchBar_TextChanged" />
                         </StackPanel>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>

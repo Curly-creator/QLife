@@ -27,17 +27,18 @@ namespace QLifeC_Datatool
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {    
-        public List<City> cityList = new List<City>();
-        
+    {           
         public Slider[] FilterSliderArray;
         public CheckBox[] FilterCheckBoxArray;
         public Label[] FilterLabelArray;
 
+        public CityList cityList = new CityList();
+
+        public double[] FilterValues;
         public MainWindow()
         {
             InitializeComponent();
-
+            
             API_GetData();
 
             FilterSliderArray = new Slider[] { sl_CoLFilter, sl_HCFilter, sl_IAFilter, sl_EQFilter, sl_TCFilter,  sl_OFilter };
@@ -46,6 +47,24 @@ namespace QLifeC_Datatool
 
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
+        }
+        public double[] GetFilterValues (Slider[] ArrayOfSlider)
+        {
+            double[] FilterValues = new double[ArrayOfSlider.Length];
+            for (int i = 0; i < ArrayOfSlider.Length; i++)
+            {
+                FilterValues[i] = ArrayOfSlider[i].Value;
+            }
+            return FilterValues;
+        }
+        public bool[] GetFilterStatus (CheckBox[] ArrayOfCheckbox)
+        {
+            bool[] FilterStatus = new bool[ArrayOfCheckbox.Length];
+            for (int i = 0; i < ArrayOfCheckbox.Length; i++)
+            {
+                FilterStatus[i] = (bool)ArrayOfCheckbox[i].IsChecked;
+            }
+            return FilterStatus;
         }
 
         public dynamic API_UrlToJsonObj(string url)
@@ -143,71 +162,19 @@ namespace QLifeC_Datatool
             foreach (var jsonSubCategory in jsonCategory["data"])
             {
                 string type = jsonSubCategory["type"];
-
                 SubCategory subCategory = new SubCategory
                 {
-                    Type = jsonSubCategory["type"],
+                    Value = jsonSubCategory[type + "_value"],
                     Label = jsonSubCategory["label"],
-                };                         
+                };
+                category.SubCategories.Add(subCategory);
             }
-        }
-
-        public void SearchCity()
-        {
-            ComparerCity compareCity = new ComparerCity();
-            List<City> searchList = new List<City>();
-                      
-            City searchObject = new City
-            {
-                Name = tbx_SearchBar.Text
-            };
-
-            searchList.Add(searchObject);
-
-            int index = cityList.BinarySearch(searchObject, compareCity);
-
-            if (index >= 0)
-            {
-                searchList[0] = cityList[index];
-                Dgd_MainGrid.ItemsSource = searchList;
-            }
-            else Dgd_MainGrid.ItemsSource = cityList;
-
-            Dgd_MainGrid.Items.Refresh();
-        }
-
-        public bool FilterByScore(City city, int indexOfCategory)
-        {
-            if (indexOfCategory < city.Categories.Length)
-            {
-                if ((bool)FilterCheckBoxArray[indexOfCategory].IsChecked)
-                {
-                    if (city.Categories[indexOfCategory].Score >= FilterSliderArray[indexOfCategory].Value)
-                    {
-                        return FilterByScore(city, indexOfCategory + 1);   
-                    }
-                    else return false;
-                }
-                else return FilterByScore(city, indexOfCategory + 1);
-            }
-            return true;
         }
 
         private void btn_Filter_Click(object sender, RoutedEventArgs e)
         {
-            List<City> FilterList = new List<City>();
-            foreach (var city in cityList)
-            {
-                if (FilterByScore(city, 0)) FilterList.Add(city);
-            }
-
-            Dgd_MainGrid.ItemsSource = FilterList;
+            Dgd_MainGrid.ItemsSource = cityList.Filter(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
             Dgd_MainGrid.Items.Refresh();
-        }
-
-        private void tbx_SearchBar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            SearchCity();
         }
 
         public void SliderValueChanged(object slider, RoutedPropertyChangedEventArgs<double> e)
@@ -219,6 +186,12 @@ namespace QLifeC_Datatool
                     FilterLabelArray[i].Content = String.Format("Filtervalue: {0,1:N1}", Math.Round(FilterSliderArray[i].Value, 1));
                 }    
             }        
+        }
+
+        private void tbx_SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Dgd_MainGrid.ItemsSource = cityList.SearchCity(tbx_SearchBar.Text);
+            Dgd_MainGrid.Items.Refresh();
         }
     }
 }

@@ -6,11 +6,8 @@ namespace QLifeC_Datatool
 {
     public class SubCategory
     {
-
-        //private string _Id;
-        private double _NumberValue;
-        private string _StringValue;
-        private string _Lable;
+        private double _Value;
+        private string _Label;
         private string _Type;
 
         public SubCategory()
@@ -18,11 +15,9 @@ namespace QLifeC_Datatool
 
         }
 
-        //public string Id { get => _Id; set => _Id = value; }
-        public string Label { get => _Lable; set => _Lable = value; }
+        public string Label { get => _Label; set => _Label = value; }
         public string Type { get => _Type; set => _Type = value; }
-        public double NumberValue { get => _NumberValue; set => _NumberValue = value; }
-        public string StringValue { get => _StringValue; set => _StringValue = value; }
+        public double Value { get => _Value; set => _Value = value; }
 
         public override string ToString()
         {
@@ -31,10 +26,7 @@ namespace QLifeC_Datatool
 
         public string GetTooltip()
         {
-            string value;
-
-            if (Type == "string" || Type == "url") value = StringValue;
-            else value = Math.Round(_NumberValue, 2).ToString();
+            string value = Math.Round(Value, 2).ToString(); ;
 
             return Label + ": " + value + "\n";
         }
