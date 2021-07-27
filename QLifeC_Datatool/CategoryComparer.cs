@@ -6,7 +6,7 @@ using System.Text;
 
 namespace QLifeC_Datatool
 {
-    public class ComparerCity : IComparer<Category>
+    public class CategoryComparer : IComparer<Category>
     {
         int IComparer<Category>.Compare(Category x, Category y)
         {

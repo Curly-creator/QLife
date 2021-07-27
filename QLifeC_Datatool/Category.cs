@@ -23,7 +23,7 @@ namespace QLifeC_Datatool
 
         public override string ToString()
         {
-            return Math.Round(Score, 2).ToString(); ;
+            return Math.Round(Score, 2).ToString();
         }
 
         public string Tooltip

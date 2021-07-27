@@ -33,17 +33,12 @@ namespace QLifeC_Datatool
         public Label[] FilterLabelArray;
 
         public CityList cityList = new CityList();
-    {    
-        public List<City> cityList = new List<City>();
-        public API_Request test = new API_Request("https://api.teleport.org/api/urban_areas");
 
         public double[] FilterValues;
         public MainWindow()
         {
             InitializeComponent();
             
-            API_GetData();
-
             FilterSliderArray = new Slider[] { sl_CoLFilter, sl_HCFilter, sl_IAFilter, sl_EQFilter, sl_TCFilter,  sl_OFilter };
             FilterCheckBoxArray = new CheckBox[] { cb_CoLFilter, cb_HCFilter, cb_IAFilter, cb_EQFilter, cb_TCFilter, cb_OFilter };
             FilterLabelArray = new Label[] { lbl_CoL, lbl_HC, lbl_IA, lbl_EQ, lbl_TC, lbl_O };
@@ -51,6 +46,7 @@ namespace QLifeC_Datatool
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }
+
         public double[] GetFilterValues (Slider[] ArrayOfSlider)
         {
             double[] FilterValues = new double[ArrayOfSlider.Length];
@@ -60,6 +56,7 @@ namespace QLifeC_Datatool
             }
             return FilterValues;
         }
+
         public bool[] GetFilterStatus (CheckBox[] ArrayOfCheckbox)
         {
             bool[] FilterStatus = new bool[ArrayOfCheckbox.Length];
@@ -72,9 +69,32 @@ namespace QLifeC_Datatool
 
         private void btn_Download_Click(object sender, RoutedEventArgs e)
         {
-            cityList = test.GetCityData();
+            cityList = cityList.GetCityData("https://api.teleport.org/api/urban_areas/");
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
+        }
+
+        private void tbx_SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Dgd_MainGrid.ItemsSource = cityList.SearchCity(tbx_SearchBar.Text);
+            Dgd_MainGrid.Items.Refresh();
+        }
+
+        private void btn_Filter_Click(object sender, RoutedEventArgs e)
+        {
+            Dgd_MainGrid.ItemsSource = cityList.Filter(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
+            Dgd_MainGrid.Items.Refresh();
+        }
+
+        public void SliderValueChanged(object slider, RoutedPropertyChangedEventArgs<double> e)
+        {
+            for (int i = 0; i < FilterSliderArray.Length; i++)
+            {
+                if (slider == FilterSliderArray[i])
+                {
+                    FilterLabelArray[i].Content = String.Format("Filtervalue: {0,1:N1}", Math.Round(FilterSliderArray[i].Value, 1));
+                }
+            }
         }
     }
 }

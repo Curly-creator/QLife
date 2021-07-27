@@ -13,6 +13,12 @@ namespace QLifeC_Datatool
           
         }
 
+        public CityList GetCityData(string url)
+        {
+            API_Request aPI_Request = new API_Request(url);
+            return aPI_Request.GetCityData();
+        }
+
         public List<City> Filter(double[] valueOfFilter, bool[] filterIsActive)
         {
             List<City> FilterList = new List<City>();
@@ -57,13 +63,11 @@ namespace QLifeC_Datatool
             return searchList;
         }
 
-        public void SortByCategoryScore()
+        public void SortByCategoryScore(int indexOfCategory)
         {
-            ComparerCity comparerCity = new ComparerCity();
+            CategoryComparer comparerCity = new CategoryComparer();
             foreach (var city in this)
             {
-                //cityList.Sort(comparerCity);
-
 
             }
         }
