@@ -34,13 +34,11 @@ namespace QLifeC_Datatool
 
                 foreach (var SubCategory in SubCategories)
                 {
-                    ToolTip += SubCategory;
+                    ToolTip += SubCategory.ToolTip();
                 }
                 return ToolTip;
             }
-        }
-
-        
+        }     
     }
 }
 
