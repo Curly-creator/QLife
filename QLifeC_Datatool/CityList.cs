@@ -8,44 +8,35 @@ namespace QLifeC_Datatool
 {
     public class CityList : List<City>
     {
-        public CityList()
-        {
-          
-        }
+        private readonly List<City> Backup = new List<City>();
 
-        public CityList GetCityData(string url)
+        public void GetCityScores(string url)
         {
             API_Request aPI_Request = new API_Request(url);
-            return aPI_Request.GetCityData();
+            this.AddRange(aPI_Request.GetCityData());
+            Backup.AddRange(this);
         }
 
-        public List<City> Filter(double[] valueOfFilter, bool[] filterIsActive)
+        public void Filter(double[] valueOfFilter, bool[] filterIsActive)
         {
             List<City> FilterList = new List<City>();
-            foreach (var city in this)
-            {
-                if (FilterByScore(city, 0, valueOfFilter, filterIsActive))
-                {
+
+            foreach (var city in Backup)        
+                if (FilterByScore(city, 0, valueOfFilter, filterIsActive))          
                     FilterList.Add(city);
-                }
-            }
-            return FilterList;
+
+            this.Clear();
+            this.AddRange(FilterList);
         }
 
-        public bool FilterByScore(City city, int indexOfCategory, double[] valueOfFilter, bool[] filterIsActive)
+        private bool FilterByScore(City city, int indexOfCategory, double[] valueOfFilter, bool[] filterIsActive)
         {
             if (indexOfCategory < city.Categories.Length)
-            {
                 if (filterIsActive[indexOfCategory])
-                {
                     if (city.Categories[indexOfCategory].Score >= valueOfFilter[indexOfCategory])
-                    {
                         return FilterByScore(city, indexOfCategory + 1, valueOfFilter, filterIsActive);
-                    }
                     else return false;
-                }
                 else return FilterByScore(city, indexOfCategory + 1, valueOfFilter, filterIsActive);
-            }
             return true;
         }
 
@@ -65,11 +56,14 @@ namespace QLifeC_Datatool
 
         public void SortByCategoryScore(int indexOfCategory)
         {
-            CategoryComparer comparerCity = new CategoryComparer();
-            foreach (var city in this)
-            {
+            CategoryComparer categoryCompare = new CategoryComparer { Index = indexOfCategory };
+            Sort(categoryCompare);
+        }
 
-            }
+        public void Reset()
+        {
+            this.Clear();
+            this.AddRange(Backup);
         }
 
     }

@@ -39,8 +39,9 @@
         </Grid.RowDefinitions>
 
         <!--All search & filter options can go in this stack panel-->
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4"/>
-        <Button x:Name="btn_Filter" Content="Filter" Height="30"  Click="btn_Filter_Click" Margin="20,10,20,3"  Grid.Column="5" Grid.Row="3"/>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4">
+            
+        </StackPanel>
 
         <!--All the main buttons are in this stack panel. Easier to make changes to multiple buttons at once-->
         <StackPanel Grid.Column="6" Grid.ColumnSpan="1" Grid.Row="4" Grid.RowSpan="8">
@@ -50,14 +51,20 @@
             <Button x:Name="btn_Export" Content="Export" Height="30" Margin="20 40 20 10"/>
             <Button x:Name="btn_Import" Content="Import" Height="30" Margin="20 5 20 10"/>
             <Button x:Name="btn_Download" Content="Download" Height="30" Margin="20 5 20 10" Click="btn_Download_Click"/>
+            <Button x:Name="btn_Reset" Content="Reset" Height="30" Margin="20 5 20 10" Click="btn_Reset_Click"/>
         </StackPanel>
 
         <!--Main Grid-->
         <DataGrid x:Name="Dgd_MainGrid" AutoGenerateColumns="False" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8" BorderThickness="1" BorderBrush="Gray" IsReadOnly="True">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <EventSetter Event="Click" Handler="columnHeader_Click" />
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
-
                 <DataGridTextColumn Binding="{Binding Name}">
-                    <DataGridTextColumn.Header>
+                    <DataGridTextColumn.Header >
+
                         <StackPanel Width="100">
                             <TextBlock Text="City" HorizontalAlignment="Center"/>
                             <TextBlock />
@@ -65,7 +72,6 @@
                         </StackPanel>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-                    
 
                 <DataGridTextColumn Binding="{Binding Categories[0]}">
                     <DataGridTextColumn.Header>
@@ -76,12 +82,12 @@
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                
+
                                 <TextBlock Text="Cost of Living" Grid.Row="0" HorizontalAlignment="Center"/>
                                 <Slider Name="sl_CoLFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
-                                <CheckBox Name="cb_CoLFilter" Grid.Row="2" VerticalAlignment="Center"/>
+                                <CheckBox Name="cb_CoLFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
                                 <Label Name="lbl_CoL" Content="Filtervalue: 0.0"  Grid.Row="2" HorizontalAlignment="Right"/>
-                                
+
                             </Grid>
                         </StackPanel>
                     </DataGridTextColumn.Header>
@@ -91,7 +97,6 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                
 
                 <DataGridTextColumn Binding="{Binding Categories[1]}">
                     <DataGridTextColumn.Header>
@@ -105,7 +110,7 @@
                                 
                                 <TextBlock Text="Healthcare" Grid.Row="0"  HorizontalAlignment="Center"></TextBlock>
                                 <Slider Name="sl_HCFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
-                                <CheckBox Name="cb_HCFilter" Grid.Row="2" VerticalAlignment="Center"/>
+                                <CheckBox Name="cb_HCFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
                                 <Label Name="lbl_HC" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
                                 
                             </Grid>
@@ -157,7 +162,7 @@
                                 
                                 <TextBlock Text="Environmental Quality" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
                                 <Slider Name="sl_EQFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
-                                <CheckBox Name="cb_EQFilter" Grid.Row="2" VerticalAlignment="Center"/>
+                                <CheckBox Name="cb_EQFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
                                 <Label Name="lbl_EQ" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
                                 
                             </Grid>
@@ -183,7 +188,7 @@
 
                                 <TextBlock Text="Travel Connectivity" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
                                 <Slider Name="sl_TCFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
-                                <CheckBox Name="cb_TCFilter" Grid.Row="2" VerticalAlignment="Center"/>
+                                <CheckBox Name="cb_TCFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
                                 <Label Name="lbl_TC" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
                                 
                             </Grid>
@@ -209,7 +214,7 @@
 
                                 <TextBlock Text="Outdoors" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
                                 <Slider Name="sl_OFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
-                                <CheckBox Name="cb_OFilter" Grid.Row="2" VerticalAlignment="Center"/>
+                                <CheckBox Name="cb_OFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
                                 <Label Name="lbl_O" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
                                 
                             </Grid>

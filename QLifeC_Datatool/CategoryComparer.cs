@@ -6,14 +6,17 @@ using System.Text;
 
 namespace QLifeC_Datatool
 {
-    public class CategoryComparer : IComparer<Category>
+    public class CategoryComparer : IComparer<City>
     {
-        int IComparer<Category>.Compare(Category x, Category y)
-        {
-            Category category1 = (Category)x;
-            Category category2 = (Category)y;
+        private int _Index;
+        public int Index { get => _Index; set => _Index = value; }
 
-            return category1.Score.CompareTo(category2.Score);
+        int IComparer<City>.Compare(City x, City y)
+        {
+            City city1 = (City)x;
+            City city2 = (City)y;
+
+            return city2.Categories[Index].Score.CompareTo(city1.Categories[Index].Score);
         }
     }
 }
