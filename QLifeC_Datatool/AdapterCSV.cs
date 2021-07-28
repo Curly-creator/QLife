@@ -5,6 +5,8 @@ using System.IO;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
+using System.Linq;
+using System.Windows;
 
 namespace QLifeC_Datatool
 {
@@ -44,6 +46,51 @@ namespace QLifeC_Datatool
         {
 
         }
+
+        public void CallExportAdapter(Stream stream, List<City> cityList)
+        {
+            try
+            {
+                //the follwoing if else code is only for UnitTest reasons. Actually I am already checking the List in MainWindow Method CheckIfListCanBeExportedAtAll so that the file is not exported at all, but I cannot write UnitTest for Methods in MainWindow
+                if (cityList != null)
+                {
+                    WriteToCSV(stream, cityList);
+                    MessageBox.Show("Your export was successful.", "CSV export complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MethodStatus = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Attention! You are trying to export a list that is not initialized. No data will be exported to this csv file! \n Error: " + ex.Message, "Download Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MethodStatus = false;
+            }
+            
+        }
+
+        public void WriteToCSV(Stream csvstream, List<City> cityList)
+        {
+            using StreamWriter exportCSV = new StreamWriter(csvstream);
+
+            exportCSV.WriteLine("City_Name, Category_Name, Overall_Category_Score, SubCategory_Label, SubCategory_Score");
+            foreach (City city in cityList)
+            {
+                for (int i = 0; i < city.Categories.Length; i++)
+                {
+                    for (int j = 0; j < city.Categories[i].SubCategories.Count(); j++)
+                    {
+                        string cityNameForCsv = city.Name.ToString().Replace(",", "");
+                        string categoryNameCsv = city.Categories[i].Label;
+                        decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score, 2);
+                        string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
+                        string subcatLabelCsv = city.Categories[i].SubCategories[j].Label.ToString();
+                        string subcatScoreCsv = city.Categories[i].SubCategories[j].Value.ToString("F2").Replace(",", ".");
+                        exportCSV.WriteLine(cityNameForCsv + "," + categoryNameCsv + "," + scoreForCsv + "," + subcatLabelCsv + "," + subcatScoreCsv);
+
+                    }
+                }
+            }
+        }
+
 
         public void CallImportAdapter(string FileExtension, string FilePath)
         {

@@ -45,6 +45,40 @@ namespace QLifeC_Datatool
         {
 
         }
+
+        public void CallExportAdapter(Stream stream, List<City> cityList)
+        {
+            try
+            {
+                //the follwoing if else code is only for UnitTest reasons. Actually I am already checking the List in MainWindow Method CheckIfListCanBeExportedAtAll so that the file is not exported at all, but I cannot write UnitTest for Methods in MainWindow
+                if (cityList != null)
+                {
+                WriteToXML(stream, cityList);
+                MessageBox.Show("Your export was successful.", "XML export complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                MethodStatus = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Attention! You are trying to export a list that is not initialized. No data will be exported to this xml file! \n Error: " + ex.Message, "Download Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MethodStatus = false;
+            }
+        }
+
+        public void WriteToXML(Stream xmlstream, List<City> cityList)
+        {
+            XmlSerializer writer = new XmlSerializer(typeof(List<City>));
+
+            writer.Serialize(xmlstream, cityList);
+        }
+
+        //ExportResult = true;
+        //MessageBox.Show("Your file can be found here: \n" + Filename, "XML download complete", MessageBoxButton.OK, MessageBoxImage.Information);
+
+        //ExportResult = false;
+        //MessageBox.Show("Attention! You are trying to export a list that is not initialized. No data will be exported to this xml file! \n Error: " + ex.Message, "Download Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+
         /// <summary>
         /// Method that gets called through the Interface and is responsible for validating and deserializing xml file.
         /// </summary>
@@ -53,16 +87,16 @@ namespace QLifeC_Datatool
         public void CallImportAdapter(string FileExtension, string FilePath)
         {
             //File Extension is .xml
-                ValidateXML(FilePath);
-                DeserializeXML(FilePath);
-                StatusNotification = "XML Validation & Import successful.";
+            ValidateXML(FilePath);
+            DeserializeXML(FilePath);
+            StatusNotification = "XML Validation & Import successful.";
         }
 
         public void DeserializeXML(string Importfilepath)
         {
             //Initializing Serializer.
             XmlSerializer serializer = new XmlSerializer(typeof(List<City>));
-            
+
             try
             {
                 //Creating file stream to deserialize into the citylist.
@@ -83,10 +117,10 @@ namespace QLifeC_Datatool
         {
             //https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmlreadersettings.schemas?view=net-5.0
 
-                XmlReaderSettings validationsettings = new XmlReaderSettings();
-                validationsettings.Schemas.Add("http://www.w3.org/2001/XMLSchema", "ExportedXML_Test.xsd");
-                validationsettings.ValidationType = ValidationType.Schema;
-                validationsettings.ValidationEventHandler += new ValidationEventHandler(CityArraySettingsValidationEventHandler);
+            XmlReaderSettings validationsettings = new XmlReaderSettings();
+            validationsettings.Schemas.Add("http://www.w3.org/2001/XMLSchema", "ExportedXML_Test.xsd");
+            validationsettings.ValidationType = ValidationType.Schema;
+            validationsettings.ValidationEventHandler += new ValidationEventHandler(CityArraySettingsValidationEventHandler);
 
             //Reading the XML File. XMLreader reads the document one line at a time given the file stream and settings.
             XmlReader reader = null;    

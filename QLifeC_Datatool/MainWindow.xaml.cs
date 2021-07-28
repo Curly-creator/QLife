@@ -18,8 +18,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Xml;
-using System.Xml.Schema;
+
+
 
 namespace QLifeC_Datatool
 {
@@ -29,6 +29,8 @@ namespace QLifeC_Datatool
     public partial class MainWindow : Window
     {
         public List<City> cityList = new List<City>();
+        public List<City> nullCityList;
+        public List<City> emptyList = new List<City>();
         public string[] FileTypeAllowed = { ".xml", ".csv" };
         
         //Method Status for unit test purposes to check if the method was successfully implemented.
@@ -51,27 +53,40 @@ namespace QLifeC_Datatool
             Dgd_MainGrid.Items.Refresh();
         }
 
-        /// <summary>
-        /// This is the event handler for "Import" button click. 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_Import_Click(object sender, RoutedEventArgs e)
+       
+        
+
+
+
+        private void btn_Export_Click(object sender, RoutedEventArgs e)
         {
-            //https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=net-5.0
+            ////List<City> ListToBeExported = cityList;
+            List<City> ListToBeExported = emptyList;
+            //List<City> ListToBeExported = nullCityList;
 
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            bool? exportPossible = CheckIfListCanBeExportedAtAll(ListToBeExported);
+
+            if (exportPossible == true)
             {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "CSV files (*.csv)|*.csv|XML files (*.xml)|*.xml";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
+                Stream qLifeStream;
+                SaveFileDialog exportDialog = new SaveFileDialog
+                {
+                    InitialDirectory = @"C:\",
+                    Filter = "csv files (*.csv)|*.csv|xml files (*.xml)|*.xml",
+                    FilterIndex = 2,
+                    RestoreDirectory = true,
+                    Title = "Export QLifeC file"
+                };
 
-                if (openFileDialog.ShowDialog() == true)
+                if (exportDialog.ShowDialog() == true)
                 {
                     //Getting the path and extension of the selected file to be imported.
                     string FilePath = openFileDialog.FileName;
                     string FileExt = System.IO.Path.GetExtension(FilePath).ToLower();
+                    if ((qLifeStream = exportDialog.OpenFile()) != null)
+                    {
+                        string FilePath = exportDialog.FileName;
+                        string FileExt = System.IO.Path.GetExtension(FilePath).ToLower();
 
                     //Calling the import method to initiate file import.
                     CheckFileExtandImport(FileExt, FilePath);
@@ -79,6 +94,14 @@ namespace QLifeC_Datatool
                 //Refreshing the datagrid view with the udpated list after import.
                 Dgd_MainGrid.ItemsSource = cityList;
                 Dgd_MainGrid.Items.Refresh();
+                        StartFileExport(FileExt, qLifeStream, ListToBeExported);
+                    }
+                }
+                
+            }
+            else if (exportPossible == false)
+            {
+                MessageBox.Show("Export cancelled.");
             }
         }
         /// <summary>
@@ -87,6 +110,12 @@ namespace QLifeC_Datatool
         /// <param name="FileExt"></param>
         /// <param name="FilePath"></param>
         public void CheckFileExtandImport(string FileExt, string FilePath)
+            else
+            {
+                MessageBox.Show("Export not possible. Please contact support at Team_QLifeC_Datatool@HTW-UI-InArbeit.de", "Export failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        public void StartFileExport(string FileExt, Stream qLifeStream, List<City> ListForExport)
         {
             ITarget target;
             try
@@ -119,8 +148,42 @@ namespace QLifeC_Datatool
             {
                 ErrorNotification = "Error: " + ex.Message;
                 MethodStatus = false;
+            
+            string caseSwitch = FileExt;
+            switch (caseSwitch)
+            {
+                case ".xml":
+                    target = new AdapterXML();
+                    target.CallExportAdapter(qLifeStream, ListForExport);
+                    break;
+                case ".csv":
+                    target = new AdapterCSV();
+                    target.CallExportAdapter(qLifeStream, ListForExport);
+                    break;
+                default:
+                    MessageBox.Show("Please choose correct file extension");
+                    break;
+            }
+        }
+
+        public bool? CheckIfListCanBeExportedAtAll(List<City> ListToBeExported)
+        {
+            if (ListToBeExported == null)
+            {
+                return null;
+            }
+            else if (ListToBeExported.Count() == 0)
+            {
+                MessageBoxResult result = MessageBox.Show("No data in this list. Do you want to proceed and export an empty list?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    return true;
+                }
+                else return false;
+
             }
 
+            else return true;
         }
 
     }
