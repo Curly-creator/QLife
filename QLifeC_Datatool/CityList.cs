@@ -17,30 +17,31 @@ namespace QLifeC_Datatool
             Backup.AddRange(this);
         }
 
-        public void Filter(double[] valueOfFilter, bool[] filterIsActive)
+        public void FilterByCategoryScore(double[] valueOfFilter, bool[] filterIsActive)
         {
             List<City> FilterList = new List<City>();
 
             foreach (var city in Backup)        
-                if (FilterByScore(city, 0, valueOfFilter, filterIsActive))          
+                if (Filter(city, 0, valueOfFilter, filterIsActive))          
                     FilterList.Add(city);
 
             this.Clear();
             this.AddRange(FilterList);
         }
 
-        private bool FilterByScore(City city, int indexOfCategory, double[] valueOfFilter, bool[] filterIsActive)
+        private bool Filter(City city, int indexOfCategory, double[] valueOfFilter, bool[] filterIsActive)
         {
             if (indexOfCategory < city.Categories.Length)
                 if (filterIsActive[indexOfCategory])
                     if (city.Categories[indexOfCategory].Score >= valueOfFilter[indexOfCategory])
-                        return FilterByScore(city, indexOfCategory + 1, valueOfFilter, filterIsActive);
+                        return Filter(city, indexOfCategory + 1, valueOfFilter, filterIsActive);
                     else return false;
-                else return FilterByScore(city, indexOfCategory + 1, valueOfFilter, filterIsActive);
+                else return Filter(city, indexOfCategory + 1, valueOfFilter, filterIsActive);
             return true;
+
         }
 
-        public List<City> SearchCity(string searchText)
+        public List<City> SearchByCityName(string searchText)
         {
             List<City> searchList = new List<City>();
        

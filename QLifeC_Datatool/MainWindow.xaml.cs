@@ -76,7 +76,7 @@ namespace QLifeC_Datatool
 
         private void tbx_SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Dgd_MainGrid.ItemsSource = cityList.SearchCity(tbx_SearchBar.Text);
+            Dgd_MainGrid.ItemsSource = cityList.SearchByCityName(tbx_SearchBar.Text);
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }
@@ -92,7 +92,7 @@ namespace QLifeC_Datatool
                 }
                 if ((bool)FilterCheckBoxArray[i].IsChecked)
                 {
-                    cityList.Filter(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
+                    cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
                     Dgd_MainGrid.ItemsSource = cityList;
                     Dgd_MainGrid.Items.Refresh();
                 }
@@ -101,7 +101,7 @@ namespace QLifeC_Datatool
 
         public void FilterStatusChanged(object sender, RoutedEventArgs e)
         {
-            cityList.Filter(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
+            cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }
