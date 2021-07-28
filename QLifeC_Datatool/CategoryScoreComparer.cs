@@ -6,7 +6,7 @@ using System.Text;
 
 namespace QLifeC_Datatool
 {
-    public class CategoryComparer : IComparer<City>
+    public class CategoryScoreComparer : IComparer<City>
     {
         private int _Index;
         public int Index { get => _Index; set => _Index = value; }

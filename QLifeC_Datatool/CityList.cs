@@ -9,6 +9,8 @@ namespace QLifeC_Datatool
     public class CityList : List<City>
     {
         private readonly List<City> Backup = new List<City>();
+        private readonly CategoryScoreComparer categoryComparer = new CategoryScoreComparer();
+        private readonly CityNameComparer nameComparer = new CityNameComparer();
 
         public void GetCityScores(string url)
         {
@@ -57,9 +59,17 @@ namespace QLifeC_Datatool
         }
 
         public void SortByCategoryScore(int indexOfCategory)
+        {    
+            categoryComparer.Index = indexOfCategory;
+            Sort(categoryComparer);
+        }
+
+        public void SortByCityName()
         {
-            CategoryComparer categoryCompare = new CategoryComparer { Index = indexOfCategory };
-            Sort(categoryCompare);
+            if (nameComparer.Acending) nameComparer.Acending = false;
+            else nameComparer.Acending = true;
+
+            Sort(nameComparer);
         }
 
         public void Reset()

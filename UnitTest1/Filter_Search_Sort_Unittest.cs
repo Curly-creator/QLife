@@ -1,9 +1,6 @@
 using QLifeC_Datatool;
 using System;
 using System.Collections.Generic;
-using System.Net.Http.Headers;
-using System.Security.Cryptography;
-using System.Windows.Documents;
 using Xunit;
 
 
@@ -96,6 +93,7 @@ namespace Unittest
 
             //Act
             cityList.FilterByCategoryScore(filterValue, filterStatus);
+
             bool actual = CheckFilterCategoryScore(cityList);
 
             //Assert

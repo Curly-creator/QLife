@@ -1,24 +1,6 @@
-﻿using Nancy.Extensions;
-using Nancy.Json;
-using Nancy.ModelBinding.DefaultBodyDeserializers;
-using Nancy.ViewEngines;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 
 namespace QLifeC_Datatool
@@ -31,17 +13,19 @@ namespace QLifeC_Datatool
         public Slider[] FilterSliderArray;
         public CheckBox[] FilterCheckBoxArray;
         public Label[] FilterLabelArray;
+        public Button[] SortButtonArray;
 
         public CityList cityList = new CityList();
 
         public double[] FilterValues;
         public MainWindow()
         {
-            InitializeComponent();
-            
+            InitializeComponent();            
+
             FilterSliderArray = new Slider[] { sl_CoLFilter, sl_HCFilter, sl_IAFilter, sl_EQFilter, sl_TCFilter,  sl_OFilter };
             FilterCheckBoxArray = new CheckBox[] { cb_CoLFilter, cb_HCFilter, cb_IAFilter, cb_EQFilter, cb_TCFilter, cb_OFilter };
             FilterLabelArray = new Label[] { lbl_CoL, lbl_HC, lbl_IA, lbl_EQ, lbl_TC, lbl_O };
+            SortButtonArray = new Button[] { btn_SortCoL, btn_SortHC, btn_SortIA, btn_SortEQ, btn_SortTC, btn_SortO};
 
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
@@ -82,43 +66,36 @@ namespace QLifeC_Datatool
 
         public void SliderValueChanged(object slider, RoutedPropertyChangedEventArgs<double> e)
         {
-            Slider TEST = (Slider)slider;
+            Slider actSlider = (Slider)slider;
            
             for (int i = 0; i < FilterSliderArray.Length; i++)
             {
-                if (slider == FilterSliderArray[i])
+                if (actSlider == FilterSliderArray[i])
                 {
                     FilterLabelArray[i].Content = String.Format("Filtervalue: {0,1:N1}", Math.Round(FilterSliderArray[i].Value, 1));
                 }
-                if (TEST.Name == FilterSliderArray[i].Name && (bool)FilterCheckBoxArray[i].IsChecked)
+                if (actSlider.Name == FilterSliderArray[i].Name && (bool)FilterCheckBoxArray[i].IsChecked)
                 {
                     cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
                     Dgd_MainGrid.ItemsSource = cityList;
                     Dgd_MainGrid.Items.Refresh();
+                    break;
                 }
             }  
         }
 
         public void FilterStatusChanged(object sender, RoutedEventArgs e)
         {
-            cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
-            //Dgd_MainGrid.ItemsSource = cityList;
-            Dgd_MainGrid.Items.Refresh();
-        }
-
-        private void ColumnHeader_Click(object sender, RoutedEventArgs e)
-        {        
-            var columnHeader = sender as System.Windows.Controls.Primitives.DataGridColumnHeader;
-            if (columnHeader.TabIndex > 0) 
-                cityList.SortByCategoryScore(columnHeader.TabIndex - 1);
-            //Dgd_MainGrid.ItemsSource = cityList;
+            cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));          
             Dgd_MainGrid.Items.Refresh();
         }
 
         private void btn_Reset_Click(object sender, RoutedEventArgs e)
         {
+          
             cityList.Reset();
             FilterReset();
+            tbx_SearchBar.Text = "";
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }
@@ -138,7 +115,21 @@ namespace QLifeC_Datatool
 
         private void SortButton_Click(object sender, RoutedEventArgs e)
         {
+            for (int i = 0; i < SortButtonArray.Length; i++)
+            {
+                if (SortButtonArray[i] == sender)
+                {
+                    cityList.SortByCategoryScore(i);                   
+                    break;
+                }                
+            }
+            Dgd_MainGrid.Items.Refresh();
+        }
 
+        private void SortCityButton_Click(object sender, RoutedEventArgs e)
+        {
+            cityList.SortByCityName();
+            Dgd_MainGrid.Items.Refresh();
         }
     }
 }
