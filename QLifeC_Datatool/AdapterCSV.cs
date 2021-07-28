@@ -12,8 +12,8 @@ namespace QLifeC_Datatool
 {
     public class AdapterCSV : ITarget
     {
-        private List<City> _cityList;
-        public List<City> cityList { get => _cityList; set => _cityList = value; }
+        private CityList _cityList;
+        public CityList cityList { get => _cityList; set => _cityList = value; }
 
         //Name of the file to be imported.
         private string _FileName;
@@ -47,7 +47,7 @@ namespace QLifeC_Datatool
 
         }
 
-        public void CallExportAdapter(Stream stream, List<City> cityList)
+        public void CallExportAdapter(Stream stream, CityList cityList)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace QLifeC_Datatool
             
         }
 
-        public void WriteToCSV(Stream csvstream, List<City> cityList)
+        public void WriteToCSV(Stream csvstream, CityList cityList)
         {
             using StreamWriter exportCSV = new StreamWriter(csvstream);
 
@@ -120,7 +120,7 @@ namespace QLifeC_Datatool
                 }
 
                 City city = new City();
-                cityList = new List<City>();
+                cityList = new CityList();
 
                 //Parsing the CSV array into City List.
                 for (int i = 0; i < csvtable.GetLength(0); i++)

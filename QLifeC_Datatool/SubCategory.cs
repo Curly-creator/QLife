@@ -7,7 +7,7 @@ namespace QLifeC_Datatool
     public class SubCategory
     {
         private double _Value;
-        private string _Lable;
+        private string _Label;
         private string _Type;
 
         public SubCategory()
@@ -15,13 +15,20 @@ namespace QLifeC_Datatool
 
         }
 
-        public string Label { get => _Lable; set => _Lable = value; }
+        public string Label { get => _Label; set => _Label = value; }
         public string Type { get => _Type; set => _Type = value; }
         public double Value { get => _Value; set => _Value = value; }
 
         public string ToolTip()
         {
-            return Label + ": " + Math.Round(Value, 2).ToString() + "\n";
+            return Label;
+        }
+
+        public string GetTooltip()
+        {
+            string value = Math.Round(Value, 2).ToString(); ;
+
+            return Label + ": " + value + "\n";
         }
     }
 }

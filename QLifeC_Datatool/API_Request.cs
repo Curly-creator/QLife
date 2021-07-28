@@ -11,18 +11,18 @@ namespace QLifeC_Datatool
     public class API_Request
     {
         private string _Url;
-        private List<City> _cityList;
+        private CityList _cityList;
 
-        public List<City> CityList { get => _cityList; set => _cityList = value; }
+        public CityList CityList { get => _cityList; set => _cityList = value; }
         public string Url { get => _Url; set => _Url = value; }
 
         public API_Request(string url) 
         {
             Url = url;
-            CityList = new List<City>();
+            CityList = new CityList();
         }
 
-        public List<City> GetCityData()
+        public CityList GetCityData()
         {
             GetCityList();
             foreach (var city in CityList)

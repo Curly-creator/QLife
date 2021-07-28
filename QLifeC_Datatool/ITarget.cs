@@ -10,7 +10,7 @@ namespace QLifeC_Datatool
     public interface ITarget
     {
         //These are signature lines. Signature method and signature properties. https://refactoring.guru/design-patterns/adapter/csharp/example
-        List<City> cityList { get; set; }
+        CityList cityList { get; set; }
         string FileName { get; set; }
         string FilePath { get; set; }
         string FileExt { get; set; }
@@ -20,6 +20,6 @@ namespace QLifeC_Datatool
         string StatusNotification { get; set; }
         void CallImportAdapter(string FileExtension, string FilePath);
 
-        void CallExportAdapter(Stream stream, List<City> cityList);
+        void CallExportAdapter(Stream stream, CityList cityList);
     }
 }

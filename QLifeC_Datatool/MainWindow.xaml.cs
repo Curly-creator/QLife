@@ -3,21 +3,10 @@ using Nancy.Json;
 using Nancy.ModelBinding.DefaultBodyDeserializers;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 
 
@@ -27,10 +16,17 @@ namespace QLifeC_Datatool
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-        public List<City> cityList = new List<City>();
-        public List<City> nullCityList;
-        public List<City> emptyList = new List<City>();
+    {           
+        public Slider[] FilterSliderArray;
+        public CheckBox[] FilterCheckBoxArray;
+        public Label[] FilterLabelArray;
+        public Button[] SortButtonArray;
+
+        public CityList cityList = new CityList();
+    
+        //public List<City> cityList = new List<City>();
+        //public List<City> nullCityList;
+        //public List<City> emptyList = new List<City>();
         public string[] FileTypeAllowed = { ".xml", ".csv" };
         
         //Method Status for unit test purposes to check if the method was successfully implemented.
@@ -39,17 +35,118 @@ namespace QLifeC_Datatool
 
         public API_Request test = new API_Request("https://api.teleport.org/api/urban_areas");
 
+        public double[] FilterValues;
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();            
+
+            FilterSliderArray = new Slider[] { sl_CoLFilter, sl_HCFilter, sl_IAFilter, sl_EQFilter, sl_TCFilter,  sl_OFilter };
+            FilterCheckBoxArray = new CheckBox[] { cb_CoLFilter, cb_HCFilter, cb_IAFilter, cb_EQFilter, cb_TCFilter, cb_OFilter };
+            FilterLabelArray = new Label[] { lbl_CoL, lbl_HC, lbl_IA, lbl_EQ, lbl_TC, lbl_O };
+            SortButtonArray = new Button[] { btn_SortCoL, btn_SortHC, btn_SortIA, btn_SortEQ, btn_SortTC, btn_SortO};
+
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }
 
+        public double[] GetFilterValues (Slider[] ArrayOfSlider)
+        {
+            double[] FilterValues = new double[ArrayOfSlider.Length];
+            for (int i = 0; i < ArrayOfSlider.Length; i++)
+            {
+                FilterValues[i] = ArrayOfSlider[i].Value;
+            }
+            return FilterValues;
+        }
+
+        public bool[] GetFilterStatus (CheckBox[] ArrayOfCheckbox)
+        {
+            bool[] FilterStatus = new bool[ArrayOfCheckbox.Length];
+            for (int i = 0; i < ArrayOfCheckbox.Length; i++)
+            {
+                FilterStatus[i] = (bool)ArrayOfCheckbox[i].IsChecked;
+            }
+            return FilterStatus;
+        }
+
         private void btn_Download_Click(object sender, RoutedEventArgs e)
         {
-            cityList = test.GetCityData();
+            cityList.GetCityScores("https://api.teleport.org/api/urban_areas/");
             Dgd_MainGrid.ItemsSource = cityList;
+            Dgd_MainGrid.Items.Refresh();
+        }
+
+        private void tbx_SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Dgd_MainGrid.ItemsSource = cityList.SearchByCityName(tbx_SearchBar.Text);
+            Dgd_MainGrid.Items.Refresh();
+        }
+
+        public void SliderValueChanged(object slider, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider actSlider = (Slider)slider;
+           
+            for (int i = 0; i < FilterSliderArray.Length; i++)
+            {
+                if (actSlider == FilterSliderArray[i])
+                {
+                    FilterLabelArray[i].Content = String.Format("Filtervalue: {0,1:N1}", Math.Round(FilterSliderArray[i].Value, 1));
+                }
+                if (actSlider.Name == FilterSliderArray[i].Name && (bool)FilterCheckBoxArray[i].IsChecked)
+                {
+                    cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
+                    Dgd_MainGrid.ItemsSource = cityList;
+                    Dgd_MainGrid.Items.Refresh();
+                    break;
+                }
+            }  
+        }
+
+        public void FilterStatusChanged(object sender, RoutedEventArgs e)
+        {
+            cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));          
+            Dgd_MainGrid.Items.Refresh();
+        }
+
+        private void btn_Reset_Click(object sender, RoutedEventArgs e)
+        {
+          
+            cityList.Reset();
+            FilterReset();
+            tbx_SearchBar.Text = "";
+            Dgd_MainGrid.ItemsSource = cityList;
+            Dgd_MainGrid.Items.Refresh();
+        }
+
+        private void FilterReset()
+        {
+            for (int i = 0; i < FilterSliderArray.Length; i++)
+            {
+                FilterSliderArray[i].Value = 0;
+            }
+
+            for (int i = 0; i < FilterCheckBoxArray.Length; i++)
+            {
+                FilterCheckBoxArray[i].IsChecked = false;
+            }
+        }      
+
+        private void SortButton_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < SortButtonArray.Length; i++)
+            {
+                if (SortButtonArray[i] == sender)
+                {
+                    cityList.SortByCategoryScore(i);                   
+                    break;
+                }                
+            }
+            Dgd_MainGrid.Items.Refresh();
+        }
+
+        private void SortCityButton_Click(object sender, RoutedEventArgs e)
+        {
+            cityList.SortByCityName();
             Dgd_MainGrid.Items.Refresh();
         }
 
@@ -73,7 +170,7 @@ namespace QLifeC_Datatool
                 {
                     //Getting the path and extension of the selected file to be imported.
                     string FilePath = openFileDialog.FileName;
-                    string FileExt = System.IO.Path.GetExtension(FilePath).ToLower();
+                    string FileExt = Path.GetExtension(FilePath).ToLower();
 
                     //Calling the import method to initiate file import.
                     CheckFileExtandImport(FileExt, FilePath);
@@ -98,7 +195,8 @@ namespace QLifeC_Datatool
                 {
                     target = new AdapterXML();
                     target.CallImportAdapter(FileExt, FilePath);
-                    cityList = target.cityList;
+                    cityList.Backup = target.cityList;
+                    cityList.AddRange(cityList.Backup);
                     MessageBox.Show(target.StatusNotification, "Import Window", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 //File Type is CSV.
@@ -106,7 +204,8 @@ namespace QLifeC_Datatool
                 {
                     target = new AdapterCSV();
                     target.CallImportAdapter(FileExt, FilePath);
-                    cityList = target.cityList;
+                    cityList.Backup = target.cityList;
+                    cityList.AddRange(cityList.Backup);
                     MessageBox.Show(target.StatusNotification, "Import Window", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 //File Type is invalid.
@@ -129,7 +228,7 @@ namespace QLifeC_Datatool
 
         private void btn_Export_Click(object sender, RoutedEventArgs e)
         {
-            List<City> ListToBeExported = cityList;
+            CityList ListToBeExported = cityList;
             //for testing reasons:
             //List<City> ListToBeExported = emptyList;
             //List<City> ListToBeExported = nullCityList;
@@ -153,7 +252,7 @@ namespace QLifeC_Datatool
                     if ((qLifeStream = exportDialog.OpenFile()) != null)
                     {
                         string FilePath = exportDialog.FileName;
-                        string FileExt = System.IO.Path.GetExtension(FilePath).ToLower();
+                        string FileExt = Path.GetExtension(FilePath).ToLower();
 
                         StartFileExport(FileExt, qLifeStream, ListToBeExported);
                     }
@@ -169,7 +268,7 @@ namespace QLifeC_Datatool
                 MessageBox.Show("Export not possible. Please contact support at Team_QLifeC_Datatool@HTW-UI-InArbeit.de", "Export failed", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-        public void StartFileExport(string FileExt, Stream qLifeStream, List<City> ListForExport)
+        public void StartFileExport(string FileExt, Stream qLifeStream, CityList ListForExport)
         {
             ITarget target;
 
@@ -190,7 +289,7 @@ namespace QLifeC_Datatool
             }
         }
 
-        public bool? CheckIfListCanBeExportedAtAll(List<City> ListToBeExported)
+        public bool? CheckIfListCanBeExportedAtAll(CityList ListToBeExported)
         {
             if (ListToBeExported == null)
             {
@@ -208,8 +307,5 @@ namespace QLifeC_Datatool
             }
             else return true;
         }
-
-
-
     }
 }

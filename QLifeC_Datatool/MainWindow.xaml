@@ -41,9 +41,8 @@
 
 
         <!--All search & filter options can go in this stack panel-->
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2">
-            <Label Content="Search Bar" />
-            <TextBox x:Name="tbx_SearchBar" Background="Beige" TextAlignment="Left"/>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4">
+
         </StackPanel>
 
         <!--All the main buttons are in this stack panel. Easier to make changes to multiple buttons at once-->
@@ -54,17 +53,56 @@
             <Button x:Name="btn_Export" Content="Export" Height="30" Margin="20 40 20 10" Click="btn_Export_Click"/>
             <Button x:Name="btn_Import" Content="Import" Height="30" Margin="20 5 20 10" Click="btn_Import_Click"/>
             <Button x:Name="btn_Download" Content="Download" Height="30" Margin="20 5 20 10" Click="btn_Download_Click"/>
+            <Button x:Name="btn_Reset" Content="Reset" Height="30" Margin="20 5 20 10" Click="btn_Reset_Click"/>
         </StackPanel>
 
         <!--Main Grid-->
-        <DataGrid x:Name="Dgd_MainGrid" AutoGenerateColumns="False" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8" BorderThickness="1" BorderBrush="Gray">
-
+        <DataGrid x:Name="Dgd_MainGrid"                
+                  AutoGenerateColumns="False" 
+                  Grid.Row="4" 
+                  Grid.Column="1" 
+                  Grid.ColumnSpan="5" 
+                  Grid.RowSpan="8" 
+                  BorderThickness="1" 
+                  BorderBrush="Gray" 
+                  IsReadOnly="True"
+                  CanUserResizeRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserAddRows="False"
+                  CanUserReorderColumns="False" 
+                  CanUserResizeColumns="False"
+                  CanUserSortColumns="False">
+            
             <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}">
+                    <DataGridTextColumn.Header >
 
-                <!--<<<<<<< HEAD =======-->
-                <DataGridTextColumn Header="City" Binding="{Binding Name}"/>
+                        <StackPanel Width="100">
+                            <Button Name="btn_SortCity" Content="City" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="LightBlue" Click="SortCityButton_Click"/>
+                            <TextBlock />
+                            <TextBox Name="tbx_SearchBar" Background="Beige" TextAlignment="Left" TextChanged="tbx_SearchBar_TextChanged" />
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Cost of Living" Binding="{Binding Categories[0]}">
+                <DataGridTextColumn Binding="{Binding Categories[0]}" Foreground="Black">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Width="100">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Button Name="btn_SortCoL" Content="Cost of Living" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="LightBlue" Click="SortButton_Click" />
+                                <Slider Name="sl_CoLFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
+                                <CheckBox Name="cb_CoLFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
+                                <Label Name="lbl_CoL" Content="Filtervalue: 0.0"  Grid.Row="2" HorizontalAlignment="Right"/>
+
+                            </Grid>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="ToolTip" Value="{Binding Categories[0].Tooltip}"/>
@@ -72,7 +110,24 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Healthcare" Binding="{Binding Categories[1]}">
+                <DataGridTextColumn Binding="{Binding Categories[1]}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Width="100">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Button Name="btn_SortHC" Content="Healthcare" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="LightBlue" Click="SortButton_Click" />
+                                <Slider Name="sl_HCFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
+                                <CheckBox Name="cb_HCFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
+                                <Label Name="lbl_HC" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
+
+                            </Grid>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="ToolTip" Value="{Binding Categories[1].Tooltip}"/>
@@ -80,7 +135,26 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Internet Access" Binding="{Binding Categories[2]}">
+                <DataGridTextColumn Binding="{Binding Categories[2]}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Width="100">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Button Name="btn_SortIA" Content="Internet Access" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="LightBlue" Click="SortButton_Click" />
+                                <Slider Name="sl_IAFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
+                                <CheckBox Name="cb_IAFilter" Grid.Row="2" VerticalAlignment="Center"/>
+                                <Label Name="lbl_IA" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
+
+                            </Grid>
+
+
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="ToolTip" Value="{Binding Categories[2].Tooltip}"/>
@@ -88,7 +162,25 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Environmental Quality" Binding="{Binding Categories[3]}">
+                <DataGridTextColumn Binding="{Binding Categories[3]}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Width="115">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Button Name="btn_SortEQ" Content="Environmental Quality" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="LightBlue" Click="SortButton_Click" />
+                                <Slider Name="sl_EQFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
+                                <CheckBox Name="cb_EQFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
+                                <Label Name="lbl_EQ" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
+
+                            </Grid>
+
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="ToolTip" Value="{Binding Categories[3].Tooltip}"/>
@@ -96,7 +188,25 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Travel Connectivity" Binding="{Binding Categories[4]}">
+                <DataGridTextColumn Binding="{Binding Categories[4]}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Width="100">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Button Name="btn_SortTC" Content="Travel Connectivity" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="LightBlue" Click="SortButton_Click" />
+                                <Slider Name="sl_TCFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
+                                <CheckBox Name="cb_TCFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
+                                <Label Name="lbl_TC" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
+
+                            </Grid>
+
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="ToolTip" Value="{Binding Categories[4].Tooltip}"/>
@@ -104,7 +214,25 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Outdoors" Binding="{Binding Categories[5]}">
+                <DataGridTextColumn Binding="{Binding Categories[5]}">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Width="100">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Button Name="btn_SortO" Content="Outdoors" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="LightBlue" Click="SortButton_Click" />
+                                <Slider Name="sl_OFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
+                                <CheckBox Name="cb_OFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
+                                <Label Name="lbl_O" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
+
+                            </Grid>
+
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="ToolTip" Value="{Binding Categories[5].Tooltip}"/>

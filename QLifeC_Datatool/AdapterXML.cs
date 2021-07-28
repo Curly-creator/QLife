@@ -11,8 +11,8 @@ namespace QLifeC_Datatool
 {
     public class AdapterXML : ITarget
     {
-        private List<City> _cityList;
-        public List<City> cityList { get => _cityList; set => _cityList = value; }
+        private CityList _cityList;
+        public CityList cityList { get => _cityList; set => _cityList = value; }
 
         //Name of the file to be imported.
         private string _FileName;
@@ -46,7 +46,7 @@ namespace QLifeC_Datatool
 
         }
 
-        public void CallExportAdapter(Stream stream, List<City> cityList)
+        public void CallExportAdapter(Stream stream, CityList cityList)
         {
             try
             {
@@ -65,9 +65,9 @@ namespace QLifeC_Datatool
             }
         }
 
-        public void WriteToXML(Stream xmlstream, List<City> cityList)
+        public void WriteToXML(Stream xmlstream, CityList cityList)
         {
-            XmlSerializer writer = new XmlSerializer(typeof(List<City>));
+            XmlSerializer writer = new XmlSerializer(typeof(CityList));
 
             writer.Serialize(xmlstream, cityList);
         }
@@ -95,14 +95,14 @@ namespace QLifeC_Datatool
         public void DeserializeXML(string Importfilepath)
         {
             //Initializing Serializer.
-            XmlSerializer serializer = new XmlSerializer(typeof(List<City>));
+            XmlSerializer serializer = new XmlSerializer(typeof(CityList));
 
             try
             {
                 //Creating file stream to deserialize into the citylist.
                 using (FileStream stream = File.Open(Importfilepath, FileMode.Open))
                 {
-                    cityList = (List<City>)serializer.Deserialize(stream);
+                    cityList = (CityList)serializer.Deserialize(stream);
                 }
                 MethodStatus = true;
             }

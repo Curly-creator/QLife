@@ -29,7 +29,7 @@ namespace QLifeC_Datatool
 
         public override string ToString()
         {
-            return Math.Round(Score, 2).ToString(); ;
+            return Math.Round(Score, 2).ToString();
         }
 
         public string Tooltip
@@ -40,7 +40,7 @@ namespace QLifeC_Datatool
 
                 foreach (var SubCategory in SubCategories)
                 {
-                    ToolTip += SubCategory.ToolTip();
+                    ToolTip += SubCategory.GetTooltip();
                 }
                 return ToolTip;
             }
