@@ -18,7 +18,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Xml;
+using System.Xml.Schema;
 
 namespace QLifeC_Datatool
 {
@@ -28,13 +29,14 @@ namespace QLifeC_Datatool
     public partial class MainWindow : Window
     {    
         public List<City> cityList = new List<City>();
+        public string[] FileTypeAllowed = { ".xml", ".csv" };
         public List<City> nullCityList;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            API_GetData();
+            //API_GetData();
 
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
@@ -70,7 +72,7 @@ namespace QLifeC_Datatool
            
             var jsonCities = jsonObj["_links"]["ua:item"];
             
-            for(int i = 0; i <= 200; i += 40)
+            for(int i = 0; i <= 200; i += 10)
             {          
                 City city = new City
                 {
@@ -193,6 +195,24 @@ namespace QLifeC_Datatool
                 }
             }
         }
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "CSV files (*.csv)|*.csv|XML files (*.xml)|*.xml";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    //Getting the path of the selected file.
+                    string FilePath = openFileDialog.FileName;
+                    string FileExt = System.IO.Path.GetExtension(FilePath).ToLower();
+
+                    CheckFileExtandImport(FileExt, FilePath);
+
+                }
+                Dgd_MainGrid.ItemsSource = cityList;
+                Dgd_MainGrid.Items.Refresh();
+            }
+        }
 
         //public void WriteToCSV(Stream qLifeCsvStream)
         //{
@@ -240,5 +260,31 @@ namespace QLifeC_Datatool
         //    writer.Serialize(qLifeXmlStream, cityList);
         //}
 
+        private void CheckFileExtandImport(string FileExt, string FilePath)
+        {
+            ITarget target;
+            
+            //File Type is XML.
+            if (FileExt == FileTypeAllowed[0])
+            {
+                target = new AdapterXML();
+                target.CallImportAdapter(FileExt, FilePath);
+                cityList = target.cityList;
+                MessageBox.Show(target.StatusNotification);
+            }
+            //File Type is CSV.
+            else if (FileExt == FileTypeAllowed[1])
+            {
+                target = new AdapterCSV();
+                target.CallImportAdapter(FileExt, FilePath);
+                cityList = target.cityList;
+                MessageBox.Show(target.StatusNotification);
+            }
+            //File Type is invalid.
+            else
+            {
+                MessageBox.Show("This is not a valid file extension");
+            }
+        }
     }
 }
