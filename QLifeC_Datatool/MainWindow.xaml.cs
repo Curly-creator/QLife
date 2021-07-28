@@ -77,20 +77,20 @@ namespace QLifeC_Datatool
         private void tbx_SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             Dgd_MainGrid.ItemsSource = cityList.SearchByCityName(tbx_SearchBar.Text);
-            Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }
 
         public void SliderValueChanged(object slider, RoutedPropertyChangedEventArgs<double> e)
         {
-            object TEST = slider;
+            Slider TEST = (Slider)slider;
+           
             for (int i = 0; i < FilterSliderArray.Length; i++)
             {
                 if (slider == FilterSliderArray[i])
                 {
                     FilterLabelArray[i].Content = String.Format("Filtervalue: {0,1:N1}", Math.Round(FilterSliderArray[i].Value, 1));
                 }
-                if ((bool)FilterCheckBoxArray[i].IsChecked)
+                if (TEST.Name == FilterSliderArray[i].Name && (bool)FilterCheckBoxArray[i].IsChecked)
                 {
                     cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
                     Dgd_MainGrid.ItemsSource = cityList;
@@ -102,16 +102,16 @@ namespace QLifeC_Datatool
         public void FilterStatusChanged(object sender, RoutedEventArgs e)
         {
             cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
-            Dgd_MainGrid.ItemsSource = cityList;
+            //Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }
 
-        private void columnHeader_Click(object sender, RoutedEventArgs e)
+        private void ColumnHeader_Click(object sender, RoutedEventArgs e)
         {        
             var columnHeader = sender as System.Windows.Controls.Primitives.DataGridColumnHeader;
             if (columnHeader.TabIndex > 0) 
                 cityList.SortByCategoryScore(columnHeader.TabIndex - 1);
-            Dgd_MainGrid.ItemsSource = cityList;
+            //Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }
 
@@ -134,6 +134,11 @@ namespace QLifeC_Datatool
             {
                 FilterCheckBoxArray[i].IsChecked = false;
             }
+        }      
+
+        private void SortButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

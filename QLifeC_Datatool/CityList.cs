@@ -44,9 +44,10 @@ namespace QLifeC_Datatool
         public List<City> SearchByCityName(string searchText)
         {
             List<City> searchList = new List<City>();
-       
+
             if (searchText != "")
                 searchText = searchText[0].ToString().ToUpper() + searchText.Substring(1);
+            else return this;
 
             foreach (var city in this)
                 if (city.Name.Contains(searchText))
