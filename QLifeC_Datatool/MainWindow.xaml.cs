@@ -29,6 +29,7 @@ namespace QLifeC_Datatool
     public partial class MainWindow : Window
     {
         public List<City> cityList = new List<City>();
+        public string[] FileTypeAllowed = { ".xml", ".csv" };
 
         public MainWindow()
         {
@@ -147,105 +148,12 @@ namespace QLifeC_Datatool
             }
         }
 
-       
-
-        private void btn_Download_Click(object sender, RoutedEventArgs e)
-        {
-            Stream qLifeStream;
-            SaveFileDialog downloadDialog = new SaveFileDialog();
-
-            downloadDialog.InitialDirectory = @"C:\";
-            downloadDialog.Filter = "csv files (*.csv)|*.csv|xml files (*.xml)|*.xml";
-            downloadDialog.FilterIndex = 2;
-            downloadDialog.RestoreDirectory = true;
-            downloadDialog.Title = "Download QLifeC file";
-            
-            if (downloadDialog.ShowDialog() == true)
-            {
-                if (downloadDialog.FileName.EndsWith("csv") == true)
-                {
-
-                    if ((qLifeStream = downloadDialog.OpenFile()) != null)
-                    {
-                        {
-                            WriteToCSV(qLifeStream);
-                            MessageBox.Show("Your file can be found here: " + downloadDialog.FileName, "CSV download complete", MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
-                    }
-                }
-                    
-                else if (downloadDialog.FileName.EndsWith("xml") == true)
-                {
-                    if ((qLifeStream = downloadDialog.OpenFile()) != null)
-                    {
-                        {
-                            WriteToXML(qLifeStream);
-                            MessageBox.Show("Your file can be found here: " + downloadDialog.FileName, "XML download complete", MessageBoxButton.OK ,MessageBoxImage.Information);
-                        }
-                    }
-                    
-                }
-            }
-        }
-
-        public void WriteToCSV(Stream qLifeCsvStream)
-        {
-            
-            City x = new City();
-            int amountCategories = x.Categories.Length;
-
-            using StreamWriter exportCSV = new StreamWriter(qLifeCsvStream);
-            //path: C: \Users\ThinkPad T540p\UI Coding\2.Semester Prog 2\QLifeC Datatool App\QLifeC_Datatool\bin\Debug\netcoreapp3.1
-
-            exportCSV.WriteLine("City_Name" + "," + "Category_Name" + "," + "Overall_Category_Score" + "," + "SubCategory_Label" + "," + "SubCategory_Score");
-
-
-            foreach (City city in cityList)
-            {
-                string cityNameForCsv = city.Name.ToString().Replace(",", "");
-                //exportCSV.WriteLine(cityNameForCsv + ",");
-
-
-                for (int i = 0; i < amountCategories; i++)
-                {
-                    string categoryNameCsv = x.Categories[i].Label;
-                    decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score, 2);
-                    string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
-                    //exportCSV.WriteLine(cityNameForCsv + "," + categoryNameCsv + "," + scoreForCsv + ",");
-                    //exportCSV.WriteLine();
-
-                    for (int j = 0; j < city.Categories[i].SubCategories.Count(); j++)
-                    {
-                        string subcatLabelCsv = city.Categories[i].SubCategories[j].Label.ToString();
-                        string subcatScoreCsv = city.Categories[i].SubCategories[j].Value.ToString("F2").Replace(",", ".");
-                        exportCSV.WriteLine(cityNameForCsv + "," + categoryNameCsv + "," + scoreForCsv + "," + subcatLabelCsv + "," + subcatScoreCsv);
-                    }
-                    //exportCSV.WriteLine();
-                }
-                //exportCSV.WriteLine();
-            }
-        }
-
-        //LIST OF REFERENCES
-        // *1 ---> "F2" for always 2 places after comma or dot
-        //https://stackoverflow.com/questions/36619121/convert-string-to-decimal-to-always-have-2-decimal-places
-
-        public void WriteToXML(Stream qLifeXmlStream)
-        {
-            System.Xml.Serialization.XmlSerializer writer =
-            new System.Xml.Serialization.XmlSerializer(typeof(List<City>));
-
-            writer.Serialize(qLifeXmlStream, cityList);
-        }
-
         private void btn_Import_Click(object sender, RoutedEventArgs e)
         {
             //https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=net-5.0
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             {
-                ITarget target = new AdapterFileImport();
-
                 openFileDialog.InitialDirectory = "c:\\";
                 openFileDialog.Filter = "CSV files (*.csv)|*.csv|XML files (*.xml)|*.xml";
                 openFileDialog.FilterIndex = 2;
@@ -254,17 +162,41 @@ namespace QLifeC_Datatool
                 if (openFileDialog.ShowDialog() == true)
                 {
                     //Getting the path of the selected file.
-                    target.ImportFilePath = openFileDialog.FileName;
-                    target.ImportFileExt = System.IO.Path.GetExtension(target.ImportFilePath).ToLower();
-                    target.ImportFileName = System.IO.Path.GetFileNameWithoutExtension(target.ImportFilePath);
+                    string FilePath = openFileDialog.FileName;
+                    string FileExt = System.IO.Path.GetExtension(FilePath).ToLower();
 
-                    //Calling import adapter via the interface to implement import.
-                    target.CallImportAdapter(target.ImportFileExt);
-                    MessageBox.Show(target.StatusNotification);
+                    CheckFileExtandImport(FileExt, FilePath);
+
                 }
-                cityList = target.cityList;
                 Dgd_MainGrid.ItemsSource = cityList;
                 Dgd_MainGrid.Items.Refresh();
+            }
+        }
+
+        private void CheckFileExtandImport(string FileExt, string FilePath)
+        {
+            ITarget target;
+            
+            //File Type is XML.
+            if (FileExt == FileTypeAllowed[0])
+            {
+                target = new AdapterXML();
+                target.CallImportAdapter(FileExt, FilePath);
+                cityList = target.cityList;
+                MessageBox.Show(target.StatusNotification);
+            }
+            //File Type is CSV.
+            else if (FileExt == FileTypeAllowed[1])
+            {
+                target = new AdapterCSV();
+                target.CallImportAdapter(FileExt, FilePath);
+                cityList = target.cityList;
+                MessageBox.Show(target.StatusNotification);
+            }
+            //File Type is invalid.
+            else
+            {
+                MessageBox.Show("This is not a valid file extension");
             }
         }
     }

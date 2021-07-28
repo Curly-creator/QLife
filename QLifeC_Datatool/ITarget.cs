@@ -11,16 +11,13 @@ namespace QLifeC_Datatool
     {
         //These are signature lines. Signature method and signature properties. https://refactoring.guru/design-patterns/adapter/csharp/example
         List<City> cityList { get; set; }
-        string ImportFileName { get; set; }
-        string ImportFilePath { get; set; }
-        string ImportFileExt { get; set; }
-        Stream ImportFileStream { get; set; }
+        string FileName { get; set; }
+        string FilePath { get; set; }
+        string FileExt { get; set; }
+        Stream FileStream { get; set; }
         bool MethodStatus { get; set; }
         //string[] FileTypeAllowed { get; set; }
         string StatusNotification { get; set; }
-        void CallImportAdapter(string FileExtension);
-        //void ValidateXML(string Importfilepath);
-        //void ReadParseCSV(string Importfilepath);
-        //void DeserializeXML(string Importfilepath);
+        void CallImportAdapter(string FileExtension, string FilePath);
     }
 }
