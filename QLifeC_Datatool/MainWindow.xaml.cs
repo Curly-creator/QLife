@@ -1,4 +1,5 @@
-﻿using Nancy.Json;
+﻿using Microsoft.Win32;
+using Nancy.Json;
 using Nancy.ModelBinding.DefaultBodyDeserializers;
 using Newtonsoft.Json;
 using System;
@@ -17,7 +18,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Xml;
+using System.Xml.Schema;
 
 namespace QLifeC_Datatool
 {
@@ -25,8 +27,14 @@ namespace QLifeC_Datatool
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {    
+    {
         public List<City> cityList = new List<City>();
+        public string[] FileTypeAllowed = { ".xml", ".csv" };
+        
+        //Method Status for unit test purposes to check if the method was successfully implemented.
+        public bool MethodStatus;
+        public string ErrorNotification;
+
         public API_Request test = new API_Request("https://api.teleport.org/api/urban_areas");
 
         public MainWindow()

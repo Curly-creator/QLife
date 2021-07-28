@@ -17,6 +17,11 @@ namespace QLifeC_Datatool
             SubCategories = new List<SubCategory>();
         }
 
+        public Category()
+        {
+
+        }
+
         public string Label { get => _Label; set => _Label = value; }
         public List<SubCategory> SubCategories { get => _SubCategories; set => _SubCategories = value; }
         public double Score { get => _Score; set => _Score = value; }

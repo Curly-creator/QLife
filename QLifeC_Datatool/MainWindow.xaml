@@ -38,6 +38,8 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
+
+
         <!--All search & filter options can go in this stack panel-->
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2">
             <Label Content="Search Bar" />
@@ -59,13 +61,14 @@
 
             <DataGrid.Columns>
 
+                <!--<<<<<<< HEAD =======-->
                 <DataGridTextColumn Header="City" Binding="{Binding Name}"/>
 
                 <DataGridTextColumn Header="Cost of Living" Binding="{Binding Categories[0]}">
                     <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="ToolTip" Value="{Binding Categories[0].Tooltip}"/>
-                            </Style>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="ToolTip" Value="{Binding Categories[0].Tooltip}"/>
+                        </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
@@ -84,7 +87,7 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                
+
                 <DataGridTextColumn Header="Environmental Quality" Binding="{Binding Categories[3]}">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
@@ -109,8 +112,8 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
+                <!-->>>>>>> API-->
             </DataGrid.Columns>
         </DataGrid>
-        
     </Grid>
 </Window>
