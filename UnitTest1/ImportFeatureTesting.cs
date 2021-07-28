@@ -10,79 +10,116 @@ namespace UnitTest
 {
     public class ImportFeatureTesting
     {
+        //Initializing both the adapters to test the methods in them.
+        AdapterXML xmlAdapter = new AdapterXML();
+        AdapterCSV TestCSV = new AdapterCSV();
+
         [Fact]
-        public void Should_Deserialize_XMLFile()
+        public void Should_Deserialize_XMLFile_ReturnsTrue()
         {
             //Arrange: setting up Path of the xml file as the passing parameter for the method DeserializeXML.
-            AdapterFileImport xmlSchemaValidator = new AdapterFileImport();
-            string path = "C:\\Users\\Tanvi\\source\\repos\\qlifec_datatool\\QLifeC_Datatool\\bin\\Debug\\netcoreapp3.1\\ExportedXML_Test.xml";
+            string pathstart = System.IO.Directory.GetCurrentDirectory();
+            //This is the full path with the name of the file in the current directory.
+            string path = pathstart + "\\citylist_backup_for_oral_exam.xml";
 
             //Act: Performing the actual test of running the method DeserializeXML.
-            xmlSchemaValidator.DeserializeXML(path);
+            xmlAdapter.DeserializeXML(path);
 
             //Assert: This should be true in accordance with the MethodStatus which should also be true.
-            Assert.True(xmlSchemaValidator.MethodStatus, xmlSchemaValidator.StatusNotification);
+            Assert.True(xmlAdapter.MethodStatus, xmlAdapter.StatusNotification);
         }
 
         [Fact]
-        public void Should_Validate_XMLFile_AgainstXSD()
+        public void Should_Deserialize_XMLFile_ReturnsFalse()
         {
-            AdapterFileImport xmlSchemaValidator = new AdapterFileImport();
+            //Arrange: setting up Path of the xml file as the passing parameter for the method DeserializeXML.
+            string pathstart = System.IO.Directory.GetCurrentDirectory();
+            //This is the full path with the name of the file in the current directory.
+            string path = pathstart + "\\citylist_backup_for_oral_exam.csv";
 
+            //Act: Performing the actual test of running the method DeserializeXML.
+            xmlAdapter.DeserializeXML(path);
+
+            //Assert: This should be false in accordance with the MethodStatus which should also be false.
+            Assert.False(xmlAdapter.MethodStatus, xmlAdapter.StatusNotification);
+        }
+
+        [Fact]
+        public void Should_Validate_XMLFile_AgainstXSD_ReturnsTrue()
+        {
             //Arrange: setting up Path of the xml file as the passing parameter for the method ValidateXML.
-            //string path = "C:\\Users\\Tanvi\\Documents\\File Import testing\\NewExport_1.xml";
-            string path = "C:\\Users\\Tanvi\\source\\repos\\qlifec_datatool\\QLifeC_Datatool\\bin\\Debug\\netcoreapp3.1\\ExportedXML_Test.xml";
+            string pathstart = System.IO.Directory.GetCurrentDirectory();
+            //This is the full path with the name of the file in the current directory.
+            string path = pathstart + "\\citylist_backup_for_oral_exam.xml";
 
             //Act: Performing the actual test of running the method ValidateXML.
-            xmlSchemaValidator.ValidateXML(path);
+            xmlAdapter.ValidateXML(path);
 
             //Assert: This should be true in accordance with the MethodStatus which should also be true.
-            Assert.True(xmlSchemaValidator.MethodStatus, xmlSchemaValidator.StatusNotification);
+            Assert.True(xmlAdapter.MethodStatus, xmlAdapter.StatusNotification);
         }
 
         [Fact]
-        public void Should_Parse_CSVFile()
+        public void Should_Validate_XMLFile_AgainstXSD_ReturnsFalse()
         {
-            AdapterFileImport xmlSchemaValidator = new AdapterFileImport();
+            //Arrange: setting up Path of the xml file as the passing parameter for the method ValidateXML.
+            string pathstart = System.IO.Directory.GetCurrentDirectory();
+            //This is the full path with the name of the file in the current directory.
+            string path = pathstart + "\\citylist_backup_for_oral_exam.csv";
 
+            //Act: Performing the actual test of running the method ValidateXML.
+            xmlAdapter.ValidateXML(path);
+
+            //Assert: This should be false in accordance with the MethodStatus which should also be false.
+            Assert.False(xmlAdapter.MethodStatus, xmlAdapter.StatusNotification);
+        }
+
+        [Fact]
+        public void Should_Parse_CSVFile_ReturnsTrue()
+        {
             //Arrange: setting up Path of the csv file as the passing parameter for the method ReadParseCSV.
-            string path = "C:\\Users\\Tanvi\\source\\repos\\qlifec_datatool\\QLifeC_Datatool\\bin\\Debug\\netcoreapp3.1\\Export_for_Oral_Exam_Final.csv";
+            string pathstart = System.IO.Directory.GetCurrentDirectory();
+            //This is the full path with the name of the file in the current directory.
+            string path = pathstart + "\\Export_for_Oral_Exam_Final.csv";
 
             //Act: Performing the actual test of running the method ReadParseCSV.
-            xmlSchemaValidator.ReadParseCSV(path);
+            TestCSV.ReadParseCSV(path);
 
             //Assert: This should be true in accordance with the MethodStatus which should also be true.
-            Assert.True(xmlSchemaValidator.MethodStatus, xmlSchemaValidator.StatusNotification);
+            Assert.True(TestCSV.MethodStatus, TestCSV.StatusNotification);
         }
 
         [Fact]
-        public void Should_CheckIfValidFile()
+        public void Should_Parse_CSVFile_ReturnsFalse()
         {
-            AdapterFileImport xmlSchemaValidator = new AdapterFileImport();
-
-            //Arrange: setting up Paths and File Extension for the method CallImportAdapter.
-            xmlSchemaValidator.ImportFilePath = "C:\\Users\\Tanvi\\source\\repos\\qlifec_datatool\\QLifeC_Datatool\\bin\\Debug\\netcoreapp3.1\\Export_for_Oral_Exam_Final.csv";
-            //string pathxml = "C:\\Users\\Tanvi\\source\\repos\\qlifec_datatool\\QLifeC_Datatool\\bin\\Debug\\netcoreapp3.1\\ExportedXML_Test.xml";
-            string extension = ".csv";
+            //Arrange: Setting up Path of the csv file as the passing parameter for the method ReadParseCSV.
+            string pathstart = System.IO.Directory.GetCurrentDirectory();
+            //This is the full path with the name of the file in the current directory.
+            string path = pathstart + "\\Export_for_Oral_Exam_Final.xml";
 
             //Act: Performing the actual test of running the method ReadParseCSV.
-            xmlSchemaValidator.CallImportAdapter(extension);
+            TestCSV.ReadParseCSV(path);
 
-            //Assert: This should be true in accordance with the MethodStatus which should also be true.
-            Assert.True(xmlSchemaValidator.MethodStatus, xmlSchemaValidator.StatusNotification);
+            //Assert: This should be false in accordance with the MethodStatus which should also be false.
+            Assert.False(TestCSV.MethodStatus, TestCSV.StatusNotification);
         }
 
-        //public void OpenFileDialog_ShouldReturn_FilePath()
+        //[Fact]
+        //public void Should_CheckFileExtandCallAdapter_ReturnsTrue()
         //{
-        //    //Arrange: With this action, you prepare all the required data and preconditions.
-        //    string expected = ".xml";
+        //    MainWindow window = new MainWindow();
+        //    //Arrange:
+        //    //Arrange: Setting up Path of the csv file as the passing parameter for the method ReadParseCSV.
+        //    string pathstart = System.IO.Directory.GetCurrentDirectory();
+        //    //This is the full path with the name of the file in the current directory.
+        //    string path = pathstart + "\\Export_for_Oral_Exam_Final.xml";
+        //    string ext = ".xml";
+            
+        //    window.CheckFileExtandImport(ext, path);
 
-        //    //Act: This action performs the actual test.
-
-        //    string actual = "";
-
-        //    //Assert: This final action checks if the expected result has occurred.
-        //    Assert.Equal(expected, actual);
+        //    Assert.True(window.MethodStatus, window.ErrorNotification);
         //}
+
+
     }
 }

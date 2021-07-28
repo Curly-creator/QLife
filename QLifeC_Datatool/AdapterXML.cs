@@ -5,6 +5,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
+using System.Windows;
 
 namespace QLifeC_Datatool
 {
@@ -32,7 +33,7 @@ namespace QLifeC_Datatool
         public Stream FileStream { get => _FileStream; set => _FileStream = value; }
 
         //Status of a method. This is used for unit tests. If the method is successfully implemented, MethodStatus returns TRUE.
-        //In case of exception MethodStatus returns FALSE.
+        //In case of exception, MethodStatus returns FALSE.
         private bool _MethodStatus;
         public bool MethodStatus { get => _MethodStatus; set => _MethodStatus = value; }
 
@@ -44,7 +45,11 @@ namespace QLifeC_Datatool
         {
 
         }
-
+        /// <summary>
+        /// Method that gets called through the Interface and is responsible for validating and deserializing xml file.
+        /// </summary>
+        /// <param name="FileExtension"></param>
+        /// <param name="FilePath"></param>
         public void CallImportAdapter(string FileExtension, string FilePath)
         {
             //File Extension is .xml
@@ -60,6 +65,7 @@ namespace QLifeC_Datatool
             
             try
             {
+                //Creating file stream to deserialize into the citylist.
                 using (FileStream stream = File.Open(Importfilepath, FileMode.Open))
                 {
                     cityList = (List<City>)serializer.Deserialize(stream);
@@ -82,10 +88,12 @@ namespace QLifeC_Datatool
                 validationsettings.ValidationType = ValidationType.Schema;
                 validationsettings.ValidationEventHandler += new ValidationEventHandler(CityArraySettingsValidationEventHandler);
 
-                //Reading the XML File. XMLreader reads the document one line at a time given the file stream and settings.
-                XmlReader reader = XmlReader.Create(Importfilepath, validationsettings);
+            //Reading the XML File. XMLreader reads the document one line at a time given the file stream and settings.
+            XmlReader reader = null;    
+
             try
             {
+                reader = XmlReader.Create(Importfilepath, validationsettings);
                 while (reader.Read()) { }
 
                 StatusNotification = "Validation successful.";
@@ -98,7 +106,7 @@ namespace QLifeC_Datatool
             }
             finally
             {
-                reader.Close();
+                if (reader != null) reader.Close();
             }
         }
 
@@ -106,13 +114,11 @@ namespace QLifeC_Datatool
         {
                 if (e.Severity == XmlSeverityType.Warning)
                 {
-                    Console.Write("WARNING: ");
-                    Console.WriteLine(e.Message);
+                    MessageBox.Show("WARNING: " + e.Message);
                 }
                 else if (e.Severity == XmlSeverityType.Error)
                 {
-                    Console.Write("ERROR: ");
-                    Console.WriteLine(e.Message);
+                    MessageBox.Show("ERROR: " + e.Message);
                 }
         }
 
