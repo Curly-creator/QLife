@@ -18,8 +18,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Xml;
-using System.Xml.Schema;
+
+
 
 namespace QLifeC_Datatool
 {
@@ -27,16 +27,18 @@ namespace QLifeC_Datatool
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {    
+    {
         public List<City> cityList = new List<City>();
-        public string[] FileTypeAllowed = { ".xml", ".csv" };
         public List<City> nullCityList;
+        public List<City> emptyList = new List<City>();
+        public string[] FileTypeAllowed = { ".xml", ".csv" };
+
 
         public MainWindow()
         {
             InitializeComponent();
 
-            //API_GetData();
+            API_GetData();
 
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
@@ -62,18 +64,18 @@ namespace QLifeC_Datatool
                 API_GetCategoryScores(city);
                 API_GetCategoryDetails(city);
             }
-        }      
+        }
 
         public void API_GetCityList()
-        {    
+        {
             var url = "https://api.teleport.org/api/urban_areas";
 
             dynamic jsonObj = API_UrlToJsonObj(url);
-           
+
             var jsonCities = jsonObj["_links"]["ua:item"];
-            
-            for(int i = 0; i <= 200; i += 10)
-            {          
+
+            for (int i = 0; i <= 200; i += 40)
+            {
                 City city = new City
                 {
                     Url = jsonCities[i]["href"],
@@ -90,7 +92,7 @@ namespace QLifeC_Datatool
             dynamic jsonObj = API_UrlToJsonObj(url);
 
             var jsonCategoryScores = jsonObj["categories"];
- 
+
             int counter = 0;
 
             foreach (var jsonScore in jsonCategoryScores)
@@ -105,7 +107,7 @@ namespace QLifeC_Datatool
                     }
                 }
                 if (counter == city.Categories.Length) break;
-            }          
+            }
         }
 
         public void API_GetCategoryDetails(City city)
@@ -117,10 +119,11 @@ namespace QLifeC_Datatool
             var jsonCategories = jsonObj["categories"];
 
             int counter = 0;
-       
+
             foreach (var jsonCategory in jsonCategories)
             {
-                for (int i = 0; i < city.Categories.Length; i++){
+                for (int i = 0; i < city.Categories.Length; i++)
+                {
                     if (jsonCategory["label"] == city.Categories[i].Label)
                     {
                         API_AddSubCategories(city.Categories[i], jsonCategory);
@@ -148,143 +151,142 @@ namespace QLifeC_Datatool
             }
         }
 
-       
 
-        private void btn_Download_Click(object sender, RoutedEventArgs e)
+
+        private void btn_Export_Click(object sender, RoutedEventArgs e)
         {
-            Stream qLifeStream;
+            ////List<City> ListToBeExported = cityList;
+            List<City> ListToBeExported = emptyList;
+            //List<City> ListToBeExported = nullCityList;
 
-            SaveFileDialog downloadDialog = new SaveFileDialog
+            bool? exportPossible = CheckIfListCanBeExportedAtAll(ListToBeExported);
+
+            if (exportPossible == true)
             {
-                InitialDirectory = @"C:\",
-                Filter = "csv files (*.csv)|*.csv|xml files (*.xml)|*.xml",
-                FilterIndex = 2,
-                RestoreDirectory = true,
-                Title = "Download QLifeC file"
-            };
-
-
-            if (downloadDialog.ShowDialog() == true)
-            {
-                if (downloadDialog.FileName.EndsWith("csv"))
+                Stream qLifeStream;
+                SaveFileDialog exportDialog = new SaveFileDialog
                 {
-                    if ((qLifeStream = downloadDialog.OpenFile()) != null)
+                    InitialDirectory = @"C:\",
+                    Filter = "csv files (*.csv)|*.csv|xml files (*.xml)|*.xml",
+                    FilterIndex = 2,
+                    RestoreDirectory = true,
+                    Title = "Export QLifeC file"
+                };
+
+                if (exportDialog.ShowDialog() == true)
+                {
+                    if ((qLifeStream = exportDialog.OpenFile()) != null)
                     {
-                        CsvFile fileToSave = new CsvFile
-                        {
-                            Filename = downloadDialog.FileName.ToString(),
-                            CSVStream = qLifeStream,
-                            SourceForCsv = cityList
-                        };
-                        fileToSave.WriteToCSV();
+                        string FilePath = exportDialog.FileName;
+                        string FileExt = System.IO.Path.GetExtension(FilePath).ToLower();
+
+                        StartFileExport(FileExt, qLifeStream, ListToBeExported);
                     }
                 }
-                    
-                else if (downloadDialog.FileName.EndsWith("xml"))
-                {
-                    if ((qLifeStream = downloadDialog.OpenFile()) != null)
-                    {
-                        XmlFile fileToSave = new XmlFile
-                        {
-                            Filename = downloadDialog.FileName.ToString(),
-                            XMLStream = qLifeStream,
-                            SourceForXml = nullCityList
-                        };
-                        fileToSave.WriteToXML();
-                    }
-                }
+                
+            }
+            else if (exportPossible == false)
+            {
+                MessageBox.Show("Export cancelled.");
+            }
+            else
+            {
+                MessageBox.Show("Export not possible. Please contact support at Team_QLifeC_Datatool@HTW-UI-InArbeit.de", "Export failed", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "CSV files (*.csv)|*.csv|XML files (*.xml)|*.xml";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    //Getting the path of the selected file.
-                    string FilePath = openFileDialog.FileName;
-                    string FileExt = System.IO.Path.GetExtension(FilePath).ToLower();
-
-                    CheckFileExtandImport(FileExt, FilePath);
-
-                }
-                Dgd_MainGrid.ItemsSource = cityList;
-                Dgd_MainGrid.Items.Refresh();
-            }
-        }
-
-        //public void WriteToCSV(Stream qLifeCsvStream)
-        //{
-        //    using StreamWriter exportCSV = new StreamWriter(qLifeCsvStream);
-        //    try
-        //    {
-        //        exportCSV.WriteLine("City_Name, Category_Name, Overall_Category_Score, SubCategory_Label, SubCategory_Score");
-
-        //        foreach (City city in cityList)
-        //        {
-        //            for (int i = 0; i < city.Categories.Length; i++)
-        //            {
-        //                for (int j = 0; j < city.Categories[i].SubCategories.Count(); j++)
-        //                {
-        //                    string cityNameForCsv = city.Name.ToString().Replace(",", "");
-        //                    string categoryNameCsv = city.Categories[i].Label;
-        //                    decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score, 2);
-        //                    string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
-        //                    string subcatLabelCsv = city.Categories[i].SubCategories[j].Label.ToString();
-        //                    string subcatScoreCsv = city.Categories[i].SubCategories[j].Value.ToString("F2").Replace(",", ".");
-        //                    exportCSV.WriteLine(cityNameForCsv + "," + categoryNameCsv + "," + scoreForCsv + "," + subcatLabelCsv + "," + subcatScoreCsv);
-        //                }
-        //            }
-        //        }
-        //        result = true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error CSV export" + ex.Message);
-        //        result = false;
-
-        //    }
-            
-        //}
-
-        //LIST OF REFERENCES
-        // *1 ---> "F2" for always 2 places after comma or dot
-        //https://stackoverflow.com/questions/36619121/convert-string-to-decimal-to-always-have-2-decimal-places
-
-        //public void WriteToXML(Stream qLifeXmlStream)
-        //{
-        //    System.Xml.Serialization.XmlSerializer writer =
-        //    new System.Xml.Serialization.XmlSerializer(typeof(List<City>));
-
-        //    writer.Serialize(qLifeXmlStream, cityList);
-        //}
-
-        private void CheckFileExtandImport(string FileExt, string FilePath)
+        public void StartFileExport(string FileExt, Stream qLifeStream, List<City> ListForExport)
         {
             ITarget target;
             
-            //File Type is XML.
-            if (FileExt == FileTypeAllowed[0])
+            string caseSwitch = FileExt;
+            switch (caseSwitch)
             {
-                target = new AdapterXML();
-                target.CallImportAdapter(FileExt, FilePath);
-                cityList = target.cityList;
-                MessageBox.Show(target.StatusNotification);
+                case ".xml":
+                    target = new AdapterXML();
+                    target.CallExportAdapter(qLifeStream, ListForExport);
+                    break;
+                case ".csv":
+                    target = new AdapterCSV();
+                    target.CallExportAdapter(qLifeStream, ListForExport);
+                    break;
+                default:
+                    MessageBox.Show("Please choose correct file extension");
+                    break;
             }
-            //File Type is CSV.
-            else if (FileExt == FileTypeAllowed[1])
+        }
+
+        public bool? CheckIfListCanBeExportedAtAll(List<City> ListToBeExported)
+        {
+            if (ListToBeExported == null)
             {
-                target = new AdapterCSV();
-                target.CallImportAdapter(FileExt, FilePath);
-                cityList = target.cityList;
-                MessageBox.Show(target.StatusNotification);
+                return null;
             }
-            //File Type is invalid.
-            else
+            else if (ListToBeExported.Count() == 0)
             {
-                MessageBox.Show("This is not a valid file extension");
+                MessageBoxResult result = MessageBox.Show("No data in this list. Do you want to proceed and export an empty list?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    return true;
+                }
+                else return false;
+
             }
+            else return true;
         }
     }
 }
+
+
+
+
+
+
+
+    //public void WriteToCSV(Stream qLifeCsvStream)
+    //{
+    //    using StreamWriter exportCSV = new StreamWriter(qLifeCsvStream);
+    //    try
+    //    {
+    //        exportCSV.WriteLine("City_Name, Category_Name, Overall_Category_Score, SubCategory_Label, SubCategory_Score");
+
+    //        foreach (City city in cityList)
+    //        {
+    //            for (int i = 0; i < city.Categories.Length; i++)
+    //            {
+    //                for (int j = 0; j < city.Categories[i].SubCategories.Count(); j++)
+    //                {
+    //                    string cityNameForCsv = city.Name.ToString().Replace(",", "");
+    //                    string categoryNameCsv = city.Categories[i].Label;
+    //                    decimal scoreAsDecimal = (decimal)Math.Round(city.Categories[i].Score, 2);
+    //                    string scoreForCsv = scoreAsDecimal.ToString("F2").Replace(",", ".");//*1
+    //                    string subcatLabelCsv = city.Categories[i].SubCategories[j].Label.ToString();
+    //                    string subcatScoreCsv = city.Categories[i].SubCategories[j].Value.ToString("F2").Replace(",", ".");
+    //                    exportCSV.WriteLine(cityNameForCsv + "," + categoryNameCsv + "," + scoreForCsv + "," + subcatLabelCsv + "," + subcatScoreCsv);
+    //                }
+    //            }
+    //        }
+    //        result = true;
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        MessageBox.Show("Error CSV export" + ex.Message);
+    //        result = false;
+
+    //    }
+
+    //}
+
+    //LIST OF REFERENCES
+    // *1 ---> "F2" for always 2 places after comma or dot
+    //https://stackoverflow.com/questions/36619121/convert-string-to-decimal-to-always-have-2-decimal-places
+
+    //public void WriteToXML(Stream qLifeXmlStream)
+    //{
+    //    System.Xml.Serialization.XmlSerializer writer =
+    //    new System.Xml.Serialization.XmlSerializer(typeof(List<City>));
+
+    //    writer.Serialize(qLifeXmlStream, cityList);
+    //}
+
+
+
