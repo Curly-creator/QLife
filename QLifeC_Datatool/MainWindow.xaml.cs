@@ -28,7 +28,7 @@ namespace QLifeC_Datatool
     {    
         public List<City> cityList = new List<City>();
         public API_Request test = new API_Request("https://api.teleport.org/api/urban_areas");
-
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -38,7 +38,7 @@ namespace QLifeC_Datatool
 
         private void btn_Download_Click(object sender, RoutedEventArgs e)
         {
-            cityList = test.GetCityData();
+            cityList = test.GetCityScores(0);
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }

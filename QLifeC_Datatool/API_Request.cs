@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Text;
 using System.Windows;
 
 namespace QLifeC_Datatool
@@ -12,9 +11,45 @@ namespace QLifeC_Datatool
     {
         private string _Url;
         private List<City> _cityList;
+        private bool _ConnectionError = false;
+        private bool _UrlFormatError = false;
+        private bool _IntervallError = false;
+
+        readonly Exception NullIntervall = new Exception("Intervall is 0. Function can not be performed");
+        readonly Exception NegativIntervall = new Exception("Intervall is negativ. Function can not be performed");
 
         public List<City> CityList { get => _cityList; set => _cityList = value; }
         public string Url { get => _Url; set => _Url = value; }
+
+        public bool GetIntervallError()
+        {
+            return _IntervallError;
+        }
+
+        private void SetIntervallError(bool value)
+        {
+            _IntervallError = value;
+        }
+
+        public bool GetConnectionError()
+        {
+            return _ConnectionError;
+        }
+
+        private void SetConnectionError(bool value)
+        {
+            _ConnectionError = value;
+        }
+
+        public bool GetUrlFormatError()
+        {
+            return _UrlFormatError;
+        }
+
+        private void SetUrlFormatError(bool value)
+        {
+            _UrlFormatError = value;
+        }
 
         public API_Request(string url) 
         {
@@ -22,19 +57,31 @@ namespace QLifeC_Datatool
             CityList = new List<City>();
         }
 
-        public List<City> GetCityData()
+        public List<City> GetCityScores(int intervall)
         {
-            GetCityList();
-            foreach (var city in CityList)
+            try
             {
-                GetCategoryScores(city);
-                GetCategoryDetails(city);
+                GetCityList(intervall);
+                foreach (var city in CityList)
+                {
+                    GetCategoryScores(city);
+                    GetCategoryDetails(city);
+                }
+                return CityList;
             }
-            return CityList;
+            catch(Exception e)
+            {
+                MessageBox.Show("Error: " + e.Message);
+                SetIntervallError(true);
+                return null;
+            }       
         }
 
         private dynamic UrlToJsonObj(string url)
         {
+            SetUrlFormatError(false);
+            SetConnectionError(false);
+
             try
             {
                 WebRequest request = WebRequest.Create(url);
@@ -45,31 +92,44 @@ namespace QLifeC_Datatool
                 dynamic jsonObj = new JavaScriptSerializer().Deserialize<Object>(responseString);
                 return jsonObj;
             }
-            catch (WebException)
+            catch (WebException e)
+            { 
+                MessageBox.Show("Error: " + e.Message);
+                SetConnectionError(true);
+                return null;
+            }
+            catch (UriFormatException e)
             {
-                MessageBox.Show("No Connection to Server. Please check your Internet Connection.");
+                MessageBox.Show("Error: " + e.Message);
+                SetUrlFormatError(true);
                 return null;
             }
         }
 
-        private void GetCityList()
+        private void GetCityList(int intervall)
         {
+            SetIntervallError(false);
+
             dynamic jsonObj = UrlToJsonObj(Url);
-
-            if (jsonObj != null)
+            if (intervall > 0)
             {
-                var jsonCities = jsonObj["_links"]["ua:item"];
-
-                for (int i = 0; i <= 200; i += 10)
+                if (jsonObj != null)
                 {
-                    City city = new City
+                    var jsonCities = jsonObj["_links"]["ua:item"];
+
+                    for (int i = 0; i < jsonCities.Count; i += intervall)
                     {
-                        Url = jsonCities[i]["href"],
-                        Name = jsonCities[i]["name"]
-                    };
-                    CityList.Add(city);
+                        City city = new City
+                        {
+                            Url = jsonCities[i]["href"],
+                            Name = jsonCities[i]["name"]
+                        };
+                        CityList.Add(city);
+                    }
                 }
             }
+            else if (intervall == 0) throw NullIntervall;
+            else throw NegativIntervall; 
         }
 
         private void GetCategoryScores(City city)
