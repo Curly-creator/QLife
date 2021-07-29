@@ -5,6 +5,7 @@ using Xunit;
 using QLifeC_Datatool;
 using System.Xml.Schema;
 using System.Xml;
+using System.IO;
 
 namespace UnitTest
 {
@@ -18,9 +19,9 @@ namespace UnitTest
         public void Should_Deserialize_XMLFile_ReturnsTrue()
         {
             //Arrange: setting up Path of the xml file as the passing parameter for the method DeserializeXML.
-            string pathstart = System.IO.Directory.GetCurrentDirectory();
+            string pathstart = Directory.GetCurrentDirectory();
             //This is the full path with the name of the file in the current directory.
-            string path = pathstart + "\\citylist_backup_for_oral_exam.xml";
+            string path = pathstart + "\\Unit_Test_Files\\CityList_Backup_XML.xml";
 
             //Act: Performing the actual test of running the method DeserializeXML.
             xmlAdapter.DeserializeXML(path);
@@ -35,7 +36,7 @@ namespace UnitTest
             //Arrange: setting up Path of the xml file as the passing parameter for the method DeserializeXML.
             string pathstart = System.IO.Directory.GetCurrentDirectory();
             //This is the full path with the name of the file in the current directory.
-            string path = pathstart + "\\citylist_backup_for_oral_exam.csv";
+            string path = pathstart + "\\Unit_Test_Files\\CityList_Backup_CSV.csv";
 
             //Act: Performing the actual test of running the method DeserializeXML.
             xmlAdapter.DeserializeXML(path);
@@ -50,7 +51,7 @@ namespace UnitTest
             //Arrange: setting up Path of the xml file as the passing parameter for the method ValidateXML.
             string pathstart = System.IO.Directory.GetCurrentDirectory();
             //This is the full path with the name of the file in the current directory.
-            string path = pathstart + "\\citylist_backup_for_oral_exam.xml";
+            string path = pathstart + "\\Unit_Test_Files\\CityList_Backup_XML.xml";
 
             //Act: Performing the actual test of running the method ValidateXML.
             xmlAdapter.ValidateXML(path);
@@ -65,7 +66,7 @@ namespace UnitTest
             //Arrange: setting up Path of the xml file as the passing parameter for the method ValidateXML.
             string pathstart = System.IO.Directory.GetCurrentDirectory();
             //This is the full path with the name of the file in the current directory.
-            string path = pathstart + "\\citylist_backup_for_oral_exam.csv";
+            string path = pathstart + "\\Unit_Test_Files\\CityList_Backup_CSV.csv";
 
             //Act: Performing the actual test of running the method ValidateXML.
             xmlAdapter.ValidateXML(path);
@@ -80,7 +81,7 @@ namespace UnitTest
             //Arrange: setting up Path of the csv file as the passing parameter for the method ReadParseCSV.
             string pathstart = System.IO.Directory.GetCurrentDirectory();
             //This is the full path with the name of the file in the current directory.
-            string path = pathstart + "\\Export_for_Oral_Exam_Final.csv";
+            string path = pathstart + "\\Unit_Test_Files\\CityList_Backup_CSV.csv";
 
             //Act: Performing the actual test of running the method ReadParseCSV.
             TestCSV.ReadParseCSV(path);
@@ -88,38 +89,6 @@ namespace UnitTest
             //Assert: This should be true in accordance with the MethodStatus which should also be true.
             Assert.True(TestCSV.MethodStatus, TestCSV.StatusNotification);
         }
-
-        [Fact]
-        public void Should_Parse_CSVFile_ReturnsFalse()
-        {
-            //Arrange: Setting up Path of the csv file as the passing parameter for the method ReadParseCSV.
-            string pathstart = System.IO.Directory.GetCurrentDirectory();
-            //This is the full path with the name of the file in the current directory.
-            string path = pathstart + "\\Export_for_Oral_Exam_Final.xml";
-
-            //Act: Performing the actual test of running the method ReadParseCSV.
-            TestCSV.ReadParseCSV(path);
-
-            //Assert: This should be false in accordance with the MethodStatus which should also be false.
-            Assert.False(TestCSV.MethodStatus, TestCSV.StatusNotification);
-        }
-
-        //[Fact]
-        //public void Should_CheckFileExtandCallAdapter_ReturnsTrue()
-        //{
-        //    MainWindow window = new MainWindow();
-        //    //Arrange:
-        //    //Arrange: Setting up Path of the csv file as the passing parameter for the method ReadParseCSV.
-        //    string pathstart = System.IO.Directory.GetCurrentDirectory();
-        //    //This is the full path with the name of the file in the current directory.
-        //    string path = pathstart + "\\Export_for_Oral_Exam_Final.xml";
-        //    string ext = ".xml";
-            
-        //    window.CheckFileExtandImport(ext, path);
-
-        //    Assert.True(window.MethodStatus, window.ErrorNotification);
-        //}
-
 
     }
 }

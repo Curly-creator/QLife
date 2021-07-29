@@ -1,0 +1,652 @@
+City_Name, Category_Name, Overall_Category_Score, SubCategory_Label, SubCategory_Score
+Aarhus,Cost of Living,4.02,Inflation [Teleport score],0.40
+Aarhus,Cost of Living,4.02,A kilogram of Apples,2.90
+Aarhus,Cost of Living,4.02,Bread,0.87
+Aarhus,Cost of Living,4.02,A Cappuccino,5.60
+Aarhus,Cost of Living,4.02,Movie ticket,17.00
+Aarhus,Cost of Living,4.02,Monthly fitness club membership,37.00
+Aarhus,Cost of Living,4.02,A beer,1.70
+Aarhus,Cost of Living,4.02,Monthly public transport,62.00
+Aarhus,Cost of Living,4.02,Lunch,15.00
+Aarhus,Cost of Living,4.02,5km taxi ride,13.00
+Aarhus,Cost of Living,4.02,Price of a meal at a restaurant,97.32
+Aarhus,Healthcare,9.13,Healthcare expenditure [Teleport score],0.92
+Aarhus,Healthcare,9.13,Life expectancy (years),80.58
+Aarhus,Healthcare,9.13,Life expectancy [Teleport score],0.83
+Aarhus,Healthcare,9.13,Healthcare quality [Teleport score],0.98
+Aarhus,Internet Access,8.37,Download speed (Mbps),90.07
+Aarhus,Internet Access,8.37,Internet access (download) [Teleport score],0.82
+Aarhus,Internet Access,8.37,Upload speed (Mbps),31.50
+Aarhus,Internet Access,8.37,Internet access (upload) [Teleport score],0.86
+Aarhus,Environmental Quality,7.63,Air quality [Teleport score],0.80
+Aarhus,Environmental Quality,7.63,Cleanliness [Teleport score],0.85
+Aarhus,Environmental Quality,7.63,Drinking water quality [Teleport score],0.77
+Aarhus,Environmental Quality,7.63,Urban greenery [Teleport score],0.64
+Aarhus,Travel Connectivity,3.54,Airport hub,8.00
+Aarhus,Travel Connectivity,3.54,Airport hub [Teleport score],0.12
+Aarhus,Travel Connectivity,3.54,Intercity train connectivity [Teleport score],0.59
+Aarhus,Outdoors,4.13,Urban area elevation (meters),11.00
+Aarhus,Outdoors,4.13,Median peak in meters,95.50
+Aarhus,Outdoors,4.13,Elevation (hills or mountains) [Teleport score],0.12
+Aarhus,Outdoors,4.13,Water access [Teleport score],0.71
+Aarhus,Outdoors,4.13,Seaside access,1.00
+Athens,Cost of Living,6.50,Inflation [Teleport score],0.65
+Athens,Cost of Living,6.50,A kilogram of Apples,1.70
+Athens,Cost of Living,6.50,Bread,0.64
+Athens,Cost of Living,6.50,A Cappuccino,3.90
+Athens,Cost of Living,6.50,Movie ticket,8.80
+Athens,Cost of Living,6.50,Monthly fitness club membership,42.00
+Athens,Cost of Living,6.50,A beer,1.80
+Athens,Cost of Living,6.50,Monthly public transport,40.00
+Athens,Cost of Living,6.50,Lunch,16.00
+Athens,Cost of Living,6.50,5km taxi ride,8.30
+Athens,Cost of Living,6.50,Price of a meal at a restaurant,62.87
+Athens,Healthcare,7.26,Healthcare expenditure [Teleport score],0.70
+Athens,Healthcare,7.26,Life expectancy (years),80.98
+Athens,Healthcare,7.26,Life expectancy [Teleport score],0.86
+Athens,Healthcare,7.26,Healthcare quality [Teleport score],0.62
+Athens,Internet Access,2.23,Download speed (Mbps),14.00
+Athens,Internet Access,2.23,Internet access (download) [Teleport score],0.26
+Athens,Internet Access,2.23,Upload speed (Mbps),4.22
+Athens,Internet Access,2.23,Internet access (upload) [Teleport score],0.18
+Athens,Environmental Quality,3.80,Air quality [Teleport score],0.42
+Athens,Environmental Quality,3.80,Cleanliness [Teleport score],0.29
+Athens,Environmental Quality,3.80,Drinking water quality [Teleport score],0.71
+Athens,Environmental Quality,3.80,Urban greenery [Teleport score],0.10
+Athens,Travel Connectivity,3.71,Airport hub,104.00
+Athens,Travel Connectivity,3.71,Airport hub [Teleport score],0.48
+Athens,Travel Connectivity,3.71,Intercity train connectivity [Teleport score],0.26
+Athens,Outdoors,6.48,Urban area elevation (meters),88.00
+Athens,Outdoors,6.48,Presence of hills in city,1.00
+Athens,Outdoors,6.48,Presence of mountains in city,1.00
+Athens,Outdoors,6.48,Median peak in meters,983.00
+Athens,Outdoors,6.48,Elevation (hills or mountains) [Teleport score],0.34
+Athens,Outdoors,6.48,Water access [Teleport score],0.95
+Athens,Outdoors,6.48,Seaside access,1.00
+Beirut,Cost of Living,6.30,Inflation [Teleport score],0.63
+Beirut,Cost of Living,6.30,A kilogram of Apples,1.60
+Beirut,Cost of Living,6.30,Bread,0.34
+Beirut,Cost of Living,6.30,A Cappuccino,4.50
+Beirut,Cost of Living,6.30,Movie ticket,10.00
+Beirut,Cost of Living,6.30,Monthly fitness club membership,73.00
+Beirut,Cost of Living,6.30,A beer,1.30
+Beirut,Cost of Living,6.30,Monthly public transport,62.00
+Beirut,Cost of Living,6.30,Lunch,19.00
+Beirut,Cost of Living,6.30,5km taxi ride,7.00
+Beirut,Cost of Living,6.30,Price of a meal at a restaurant,65.55
+Beirut,Healthcare,5.91,Healthcare expenditure [Teleport score],0.47
+Beirut,Healthcare,5.91,Life expectancy (years),74.88
+Beirut,Healthcare,5.91,Life expectancy [Teleport score],0.49
+Beirut,Healthcare,5.91,Healthcare quality [Teleport score],0.81
+Beirut,Internet Access,1.59,Download speed (Mbps),5.55
+Beirut,Internet Access,1.59,Internet access (download) [Teleport score],0.10
+Beirut,Internet Access,1.59,Upload speed (Mbps),4.81
+Beirut,Internet Access,1.59,Internet access (upload) [Teleport score],0.22
+Beirut,Environmental Quality,1.45,Air quality [Teleport score],0.16
+Beirut,Environmental Quality,1.45,Cleanliness [Teleport score],0.22
+Beirut,Environmental Quality,1.45,Drinking water quality [Teleport score],0.10
+Beirut,Environmental Quality,1.45,Urban greenery [Teleport score],0.10
+Beirut,Travel Connectivity,1.30,Airport hub,45.00
+Beirut,Travel Connectivity,1.30,Airport hub [Teleport score],0.26
+Beirut,Outdoors,3.84,Urban area elevation (meters),102.00
+Beirut,Outdoors,3.84,Presence of hills in city,1.00
+Beirut,Outdoors,3.84,Presence of mountains in city,1.00
+Beirut,Outdoors,3.84,Water access [Teleport score],0.77
+Beirut,Outdoors,3.84,Seaside access,1.00
+Birmingham AL,Cost of Living,5.13,Inflation [Teleport score],0.51
+Birmingham AL,Cost of Living,5.13,A kilogram of Apples,3.80
+Birmingham AL,Cost of Living,5.13,Bread,0.70
+Birmingham AL,Cost of Living,5.13,A Cappuccino,5.00
+Birmingham AL,Cost of Living,5.13,Movie ticket,11.00
+Birmingham AL,Cost of Living,5.13,Monthly fitness club membership,42.00
+Birmingham AL,Cost of Living,5.13,A beer,2.10
+Birmingham AL,Cost of Living,5.13,Monthly public transport,38.00
+Birmingham AL,Cost of Living,5.13,Lunch,16.00
+Birmingham AL,Cost of Living,5.13,5km taxi ride,7.70
+Birmingham AL,Cost of Living,5.13,Price of a meal at a restaurant,71.34
+Birmingham AL,Healthcare,8.74,Healthcare expenditure [Teleport score],0.99
+Birmingham AL,Healthcare,8.74,Life expectancy (years),79.28
+Birmingham AL,Healthcare,8.74,Life expectancy [Teleport score],0.76
+Birmingham AL,Healthcare,8.74,Healthcare quality [Teleport score],0.87
+Birmingham AL,Internet Access,5.16,Download speed (Mbps),56.76
+Birmingham AL,Internet Access,5.16,Internet access (download) [Teleport score],0.67
+Birmingham AL,Internet Access,5.16,Upload speed (Mbps),7.91
+Birmingham AL,Internet Access,5.16,Internet access (upload) [Teleport score],0.36
+Birmingham AL,Environmental Quality,7.04,Air quality [Teleport score],0.75
+Birmingham AL,Environmental Quality,7.04,Cleanliness [Teleport score],0.58
+Birmingham AL,Environmental Quality,7.04,Drinking water quality [Teleport score],0.82
+Birmingham AL,Environmental Quality,7.04,Urban greenery [Teleport score],0.67
+Birmingham AL,Travel Connectivity,1.44,Airport hub,20.00
+Birmingham AL,Travel Connectivity,1.44,Airport hub [Teleport score],0.17
+Birmingham AL,Travel Connectivity,1.44,Intercity train connectivity [Teleport score],0.12
+Birmingham AL,Outdoors,1.27,Urban area elevation (meters),186.00
+Birmingham AL,Outdoors,1.27,Presence of hills in city,1.00
+Birmingham AL,Outdoors,1.27,Median peak in meters,227.00
+Birmingham AL,Outdoors,1.27,Elevation (hills or mountains) [Teleport score],0.15
+Birmingham AL,Outdoors,1.27,Water access [Teleport score],0.10
+Brisbane,Cost of Living,5.18,Inflation [Teleport score],0.52
+Brisbane,Cost of Living,5.18,A kilogram of Apples,3.30
+Brisbane,Cost of Living,5.18,Bread,0.77
+Brisbane,Cost of Living,5.18,A Cappuccino,3.20
+Brisbane,Cost of Living,5.18,Movie ticket,11.00
+Brisbane,Cost of Living,5.18,Monthly fitness club membership,41.00
+Brisbane,Cost of Living,5.18,A beer,3.40
+Brisbane,Cost of Living,5.18,Monthly public transport,100.00
+Brisbane,Cost of Living,5.18,Lunch,14.00
+Brisbane,Cost of Living,5.18,5km taxi ride,9.40
+Brisbane,Cost of Living,5.18,Price of a meal at a restaurant,70.98
+Brisbane,Healthcare,9.44,Healthcare expenditure [Teleport score],0.93
+Brisbane,Healthcare,9.44,Life expectancy (years),82.84
+Brisbane,Healthcare,9.44,Life expectancy [Teleport score],0.97
+Brisbane,Healthcare,9.44,Healthcare quality [Teleport score],0.93
+Brisbane,Internet Access,4.41,Download speed (Mbps),23.03
+Brisbane,Internet Access,4.41,Internet access (download) [Teleport score],0.40
+Brisbane,Internet Access,4.41,Upload speed (Mbps),11.41
+Brisbane,Internet Access,4.41,Internet access (upload) [Teleport score],0.49
+Brisbane,Environmental Quality,8.83,Air quality [Teleport score],0.91
+Brisbane,Environmental Quality,8.83,Cleanliness [Teleport score],0.87
+Brisbane,Environmental Quality,8.83,Drinking water quality [Teleport score],0.87
+Brisbane,Environmental Quality,8.83,Urban greenery [Teleport score],0.88
+Brisbane,Travel Connectivity,2.43,Airport hub,59.00
+Brisbane,Travel Connectivity,2.43,Airport hub [Teleport score],0.31
+Brisbane,Travel Connectivity,2.43,Intercity train connectivity [Teleport score],0.17
+Brisbane,Outdoors,6.26,Urban area elevation (meters),32.00
+Brisbane,Outdoors,6.26,Presence of hills in city,1.00
+Brisbane,Outdoors,6.26,Median peak in meters,630.00
+Brisbane,Outdoors,6.26,Elevation (hills or mountains) [Teleport score],0.25
+Brisbane,Outdoors,6.26,Water access [Teleport score],1.00
+Brisbane,Outdoors,6.26,Seaside access,1.00
+Cambridge,Cost of Living,4.85,Inflation [Teleport score],0.49
+Cambridge,Cost of Living,4.85,A kilogram of Apples,3.30
+Cambridge,Cost of Living,4.85,Bread,0.45
+Cambridge,Cost of Living,4.85,A Cappuccino,4.00
+Cambridge,Cost of Living,4.85,Movie ticket,13.00
+Cambridge,Cost of Living,4.85,Monthly fitness club membership,58.00
+Cambridge,Cost of Living,4.85,A beer,3.00
+Cambridge,Cost of Living,4.85,Monthly public transport,75.00
+Cambridge,Cost of Living,4.85,Lunch,19.00
+Cambridge,Cost of Living,4.85,5km taxi ride,10.00
+Cambridge,Cost of Living,4.85,Price of a meal at a restaurant,91.47
+Cambridge,Healthcare,8.19,Healthcare expenditure [Teleport score],0.82
+Cambridge,Healthcare,8.19,Life expectancy (years),81.22
+Cambridge,Healthcare,8.19,Life expectancy [Teleport score],0.87
+Cambridge,Healthcare,8.19,Healthcare quality [Teleport score],0.77
+Cambridge,Internet Access,5.81,Download speed (Mbps),66.55
+Cambridge,Internet Access,5.81,Internet access (download) [Teleport score],0.72
+Cambridge,Internet Access,5.81,Upload speed (Mbps),10.09
+Cambridge,Internet Access,5.81,Internet access (upload) [Teleport score],0.44
+Cambridge,Environmental Quality,8.02,Air quality [Teleport score],0.84
+Cambridge,Environmental Quality,8.02,Cleanliness [Teleport score],0.84
+Cambridge,Environmental Quality,8.02,Drinking water quality [Teleport score],0.64
+Cambridge,Environmental Quality,8.02,Urban greenery [Teleport score],0.89
+Cambridge,Travel Connectivity,6.89,Airport hub,135.00
+Cambridge,Travel Connectivity,6.89,Airport hub [Teleport score],0.79
+Cambridge,Travel Connectivity,6.89,Intercity train connectivity [Teleport score],0.59
+Cambridge,Outdoors,0.50,Urban area elevation (meters),12.00
+Cambridge,Outdoors,0.50,Water access [Teleport score],0.10
+Chicago,Cost of Living,4.77,Inflation [Teleport score],0.48
+Chicago,Cost of Living,4.77,A kilogram of Apples,3.50
+Chicago,Cost of Living,4.77,Bread,1.10
+Chicago,Cost of Living,4.77,A Cappuccino,4.50
+Chicago,Cost of Living,4.77,Movie ticket,13.00
+Chicago,Cost of Living,4.77,Monthly fitness club membership,59.00
+Chicago,Cost of Living,4.77,A beer,2.40
+Chicago,Cost of Living,4.77,Monthly public transport,94.00
+Chicago,Cost of Living,4.77,Lunch,14.00
+Chicago,Cost of Living,4.77,5km taxi ride,8.70
+Chicago,Cost of Living,4.77,Price of a meal at a restaurant,75.47
+Chicago,Healthcare,8.56,Healthcare expenditure [Teleport score],0.99
+Chicago,Healthcare,8.56,Life expectancy (years),79.28
+Chicago,Healthcare,8.56,Life expectancy [Teleport score],0.76
+Chicago,Healthcare,8.56,Healthcare quality [Teleport score],0.82
+Chicago,Internet Access,6.60,Download speed (Mbps),61.60
+Chicago,Internet Access,6.60,Internet access (download) [Teleport score],0.69
+Chicago,Internet Access,6.60,Upload speed (Mbps),17.01
+Chicago,Internet Access,6.60,Internet access (upload) [Teleport score],0.63
+Chicago,Environmental Quality,6.80,Air quality [Teleport score],0.73
+Chicago,Environmental Quality,6.80,Cleanliness [Teleport score],0.62
+Chicago,Environmental Quality,6.80,Drinking water quality [Teleport score],0.58
+Chicago,Environmental Quality,6.80,Urban greenery [Teleport score],0.79
+Chicago,Travel Connectivity,5.51,Airport hub,217.00
+Chicago,Travel Connectivity,5.51,Airport hub [Teleport score],0.91
+Chicago,Travel Connectivity,5.51,Intercity train connectivity [Teleport score],0.19
+Chicago,Outdoors,5.42,Urban area elevation (meters),198.00
+Chicago,Outdoors,5.42,Median peak in meters,253.00
+Chicago,Outdoors,5.42,Elevation (hills or mountains) [Teleport score],0.16
+Chicago,Outdoors,5.42,Water access [Teleport score],0.92
+Chicago,Outdoors,5.42,Seaside waterbody,1.00
+Cork,Cost of Living,4.90,Inflation [Teleport score],0.49
+Cork,Cost of Living,4.90,A kilogram of Apples,2.90
+Cork,Cost of Living,4.90,Bread,1.30
+Cork,Cost of Living,4.90,A Cappuccino,3.50
+Cork,Cost of Living,4.90,Movie ticket,12.00
+Cork,Cost of Living,4.90,Monthly fitness club membership,52.00
+Cork,Cost of Living,4.90,A beer,2.60
+Cork,Cost of Living,4.90,Monthly public transport,95.00
+Cork,Cost of Living,4.90,Lunch,13.00
+Cork,Cost of Living,4.90,5km taxi ride,9.40
+Cork,Cost of Living,4.90,Price of a meal at a restaurant,77.66
+Cork,Healthcare,8.18,Healthcare expenditure [Teleport score],0.84
+Cork,Healthcare,8.18,Life expectancy (years),81.42
+Cork,Healthcare,8.18,Life expectancy [Teleport score],0.88
+Cork,Healthcare,8.18,Healthcare quality [Teleport score],0.73
+Cork,Internet Access,9.14,Download speed (Mbps),93.76
+Cork,Internet Access,9.14,Internet access (download) [Teleport score],0.83
+Cork,Internet Access,9.14,Upload speed (Mbps),66.04
+Cork,Internet Access,9.14,Internet access (upload) [Teleport score],1.00
+Cork,Environmental Quality,8.01,Air quality [Teleport score],1.00
+Cork,Environmental Quality,8.01,Cleanliness [Teleport score],0.68
+Cork,Environmental Quality,8.01,Drinking water quality [Teleport score],0.88
+Cork,Environmental Quality,8.01,Urban greenery [Teleport score],0.65
+Cork,Travel Connectivity,2.36,Airport hub,30.00
+Cork,Travel Connectivity,2.36,Airport hub [Teleport score],0.20
+Cork,Travel Connectivity,2.36,Intercity train connectivity [Teleport score],0.27
+Cork,Outdoors,0.50,Urban area elevation (meters),9.00
+Cork,Outdoors,0.50,Presence of hills in city,1.00
+Cork,Outdoors,0.50,Presence of mountains in city,1.00
+Cork,Outdoors,0.50,Water access [Teleport score],0.10
+Cork,Outdoors,0.50,Seaside access,1.00
+Dubai,Cost of Living,5.49,Inflation [Teleport score],0.55
+Dubai,Cost of Living,5.49,A kilogram of Apples,2.40
+Dubai,Cost of Living,5.49,Bread,0.55
+Dubai,Cost of Living,5.49,A Cappuccino,4.80
+Dubai,Cost of Living,5.49,Movie ticket,11.00
+Dubai,Cost of Living,5.49,Monthly fitness club membership,100.00
+Dubai,Cost of Living,5.49,A beer,2.90
+Dubai,Cost of Living,5.49,Monthly public transport,72.00
+Dubai,Cost of Living,5.49,Lunch,12.00
+Dubai,Cost of Living,5.49,5km taxi ride,4.60
+Dubai,Cost of Living,5.49,Price of a meal at a restaurant,68.29
+Dubai,Healthcare,6.47,Healthcare expenditure [Teleport score],0.63
+Dubai,Healthcare,6.47,Life expectancy (years),77.07
+Dubai,Healthcare,6.47,Life expectancy [Teleport score],0.62
+Dubai,Healthcare,6.47,Healthcare quality [Teleport score],0.69
+Dubai,Internet Access,3.15,Download speed (Mbps),19.84
+Dubai,Internet Access,3.15,Internet access (download) [Teleport score],0.35
+Dubai,Internet Access,3.15,Upload speed (Mbps),5.90
+Dubai,Internet Access,3.15,Internet access (upload) [Teleport score],0.28
+Dubai,Environmental Quality,6.04,Air quality [Teleport score],0.49
+Dubai,Environmental Quality,6.04,Cleanliness [Teleport score],0.85
+Dubai,Environmental Quality,6.04,Drinking water quality [Teleport score],0.55
+Dubai,Environmental Quality,6.04,Urban greenery [Teleport score],0.53
+Dubai,Travel Connectivity,4.51,Airport hub,215.00
+Dubai,Travel Connectivity,4.51,Airport hub [Teleport score],0.90
+Dubai,Outdoors,5.80,Urban area elevation (meters),8.00
+Dubai,Outdoors,5.80,Presence of hills in city,1.00
+Dubai,Outdoors,5.80,Presence of mountains in city,1.00
+Dubai,Outdoors,5.80,Median peak in meters,326.00
+Dubai,Outdoors,5.80,Elevation (hills or mountains) [Teleport score],0.18
+Dubai,Outdoors,5.80,Water access [Teleport score],0.98
+Dubai,Outdoors,5.80,Seaside access,1.00
+Frankfurt,Cost of Living,5.14,Inflation [Teleport score],0.51
+Frankfurt,Cost of Living,5.14,A kilogram of Apples,2.60
+Frankfurt,Cost of Living,5.14,Bread,0.54
+Frankfurt,Cost of Living,5.14,A Cappuccino,3.30
+Frankfurt,Cost of Living,5.14,Movie ticket,13.00
+Frankfurt,Cost of Living,5.14,Monthly fitness club membership,51.00
+Frankfurt,Cost of Living,5.14,A beer,1.10
+Frankfurt,Cost of Living,5.14,Monthly public transport,98.00
+Frankfurt,Cost of Living,5.14,Lunch,16.00
+Frankfurt,Cost of Living,5.14,5km taxi ride,10.00
+Frankfurt,Cost of Living,5.14,Price of a meal at a restaurant,72.66
+Frankfurt,Healthcare,8.37,Healthcare expenditure [Teleport score],0.87
+Frankfurt,Healthcare,8.37,Life expectancy (years),81.04
+Frankfurt,Healthcare,8.37,Life expectancy [Teleport score],0.86
+Frankfurt,Healthcare,8.37,Healthcare quality [Teleport score],0.78
+Frankfurt,Internet Access,4.08,Download speed (Mbps),27.66
+Frankfurt,Internet Access,4.08,Internet access (download) [Teleport score],0.45
+Frankfurt,Internet Access,4.08,Upload speed (Mbps),7.97
+Frankfurt,Internet Access,4.08,Internet access (upload) [Teleport score],0.37
+Frankfurt,Environmental Quality,6.48,Air quality [Teleport score],0.56
+Frankfurt,Environmental Quality,6.48,Cleanliness [Teleport score],0.55
+Frankfurt,Environmental Quality,6.48,Drinking water quality [Teleport score],0.69
+Frankfurt,Environmental Quality,6.48,Urban greenery [Teleport score],0.78
+Frankfurt,Travel Connectivity,8.53,Airport hub,239.00
+Frankfurt,Travel Connectivity,8.53,Airport hub [Teleport score],0.99
+Frankfurt,Travel Connectivity,8.53,Intercity train connectivity [Teleport score],0.71
+Frankfurt,Outdoors,5.38,Urban area elevation (meters),105.00
+Frankfurt,Outdoors,5.38,Presence of hills in city,1.00
+Frankfurt,Outdoors,5.38,Presence of mountains in city,1.00
+Frankfurt,Outdoors,5.38,Median peak in meters,420.00
+Frankfurt,Outdoors,5.38,Elevation (hills or mountains) [Teleport score],0.20
+Frankfurt,Outdoors,5.38,Water access [Teleport score],0.88
+Guatemala City,Cost of Living,8.18,Inflation [Teleport score],0.82
+Guatemala City,Cost of Living,8.18,A kilogram of Apples,2.60
+Guatemala City,Cost of Living,8.18,Bread,0.57
+Guatemala City,Cost of Living,8.18,A Cappuccino,3.10
+Guatemala City,Cost of Living,8.18,Movie ticket,6.10
+Guatemala City,Cost of Living,8.18,Monthly fitness club membership,67.00
+Guatemala City,Cost of Living,8.18,A beer,1.60
+Guatemala City,Cost of Living,8.18,Monthly public transport,15.00
+Guatemala City,Cost of Living,8.18,Lunch,5.10
+Guatemala City,Cost of Living,8.18,5km taxi ride,5.60
+Guatemala City,Cost of Living,8.18,Price of a meal at a restaurant,34.81
+Guatemala City,Healthcare,3.57,Healthcare expenditure [Teleport score],0.27
+Guatemala City,Healthcare,3.57,Life expectancy (years),71.89
+Guatemala City,Healthcare,3.57,Life expectancy [Teleport score],0.31
+Guatemala City,Healthcare,3.57,Healthcare quality [Teleport score],0.48
+Guatemala City,Internet Access,2.51,Download speed (Mbps),10.32
+Guatemala City,Internet Access,2.51,Internet access (download) [Teleport score],0.19
+Guatemala City,Internet Access,2.51,Upload speed (Mbps),6.69
+Guatemala City,Internet Access,2.51,Internet access (upload) [Teleport score],0.31
+Guatemala City,Environmental Quality,3.76,Air quality [Teleport score],0.36
+Guatemala City,Environmental Quality,3.76,Cleanliness [Teleport score],0.45
+Guatemala City,Environmental Quality,3.76,Drinking water quality [Teleport score],0.35
+Guatemala City,Environmental Quality,3.76,Urban greenery [Teleport score],0.34
+Guatemala City,Travel Connectivity,0.81,Airport hub,19.00
+Guatemala City,Travel Connectivity,0.81,Airport hub [Teleport score],0.16
+Guatemala City,Outdoors,4.13,Urban area elevation (meters),1507.00
+Guatemala City,Outdoors,4.13,Presence of hills in city,1.00
+Guatemala City,Outdoors,4.13,Presence of mountains in city,1.00
+Guatemala City,Outdoors,4.13,Median peak in meters,2507.50
+Guatemala City,Outdoors,4.13,Elevation (hills or mountains) [Teleport score],0.73
+Guatemala City,Outdoors,4.13,Water access [Teleport score],0.10
+Hyderabad,Cost of Living,10.00,Inflation [Teleport score],1.00
+Hyderabad,Cost of Living,10.00,A kilogram of Apples,2.50
+Hyderabad,Cost of Living,10.00,Bread,0.27
+Hyderabad,Cost of Living,10.00,A Cappuccino,2.30
+Hyderabad,Cost of Living,10.00,Movie ticket,2.50
+Hyderabad,Cost of Living,10.00,Monthly fitness club membership,25.00
+Hyderabad,Cost of Living,10.00,A beer,1.40
+Hyderabad,Cost of Living,10.00,Monthly public transport,13.00
+Hyderabad,Cost of Living,10.00,Lunch,3.80
+Hyderabad,Cost of Living,10.00,5km taxi ride,2.30
+Hyderabad,Cost of Living,10.00,Price of a meal at a restaurant,17.61
+Hyderabad,Healthcare,2.39,Healthcare expenditure [Teleport score],0.10
+Hyderabad,Healthcare,2.39,Life expectancy (years),68.31
+Hyderabad,Healthcare,2.39,Life expectancy [Teleport score],0.10
+Hyderabad,Healthcare,2.39,Healthcare quality [Teleport score],0.52
+Hyderabad,Internet Access,5.54,Download speed (Mbps),37.55
+Hyderabad,Internet Access,5.54,Internet access (download) [Teleport score],0.54
+Hyderabad,Internet Access,5.54,Upload speed (Mbps),14.48
+Hyderabad,Internet Access,5.54,Internet access (upload) [Teleport score],0.57
+Hyderabad,Environmental Quality,2.84,Air quality [Teleport score],0.26
+Hyderabad,Environmental Quality,2.84,Cleanliness [Teleport score],0.28
+Hyderabad,Environmental Quality,2.84,Drinking water quality [Teleport score],0.22
+Hyderabad,Environmental Quality,2.84,Urban greenery [Teleport score],0.38
+Hyderabad,Travel Connectivity,3.84,Airport hub,32.00
+Hyderabad,Travel Connectivity,3.84,Airport hub [Teleport score],0.21
+Hyderabad,Travel Connectivity,3.84,Intercity train connectivity [Teleport score],0.56
+Hyderabad,Outdoors,3.21,Urban area elevation (meters),515.00
+Hyderabad,Outdoors,3.21,Water access [Teleport score],0.64
+Kiev,Cost of Living,9.82,Inflation [Teleport score],0.98
+Kiev,Cost of Living,9.82,A kilogram of Apples,0.74
+Kiev,Cost of Living,9.82,Bread,0.12
+Kiev,Cost of Living,9.82,A Cappuccino,1.30
+Kiev,Cost of Living,9.82,Movie ticket,3.10
+Kiev,Cost of Living,9.82,Monthly fitness club membership,22.00
+Kiev,Cost of Living,9.82,A beer,0.54
+Kiev,Cost of Living,9.82,Monthly public transport,10.00
+Kiev,Cost of Living,9.82,Lunch,4.30
+Kiev,Cost of Living,9.82,5km taxi ride,2.00
+Kiev,Cost of Living,9.82,Price of a meal at a restaurant,23.54
+Kiev,Healthcare,3.70,Healthcare expenditure [Teleport score],0.33
+Kiev,Healthcare,3.70,Life expectancy (years),71.29
+Kiev,Healthcare,3.70,Life expectancy [Teleport score],0.28
+Kiev,Healthcare,3.70,Healthcare quality [Teleport score],0.50
+Kiev,Internet Access,6.04,Download speed (Mbps),33.65
+Kiev,Internet Access,6.04,Internet access (download) [Teleport score],0.51
+Kiev,Internet Access,6.04,Upload speed (Mbps),20.86
+Kiev,Internet Access,6.04,Internet access (upload) [Teleport score],0.70
+Kiev,Environmental Quality,3.67,Air quality [Teleport score],0.36
+Kiev,Environmental Quality,3.67,Cleanliness [Teleport score],0.37
+Kiev,Environmental Quality,3.67,Drinking water quality [Teleport score],0.15
+Kiev,Environmental Quality,3.67,Urban greenery [Teleport score],0.59
+Kiev,Travel Connectivity,5.49,Airport hub,77.00
+Kiev,Travel Connectivity,5.49,Airport hub [Teleport score],0.38
+Kiev,Travel Connectivity,5.49,Intercity train connectivity [Teleport score],0.72
+Kiev,Outdoors,5.35,Urban area elevation (meters),156.00
+Kiev,Outdoors,5.35,Median peak in meters,177.00
+Kiev,Outdoors,5.35,Elevation (hills or mountains) [Teleport score],0.14
+Kiev,Outdoors,5.35,Water access [Teleport score],0.93
+Kiev,Outdoors,5.35,Seaside waterbody,1.00
+Lausanne,Cost of Living,1.00,Inflation [Teleport score],0.10
+Lausanne,Cost of Living,1.00,A kilogram of Apples,4.70
+Lausanne,Cost of Living,1.00,Bread,1.50
+Lausanne,Cost of Living,1.00,A Cappuccino,4.30
+Lausanne,Cost of Living,1.00,Movie ticket,21.00
+Lausanne,Cost of Living,1.00,Monthly fitness club membership,100.00
+Lausanne,Cost of Living,1.00,A beer,1.60
+Lausanne,Cost of Living,1.00,Monthly public transport,84.00
+Lausanne,Cost of Living,1.00,Lunch,24.00
+Lausanne,Cost of Living,1.00,5km taxi ride,18.00
+Lausanne,Cost of Living,1.00,Price of a meal at a restaurant,119.77
+Lausanne,Healthcare,9.59,Healthcare expenditure [Teleport score],1.00
+Lausanne,Healthcare,9.59,Life expectancy (years),83.36
+Lausanne,Healthcare,9.59,Life expectancy [Teleport score],1.00
+Lausanne,Healthcare,9.59,Healthcare quality [Teleport score],0.88
+Lausanne,Internet Access,4.15,Download speed (Mbps),29.96
+Lausanne,Internet Access,4.15,Internet access (download) [Teleport score],0.47
+Lausanne,Internet Access,4.15,Upload speed (Mbps),7.72
+Lausanne,Internet Access,4.15,Internet access (upload) [Teleport score],0.36
+Lausanne,Environmental Quality,8.81,Air quality [Teleport score],0.91
+Lausanne,Environmental Quality,8.81,Cleanliness [Teleport score],0.78
+Lausanne,Environmental Quality,8.81,Drinking water quality [Teleport score],0.95
+Lausanne,Environmental Quality,8.81,Urban greenery [Teleport score],0.89
+Lausanne,Travel Connectivity,6.51,Airport hub,101.00
+Lausanne,Travel Connectivity,6.51,Airport hub [Teleport score],0.47
+Lausanne,Travel Connectivity,6.51,Intercity train connectivity [Teleport score],0.83
+Lausanne,Outdoors,5.34,Urban area elevation (meters),453.00
+Lausanne,Outdoors,5.34,Presence of hills in city,1.00
+Lausanne,Outdoors,5.34,Presence of mountains in city,1.00
+Lausanne,Outdoors,5.34,Median peak in meters,985.00
+Lausanne,Outdoors,5.34,Elevation (hills or mountains) [Teleport score],0.34
+Lausanne,Outdoors,5.34,Water access [Teleport score],0.72
+Lausanne,Outdoors,5.34,Seaside waterbody,1.00
+Louisville,Cost of Living,6.36,Inflation [Teleport score],0.64
+Louisville,Cost of Living,6.36,A kilogram of Apples,3.60
+Louisville,Cost of Living,6.36,Bread,1.50
+Louisville,Cost of Living,6.36,A Cappuccino,4.20
+Louisville,Cost of Living,6.36,Movie ticket,10.00
+Louisville,Cost of Living,6.36,Monthly fitness club membership,36.00
+Louisville,Cost of Living,6.36,A beer,3.10
+Louisville,Cost of Living,6.36,Monthly public transport,56.00
+Louisville,Cost of Living,6.36,Lunch,11.00
+Louisville,Cost of Living,6.36,5km taxi ride,9.00
+Louisville,Cost of Living,6.36,Price of a meal at a restaurant,65.22
+Louisville,Healthcare,8.56,Healthcare expenditure [Teleport score],0.99
+Louisville,Healthcare,8.56,Life expectancy (years),79.28
+Louisville,Healthcare,8.56,Life expectancy [Teleport score],0.76
+Louisville,Healthcare,8.56,Healthcare quality [Teleport score],0.82
+Louisville,Internet Access,5.53,Download speed (Mbps),55.47
+Louisville,Internet Access,5.53,Internet access (download) [Teleport score],0.66
+Louisville,Internet Access,5.53,Upload speed (Mbps),10.13
+Louisville,Internet Access,5.53,Internet access (upload) [Teleport score],0.45
+Louisville,Environmental Quality,6.60,Air quality [Teleport score],0.59
+Louisville,Environmental Quality,6.60,Cleanliness [Teleport score],0.58
+Louisville,Environmental Quality,6.60,Drinking water quality [Teleport score],0.75
+Louisville,Environmental Quality,6.60,Urban greenery [Teleport score],0.71
+Louisville,Travel Connectivity,1.47,Airport hub,22.00
+Louisville,Travel Connectivity,1.47,Airport hub [Teleport score],0.17
+Louisville,Travel Connectivity,1.47,Intercity train connectivity [Teleport score],0.12
+Louisville,Outdoors,1.30,Urban area elevation (meters),141.00
+Louisville,Outdoors,1.30,Median peak in meters,254.00
+Louisville,Outdoors,1.30,Elevation (hills or mountains) [Teleport score],0.16
+Louisville,Outdoors,1.30,Water access [Teleport score],0.10
+Louisville,Outdoors,1.30,Seaside waterbody,1.00
+Manila,Cost of Living,8.75,Inflation [Teleport score],0.88
+Manila,Cost of Living,8.75,A kilogram of Apples,2.70
+Manila,Cost of Living,8.75,Bread,0.49
+Manila,Cost of Living,8.75,A Cappuccino,2.90
+Manila,Cost of Living,8.75,Movie ticket,4.60
+Manila,Cost of Living,8.75,Monthly fitness club membership,43.00
+Manila,Cost of Living,8.75,A beer,0.85
+Manila,Cost of Living,8.75,Monthly public transport,20.00
+Manila,Cost of Living,8.75,Lunch,4.40
+Manila,Cost of Living,8.75,5km taxi ride,3.90
+Manila,Cost of Living,8.75,Price of a meal at a restaurant,24.97
+Manila,Healthcare,2.86,Healthcare expenditure [Teleport score],0.18
+Manila,Healthcare,2.86,Life expectancy (years),68.50
+Manila,Healthcare,2.86,Life expectancy [Teleport score],0.11
+Manila,Healthcare,2.86,Healthcare quality [Teleport score],0.57
+Manila,Internet Access,4.61,Download speed (Mbps),20.93
+Manila,Internet Access,4.61,Internet access (download) [Teleport score],0.37
+Manila,Internet Access,4.61,Upload speed (Mbps),13.84
+Manila,Internet Access,4.61,Internet access (upload) [Teleport score],0.55
+Manila,Environmental Quality,1.68,Air quality [Teleport score],0.13
+Manila,Environmental Quality,1.68,Cleanliness [Teleport score],0.11
+Manila,Environmental Quality,1.68,Drinking water quality [Teleport score],0.24
+Manila,Environmental Quality,1.68,Urban greenery [Teleport score],0.19
+Manila,Travel Connectivity,2.63,Airport hub,78.00
+Manila,Travel Connectivity,2.63,Airport hub [Teleport score],0.39
+Manila,Travel Connectivity,2.63,Intercity train connectivity [Teleport score],0.14
+Manila,Outdoors,4.83,Urban area elevation (meters),14.00
+Manila,Outdoors,4.83,Presence of hills in city,1.00
+Manila,Outdoors,4.83,Presence of mountains in city,1.00
+Manila,Outdoors,4.83,Median peak in meters,550.00
+Manila,Outdoors,4.83,Elevation (hills or mountains) [Teleport score],0.23
+Manila,Outdoors,4.83,Water access [Teleport score],0.73
+Manila,Outdoors,4.83,Seaside access,1.00
+Minsk,Cost of Living,9.29,Inflation [Teleport score],0.93
+Minsk,Cost of Living,9.29,A kilogram of Apples,0.95
+Minsk,Cost of Living,9.29,Bread,0.18
+Minsk,Cost of Living,9.29,A Cappuccino,1.80
+Minsk,Cost of Living,9.29,Movie ticket,3.30
+Minsk,Cost of Living,9.29,Monthly fitness club membership,38.00
+Minsk,Cost of Living,9.29,A beer,0.83
+Minsk,Cost of Living,9.29,Monthly public transport,15.00
+Minsk,Cost of Living,9.29,Lunch,6.70
+Minsk,Cost of Living,9.29,5km taxi ride,2.60
+Minsk,Cost of Living,9.29,Price of a meal at a restaurant,39.04
+Minsk,Healthcare,4.13,Healthcare expenditure [Teleport score],0.36
+Minsk,Healthcare,4.13,Life expectancy (years),72.27
+Minsk,Healthcare,4.13,Life expectancy [Teleport score],0.34
+Minsk,Healthcare,4.13,Healthcare quality [Teleport score],0.54
+Minsk,Internet Access,4.86,Download speed (Mbps),21.47
+Minsk,Internet Access,4.86,Internet access (download) [Teleport score],0.38
+Minsk,Internet Access,4.86,Upload speed (Mbps),15.64
+Minsk,Internet Access,4.86,Internet access (upload) [Teleport score],0.60
+Minsk,Environmental Quality,7.05,Air quality [Teleport score],0.64
+Minsk,Environmental Quality,7.05,Cleanliness [Teleport score],0.97
+Minsk,Environmental Quality,7.05,Drinking water quality [Teleport score],0.49
+Minsk,Environmental Quality,7.05,Urban greenery [Teleport score],0.72
+Minsk,Travel Connectivity,3.77,Airport hub,41.00
+Minsk,Travel Connectivity,3.77,Airport hub [Teleport score],0.25
+Minsk,Travel Connectivity,3.77,Intercity train connectivity [Teleport score],0.51
+Minsk,Outdoors,4.91,Urban area elevation (meters),220.00
+Minsk,Outdoors,4.91,Median peak in meters,237.50
+Minsk,Outdoors,4.91,Elevation (hills or mountains) [Teleport score],0.16
+Minsk,Outdoors,4.91,Water access [Teleport score],0.83
+New Orleans,Cost of Living,4.99,Inflation [Teleport score],0.50
+New Orleans,Cost of Living,4.99,A kilogram of Apples,3.60
+New Orleans,Cost of Living,4.99,Bread,1.10
+New Orleans,Cost of Living,4.99,A Cappuccino,4.30
+New Orleans,Cost of Living,4.99,Movie ticket,12.00
+New Orleans,Cost of Living,4.99,Monthly fitness club membership,54.00
+New Orleans,Cost of Living,4.99,A beer,3.00
+New Orleans,Cost of Living,4.99,Monthly public transport,53.00
+New Orleans,Cost of Living,4.99,Lunch,18.00
+New Orleans,Cost of Living,4.99,5km taxi ride,8.70
+New Orleans,Cost of Living,4.99,Price of a meal at a restaurant,86.56
+New Orleans,Healthcare,8.31,Healthcare expenditure [Teleport score],0.99
+New Orleans,Healthcare,8.31,Life expectancy (years),79.28
+New Orleans,Healthcare,8.31,Life expectancy [Teleport score],0.76
+New Orleans,Healthcare,8.31,Healthcare quality [Teleport score],0.74
+New Orleans,Internet Access,6.45,Download speed (Mbps),89.68
+New Orleans,Internet Access,6.45,Internet access (download) [Teleport score],0.81
+New Orleans,Internet Access,6.45,Upload speed (Mbps),11.11
+New Orleans,Internet Access,6.45,Internet access (upload) [Teleport score],0.48
+New Orleans,Environmental Quality,5.67,Air quality [Teleport score],0.78
+New Orleans,Environmental Quality,5.67,Cleanliness [Teleport score],0.25
+New Orleans,Environmental Quality,5.67,Drinking water quality [Teleport score],0.43
+New Orleans,Environmental Quality,5.67,Urban greenery [Teleport score],0.81
+New Orleans,Travel Connectivity,1.76,Airport hub,39.00
+New Orleans,Travel Connectivity,1.76,Airport hub [Teleport score],0.24
+New Orleans,Travel Connectivity,1.76,Intercity train connectivity [Teleport score],0.11
+New Orleans,Outdoors,1.00,Urban area elevation (meters),19.00
+New Orleans,Outdoors,1.00,Median peak in meters,1.00
+New Orleans,Outdoors,1.00,Elevation (hills or mountains) [Teleport score],0.10
+New Orleans,Outdoors,1.00,Water access [Teleport score],0.10
+New Orleans,Outdoors,1.00,Seaside access,1.00
+Oulu,Cost of Living,0.00,A kilogram of Apples,2.70
+Oulu,Cost of Living,0.00,Bread,0.81
+Oulu,Cost of Living,0.00,A Cappuccino,3.80
+Oulu,Cost of Living,0.00,Movie ticket,14.00
+Oulu,Cost of Living,0.00,Monthly fitness club membership,56.00
+Oulu,Cost of Living,0.00,A beer,2.60
+Oulu,Cost of Living,0.00,Monthly public transport,64.00
+Oulu,Cost of Living,0.00,Lunch,14.00
+Oulu,Cost of Living,0.00,5km taxi ride,13.00
+Oulu,Healthcare,8.43,Healthcare expenditure [Teleport score],0.85
+Oulu,Healthcare,8.43,Life expectancy (years),81.08
+Oulu,Healthcare,8.43,Life expectancy [Teleport score],0.86
+Oulu,Healthcare,8.43,Healthcare quality [Teleport score],0.82
+Oulu,Internet Access,5.72,Download speed (Mbps),52.88
+Oulu,Internet Access,5.72,Internet access (download) [Teleport score],0.65
+Oulu,Internet Access,5.72,Upload speed (Mbps),11.88
+Oulu,Internet Access,5.72,Internet access (upload) [Teleport score],0.50
+Oulu,Environmental Quality,8.93,Air quality [Teleport score],0.95
+Oulu,Environmental Quality,8.93,Cleanliness [Teleport score],0.92
+Oulu,Environmental Quality,8.93,Drinking water quality [Teleport score],0.93
+Oulu,Environmental Quality,8.93,Urban greenery [Teleport score],0.78
+Oulu,Travel Connectivity,2.72,Airport hub,3.00
+Oulu,Travel Connectivity,2.72,Airport hub [Teleport score],0.10
+Oulu,Travel Connectivity,2.72,Intercity train connectivity [Teleport score],0.44
+Oulu,Outdoors,5.07,Median peak in meters,321.00
+Oulu,Outdoors,5.07,Elevation (hills or mountains) [Teleport score],0.18
+Oulu,Outdoors,5.07,Water access [Teleport score],0.84
+Oulu,Outdoors,5.07,Seaside access,1.00
+Pittsburgh,Cost of Living,4.80,Inflation [Teleport score],0.48
+Pittsburgh,Cost of Living,4.80,A kilogram of Apples,3.30
+Pittsburgh,Cost of Living,4.80,Bread,0.65
+Pittsburgh,Cost of Living,4.80,A Cappuccino,3.80
+Pittsburgh,Cost of Living,4.80,Movie ticket,10.00
+Pittsburgh,Cost of Living,4.80,Monthly fitness club membership,34.00
+Pittsburgh,Cost of Living,4.80,A beer,2.80
+Pittsburgh,Cost of Living,4.80,Monthly public transport,95.00
+Pittsburgh,Cost of Living,4.80,Lunch,12.00
+Pittsburgh,Cost of Living,4.80,5km taxi ride,11.00
+Pittsburgh,Cost of Living,4.80,Price of a meal at a restaurant,67.10
+Pittsburgh,Healthcare,8.58,Healthcare expenditure [Teleport score],0.99
+Pittsburgh,Healthcare,8.58,Life expectancy (years),79.28
+Pittsburgh,Healthcare,8.58,Life expectancy [Teleport score],0.76
+Pittsburgh,Healthcare,8.58,Healthcare quality [Teleport score],0.83
+Pittsburgh,Internet Access,8.67,Download speed (Mbps),84.12
+Pittsburgh,Internet Access,8.67,Internet access (download) [Teleport score],0.79
+Pittsburgh,Internet Access,8.67,Upload speed (Mbps),38.81
+Pittsburgh,Internet Access,8.67,Internet access (upload) [Teleport score],0.94
+Pittsburgh,Environmental Quality,6.87,Air quality [Teleport score],0.67
+Pittsburgh,Environmental Quality,6.87,Cleanliness [Teleport score],0.59
+Pittsburgh,Environmental Quality,6.87,Drinking water quality [Teleport score],0.56
+Pittsburgh,Environmental Quality,6.87,Urban greenery [Teleport score],0.93
+Pittsburgh,Travel Connectivity,1.74,Airport hub,38.00
+Pittsburgh,Travel Connectivity,1.74,Airport hub [Teleport score],0.23
+Pittsburgh,Travel Connectivity,1.74,Intercity train connectivity [Teleport score],0.11
+Pittsburgh,Outdoors,4.07,Urban area elevation (meters),253.00
+Pittsburgh,Outdoors,4.07,Presence of hills in city,1.00
+Pittsburgh,Outdoors,4.07,Median peak in meters,532.00
+Pittsburgh,Outdoors,4.07,Elevation (hills or mountains) [Teleport score],0.23
+Pittsburgh,Outdoors,4.07,Water access [Teleport score],0.58
+Pittsburgh,Outdoors,4.07,Seaside waterbody,1.00
+Reykjavik,Cost of Living,1.00,Inflation [Teleport score],0.10
+Reykjavik,Cost of Living,1.00,A kilogram of Apples,3.50
+Reykjavik,Cost of Living,1.00,Bread,1.80
+Reykjavik,Cost of Living,1.00,A Cappuccino,5.20
+Reykjavik,Cost of Living,1.00,Movie ticket,16.00
+Reykjavik,Cost of Living,1.00,Monthly fitness club membership,87.00
+Reykjavik,Cost of Living,1.00,A beer,3.90
+Reykjavik,Cost of Living,1.00,Monthly public transport,120.00
+Reykjavik,Cost of Living,1.00,Lunch,26.00
+Reykjavik,Cost of Living,1.00,5km taxi ride,19.00
+Reykjavik,Cost of Living,1.00,Price of a meal at a restaurant,127.52
+Reykjavik,Healthcare,8.58,Healthcare expenditure [Teleport score],0.83
+Reykjavik,Healthcare,8.58,Life expectancy (years),82.65
+Reykjavik,Healthcare,8.58,Life expectancy [Teleport score],0.96
+Reykjavik,Healthcare,8.58,Healthcare quality [Teleport score],0.79
+Reykjavik,Internet Access,6.74,Download speed (Mbps),56.85
+Reykjavik,Internet Access,6.74,Internet access (download) [Teleport score],0.67
+Reykjavik,Internet Access,6.74,Upload speed (Mbps),19.69
+Reykjavik,Internet Access,6.74,Internet access (upload) [Teleport score],0.68
+Reykjavik,Environmental Quality,8.62,Air quality [Teleport score],0.98
+Reykjavik,Environmental Quality,8.62,Cleanliness [Teleport score],0.74
+Reykjavik,Environmental Quality,8.62,Drinking water quality [Teleport score],1.00
+Reykjavik,Environmental Quality,8.62,Urban greenery [Teleport score],0.73
+Reykjavik,Travel Connectivity,1.13,Airport hub,36.00
+Reykjavik,Travel Connectivity,1.13,Airport hub [Teleport score],0.23
+Reykjavik,Outdoors,4.80,Urban area elevation (meters),61.00
+Reykjavik,Outdoors,4.80,Presence of hills in city,1.00
+Reykjavik,Outdoors,4.80,Presence of mountains in city,1.00
+Reykjavik,Outdoors,4.80,Median peak in meters,477.00
+Reykjavik,Outdoors,4.80,Elevation (hills or mountains) [Teleport score],0.22
+Reykjavik,Outdoors,4.80,Water access [Teleport score],0.74
+Reykjavik,Outdoors,4.80,Seaside access,1.00
