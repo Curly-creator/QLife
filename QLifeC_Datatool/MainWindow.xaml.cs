@@ -16,7 +16,7 @@ namespace QLifeC_Datatool
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {           
+    {
         public Slider[] FilterSliderArray;
         public CheckBox[] FilterCheckBoxArray;
         public Label[] FilterLabelArray;
@@ -25,28 +25,24 @@ namespace QLifeC_Datatool
         public CityList cityList = new CityList();
 
         public string[] FileTypeAllowed = { ".xml", ".csv" };
-        
-        //Method Status for unit test purposes to check if the method was successfully implemented.
-        public bool MethodStatus;
-        public string ErrorNotification;
 
         public API_Request test = new API_Request("https://api.teleport.org/api/urban_areas");
 
         public double[] FilterValues;
         public MainWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
 
-            FilterSliderArray = new Slider[] { sl_CoLFilter, sl_HCFilter, sl_IAFilter, sl_EQFilter, sl_TCFilter,  sl_OFilter };
+            FilterSliderArray = new Slider[] { sl_CoLFilter, sl_HCFilter, sl_IAFilter, sl_EQFilter, sl_TCFilter, sl_OFilter };
             FilterCheckBoxArray = new CheckBox[] { cb_CoLFilter, cb_HCFilter, cb_IAFilter, cb_EQFilter, cb_TCFilter, cb_OFilter };
             FilterLabelArray = new Label[] { lbl_CoL, lbl_HC, lbl_IA, lbl_EQ, lbl_TC, lbl_O };
-            SortButtonArray = new Button[] { btn_SortCoL, btn_SortHC, btn_SortIA, btn_SortEQ, btn_SortTC, btn_SortO};
+            SortButtonArray = new Button[] { btn_SortCoL, btn_SortHC, btn_SortIA, btn_SortEQ, btn_SortTC, btn_SortO };
 
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }
 
-        public double[] GetFilterValues (Slider[] ArrayOfSlider)
+        public double[] GetFilterValues(Slider[] ArrayOfSlider)
         {
             double[] FilterValues = new double[ArrayOfSlider.Length];
             for (int i = 0; i < ArrayOfSlider.Length; i++)
@@ -56,7 +52,7 @@ namespace QLifeC_Datatool
             return FilterValues;
         }
 
-        public bool[] GetFilterStatus (CheckBox[] ArrayOfCheckbox)
+        public bool[] GetFilterStatus(CheckBox[] ArrayOfCheckbox)
         {
             bool[] FilterStatus = new bool[ArrayOfCheckbox.Length];
             for (int i = 0; i < ArrayOfCheckbox.Length; i++)
@@ -82,7 +78,7 @@ namespace QLifeC_Datatool
         public void SliderValueChanged(object slider, RoutedPropertyChangedEventArgs<double> e)
         {
             Slider actSlider = (Slider)slider;
-           
+
             for (int i = 0; i < FilterSliderArray.Length; i++)
             {
                 if (actSlider == FilterSliderArray[i])
@@ -96,18 +92,18 @@ namespace QLifeC_Datatool
                     Dgd_MainGrid.Items.Refresh();
                     break;
                 }
-            }  
+            }
         }
 
         public void FilterStatusChanged(object sender, RoutedEventArgs e)
         {
-            cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));          
+            cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
             Dgd_MainGrid.Items.Refresh();
         }
 
         private void btn_Reset_Click(object sender, RoutedEventArgs e)
         {
-          
+
             cityList.Reset();
             FilterReset();
             tbx_SearchBar.Text = "";
@@ -126,7 +122,7 @@ namespace QLifeC_Datatool
             {
                 FilterCheckBoxArray[i].IsChecked = false;
             }
-        }      
+        }
 
         private void SortButton_Click(object sender, RoutedEventArgs e)
         {
@@ -134,9 +130,9 @@ namespace QLifeC_Datatool
             {
                 if (SortButtonArray[i] == sender)
                 {
-                    cityList.SortByCategoryScore(i);                   
+                    cityList.SortByCategoryScore(i);
                     break;
-                }                
+                }
             }
             Dgd_MainGrid.Items.Refresh();
         }
@@ -177,6 +173,7 @@ namespace QLifeC_Datatool
                 Dgd_MainGrid.Items.Refresh();
             }
         }
+
         /// <summary>
         /// The method takes type of file (extension) and the path of the file to be imported. Checks if it is the right format and imports.
         /// </summary>
@@ -185,24 +182,19 @@ namespace QLifeC_Datatool
         public void CheckFileExtandImport(string FileExt, string FilePath)
         {
             ITarget target;
-            try
+            //try
             {
                 //File Type is XML.
                 if (FileExt == FileTypeAllowed[0])
                 {
-                    target = new AdapterXML();
-                    target.CallImportAdapter(FileExt, FilePath);
-                    cityList.Backup = target.cityList;
-                    cityList.AddRange(cityList.Backup);
-                    MessageBox.Show(target.StatusNotification, "Import Window", MessageBoxButton.OK, MessageBoxImage.Information);
+                    target = new AdapterXML(FilePath);
+                    cityList = target.cityList;
                 }
                 //File Type is CSV.
                 else if (FileExt == FileTypeAllowed[1])
                 {
-                    target = new AdapterCSV();
-                    target.CallImportAdapter(FileExt, FilePath);
-                    cityList.Backup = target.cityList;
-                    cityList.AddRange(cityList.Backup);
+                    target = new AdapterCSV(FilePath);
+                    cityList = target.cityList;
                     MessageBox.Show(target.StatusNotification, "Import Window", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 //File Type is invalid.
@@ -210,13 +202,6 @@ namespace QLifeC_Datatool
                 {
                     MessageBox.Show("This is not a valid file extension", "Import Window", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
-                MethodStatus = true;
-            }
-            catch (Exception ex)
-            {
-                ErrorNotification = "Error: " + ex.Message;
-                MethodStatus = false;
             }
         }
 
@@ -271,34 +256,6 @@ namespace QLifeC_Datatool
         }
 
         /// <summary>
-        /// Method to trigger the actual file export by parsing the list and the opened stream to the Adapter that fits the file extension chosen by user
-        /// </summary>
-        /// <param name="FileExt"></param>
-        /// <param name="qLifeStream"></param>
-        /// <param name="ListForExport"></param>
-        public void StartFileExport(string FileExt, Stream qLifeStream, CityList ListForExport)
-        {
-            ITarget target;
-
-            string caseSwitch = FileExt;
-            switch (caseSwitch)
-            {
-                case ".xml":
-                    target = new AdapterXML();
-                    target.CallExportAdapter(qLifeStream, ListForExport);
-                    break;
-                case ".csv":
-                    target = new AdapterCSV();
-                    target.CallExportAdapter(qLifeStream, ListForExport);
-                    break;
-                default:
-                    //if file extensions get added to Filter of SafeFileDialog without implementing an adapter for them:
-                    MessageBox.Show("There is no adapter for the file extention you chose.");
-                    break;
-            }
-        }
-
-        /// <summary>
         /// checks if a list can be exported, there are 3 possible outcomes: null, true and false
         /// null) if list has not been initialized, export does not start, user gets information
         /// false) if list is empty, user is asked if the export should continue and chooses NO (export then cancelled)
@@ -323,6 +280,32 @@ namespace QLifeC_Datatool
 
             }
             else return true;
+        }
+
+        /// <summary>
+        /// Method to trigger the actual file export by parsing the list and the opened stream to the Adapter that fits the file extension chosen by user
+        /// </summary>
+        /// <param name="FileExt"></param>
+        /// <param name="qLifeStream"></param>
+        /// <param name="ListForExport"></param>
+        public void StartFileExport(string FileExt, Stream qLifeStream, CityList ListForExport)
+        {
+            ITarget target;
+
+            string caseSwitch = FileExt;
+            switch (caseSwitch)
+            {
+                case ".xml":
+                    target = new AdapterXML(qLifeStream, ListForExport);
+                    break;
+                case ".csv":
+                    target = new AdapterCSV(qLifeStream, ListForExport);
+                    break;
+                default:
+                    //if file extensions get added to Filter of SafeFileDialog without implementing an adapter for them:
+                    MessageBox.Show("There is no adapter for the file extention you chose.");
+                    break;
+            }
         }
     }
 }

@@ -19,9 +19,6 @@ namespace QLifeC_Datatool
         private string _FileName;
         public string FileName { get => _FileName; set => _FileName = value; }
 
-        //Extensions allowed for the user to import. This is an array, we can extend it based on other types in future.
-        //public string[] FileTypeAllowed { get; set; } = { ".xml", ".csv" };
-
         //Path of the file user is trying to import.
         private string _FilePath;
         public string FilePath { get => _FilePath; set => _FilePath = value; }
@@ -30,6 +27,7 @@ namespace QLifeC_Datatool
         private string _FileExt;
         public string FileExt { get => _FileExt; set => _FileExt = value; }
 
+        //Stream used for export.
         private Stream _FileStream;
         public Stream FileStream { get => _FileStream; set => _FileStream = value; }
 
@@ -42,22 +40,25 @@ namespace QLifeC_Datatool
         private string _StatusNotification;
         public string StatusNotification { get => _StatusNotification; set => _StatusNotification = value; }
 
+        /// <summary>
+        /// The empty constructor to initialize the class.
+        /// </summary>
         public AdapterCSV()
         {
 
         }
 
         /// <summary>
-        /// gets called by adapter interface if CheckIfListCanBeExportedAtAll in MainWindow was successfull, passes the parameters to the WriteToCSV method
+        /// This is the constructor which will be initialized for EXPORTING a CSV file. It requires a stream and a list to be exported.
         /// </summary>
-        /// <param name="stream"></param>
-        /// <param name="cityList"></param>
-        public void CallExportAdapter(Stream stream, CityList cityList)
+        /// <param name="qLifeStream"></param>
+        /// <param name="ListForExport"></param>
+        public AdapterCSV(Stream qLifeStream, CityList ListForExport)
         {
             //the follwoing try catch is only for UnitTest reasons. Actually I am already checking the List in MainWindow Method CheckIfListCanBeExportedAtAll so that the file is not exported at all if null, but I cannot write UnitTest for Methods in MainWindow
             try
             {
-                WriteToCSV(stream, cityList);
+                WriteToCSV(qLifeStream, ListForExport);
                 MessageBox.Show("Your export was successful.", "CSV export complete", MessageBoxButton.OK, MessageBoxImage.Information);
                 MethodStatus = true;
             }
@@ -66,7 +67,16 @@ namespace QLifeC_Datatool
                 MessageBox.Show("Attention! You are trying to export a list that is not initialized. No data will be exported to this csv file! \n Error: " + ex.Message, "Export Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 MethodStatus = false;
             }
+        }
 
+        /// <summary>
+        /// This is the constructor which will be initialized for IMPORTING a CSV file. It requires just the file path.
+        /// </summary>
+        /// <param name="FilePath"></param>
+        public AdapterCSV(string FilePath)
+        {
+            ReadParseCSV(FilePath);
+            StatusNotification = "CSV Import successful";
         }
 
         /// <summary>
@@ -99,14 +109,10 @@ namespace QLifeC_Datatool
             }
         }
 
-
-        public void CallImportAdapter(string FileExtension, string FilePath)
-        {
-               ReadParseCSV(FilePath);
-               StatusNotification = "CSV Import successful";
-        }
-
-
+        /// <summary>
+        /// This method reads and parses a CSV file into the city list.
+        /// </summary>
+        /// <param name="Importfilepath"></param>
         public void ReadParseCSV(string Importfilepath)
         {
             try
@@ -158,12 +164,14 @@ namespace QLifeC_Datatool
                     }
                 }
                 cityList.Add(city);
+
                 //If the parse is successful, this variable will be set to TRUE.
                 MethodStatus = true;
             }
             catch (Exception ex)
             {
                 StatusNotification = "CSV Parse Error: " + ex.Message;
+
                 //If the parse is unsuccessful, this variable will be set to FALSE.
                 MethodStatus = false;
             }
