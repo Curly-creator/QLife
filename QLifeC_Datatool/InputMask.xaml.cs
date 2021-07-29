@@ -130,7 +130,6 @@ namespace QLifeC_Datatool
         }
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-
             cityToBeEdit = CityToList();
             ((MainWindow)Application.Current.MainWindow).cityList[((MainWindow)Application.Current.MainWindow).Dgd_MainGrid.SelectedIndex] = CityToList(); ;
             this.Close();
@@ -138,9 +137,12 @@ namespace QLifeC_Datatool
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {     
+            //idea behind errorCounter: if some of the input is in a wrong format and f.e. values contain letters or the name contains symbols
+            //the error counter is 1, or 2, or...
+            //later before the city is added to the list manually - this only works if the errorCounter is 0
             int errorCounter = 0;
 
-            //testen ob name schon existiert.
+            //test if name already exists
             for (int i = 0; i < ((MainWindow)Application.Current.MainWindow).cityList.Count; i++)   //mit schleife durch alle namen der bisherigen liste gehen
             {
                 if (((MainWindow)Application.Current.MainWindow).cityList[i].Name == cityName_tb.Text)  //if it is same as in nametextbox -> frage mit result
@@ -157,42 +159,52 @@ namespace QLifeC_Datatool
                 }
             }
 
+            //test if name textbox is empty
             if (CheckIfNameIsEmpty(cityName_tb.Text))
             {
                 errorCounter++;
                 MessageBox.Show("Please type in a valid city name.");
             }
-
-                if (!CheckIfNameIsInTitleCase(cityName_tb.Text))
-                {
-                    MessageBoxResult result = MessageBox.Show("The City Name was in a wrong format, should this automatically be fixed?", "City Name to Title Case", MessageBoxButton.YesNo);
-                    switch (result)
-                    {
-                        case MessageBoxResult.Yes:
-                            ConvertToTitleCase(cityName_tb.Text);
-                            break;
-                        case MessageBoxResult.No:
-                            break;
-                    }
-                }
             
-            if (!CheckIfContainsNoSymbols(cityName_tb.Text))   //if NAME contains symbols which are not letters:
+            //test if name textbox contains invalid symbols (like ?!<>§$"...)
+            if (!CheckIfContainsNoSymbols(cityName_tb.Text))
             { 
                 errorCounter++;
             }
 
+            //test if name is in Title Case ("Berlin" true, "bErlin" false)
+            //possibility for user to automatically let the problem being fixed
+            if (!CheckIfNameIsInTitleCase(cityName_tb.Text))
+            {
+                MessageBoxResult result = MessageBox.Show("The City Name was in a wrong format, should this automatically be fixed?", "City Name to Title Case", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        ConvertToTitleCase(cityName_tb.Text);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
+            }            
+            
+            //test if subcategory value textboxes contain valid values ('0,7') 
             if (!CheckIfContainsOnlyNumbers())
             {
                 errorCounter++;
             }
 
+            //test if all input is valid
             if (errorCounter == 0)
             {
-                CityToList(); //at this point the city is a checkedCity 
+                CityToList();
             }
-            ((MainWindow)Application.Current.MainWindow).cityList.Add(cityToBeAdded); //here the city is manually added to jonas backup citylist            
+
+            //here the city is manually added to jonas backup citylist            
+            ((MainWindow)Application.Current.MainWindow).cityList.Add(cityToBeAdded);
+            
             this.Close();
         }
+
         public bool CheckIfContainsOnlyNumbers()
         {
             bool containsOnlyNumbers=true;
@@ -249,7 +261,7 @@ namespace QLifeC_Datatool
             bool otherLettersAreLow = false;
             if (cityName_tb.Text.Length == 1) otherLettersAreLow = true;
 
-            if (char.IsUpper(cityName[0])) //methode for cities with easy names - not yet for 'Bad Mergentheim' ->string an leerstelle aufteilen in array
+            if (char.IsUpper(cityName[0])) 
                 firstLetterIsUp = true;
             else firstLetterIsUp = false;
 
@@ -274,7 +286,6 @@ namespace QLifeC_Datatool
                 tmp_isEmpty = true;
             }
             else tmp_isEmpty = false;
-               // AddCityToList();
             return tmp_isEmpty;
         }
         private City CityToList()
@@ -288,8 +299,11 @@ namespace QLifeC_Datatool
                     cityToBeAdded.Categories[i].Score = allSliders[i].Value;
                 }
 
+                //j counts from 0-5 to go through the 6 big Categories =indexOfCat
                 for (int j = 0; j < catTextBoxListOfList.Count; j++)
                 {
+                    //.Count is how many subcategories (11,4,4,4,3,7) the current cat has
+                    //the [i] goes through the 11 subcategories and adds them to the city dataset
                     for (int i = 0; i < catTextBoxListOfList[j].Count; i++)
                     {
                         if (catTextBoxListOfList[j][i].Text.Contains('.'))
@@ -297,15 +311,12 @@ namespace QLifeC_Datatool
                             catTextBoxListOfList[j][i].Text = catTextBoxListOfList[j][i].Text.Replace('.', ',');//direct change from . to , in XAML selectionchange //check whats wrong                   
                         }
                         AddSubcategory(j, catLabelListOfList[j][i].Content.ToString().Remove(catLabelListOfList[j][i].Content.ToString().Length - 1), double.Parse(catTextBoxListOfList[j][i].Text));     //so complicated because 'Inflation::' -> 'Inflation:'
-                    //j counts from 0-5 to go through the 6 big Categories =indexOfCat
-                    //catLabelListOfList[j].Count is how many subcategories (11,4,4,4,3,7) the current cat has
-                    //the [i] goes through the 11 subcategories and adds them to the city'Datensatz'
                     } 
                 }
             }
             catch(System.FormatException)
             {
-                MessageBox.Show("Nice try. Every subcategorie has to has a value, even if it's 0. AND NO LETTERS.");
+                MessageBox.Show("Nice try, du Schlingel. \nSomething went wrong: Subcategory Textboxes shouldn't \n-be empty.\n-contain letters.\n-contain invalid symbols.");
             }
             return cityToBeAdded;
         }

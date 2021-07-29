@@ -301,11 +301,13 @@ namespace QLifeC_Datatool
         {
             InputMask addingCityWindow = new InputMask();
             addingCityWindow.ShowDialog();
-            Dgd_MainGrid.Items.Refresh();              //refresh CityList im View
+            //refresh CityList im View after adding a city
+            Dgd_MainGrid.Items.Refresh();              
         }
 
         private void btn_DelEntry_Click(object sender, RoutedEventArgs e)
         {
+            //check if a city is selected
             if (Dgd_MainGrid.SelectedValue == null)
             {
                 MessageBox.Show("Please select a city you want to delete first.");
@@ -317,15 +319,15 @@ namespace QLifeC_Datatool
                 {
                     case MessageBoxResult.Yes:
                         int i = (Dgd_MainGrid.SelectedIndex);
-                        cityList.RemoveAt(i); //Lor:todo
+                        cityList.RemoveAt(i);
                         break;
                     case MessageBoxResult.No:
                         MessageBox.Show("The city is still here.", "Deleting Chosen City");
                         break;
                 }
             }
-            
-            Dgd_MainGrid.Items.Refresh();                   // refresh the datagrid (after deleting the selected city)
+            // refresh the datagrid (after deleting the selected city)
+            Dgd_MainGrid.Items.Refresh();                   
         }
 
         private void btn_UpdEntry_Click(object sender, RoutedEventArgs e)

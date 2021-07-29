@@ -8,12 +8,13 @@ namespace UnitTest
 {
     public class AddingDeletingFeatureTesting
     {
+        //Initializing all three Checking-Methods. Which are to be tested.
         public bool CheckIfNameIsInTitleCase(string cityName)
         {
             bool firstLetterIsUp;
             bool otherLettersAreLow=false;
 
-            if (char.IsUpper(cityName[0])) //methode for cities with easy names - not yet for 'Bad Mergentheim' ->string an leerstelle aufteilen in array
+            if (char.IsUpper(cityName[0])) 
                 firstLetterIsUp = true;
             else firstLetterIsUp = false;
 
@@ -40,6 +41,7 @@ namespace UnitTest
             }
             return tmp_isEmpty;
         }
+
         public bool CheckIfContainsNoSymbols(string cityName)
         {
             char[] symbols = new char[] { '?', '!', '.', '°', '^', '"', '§', '$', '%', '&', '/', '(', ')', '=', '`', '´', '+', '*', '~', '}', ']', '[', '{', '#', '-', '_', ':', ',', ';', '<', '>', '}' };// ohne backslash ohne '\
@@ -53,6 +55,8 @@ namespace UnitTest
             }
             return containsNoSymbol;
         }
+
+        //4 unit tests:
         [Fact]
         public void TestTitleCaseMethod()
         {
@@ -117,5 +121,9 @@ namespace UnitTest
             //Assert
             Assert.Equal(expected, actual);
         }*/
+        
+        //möglicher test:testen ob beim erstellen einer city dann diese 6 categories besitzt
+        //in diesem unittest kann categorie[0] als enum noch cost of living heissen
+
     }
 }

@@ -31,13 +31,13 @@
 
         <!--All the labels are in this stack panel - not yet
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Grid.RowSpan="7"> -->
-            <Label Content="City Name:" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left"/>
+            <Label Content="CITY NAME:" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left"/>
             <Label Content="COST OF LIVING:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-            <Label Content="Healthcare:" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-            <Label Content="Internet Access:" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-            <Label Content="Enviromental Quality:" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-            <Label Content="Travel Connectivity:" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-            <Label Content="Outdoors:" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Label Content="HEALTHCARE:" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Label Content="INTERNET ACCESS:" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Label Content="ENVIROMENTAL QUALITY:" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Label Content="TRAVEL CONNECTIVITY:" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Label Content="OUTDOORS:" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
         <!--</StackPanel>-->
 
         <!--Defining the meta grid structure of cost of living.-->
