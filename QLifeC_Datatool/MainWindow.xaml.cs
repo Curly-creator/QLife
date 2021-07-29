@@ -163,9 +163,8 @@ namespace QLifeC_Datatool
 
         private void btn_NewEntry_Click(object sender, RoutedEventArgs e)
         {
-            InputMask AddingCityWindow = new InputMask();
-            AddingCityWindow.ShowDialog();
-
+            InputMask addingCityWindow = new InputMask();
+            addingCityWindow.ShowDialog();
             Dgd_MainGrid.Items.Refresh();              //refresh CityList im View
         }
 
@@ -198,7 +197,7 @@ namespace QLifeC_Datatool
             if (Dgd_MainGrid.SelectedValue != null)
             {
                 
-                AddCity editCityWindow = new AddCity(cityList[Dgd_MainGrid.SelectedIndex]);
+                InputMask editCityWindow = new InputMask(cityList[Dgd_MainGrid.SelectedIndex]);
                 editCityWindow.ShowDialog();
                 Dgd_MainGrid.Items.Refresh();
             }

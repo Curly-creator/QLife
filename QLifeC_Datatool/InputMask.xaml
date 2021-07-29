@@ -248,7 +248,7 @@
         </StackPanel>
 
         <!--All the Sliders and the button are in this grid column 3 (or 2)-->
-        <Button x:Name="add_bt" Content="Add To List" Click="Button_Click" Grid.Column="3" Grid.Row="1" Width="120" Height="30"/>
+        <Button x:Name="add_bt" Content="Add To List" Click="ButtonAdd_Click" Grid.Column="3" Grid.Row="1" Width="120" Height="30"/>
         <Button x:Name="edit_bt" Content="Save changes" Visibility="Hidden" Click="ButtonEdit_Click" Grid.Column="3" Grid.Row="1" Width="120" Height="30"/>
 
         <Slider x:Name="col_sd" Grid.Column="1" Grid.Row="7" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="col_sd_ValueChanged"/>
