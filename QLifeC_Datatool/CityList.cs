@@ -28,16 +28,15 @@ namespace QLifeC_Datatool
             UpdateBackup();
         }
 
-        public void FilterByCategoryScore(double[] valueOfFilter, bool[] filterIsActive)
+        public List<City> FilterByCategoryScore(double[] valueOfFilter, bool[] filterIsActive)
         {
             List<City> FilterList = new List<City>();
 
-            foreach (var city in Backup)
+            foreach (var city in this)
                 if (Filter(city, 0, valueOfFilter, filterIsActive))
                     FilterList.Add(city);
-
-            this.Clear();
-            this.AddRange(FilterList);
+            
+            return FilterList;
         }
 
         private bool Filter(City city, int indexOfCategory, double[] valueOfFilter, bool[] filterIsActive)

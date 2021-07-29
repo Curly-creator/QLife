@@ -47,30 +47,38 @@ namespace QLifeC_Datatool
 
         }
 
+        /// <summary>
+        /// gets called by adapter interface if CheckIfListCanBeExportedAtAll in MainWindow was successfull, passes the parameters to the WriteToCSV method
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="cityList"></param>
         public void CallExportAdapter(Stream stream, CityList cityList)
         {
+            //the follwoing try catch is only for UnitTest reasons. Actually I am already checking the List in MainWindow Method CheckIfListCanBeExportedAtAll so that the file is not exported at all if null, but I cannot write UnitTest for Methods in MainWindow
             try
             {
-                //the follwoing if else code is only for UnitTest reasons. Actually I am already checking the List in MainWindow Method CheckIfListCanBeExportedAtAll so that the file is not exported at all, but I cannot write UnitTest for Methods in MainWindow
-                if (cityList != null)
-                {
-                    WriteToCSV(stream, cityList);
-                    MessageBox.Show("Your export was successful.", "CSV export complete", MessageBoxButton.OK, MessageBoxImage.Information);
-                    MethodStatus = true;
-                }
+                WriteToCSV(stream, cityList);
+                MessageBox.Show("Your export was successful.", "CSV export complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                MethodStatus = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Attention! You are trying to export a list that is not initialized. No data will be exported to this csv file! \n Error: " + ex.Message, "Download Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Attention! You are trying to export a list that is not initialized. No data will be exported to this csv file! \n Error: " + ex.Message, "Export Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 MethodStatus = false;
             }
-            
+
         }
 
+        /// <summary>
+        /// turns the data of chosen list into a comma separated value format and parses it via streamwriter into a file
+        /// </summary>
+        /// <param name="csvstream"></param>
+        /// <param name="cityList"></param>
         public void WriteToCSV(Stream csvstream, CityList cityList)
         {
             using StreamWriter exportCSV = new StreamWriter(csvstream);
 
+            //adding headers into the file
             exportCSV.WriteLine("City_Name, Category_Name, Overall_Category_Score, SubCategory_Label, SubCategory_Score");
             foreach (City city in cityList)
             {

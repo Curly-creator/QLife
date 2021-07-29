@@ -11,13 +11,13 @@ namespace UnitTest
     public class DownloadFeatureTesting
     {
         //for Test1 and for Test4:
-        public List<City> nullCityList;
-        
+        public CityList nullCityList;
+
         //for Test2:
-        public List<City> emptyList = new List<City>();
+        public CityList emptyList = new CityList();
 
         //for Test3:
-        public List<City> mockCityList = new List<City>();
+        public CityList mockCityList = new CityList();
 
 
         [Fact]
@@ -28,6 +28,8 @@ namespace UnitTest
             AdapterXML nullXML = new AdapterXML();
             nullXML.CallExportAdapter(teststream, nullCityList);
             Assert.False(nullXML.MethodStatus);
+
+            teststream.Close();
         }
 
         [Fact]
@@ -38,19 +40,23 @@ namespace UnitTest
             AdapterXML emptyXML = new AdapterXML();
             emptyXML.CallExportAdapter(teststream, emptyList);
             Assert.True(emptyXML.MethodStatus);
+
+            teststream.Close();
         }
 
         [Fact]
         public void Test3() //testing a list that contains data
         {
-            string mypath = Directory.GetCurrentDirectory() + "\\DownloadTestingFiles\\mockCityList.xml";
+            string mypath = Directory.GetCurrentDirectory() + "\\DownloadTestingFiles\\mockCityList.csv";
             Stream teststream = File.OpenWrite(mypath);
-
-            City Mocktown = new City();
-            mockCityList.Add(Mocktown);
+            City Testcity = new City();
+            Testcity.Name = "Mocktown";
+            mockCityList.Add(Testcity);
             AdapterCSV mockCSV = new AdapterCSV();
             mockCSV.CallExportAdapter(teststream, mockCityList);
             Assert.True(mockCSV.MethodStatus);
+
+            teststream.Close();
         }
 
         [Fact]
@@ -61,6 +67,8 @@ namespace UnitTest
             AdapterCSV nullCSV = new AdapterCSV();
             nullCSV.CallExportAdapter(teststream, nullCityList);
             Assert.False(nullCSV.MethodStatus);
+
+            teststream.Close();
         }
     }
 }
