@@ -14,6 +14,10 @@ namespace QLifeC_Datatool
         {
 
         }
+        public SubCategory(string label)
+        {
+            Label = label;
+        }
 
         public string Label { get => _Label; set => _Label = value; }
         public string Type { get => _Type; set => _Type = value; }

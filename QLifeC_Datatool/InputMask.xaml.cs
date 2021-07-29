@@ -107,23 +107,23 @@ namespace QLifeC_Datatool
             cityName_tb.Text = cityToBeEdit.Name;
             for (int i = 0; i < 6; i++)
             {
-                if (Math.Round(cityToBeEdit.Categories[i].Score.ScoreOutOf10, 1) == 0)
+                if (Math.Round(cityToBeEdit.Categories[i].Score, 1) == 0)
                 {
                     allCheckBox[i].IsChecked = true;
                 }
                 else
                 {
                     allCheckBox[i].IsChecked = false;
-                    allSliders[i].Value = cityToBeEdit.Categories[i].Score.ScoreOutOf10;
+                    allSliders[i].Value = cityToBeEdit.Categories[i].Score;
                     allLabelSliders[i].Content = Math.Round(allSliders[i].Value, 1);
                 }
 
             }
             for (int j = 0; j < catTextBoxListOfList.Count; j++)
             {
-                for (int i = 0; i < cityToBeEdit.Categories[j].Data.Count; i++)
+                for (int i = 0; i < cityToBeEdit.Categories[j].SubCategories.Count; i++)
                 {
-                    catTextBoxListOfList[j][i].Text = cityToBeEdit.Categories[j].Data[i].NumberValue.ToString();
+                    catTextBoxListOfList[j][i].Text = cityToBeEdit.Categories[j].SubCategories[i].Value.ToString();
                 }
             }
 
@@ -190,7 +190,7 @@ namespace QLifeC_Datatool
             {
                 CityToList(); //at this point the city is a checkedCity 
             }
-            ((MainWindow)Application.Current.MainWindow).cityList.Add(cityToBeAdded); //here the city is manually added to your testCityList
+            ((MainWindow)Application.Current.MainWindow).cityList.Add(cityToBeAdded); //here the city is manually added to jonas backup citylist            
             this.Close();
         }
         public bool CheckIfContainsOnlyNumbers()
@@ -281,18 +281,21 @@ namespace QLifeC_Datatool
         {
             try
             {
-                cityToBeAdded = new City(cityName_tb.Text);
+                cityToBeAdded = new City { Name = cityName_tb.Text };
 
                 for(int i=0; i<6; i++)
                 {
-                    cityToBeAdded.Categories[i].Score.ScoreOutOf10 = allSliders[i].Value;
+                    cityToBeAdded.Categories[i].Score = allSliders[i].Value;
                 }
 
-                for (int j = 0; j < catLabelListOfList.Count; j++)
+                for (int j = 0; j < catTextBoxListOfList.Count; j++)
                 {
-                    for (int i = 0; i < catLabelListOfList[j].Count; i++)
+                    for (int i = 0; i < catTextBoxListOfList[j].Count; i++)
                     {
-                        if(catLabelListOfList[j][i].Content.ToString().Contains('.')) catTextBoxListOfList[j][i].Text.Replace('.', ',');//direct change from . to , in XAML selectionchange //check whats wrong
+                        if (catTextBoxListOfList[j][i].Text.Contains('.'))
+                        {
+                            catTextBoxListOfList[j][i].Text = catTextBoxListOfList[j][i].Text.Replace('.', ',');//direct change from . to , in XAML selectionchange //check whats wrong                   
+                        }
                         AddSubcategory(j, catLabelListOfList[j][i].Content.ToString().Remove(catLabelListOfList[j][i].Content.ToString().Length - 1), double.Parse(catTextBoxListOfList[j][i].Text));     //so complicated because 'Inflation::' -> 'Inflation:'
                     //j counts from 0-5 to go through the 6 big Categories =indexOfCat
                     //catLabelListOfList[j].Count is how many subcategories (11,4,4,4,3,7) the current cat has
@@ -309,9 +312,9 @@ namespace QLifeC_Datatool
 
         public void AddSubcategory(int indexOfCcat, string label, double value)
         {
-            Data tmp_subcat = new Data(label);
-            tmp_subcat.NumberValue = value;
-            cityToBeAdded.Categories[indexOfCcat].Data.Add(tmp_subcat);
+            SubCategory tmp_subcat = new SubCategory(label);
+            tmp_subcat.Value = value;
+            cityToBeAdded.Categories[indexOfCcat].SubCategories.Add(tmp_subcat);
         }
 
         private void col_sd_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

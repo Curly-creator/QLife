@@ -68,6 +68,7 @@ namespace QLifeC_Datatool
 
         private void btn_Download_Click(object sender, RoutedEventArgs e)
         {
+            cityList.Clear();
             cityList.GetCityScores("https://api.teleport.org/api/urban_areas/");
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
@@ -101,14 +102,14 @@ namespace QLifeC_Datatool
 
         public void FilterStatusChanged(object sender, RoutedEventArgs e)
         {
-            cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));          
+            Dgd_MainGrid.ItemsSource = cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));          
             Dgd_MainGrid.Items.Refresh();
         }
 
         private void btn_Reset_Click(object sender, RoutedEventArgs e)
         {
           
-            cityList.Reset();
+            //cityList.Reset();
             FilterReset();
             tbx_SearchBar.Text = "";
             Dgd_MainGrid.ItemsSource = cityList;
@@ -192,8 +193,7 @@ namespace QLifeC_Datatool
                 {
                     target = new AdapterXML();
                     target.CallImportAdapter(FileExt, FilePath);
-                    cityList.Backup = target.cityList;
-                    cityList.AddRange(cityList.Backup);
+                    cityList = target.cityList;
                     MessageBox.Show(target.StatusNotification, "Import Window", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 //File Type is CSV.
@@ -201,8 +201,7 @@ namespace QLifeC_Datatool
                 {
                     target = new AdapterCSV();
                     target.CallImportAdapter(FileExt, FilePath);
-                    cityList.Backup = target.cityList;
-                    cityList.AddRange(cityList.Backup);
+                    cityList = target.cityList;
                     MessageBox.Show(target.StatusNotification, "Import Window", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 //File Type is invalid.
@@ -229,7 +228,7 @@ namespace QLifeC_Datatool
         /// <param name="e"></param>
         private void btn_Export_Click(object sender, RoutedEventArgs e)
         {
-            CityList ListToBeExported = cityList;
+            CityList ListToBeExported = cityList; 
             //for testing reasons if you want to see my preferred exception handling in action use the two following lists, this is where I want to check list, but could not test this in UnitTest as this has to happen in MainWindow right after user clicks export button
             //CityList ListToBeExported = emptyList;
             //CityList ListToBeExported = nullCityList;
@@ -318,7 +317,7 @@ namespace QLifeC_Datatool
                 {
                     case MessageBoxResult.Yes:
                         int i = (Dgd_MainGrid.SelectedIndex);
-                        cityList.RemoveAt(i);
+                        cityList.RemoveAt(i); //Lor:todo
                         break;
                     case MessageBoxResult.No:
                         MessageBox.Show("The city is still here.", "Deleting Chosen City");
@@ -333,14 +332,14 @@ namespace QLifeC_Datatool
         {
             if (Dgd_MainGrid.SelectedValue != null)
             {
-                
+
                 InputMask editCityWindow = new InputMask(cityList[Dgd_MainGrid.SelectedIndex]);
                 editCityWindow.ShowDialog();
                 Dgd_MainGrid.Items.Refresh();
             }
             else
                 MessageBox.Show("Please first select a city that you would like to edit");
-
+        }
         /// <summary>
         /// checks if a list can be exported, there are 3 possible outcomes: null, true and false
         /// null) if list has not been initialized, export does not start, user gets information

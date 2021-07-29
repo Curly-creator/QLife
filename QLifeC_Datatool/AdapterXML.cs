@@ -92,7 +92,14 @@ namespace QLifeC_Datatool
         public void CallImportAdapter(string FileExtension, string FilePath)
         {
             //File Extension is .xml
-            ValidateXML(FilePath);
+            try
+            {
+                ValidateXML(FilePath);
+            }
+            catch (Exception ex)
+            {
+                //StatusNotification;
+            }
             DeserializeXML(FilePath);
             StatusNotification = "XML Validation & Import successful.";
         }

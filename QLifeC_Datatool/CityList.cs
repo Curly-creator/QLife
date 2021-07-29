@@ -12,25 +12,21 @@ namespace QLifeC_Datatool
         private readonly CategoryScoreComparer categoryComparer = new CategoryScoreComparer();
         private readonly CityNameComparer nameComparer = new CityNameComparer();
 
-        public List<City> Backup { get => _Backup; set => _Backup = value; }
-
         public void GetCityScores(string url)
         {
             API_Request aPI_Request = new API_Request(url);
             this.AddRange(aPI_Request.GetCityData());
-            Backup.AddRange(this);
         }
 
-        public void FilterByCategoryScore(double[] valueOfFilter, bool[] filterIsActive)
+        public List<City> FilterByCategoryScore(double[] valueOfFilter, bool[] filterIsActive)
         {
             List<City> FilterList = new List<City>();
 
-            foreach (var city in Backup)
+            foreach (var city in this)
                 if (Filter(city, 0, valueOfFilter, filterIsActive))
                     FilterList.Add(city);
-
-            this.Clear();
-            this.AddRange(FilterList);
+            
+            return FilterList;
         }
 
         private bool Filter(City city, int indexOfCategory, double[] valueOfFilter, bool[] filterIsActive)
@@ -73,12 +69,5 @@ namespace QLifeC_Datatool
 
             Sort(nameComparer);
         }
-
-        public void Reset()
-        {
-            this.Clear();
-            this.AddRange(Backup);
-        }
-
     }
 }
