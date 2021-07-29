@@ -6,7 +6,7 @@ namespace QLifeC_Datatool
 {
     public class City
     {
-        private string _Name;
+        private string _Name; 
         private string _Url;
     
         Category[] _Categories;
@@ -21,7 +21,12 @@ namespace QLifeC_Datatool
             new Category("Outdoors"),
             };           
         }
-       
+        public City(string name) : base()
+        {
+            Name = name;
+            Categories = new Category[] { COL, H, IA, EQ, TC, O };
+        }
+
         public string Name { get => _Name; set => _Name = value; }
         public string Url { get => _Url; set => _Url = value; }
         public Category[] Categories { get => _Categories; set => _Categories = value; }

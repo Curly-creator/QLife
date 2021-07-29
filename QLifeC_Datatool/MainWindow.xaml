@@ -47,9 +47,9 @@
 
         <!--All the main buttons are in this stack panel. Easier to make changes to multiple buttons at once-->
         <StackPanel Grid.Column="6" Grid.ColumnSpan="1" Grid.Row="4" Grid.RowSpan="8">
-            <Button x:Name="btn_NewEntry" Content="Add" Height="30" Margin="20 10 20 10"/>
-            <Button x:Name="btn_UpdEntry" Content="Edit" Height="30" Margin="20 5 20 10"/>
-            <Button x:Name="btn_DelEntry" Content="Delete" Height="30" Margin="20 5 20 10"/>
+            <Button x:Name="btn_NewEntry" Content="Add" Height="30" Margin="20 10 20 10" Click="btn_NewEntry_Click"/>
+            <Button x:Name="btn_UpdEntry" Content="Edit" Height="30" Margin="20 5 20 10" Click="btn_UpdEntry_Click"/>
+            <Button x:Name="btn_DelEntry" Content="Delete" Height="30" Margin="20 5 20 10" Click="btn_DelEntry_Click"/>
             <Button x:Name="btn_Export" Content="Export" Height="30" Margin="20 40 20 10" Click="btn_Export_Click"/>
             <Button x:Name="btn_Import" Content="Import" Height="30" Margin="20 5 20 10" Click="btn_Import_Click"/>
             <Button x:Name="btn_Download" Content="Download" Height="30" Margin="20 5 20 10" Click="btn_Download_Click"/>
@@ -240,7 +240,7 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
-                <!-->>>>>>> API-->
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
