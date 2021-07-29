@@ -13,21 +13,20 @@ using System.Windows.Shapes;
 namespace QLifeC_Datatool
 {
     /// <summary>
-    /// Interaktionslogik für AddCity.xaml
+    /// Interaktionslogik für InputMask.xaml
     /// </summary>
     public enum TheSixCategories { CostOfLiving, Healthcare, InternetAccess, EnviromentalQuailty, TravelConnectivity, Outdoors }
     //Does this come in handy somewhere? (TheSixCategories)0 is CostOfLiving AND (int)TheSixCategories.CostOfLiving is 0
-    public partial class AddCity : Window
+    public partial class InputMask : Window
     {
         public City cityToBeAdded;
-        public AddCity()
+        public InputMask()
         {
             InitializeComponent();            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            bool checkedCity = false; 
+        {     
             int errorCounter = 0;
 
             //testen ob name schon existiert.
@@ -78,12 +77,7 @@ namespace QLifeC_Datatool
 
             if (errorCounter == 0)
             {
-                checkedCity = true;
-            }
-
-            if (checkedCity)
-            {
-                AddCityToList();
+                AddCityToList(); //at this point the city is a checkedCity 
             }
 
             this.Close();
@@ -142,6 +136,7 @@ namespace QLifeC_Datatool
         {
             bool firstLetterIsUp;
             bool otherLettersAreLow = false;
+            if (cityName_tb.Text.Length == 1) otherLettersAreLow = true;
 
             if (char.IsUpper(cityName[0])) //methode for cities with easy names - not yet for 'Bad Mergentheim' ->string an leerstelle aufteilen in array
                 firstLetterIsUp = true;
@@ -215,6 +210,7 @@ namespace QLifeC_Datatool
                 {
                     for (int i = 0; i < catLabelListOfList[j].Count; i++)
                     {
+                        if(catLabelListOfList[j][i].Content.ToString().Contains('.')) catTextBoxListOfList[j][i].Text.Replace('.', ',');//direct change from . to , in XAML selectionchange
                         AddSubcategory(j, catLabelListOfList[j][i].Content.ToString().Remove(catLabelListOfList[j][i].Content.ToString().Length - 1), double.Parse(catTextBoxListOfList[j][i].Text));     //so complicated because 'Inflation::' -> 'Inflation:'
                     //j counts from 0-5 to go through the 6 big Categories =indexOfCat
                     //catLabelListOfList[j].Count is how many subcategories (11,4,4,4,3,7) the current cat has
