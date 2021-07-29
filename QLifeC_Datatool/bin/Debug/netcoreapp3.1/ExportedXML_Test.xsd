@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+	<xsd:element name="ArrayOfCity">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" name="City">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Name" type="xsd:string" />
+							<xsd:element name="Url" type="xsd:string" />
+							<xsd:element name="Categories">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element maxOccurs="unbounded" name="Category">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Label" type="xsd:string" />
+													<xsd:element name="SubCategories">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element maxOccurs="unbounded" name="SubCategory">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="Label" type="xsd:string" />
+																			<xsd:element name="Type" type="xsd:string" />
+																			<xsd:element name="Value" type="xsd:decimal" />
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="Score" type="xsd:decimal" />
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xs:schema>

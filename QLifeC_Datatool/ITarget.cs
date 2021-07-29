@@ -16,10 +16,6 @@ namespace QLifeC_Datatool
         string FileExt { get; set; }
         Stream FileStream { get; set; }
         bool MethodStatus { get; set; }
-        //string[] FileTypeAllowed { get; set; }
         string StatusNotification { get; set; }
-        void CallImportAdapter(string FileExtension, string FilePath);
-
-        void CallExportAdapter(Stream stream, CityList cityList);
     }
 }
