@@ -176,6 +176,6 @@ namespace QLifeC_Datatool
                 MethodStatus = false;
             }
         }
-
     }
+
 }

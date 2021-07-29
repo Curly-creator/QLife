@@ -23,7 +23,6 @@ namespace UnitTest
         [Fact]
         public void TestingNullListXML() //testing a list that has not been initialized with AdapterXML
         {
-            //string mypath = Directory.GetCurrentDirectory() + "\\DownloadTestingFiles\\nullList.xml";
             string mypath = Directory.GetCurrentDirectory() + "\\Unit_Test_Files\\nullList.xml";
             Stream teststream = File.OpenWrite(mypath);
             AdapterXML nullXML = new AdapterXML(teststream, nullCityList);

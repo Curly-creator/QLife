@@ -1,0 +1,189 @@
+City_Name, Category_Name, Overall_Category_Score, SubCategory_Label, SubCategory_Score
+Aarhus,Cost of Living,4.02,Inflation [Teleport score],0.40
+Aarhus,Cost of Living,4.02,A kilogram of Apples,2.90
+Aarhus,Cost of Living,4.02,Bread,0.87
+Aarhus,Cost of Living,4.02,A Cappuccino,5.60
+Aarhus,Cost of Living,4.02,Movie ticket,17.00
+Aarhus,Cost of Living,4.02,Monthly fitness club membership,37.00
+Aarhus,Cost of Living,4.02,A beer,1.70
+Aarhus,Cost of Living,4.02,Monthly public transport,62.00
+Aarhus,Cost of Living,4.02,Lunch,15.00
+Aarhus,Cost of Living,4.02,5km taxi ride,13.00
+Aarhus,Cost of Living,4.02,Price of a meal at a restaurant,97.32
+Aarhus,Healthcare,9.13,Healthcare expenditure [Teleport score],0.92
+Aarhus,Healthcare,9.13,Life expectancy (years),80.58
+Aarhus,Healthcare,9.13,Life expectancy [Teleport score],0.83
+Aarhus,Healthcare,9.13,Healthcare quality [Teleport score],0.98
+Aarhus,Internet Access,8.37,Download speed (Mbps),90.07
+Aarhus,Internet Access,8.37,Internet access (download) [Teleport score],0.82
+Aarhus,Internet Access,8.37,Upload speed (Mbps),31.50
+Aarhus,Internet Access,8.37,Internet access (upload) [Teleport score],0.86
+Aarhus,Environmental Quality,7.63,Air quality [Teleport score],0.80
+Aarhus,Environmental Quality,7.63,Cleanliness [Teleport score],0.85
+Aarhus,Environmental Quality,7.63,Drinking water quality [Teleport score],0.77
+Aarhus,Environmental Quality,7.63,Urban greenery [Teleport score],0.64
+Aarhus,Travel Connectivity,3.54,Airport hub,8.00
+Aarhus,Travel Connectivity,3.54,Airport hub [Teleport score],0.12
+Aarhus,Travel Connectivity,3.54,Intercity train connectivity [Teleport score],0.59
+Aarhus,Outdoors,4.13,Urban area elevation (meters),11.00
+Aarhus,Outdoors,4.13,Median peak in meters,95.50
+Aarhus,Outdoors,4.13,Elevation (hills or mountains) [Teleport score],0.12
+Aarhus,Outdoors,4.13,Water access [Teleport score],0.71
+Aarhus,Outdoors,4.13,Seaside access,1.00
+Brisbane,Cost of Living,5.18,Inflation [Teleport score],0.52
+Brisbane,Cost of Living,5.18,A kilogram of Apples,3.30
+Brisbane,Cost of Living,5.18,Bread,0.77
+Brisbane,Cost of Living,5.18,A Cappuccino,3.20
+Brisbane,Cost of Living,5.18,Movie ticket,11.00
+Brisbane,Cost of Living,5.18,Monthly fitness club membership,41.00
+Brisbane,Cost of Living,5.18,A beer,3.40
+Brisbane,Cost of Living,5.18,Monthly public transport,100.00
+Brisbane,Cost of Living,5.18,Lunch,14.00
+Brisbane,Cost of Living,5.18,5km taxi ride,9.40
+Brisbane,Cost of Living,5.18,Price of a meal at a restaurant,70.98
+Brisbane,Healthcare,9.44,Healthcare expenditure [Teleport score],0.93
+Brisbane,Healthcare,9.44,Life expectancy (years),82.84
+Brisbane,Healthcare,9.44,Life expectancy [Teleport score],0.97
+Brisbane,Healthcare,9.44,Healthcare quality [Teleport score],0.93
+Brisbane,Internet Access,4.41,Download speed (Mbps),23.03
+Brisbane,Internet Access,4.41,Internet access (download) [Teleport score],0.40
+Brisbane,Internet Access,4.41,Upload speed (Mbps),11.41
+Brisbane,Internet Access,4.41,Internet access (upload) [Teleport score],0.49
+Brisbane,Environmental Quality,8.83,Air quality [Teleport score],0.91
+Brisbane,Environmental Quality,8.83,Cleanliness [Teleport score],0.87
+Brisbane,Environmental Quality,8.83,Drinking water quality [Teleport score],0.87
+Brisbane,Environmental Quality,8.83,Urban greenery [Teleport score],0.88
+Brisbane,Travel Connectivity,2.43,Airport hub,59.00
+Brisbane,Travel Connectivity,2.43,Airport hub [Teleport score],0.31
+Brisbane,Travel Connectivity,2.43,Intercity train connectivity [Teleport score],0.17
+Brisbane,Outdoors,6.26,Urban area elevation (meters),32.00
+Brisbane,Outdoors,6.26,Presence of hills in city,1.00
+Brisbane,Outdoors,6.26,Median peak in meters,630.00
+Brisbane,Outdoors,6.26,Elevation (hills or mountains) [Teleport score],0.25
+Brisbane,Outdoors,6.26,Water access [Teleport score],1.00
+Brisbane,Outdoors,6.26,Seaside access,1.00
+Dubai,Cost of Living,5.49,Inflation [Teleport score],0.55
+Dubai,Cost of Living,5.49,A kilogram of Apples,2.40
+Dubai,Cost of Living,5.49,Bread,0.55
+Dubai,Cost of Living,5.49,A Cappuccino,4.80
+Dubai,Cost of Living,5.49,Movie ticket,11.00
+Dubai,Cost of Living,5.49,Monthly fitness club membership,100.00
+Dubai,Cost of Living,5.49,A beer,2.90
+Dubai,Cost of Living,5.49,Monthly public transport,72.00
+Dubai,Cost of Living,5.49,Lunch,12.00
+Dubai,Cost of Living,5.49,5km taxi ride,4.60
+Dubai,Cost of Living,5.49,Price of a meal at a restaurant,68.29
+Dubai,Healthcare,6.47,Healthcare expenditure [Teleport score],0.63
+Dubai,Healthcare,6.47,Life expectancy (years),77.07
+Dubai,Healthcare,6.47,Life expectancy [Teleport score],0.62
+Dubai,Healthcare,6.47,Healthcare quality [Teleport score],0.69
+Dubai,Internet Access,3.15,Download speed (Mbps),19.84
+Dubai,Internet Access,3.15,Internet access (download) [Teleport score],0.35
+Dubai,Internet Access,3.15,Upload speed (Mbps),5.90
+Dubai,Internet Access,3.15,Internet access (upload) [Teleport score],0.28
+Dubai,Environmental Quality,6.04,Air quality [Teleport score],0.49
+Dubai,Environmental Quality,6.04,Cleanliness [Teleport score],0.85
+Dubai,Environmental Quality,6.04,Drinking water quality [Teleport score],0.55
+Dubai,Environmental Quality,6.04,Urban greenery [Teleport score],0.53
+Dubai,Travel Connectivity,4.51,Airport hub,215.00
+Dubai,Travel Connectivity,4.51,Airport hub [Teleport score],0.90
+Dubai,Outdoors,5.80,Urban area elevation (meters),8.00
+Dubai,Outdoors,5.80,Presence of hills in city,1.00
+Dubai,Outdoors,5.80,Presence of mountains in city,1.00
+Dubai,Outdoors,5.80,Median peak in meters,326.00
+Dubai,Outdoors,5.80,Elevation (hills or mountains) [Teleport score],0.18
+Dubai,Outdoors,5.80,Water access [Teleport score],0.98
+Dubai,Outdoors,5.80,Seaside access,1.00
+Kiev,Cost of Living,9.82,Inflation [Teleport score],0.98
+Kiev,Cost of Living,9.82,A kilogram of Apples,0.74
+Kiev,Cost of Living,9.82,Bread,0.12
+Kiev,Cost of Living,9.82,A Cappuccino,1.30
+Kiev,Cost of Living,9.82,Movie ticket,3.10
+Kiev,Cost of Living,9.82,Monthly fitness club membership,22.00
+Kiev,Cost of Living,9.82,A beer,0.54
+Kiev,Cost of Living,9.82,Monthly public transport,10.00
+Kiev,Cost of Living,9.82,Lunch,4.30
+Kiev,Cost of Living,9.82,5km taxi ride,2.00
+Kiev,Cost of Living,9.82,Price of a meal at a restaurant,23.54
+Kiev,Healthcare,3.70,Healthcare expenditure [Teleport score],0.33
+Kiev,Healthcare,3.70,Life expectancy (years),71.29
+Kiev,Healthcare,3.70,Life expectancy [Teleport score],0.28
+Kiev,Healthcare,3.70,Healthcare quality [Teleport score],0.50
+Kiev,Internet Access,6.04,Download speed (Mbps),33.65
+Kiev,Internet Access,6.04,Internet access (download) [Teleport score],0.51
+Kiev,Internet Access,6.04,Upload speed (Mbps),20.86
+Kiev,Internet Access,6.04,Internet access (upload) [Teleport score],0.70
+Kiev,Environmental Quality,3.67,Air quality [Teleport score],0.36
+Kiev,Environmental Quality,3.67,Cleanliness [Teleport score],0.37
+Kiev,Environmental Quality,3.67,Drinking water quality [Teleport score],0.15
+Kiev,Environmental Quality,3.67,Urban greenery [Teleport score],0.59
+Kiev,Travel Connectivity,5.49,Airport hub,77.00
+Kiev,Travel Connectivity,5.49,Airport hub [Teleport score],0.38
+Kiev,Travel Connectivity,5.49,Intercity train connectivity [Teleport score],0.72
+Kiev,Outdoors,5.35,Urban area elevation (meters),156.00
+Kiev,Outdoors,5.35,Median peak in meters,177.00
+Kiev,Outdoors,5.35,Elevation (hills or mountains) [Teleport score],0.14
+Kiev,Outdoors,5.35,Water access [Teleport score],0.93
+Kiev,Outdoors,5.35,Seaside waterbody,1.00
+Minsk,Cost of Living,9.29,Inflation [Teleport score],0.93
+Minsk,Cost of Living,9.29,A kilogram of Apples,0.95
+Minsk,Cost of Living,9.29,Bread,0.18
+Minsk,Cost of Living,9.29,A Cappuccino,1.80
+Minsk,Cost of Living,9.29,Movie ticket,3.30
+Minsk,Cost of Living,9.29,Monthly fitness club membership,38.00
+Minsk,Cost of Living,9.29,A beer,0.83
+Minsk,Cost of Living,9.29,Monthly public transport,15.00
+Minsk,Cost of Living,9.29,Lunch,6.70
+Minsk,Cost of Living,9.29,5km taxi ride,2.60
+Minsk,Cost of Living,9.29,Price of a meal at a restaurant,39.04
+Minsk,Healthcare,4.13,Healthcare expenditure [Teleport score],0.36
+Minsk,Healthcare,4.13,Life expectancy (years),72.27
+Minsk,Healthcare,4.13,Life expectancy [Teleport score],0.34
+Minsk,Healthcare,4.13,Healthcare quality [Teleport score],0.54
+Minsk,Internet Access,4.86,Download speed (Mbps),21.47
+Minsk,Internet Access,4.86,Internet access (download) [Teleport score],0.38
+Minsk,Internet Access,4.86,Upload speed (Mbps),15.64
+Minsk,Internet Access,4.86,Internet access (upload) [Teleport score],0.60
+Minsk,Environmental Quality,7.05,Air quality [Teleport score],0.64
+Minsk,Environmental Quality,7.05,Cleanliness [Teleport score],0.97
+Minsk,Environmental Quality,7.05,Drinking water quality [Teleport score],0.49
+Minsk,Environmental Quality,7.05,Urban greenery [Teleport score],0.72
+Minsk,Travel Connectivity,3.77,Airport hub,41.00
+Minsk,Travel Connectivity,3.77,Airport hub [Teleport score],0.25
+Minsk,Travel Connectivity,3.77,Intercity train connectivity [Teleport score],0.51
+Minsk,Outdoors,4.91,Urban area elevation (meters),220.00
+Minsk,Outdoors,4.91,Median peak in meters,237.50
+Minsk,Outdoors,4.91,Elevation (hills or mountains) [Teleport score],0.16
+Minsk,Outdoors,4.91,Water access [Teleport score],0.83
+Reykjavik,Cost of Living,1.00,Inflation [Teleport score],0.10
+Reykjavik,Cost of Living,1.00,A kilogram of Apples,3.50
+Reykjavik,Cost of Living,1.00,Bread,1.80
+Reykjavik,Cost of Living,1.00,A Cappuccino,5.20
+Reykjavik,Cost of Living,1.00,Movie ticket,16.00
+Reykjavik,Cost of Living,1.00,Monthly fitness club membership,87.00
+Reykjavik,Cost of Living,1.00,A beer,3.90
+Reykjavik,Cost of Living,1.00,Monthly public transport,120.00
+Reykjavik,Cost of Living,1.00,Lunch,26.00
+Reykjavik,Cost of Living,1.00,5km taxi ride,19.00
+Reykjavik,Cost of Living,1.00,Price of a meal at a restaurant,127.52
+Reykjavik,Healthcare,8.58,Healthcare expenditure [Teleport score],0.83
+Reykjavik,Healthcare,8.58,Life expectancy (years),82.65
+Reykjavik,Healthcare,8.58,Life expectancy [Teleport score],0.96
+Reykjavik,Healthcare,8.58,Healthcare quality [Teleport score],0.79
+Reykjavik,Internet Access,6.74,Download speed (Mbps),56.85
+Reykjavik,Internet Access,6.74,Internet access (download) [Teleport score],0.67
+Reykjavik,Internet Access,6.74,Upload speed (Mbps),19.69
+Reykjavik,Internet Access,6.74,Internet access (upload) [Teleport score],0.68
+Reykjavik,Environmental Quality,8.62,Air quality [Teleport score],0.98
+Reykjavik,Environmental Quality,8.62,Cleanliness [Teleport score],0.74
+Reykjavik,Environmental Quality,8.62,Drinking water quality [Teleport score],1.00
+Reykjavik,Environmental Quality,8.62,Urban greenery [Teleport score],0.73
+Reykjavik,Travel Connectivity,1.13,Airport hub,36.00
+Reykjavik,Travel Connectivity,1.13,Airport hub [Teleport score],0.23
+Reykjavik,Outdoors,4.80,Urban area elevation (meters),61.00
+Reykjavik,Outdoors,4.80,Presence of hills in city,1.00
+Reykjavik,Outdoors,4.80,Presence of mountains in city,1.00
+Reykjavik,Outdoors,4.80,Median peak in meters,477.00
+Reykjavik,Outdoors,4.80,Elevation (hills or mountains) [Teleport score],0.22
+Reykjavik,Outdoors,4.80,Water access [Teleport score],0.74
+Reykjavik,Outdoors,4.80,Seaside access,1.00

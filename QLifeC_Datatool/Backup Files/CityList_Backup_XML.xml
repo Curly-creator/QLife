@@ -1,0 +1,4140 @@
+<?xml version="1.0"?>
+<ArrayOfCity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <City>
+    <Name>Aarhus</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:aarhus/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4015</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.9</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.87</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>5.6</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>17</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>37</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.7</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>62</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>15</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>13</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>97.32</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.015000000000001</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9231</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>80.5848</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8339</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9822</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>9.130666666666666</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>90.07</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8157</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>31.5</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8589</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.373</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7958</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8499</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7717</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6358</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>7.633000000000001</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>8</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1215</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5857</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>3.5360000000000005</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>11</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>95.5</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1202</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7058</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside access</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.13</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Athens</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:athens/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.65</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.7</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.64</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.9</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>8.8</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>42</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.8</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>40</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>16</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>8.3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>62.87</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.5</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7028</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>80.9789</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8575</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6172</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>7.258333333333333</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>14</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2623</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>4.22</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1833</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>2.2279999999999993</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4239</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2877</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7093</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>3.8022500000000004</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>104</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4833</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2581</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>3.707</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>88</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of hills in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of mountains in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>983</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3433</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9533</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside access</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.483</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Beirut</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:beirut/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.63</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.6</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.34</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>4.5</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>10</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>73</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>62</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>19</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>7</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>65.55</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.3</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4727</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>74.8809</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4929</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.806</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.905333333333333</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>5.555</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>4.81</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2181</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>1.5905</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1595</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2201</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>1.449</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>45</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2609</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>1.3045000000000004</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>102</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of hills in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of mountains in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7684</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside access</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>3.8420000000000005</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Birmingham, AL</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:birmingham-al/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5133</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.8</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.7</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>5</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>11</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>42</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>38</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>16</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>7.7</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>71.34</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.133</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9928</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>79.2783</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7558</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8744</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.743333333333332</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>56.76</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6675</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>7.905</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3646</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.1605</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7547</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5758</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8177</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6668</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>7.0375</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>20</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1667</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1204</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>1.4354999999999998</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>186</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of hills in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>227</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1532</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>1.2660000000000002</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Brisbane</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:brisbane/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5177</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.77</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.2</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>11</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>41</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.4</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>100</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>14</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>9.4</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>70.98</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.1770000000000005</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9337</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>82.8448</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.969</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9281</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>9.435999999999998</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>23.03</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.396</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>11.4125</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4855</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.407500000000001</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9141</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8682</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8694</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8794</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.82775</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>59</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3137</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1732</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>2.4345</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>32</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of hills in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>630</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2546</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9967</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside access</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.256500000000002</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Cambridge</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:cambridge/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4851</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.45</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>4</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>13</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>58</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>75</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>19</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>10</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>91.47</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.851</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8172</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>81.2201</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8719</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7667</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.185999999999998</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>66.55</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.718</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>10.09</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4439</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.8095</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8386</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8387</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6419</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8874</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.0165</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>135</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7923</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5852</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.887499999999999</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>12</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>0.5</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Chicago</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:chicago/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4766</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.5</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>4.5</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>13</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>59</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.4</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>94</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>14</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>8.7</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>75.47</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.766000000000001</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9928</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>79.2783</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7558</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8179</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.555</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>61.5975</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6934</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>17.0075</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6265</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.599499999999999</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7265</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.625</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5845</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7858</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.8045</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>217</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9092</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1923</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.5075</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>198</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>253</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1598</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9233</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside waterbody</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.4155</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Cork</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:cork/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4902</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.9</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.5</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>12</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>52</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.6</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>95</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>13</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>9.4</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>77.66</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.902</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8394</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>81.423</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.884</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7317</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.183666666666667</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>93.76</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8288</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>66.0375</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>9.143999999999998</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.684</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8755</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6456</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.012750000000002</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>30</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2044</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2679</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>2.3615</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>9</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of hills in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of mountains in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside access</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>0.5</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Dubai</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:dubai/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.549</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.4</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.55</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>4.8</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>11</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>100</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.9</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>72</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>12</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>4.6</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>68.29</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.49</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6325</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>77.0682</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6237</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6862</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.474666666666665</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>19.84</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3545</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>5.9</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2757</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>3.151</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4916</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8496</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.547</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.526</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.035500000000001</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>215</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9016</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.508</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>8</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of hills in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of mountains in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>326</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1781</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9816</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside access</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.7985</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Frankfurt</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:frankfurt/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5143</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.6</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.54</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>13</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>51</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>98</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>16</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>10</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>72.66</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.143</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8699</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>81.04</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8611</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7788</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.366</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>27.66</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4485</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>7.9725</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3673</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.079</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5611</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5522</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6923</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7846</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.4755</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>239</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9921</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7137</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.529</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>105</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of hills in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of mountains in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>420</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2018</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.875</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.384</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Guatemala City</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:guatemala-city/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8175</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.6</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.57</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>6.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>67</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.6</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>15</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>5.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>5.6</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>34.81</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.175</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2733</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>71.8885</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.314</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4822</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>3.5650000000000004</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>10.32</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1882</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>6.69</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.313</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>2.506</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.356</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4527</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3496</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3448</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>3.75775</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>19</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1629</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>0.8145000000000001</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>1507</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of hills in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of mountains in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>2507.5</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7267</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.1335</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Hyderabad</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:hyderabad/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.5</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.27</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.5</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>25</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.4</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>13</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.8</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>17.61</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>10</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>68.3093</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5171</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>2.3903333333333334</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>37.545</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5394</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>14.48</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5686</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.540000000000001</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2579</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2786</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2234</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3763</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>2.8405000000000005</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>32</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2119</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5563</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>3.841</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>515</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6417</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>3.2085000000000004</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Kiev</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:kiev/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9817</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.74</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.12</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>22</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.54</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>10</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>4.3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>2</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>23.54</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>9.817</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3311</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>71.2927</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2784</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4992</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>3.6956666666666655</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>33.65</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5064</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>20.8625</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7019</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.041499999999999</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3591</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3715</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1458</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5902</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>3.6665</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>77</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3815</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.716</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.4875</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>156</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>177</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1407</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9291</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside waterbody</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.348999999999999</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Lausanne</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:lausanne/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>4.7</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.5</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>4.3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>21</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>100</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.6</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>84</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>24</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>18</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>119.77</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>1</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>83.3628</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8769</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>9.589666666666666</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>29.965</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.472</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>7.7225</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3572</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.146</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9057</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.781</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9484</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8888</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.809750000000001</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>101</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.472</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8309</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.5145</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>453</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of hills in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of mountains in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>985</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3438</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7238</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside waterbody</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.337999999999999</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Louisville</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:louisville/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6358</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.6</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.5</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>4.2</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>10</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>36</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>56</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>11</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>9</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>65.22</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.358000000000001</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9928</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>79.2783</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7558</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8189</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.558333333333334</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>55.47</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6602</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>10.13</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4452</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.526999999999999</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.595</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5835</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7543</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7077</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.601249999999999</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>22</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1742</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1204</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>1.4729999999999999</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>141</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>254</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.16</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside waterbody</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>1.3</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Manila</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:manila/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8752</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.7</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.49</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.9</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>4.6</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>43</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.85</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>20</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>4.4</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.9</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>24.97</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.751999999999999</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1804</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>68.4967</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1112</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5673</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>2.863</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>20.925</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3692</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>13.835</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5524</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.608</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1332</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1115</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2364</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1921</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>1.683</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>78</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3853</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1416</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>2.6345</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>14</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of hills in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of mountains in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>550</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2344</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7307</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside access</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.8255</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Minsk</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:minsk/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9289</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.95</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.18</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.8</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>38</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.83</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>15</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>6.7</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.6</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>39.04</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>9.289000000000001</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3575</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>72.2695</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3368</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5437</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.126666666666666</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>21.47</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.3763</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>15.645</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5963</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.863</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6412</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9656</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4912</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7213</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>7.04825</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>41</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2459</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5074</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>3.7664999999999993</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>220</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>237.5</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1559</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8253</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.906000000000001</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>New Orleans</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:new-orleans/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4992</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.6</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>4.3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>12</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>54</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>53</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>18</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>8.7</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>86.56</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.991999999999999</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9928</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>79.2783</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7558</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7449</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.311666666666666</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>89.68</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8143</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>11.11</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4763</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.453000000000001</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7834</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2496</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4302</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8064</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.674</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>39</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2383</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1131</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>1.7570000000000001</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>19</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside access</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>1</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Oulu</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:oulu/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.7</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.81</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.8</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>14</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>56</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.6</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>64</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>14</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>13</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>0</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8478</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>81.0752</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8632</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8177</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.428999999999998</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>52.885</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6452</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>11.885</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4994</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.722999999999999</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9464</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9157</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9322</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7789</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.933000000000002</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1026</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4406</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>2.716</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>321</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1769</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8375</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside access</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>5.072</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Pittsburgh</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:pittsburgh/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.4795</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.3</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>0.65</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.8</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>10</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>34</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>2.8</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>95</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>12</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>11</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>67.1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.795</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9928</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>79.2783</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7558</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8261</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.582333333333333</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>84.12</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7935</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>38.81</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9404</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.669500000000001</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6708</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5861</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5624</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9304</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.874250000000001</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>38</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2345</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Intercity train connectivity [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1131</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>1.7379999999999998</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>253</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of hills in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>532</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2299</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.5838</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside waterbody</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.0685</Score>
+      </Category>
+    </Categories>
+  </City>
+  <City>
+    <Name>Reykjavik</Name>
+    <Url>https://api.teleport.org/api/urban_areas/slug:reykjavik/</Url>
+    <Categories>
+      <Category>
+        <Label>Cost of Living</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Inflation [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A kilogram of Apples</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.5</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Bread</Label>
+            <Type>currency_dollar</Type>
+            <Value>1.8</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A Cappuccino</Label>
+            <Type>currency_dollar</Type>
+            <Value>5.2</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Movie ticket</Label>
+            <Type>currency_dollar</Type>
+            <Value>16</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly fitness club membership</Label>
+            <Type>currency_dollar</Type>
+            <Value>87</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>A beer</Label>
+            <Type>currency_dollar</Type>
+            <Value>3.9</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Monthly public transport</Label>
+            <Type>currency_dollar</Type>
+            <Value>120</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Lunch</Label>
+            <Type>currency_dollar</Type>
+            <Value>26</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>5km taxi ride</Label>
+            <Type>currency_dollar</Type>
+            <Value>19</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Price of a meal at a restaurant</Label>
+            <Type>currency_dollar</Type>
+            <Value>127.52</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>1</Score>
+      </Category>
+      <Category>
+        <Label>Healthcare</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Healthcare expenditure [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.8282</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy (years)</Label>
+            <Type>float</Type>
+            <Value>82.6501</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Life expectancy [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9574</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Healthcare quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7871</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.575666666666667</Score>
+      </Category>
+      <Category>
+        <Label>Internet Access</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Download speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>56.85</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (download) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.668</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Upload speed (Mbps)</Label>
+            <Type>float</Type>
+            <Value>19.6925</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Internet access (upload) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.6804</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>6.742</Score>
+      </Category>
+      <Category>
+        <Label>Environmental Quality</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Air quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.9752</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Cleanliness [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7442</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Drinking water quality [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Urban greenery [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7301</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>8.62375</Score>
+      </Category>
+      <Category>
+        <Label>Travel Connectivity</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Airport hub</Label>
+            <Type>int</Type>
+            <Value>36</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Airport hub [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.227</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>1.1349999999999998</Score>
+      </Category>
+      <Category>
+        <Label>Outdoors</Label>
+        <SubCategories>
+          <SubCategory>
+            <Label>Urban area elevation (meters)</Label>
+            <Type>float</Type>
+            <Value>61</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of hills in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Presence of mountains in city</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Median peak in meters</Label>
+            <Type>float</Type>
+            <Value>477</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Elevation (hills or mountains) [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.2161</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Water access [Teleport score]</Label>
+            <Type>float</Type>
+            <Value>0.7446</Value>
+          </SubCategory>
+          <SubCategory>
+            <Label>Seaside access</Label>
+            <Type>float</Type>
+            <Value>1</Value>
+          </SubCategory>
+        </SubCategories>
+        <Score>4.8035000000000005</Score>
+      </Category>
+    </Categories>
+  </City>
+</ArrayOfCity>
