@@ -8,17 +8,24 @@ namespace QLifeC_Datatool
 {
     public class CityList : List<City>
     {
+        private bool reverse = false;
         private List<City> _Backup = new List<City>();
         private readonly CategoryScoreComparer categoryComparer = new CategoryScoreComparer();
-        private readonly CityNameComparer nameComparer = new CityNameComparer();
+        private readonly CityNameComparerDecending nameComparerDecending = new CityNameComparerDecending();
+        private readonly CityNameComparerAcending nameComparerAcending = new CityNameComparerAcending();
 
         public List<City> Backup { get => _Backup; set => _Backup = value; }
 
-        public void GetCityScores(string url)
+        public void UpdateBackup()
         {
-            API_Request aPI_Request = new API_Request(url);
+            Backup = this;
+        }
+
+        public void GetCityScores(string url, int numberOfCities)
+        {
+            API_Request aPI_Request = new API_Request(url, numberOfCities);
             this.AddRange(aPI_Request.GetCityData());
-            Backup.AddRange(this);
+            UpdateBackup();
         }
 
         public void FilterByCategoryScore(double[] valueOfFilter, bool[] filterIsActive)
@@ -42,7 +49,6 @@ namespace QLifeC_Datatool
                     else return false;
                 else return Filter(city, indexOfCategory + 1, valueOfFilter, filterIsActive);
             return true;
-
         }
 
         public List<City> SearchByCityName(string searchText)
@@ -68,17 +74,23 @@ namespace QLifeC_Datatool
 
         public void SortByCityName()
         {
-            if (nameComparer.Acending) nameComparer.Acending = false;
-            else nameComparer.Acending = true;
-
-            Sort(nameComparer);
+            if (reverse)
+            {
+                Sort(nameComparerAcending);
+                reverse = false;
+            }
+            else
+            {
+                Sort(nameComparerDecending);
+                reverse = true;
+            }       
         }
 
-        public void Reset()
-        {
-            this.Clear();
-            this.AddRange(Backup);
-        }
+        //public void Reset()
+        //{
+        //    this.Clear();
+        //    this.AddRange(Backup);
+        //}
 
     }
 }

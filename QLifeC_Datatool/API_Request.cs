@@ -11,20 +11,22 @@ namespace QLifeC_Datatool
     public class API_Request
     {
         private string _Url;
-        private CityList _cityList;
-
-        public CityList CityList { get => _cityList; set => _cityList = value; }
+        private CityList _CityList;
+        private int _NumberOfCities;
+        public CityList CityList { get => _CityList; set => _CityList = value; }
         public string Url { get => _Url; set => _Url = value; }
+        public int NumberOfCities { get => _NumberOfCities; set => _NumberOfCities = value; }
 
-        public API_Request(string url) 
+        public API_Request(string url, int numberOfCities) 
         {
             Url = url;
             CityList = new CityList();
+            NumberOfCities = numberOfCities;
         }
 
         public CityList GetCityData()
         {
-            GetCityList();
+            GetCityList(NumberOfCities);
             foreach (var city in CityList)
             {
                 GetCategoryScores(city);
@@ -52,15 +54,18 @@ namespace QLifeC_Datatool
             }
         }
 
-        private void GetCityList()
+        private void GetCityList(int numberOfCities)
         {
             dynamic jsonObj = UrlToJsonObj(Url);
-
+            
             if (jsonObj != null)
             {
                 var jsonCities = jsonObj["_links"]["ua:item"];
+                int intervall = jsonCities.Count / numberOfCities;
 
-                for (int i = 0; i <= 200; i += 10)
+                if (intervall < 1) intervall = 1;
+                
+                for (int i = 0; i < jsonCities.Count; i += intervall)
                 {
                     City city = new City
                     {

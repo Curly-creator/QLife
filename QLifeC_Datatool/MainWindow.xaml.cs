@@ -3,6 +3,7 @@ using Nancy.Json;
 using Nancy.ModelBinding.DefaultBodyDeserializers;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -33,9 +34,6 @@ namespace QLifeC_Datatool
         public bool MethodStatus;
         public string ErrorNotification;
 
-        public API_Request test = new API_Request("https://api.teleport.org/api/urban_areas");
-
-        public double[] FilterValues;
         public MainWindow()
         {
             InitializeComponent();            
@@ -71,7 +69,7 @@ namespace QLifeC_Datatool
 
         private void btn_Download_Click(object sender, RoutedEventArgs e)
         {
-            cityList.GetCityScores("https://api.teleport.org/api/urban_areas/");
+            cityList.GetCityScores("https://api.teleport.org/api/urban_areas/", int.Parse(tbx_CityCount.Text));
             Dgd_MainGrid.ItemsSource = cityList;
             Dgd_MainGrid.Items.Refresh();
         }
@@ -95,7 +93,6 @@ namespace QLifeC_Datatool
                 if (actSlider.Name == FilterSliderArray[i].Name && (bool)FilterCheckBoxArray[i].IsChecked)
                 {
                     cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
-                    Dgd_MainGrid.ItemsSource = cityList;
                     Dgd_MainGrid.Items.Refresh();
                     break;
                 }
@@ -111,7 +108,7 @@ namespace QLifeC_Datatool
         private void btn_Reset_Click(object sender, RoutedEventArgs e)
         {
           
-            cityList.Reset();
+            //cityList.Reset();
             FilterReset();
             tbx_SearchBar.Text = "";
             Dgd_MainGrid.ItemsSource = cityList;
@@ -195,8 +192,7 @@ namespace QLifeC_Datatool
                 {
                     target = new AdapterXML();
                     target.CallImportAdapter(FileExt, FilePath);
-                    cityList.Backup = target.cityList;
-                    cityList.AddRange(cityList.Backup);
+                    cityList = target.cityList;
                     MessageBox.Show(target.StatusNotification, "Import Window", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 //File Type is CSV.
@@ -204,8 +200,7 @@ namespace QLifeC_Datatool
                 {
                     target = new AdapterCSV();
                     target.CallImportAdapter(FileExt, FilePath);
-                    cityList.Backup = target.cityList;
-                    cityList.AddRange(cityList.Backup);
+                    cityList = target.cityList;
                     MessageBox.Show(target.StatusNotification, "Import Window", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 //File Type is invalid.
@@ -221,7 +216,6 @@ namespace QLifeC_Datatool
                 ErrorNotification = "Error: " + ex.Message;
                 MethodStatus = false;
             }
-
         }
 
 
