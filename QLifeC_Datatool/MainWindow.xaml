@@ -62,9 +62,9 @@
 
                 <DataGridTextColumn Header="Cost of Living" Binding="{Binding Categories[0]}">
                     <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="ToolTip" Value="{Binding Categories[0].Tooltip}"/>
-                            </Style>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="ToolTip" Value="{Binding Categories[0].Tooltip}"/>
+                        </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
@@ -83,7 +83,7 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                
+
                 <DataGridTextColumn Header="Environmental Quality" Binding="{Binding Categories[3]}">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
@@ -110,6 +110,17 @@
 
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="btn_Undo" Content="Undo" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="94,16,0,0" Grid.Row="1" VerticalAlignment="Top" Width="56" RenderTransformOrigin="0.5,0.5" Click="btn_Undo_Click">
+            <Button.RenderTransform>
+                <TransformGroup x:Name="undo_bt">
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <ComboBox x:Name="cb_undo" Grid.Column="1" HorizontalAlignment="Left" Margin="0,18,0,0" Grid.Row="1" VerticalAlignment="Top" Width="240" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

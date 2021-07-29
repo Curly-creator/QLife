@@ -28,6 +28,7 @@ namespace QLifeC_Datatool
     {
       
         public List<City> cityList = new List<City>();
+        public Stack<City> changeCityStack = new Stack<City>();
         public CategoryID categorieID = new CategoryID();        
 
         public MainWindow()
@@ -166,7 +167,7 @@ namespace QLifeC_Datatool
             AddCity addCityWindow = new AddCity();
             addCityWindow.ShowDialog();
 
-            Dgd_MainGrid.Items.Refresh();              //refresh testCityList im View
+            Dgd_MainGrid.Items.Refresh(); //refresh testCityList im View
         }
 
         private void btn_DelEntry_Click(object sender, RoutedEventArgs e)
@@ -176,6 +177,7 @@ namespace QLifeC_Datatool
             {
                 case MessageBoxResult.Yes:
                     int i = (Dgd_MainGrid.SelectedIndex);
+                    AddChangeCity(cityList[i], i, 3);
                     cityList.RemoveAt(i);
                     break;
                 case MessageBoxResult.No:
@@ -197,6 +199,73 @@ namespace QLifeC_Datatool
             else
                 MessageBox.Show("Please first select a city that you would like to edit");
 
+        }
+        public void Reverse(int count)
+        {
+            int i = count;
+            while (i >= 0 && i <= count && changeCityStack.Count > 0)
+            {
+                if (changeCityStack.Peek().Changetype == 3)
+                {
+                    cityList.Insert(changeCityStack.Peek().Index, changeCityStack.Pop());
+                }
+                else if (changeCityStack.Peek().Changetype == 2)
+                {
+                    cityList.RemoveAt(changeCityStack.Pop().Index-1);
+                }
+                else if (changeCityStack.Peek().Changetype == 1)
+                {
+                    cityList[changeCityStack.Peek().Index] = changeCityStack.Pop();
+                }
+                else
+                {
+                    MessageBox.Show("Undo failed ERROR: unknown changetype");
+                }
+                cb_undo.Items.RemoveAt(0);
+                if (cb_undo.Items.Count != 0)
+                {
+                    cb_undo.SelectedItem = cb_undo.Items[0];
+                }
+                else
+                {
+                    cb_undo.SelectedItem = cb_undo.Items.Count - 1;
+                }
+                i--;
+            }
+            Dgd_MainGrid.Items.Refresh();
+        }
+        public void AddChangeCity(City city, int index, int changeType)
+        {
+            City changeCity = city;
+
+            changeCity.Index = index;
+            changeCity.Changetype = changeType;
+            string changeTypeStr;
+            if (changeType == 1)
+            {
+                changeTypeStr = "Edit; ";
+            }
+            else if (changeType == 2)
+            {
+                changeTypeStr = "Add; ";
+            }
+            else if (changeType == 3)
+            {
+                changeTypeStr = "Delete; ";
+            }
+            else
+            {
+                changeTypeStr = "";
+            }
+
+            changeCityStack.Push(changeCity);
+            cb_undo.Items.Insert(0, changeTypeStr + changeCityStack.Peek().Name);
+            cb_undo.SelectedItem = cb_undo.Items[0];
+        }
+
+        private void btn_Undo_Click(object sender, RoutedEventArgs e)
+        {
+            Reverse(cb_undo.SelectedIndex);
         }
     }
 }

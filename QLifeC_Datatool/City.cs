@@ -8,6 +8,9 @@ namespace QLifeC_Datatool
     {
         private string _Name; 
         private string _Url;
+        private int index;
+        private int changetype;
+        
         Category[] _Categories;
 
         Category COL = new Category();
@@ -32,6 +35,8 @@ namespace QLifeC_Datatool
         public string Name { get => _Name; set => _Name = value; }
         public string Url { get => _Url; set => _Url = value; }
         public Category[] Categories { get => _Categories; set => _Categories = value; }
+        public int Index { get => index; set => index = value; }
+        public int Changetype { get => changetype; set => changetype = value; }
     }
 }
 
