@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 using System.Windows;
+using System.Linq;
 
 namespace QLifeC_Datatool
 {
@@ -46,38 +47,42 @@ namespace QLifeC_Datatool
 
         }
 
+        /// <summary>
+        /// gets called by adapter interface if CheckIfListCanBeExportedAtAll in MainWindow was successfull, passes the parameters to the WriteToXML method
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="cityList"></param>
         public void CallExportAdapter(Stream stream, CityList cityList)
         {
+            //the follwoing try catch code is only for UnitTest reasons. Actually I am already checking the List in MainWindow Method CheckIfListCanBeExportedAtAll so that the file is not exported at all, but I cannot write UnitTest for Methods in MainWindow
             try
             {
-                //the follwoing if else code is only for UnitTest reasons. Actually I am already checking the List in MainWindow Method CheckIfListCanBeExportedAtAll so that the file is not exported at all, but I cannot write UnitTest for Methods in MainWindow
-                if (cityList != null)
-                {
+                cityList.Any(); //could not find any other solution to get an exception in catch block as XML writes even not initialized lists into a file
                 WriteToXML(stream, cityList);
                 MessageBox.Show("Your export was successful.", "XML export complete", MessageBoxButton.OK, MessageBoxImage.Information);
                 MethodStatus = true;
-                }
+
+
             }
+
             catch (Exception ex)
             {
-                MessageBox.Show("Attention! You are trying to export a list that is not initialized. No data will be exported to this xml file! \n Error: " + ex.Message, "Download Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Attention! You are trying to export a list that is not initialized. No data will be exported to this xml file! \n Error: " + ex.Message, "Export Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 MethodStatus = false;
             }
         }
 
+        /// <summary>
+        /// takes current list and uses the opened stream to write list data to file via xml Serializer
+        /// </summary>
+        /// <param name="xmlstream"></param>
+        /// <param name="cityList"></param>
         public void WriteToXML(Stream xmlstream, CityList cityList)
         {
             XmlSerializer writer = new XmlSerializer(typeof(CityList));
 
             writer.Serialize(xmlstream, cityList);
         }
-
-        //ExportResult = true;
-        //MessageBox.Show("Your file can be found here: \n" + Filename, "XML download complete", MessageBoxButton.OK, MessageBoxImage.Information);
-
-        //ExportResult = false;
-        //MessageBox.Show("Attention! You are trying to export a list that is not initialized. No data will be exported to this xml file! \n Error: " + ex.Message, "Download Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
 
         /// <summary>
         /// Method that gets called through the Interface and is responsible for validating and deserializing xml file.

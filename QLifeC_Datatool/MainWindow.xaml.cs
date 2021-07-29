@@ -23,10 +23,7 @@ namespace QLifeC_Datatool
         public Button[] SortButtonArray;
 
         public CityList cityList = new CityList();
-    
-        //public List<City> cityList = new List<City>();
-        //public List<City> nullCityList;
-        //public List<City> emptyList = new List<City>();
+
         public string[] FileTypeAllowed = { ".xml", ".csv" };
         
         //Method Status for unit test purposes to check if the method was successfully implemented.
@@ -221,17 +218,21 @@ namespace QLifeC_Datatool
                 ErrorNotification = "Error: " + ex.Message;
                 MethodStatus = false;
             }
-
         }
 
-
-
+        /// <summary>
+        /// Event handler for "Export" Button Click
+        /// First: the list to be exported is set to the actual list shown in listview, so user can export what is shown, filtered, etc.
+        /// Second: list gets checked in a separate method, only if true a SafeFileDialog opens, a Stream is created and file export starts
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Export_Click(object sender, RoutedEventArgs e)
         {
             CityList ListToBeExported = cityList;
-            //for testing reasons:
-            //List<City> ListToBeExported = emptyList;
-            //List<City> ListToBeExported = nullCityList;
+            //for testing reasons if you want to see my preferred exception handling in action use the two following lists, this is where I want to check list, but could not test this in UnitTest as this has to happen in MainWindow right after user clicks export button
+            //CityList ListToBeExported = emptyList;
+            //CityList ListToBeExported = nullCityList;
 
             bool? exportPossible = CheckIfListCanBeExportedAtAll(ListToBeExported);
 
@@ -247,6 +248,7 @@ namespace QLifeC_Datatool
                     Title = "Export QLifeC file"
                 };
 
+                //name of file, extension and storage location gets chosen by user in export dialog
                 if (exportDialog.ShowDialog() == true)
                 {
                     if ((qLifeStream = exportDialog.OpenFile()) != null)
@@ -257,7 +259,6 @@ namespace QLifeC_Datatool
                         StartFileExport(FileExt, qLifeStream, ListToBeExported);
                     }
                 }
-
             }
             else if (exportPossible == false)
             {
@@ -268,6 +269,13 @@ namespace QLifeC_Datatool
                 MessageBox.Show("Export not possible. Please contact support at Team_QLifeC_Datatool@HTW-UI-InArbeit.de", "Export failed", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        /// <summary>
+        /// Method to trigger the actual file export by parsing the list and the opened stream to the Adapter that fits the file extension chosen by user
+        /// </summary>
+        /// <param name="FileExt"></param>
+        /// <param name="qLifeStream"></param>
+        /// <param name="ListForExport"></param>
         public void StartFileExport(string FileExt, Stream qLifeStream, CityList ListForExport)
         {
             ITarget target;
@@ -284,11 +292,20 @@ namespace QLifeC_Datatool
                     target.CallExportAdapter(qLifeStream, ListForExport);
                     break;
                 default:
-                    MessageBox.Show("Please choose correct file extension");
+                    //if file extensions get added to Filter of SafeFileDialog without implementing an adapter for them:
+                    MessageBox.Show("There is no adapter for the file extention you chose.");
                     break;
             }
         }
 
+        /// <summary>
+        /// checks if a list can be exported, there are 3 possible outcomes: null, true and false
+        /// null) if list has not been initialized, export does not start, user gets information
+        /// false) if list is empty, user is asked if the export should continue and chooses NO (export then cancelled)
+        /// true) if list is empty and user chooses YES to continue the export OR if list is not empty which should be the default case here
+        /// </summary>
+        /// <param name="ListToBeExported"></param>
+        /// <returns></returns>
         public bool? CheckIfListCanBeExportedAtAll(CityList ListToBeExported)
         {
             if (ListToBeExported == null)
