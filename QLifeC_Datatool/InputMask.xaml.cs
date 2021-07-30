@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 namespace QLifeC_Datatool
 {
     /// <summary>
-    /// Interaktionslogik für InputMask.xaml
+    /// Interaktionslogik für AddCity.xaml
     /// </summary>
     public partial class InputMask : Window
     {
@@ -46,6 +46,7 @@ namespace QLifeC_Datatool
         public InputMask()
         {
             InitializeComponent();
+
             allSliders = new List<Slider> { col_sd, h_sd, ia_sd, eq_sd, tc_sd, o_sd };
             allLabelSliders = new List<Label> { col_lb, h_lb, ia_lb, eq_lb, tc_lb, o_lb };
 
@@ -71,39 +72,13 @@ namespace QLifeC_Datatool
             catTextBoxListOfList = new List<List<TextBox>> { cat0tblist, cat1tblist, cat2tblist, cat3tblist, cat4tblist, cat5tblist };
 
         }
-        public InputMask(City city) : base()
+        public InputMask(City city) : this()
         {
-            InitializeComponent();
             edit_bt.Visibility = Visibility.Visible;
             add_bt.Visibility = Visibility.Hidden;
             cityToBeEdit = (City)city;
-
-            //// Just temp for tests!
-            allSliders = new List<Slider> { col_sd, h_sd, ia_sd, eq_sd, tc_sd, o_sd };
-            allLabelSliders = new List<Label> { col_lb, h_lb, ia_lb, eq_lb, tc_lb, o_lb };
             List<CheckBox> allCheckBox = new List<CheckBox> { col_cb, h_cb, ia_cb, eq_cb, tc_cb, o_cb };
 
-            cat0labellist = new List<Label> { col1_lb, col2_lb, col3_lb, col4_lb, col5_lb, col6_lb, col7_lb, col8_lb, col9_lb, col10_lb, col11_lb };
-            cat0tblist = new List<TextBox> { col1_tb, col2_tb, col3_tb, col4_tb, col5_tb, col6_tb, col7_tb, col8_tb, col9_tb, col10_tb, col11_tb };
-
-            cat1labellist = new List<Label> { h1_lb, h2_lb, h3_lb, h4_lb };
-            cat1tblist = new List<TextBox> { h1_tb, h2_tb, h3_tb, h4_tb };
-
-            cat2labellist = new List<Label> { ia1_lb, ia2_lb, ia3_lb, ia4_lb };
-            cat2tblist = new List<TextBox> { ia1_tb, ia2_tb, ia3_tb, ia4_tb };
-
-            cat3labellist = new List<Label> { eq1_lb, eq2_lb, eq3_lb, eq4_lb };
-            cat3tblist = new List<TextBox> { eq1_tb, eq2_tb, eq3_tb, eq4_tb };
-
-            cat4labellist = new List<Label> { tc1_lb, tc2_lb, tc3_lb };
-            cat4tblist = new List<TextBox> { tc1_tb, tc2_tb, tc3_tb };
-
-            cat5labellist = new List<Label> { o1_lb, o2_lb, o3_lb, o4_lb, o5_lb, o6_lb, o7_lb };
-            cat5tblist = new List<TextBox> { o1_tb, o2_tb, o3_tb, o4_tb, o5_tb, o6_tb, o7_tb };
-
-            catLabelListOfList = new List<List<Label>> { cat0labellist, cat1labellist, cat2labellist, cat3labellist, cat4labellist, cat5labellist };
-            catTextBoxListOfList = new List<List<TextBox>> { cat0tblist, cat1tblist, cat2tblist, cat3tblist, cat4tblist, cat5tblist };
-            /////
             cityName_tb.Text = cityToBeEdit.Name;
             for (int i = 0; i < 6; i++)
             {
@@ -126,13 +101,13 @@ namespace QLifeC_Datatool
                     catTextBoxListOfList[j][i].Text = cityToBeEdit.Categories[j].SubCategories[i].Value.ToString();
                 }
             }
+            ((MainWindow)Application.Current.MainWindow).AddChangeCity(AddCityToList(), ((MainWindow)Application.Current.MainWindow).Dgd_MainGrid.SelectedIndex, 1);
 
         }
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-
-            cityToBeEdit = CityToList();
-            ((MainWindow)Application.Current.MainWindow).cityList[((MainWindow)Application.Current.MainWindow).Dgd_MainGrid.SelectedIndex] = CityToList(); ;
+            //((MainWindow)Application.Current.MainWindow).cityList.Add(AddCityToList()); //here the city is manually added to your testCityList
+            ((MainWindow)Application.Current.MainWindow).cityList[((MainWindow)Application.Current.MainWindow).Dgd_MainGrid.SelectedIndex] = AddCityToList();
             this.Close();
             //cityList[changeCityList[i].Index] = changeCityList[i]
         }
@@ -190,7 +165,8 @@ namespace QLifeC_Datatool
             {
                 CityToList(); //at this point the city is a checkedCity 
             }
-            ((MainWindow)Application.Current.MainWindow).cityList.Add(cityToBeAdded); //here the city is manually added to jonas backup citylist            
+            ((MainWindow)Application.Current.MainWindow).cityList.Add(AddCityToList());//here the city is manually added to your testCityList
+            ((MainWindow)Application.Current.MainWindow).AddChangeCity(AddCityToList(), ((MainWindow)Application.Current.MainWindow).cityList.Count, 2);
             this.Close();
         }
         public bool CheckIfContainsOnlyNumbers()
@@ -406,6 +382,7 @@ namespace QLifeC_Datatool
         {
             o_sd.IsEnabled = true;
         }
+
 
     }
 }

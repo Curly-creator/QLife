@@ -24,6 +24,7 @@ namespace QLifeC_Datatool
         public Button[] SortButtonArray;
 
         public CityList cityList = new CityList();
+        public Stack<City> changeCityStack = new Stack<City>();
 
         public string[] FileTypeAllowed = { ".xml", ".csv" };
 
@@ -63,7 +64,7 @@ namespace QLifeC_Datatool
             return FilterStatus;
         }
 
-        private void btn_Download_Click(object sender, RoutedEventArgs e)
+        private void btn_LoadAPIData_Click(object sender, RoutedEventArgs e)
         {
             cityList.Clear();
             cityList.GetCityScores("https://api.teleport.org/api/urban_areas/", 20);
@@ -353,5 +354,73 @@ namespace QLifeC_Datatool
                 MessageBox.Show("Please first select a city that you would like to edit");
         }
 
+        }
+        public void Reverse(int count)
+        {
+            int i = count;
+            while (i >= 0 && i <= count && changeCityStack.Count > 0)
+            {
+                if (changeCityStack.Peek().Changetype == 3)
+                {
+                    cityList.Insert(changeCityStack.Peek().Index, changeCityStack.Pop());
+                }
+                else if (changeCityStack.Peek().Changetype == 2)
+                {
+                    cityList.RemoveAt(changeCityStack.Pop().Index-1);
+                }
+                else if (changeCityStack.Peek().Changetype == 1)
+                {
+                    cityList[changeCityStack.Peek().Index] = changeCityStack.Pop();
+                }
+                else
+                {
+                    MessageBox.Show("Undo failed ERROR: unknown changetype");
+                }
+                cb_undo.Items.RemoveAt(0);
+                if (cb_undo.Items.Count != 0)
+                {
+                    cb_undo.SelectedItem = cb_undo.Items[0];
+                }
+                else
+                {
+                    cb_undo.SelectedItem = cb_undo.Items.Count - 1;
+                }
+                i--;
+            }
+            Dgd_MainGrid.Items.Refresh();
+        }
+        public void AddChangeCity(City city, int index, int changeType)
+        {
+            City changeCity = city;
+
+            changeCity.Index = index;
+            changeCity.Changetype = changeType;
+            string changeTypeStr;
+            if (changeType == 1)
+            {
+                changeTypeStr = "Edit; ";
+            }
+            else if (changeType == 2)
+            {
+                changeTypeStr = "Add; ";
+            }
+            else if (changeType == 3)
+            {
+                changeTypeStr = "Delete; ";
+            }
+            else
+            {
+                changeTypeStr = "";
+            }
+
+            changeCityStack.Push(changeCity);
+            cb_undo.Items.Insert(0, changeTypeStr + changeCityStack.Peek().Name);
+            cb_undo.SelectedItem = cb_undo.Items[0];
+        }
+
+        private void btn_Undo_Click(object sender, RoutedEventArgs e)
+        {
+            Reverse(cb_undo.SelectedIndex);
+        }
     }
 }

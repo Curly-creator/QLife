@@ -52,7 +52,7 @@
             <Button x:Name="btn_DelEntry" Content="Delete" Height="30" Margin="20 5 20 10" Click="btn_DelEntry_Click"/>
             <Button x:Name="btn_Export" Content="Export" Height="30" Margin="20 40 20 10" Click="btn_Export_Click"/>
             <Button x:Name="btn_Import" Content="Import" Height="30" Margin="20 5 20 10" Click="btn_Import_Click"/>
-            <Button x:Name="btn_Download" Content="Download" Height="30" Margin="20 5 20 10" Click="btn_Download_Click"/>
+            <Button x:name="btn_LoadAPIData" Content=" Load API Data" Height="30" Margin="20 5 20 10" Click="btn_LoadAPIData_Click"/>
             <Button x:Name="btn_Reset" Content="Reset" Height="30" Margin="20 5 20 10" Click="btn_Reset_Click"/>
             <Grid Grid.RowSpan="2">
                 <Label Content="Number of Cites" Width="100" HorizontalAlignment="Left" Margin="20 5 20 10"/>
@@ -248,5 +248,17 @@
 
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="btn_Undo" Content="Undo" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="94,16,0,0" Grid.Row="1" VerticalAlignment="Top" Width="56" RenderTransformOrigin="0.5,0.5" Click="btn_Undo_Click">
+            <Button.RenderTransform>
+                <TransformGroup x:Name="undo_bt">
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <ComboBox x:Name="cb_undo" Grid.Column="1" HorizontalAlignment="Left" Margin="0,18,0,0" Grid.Row="1" VerticalAlignment="Top" Width="240" Grid.ColumnSpan="2"/>
+
     </Grid>
 </Window>
