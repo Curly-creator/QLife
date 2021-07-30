@@ -63,7 +63,7 @@ namespace QLifeC_Datatool
             return FilterStatus;
         }
 
-        private void btn_Download_Click(object sender, RoutedEventArgs e)
+        private void btn_LoadAPIData_Click(object sender, RoutedEventArgs e)
         {
             cityList.Clear();
             cityList.GetCityScores("https://api.teleport.org/api/urban_areas/", 20);
