@@ -308,5 +308,50 @@ namespace QLifeC_Datatool
                     break;
             }
         }
+
+        private void btn_NewEntry_Click(object sender, RoutedEventArgs e)
+        {
+            InputMask addingCityWindow = new InputMask();
+            addingCityWindow.ShowDialog();
+            Dgd_MainGrid.Items.Refresh();              //refresh CityList im View
+        }
+
+        private void btn_DelEntry_Click(object sender, RoutedEventArgs e)
+        {
+            if (Dgd_MainGrid.SelectedValue == null)
+            {
+                MessageBox.Show("Please select a city you want to delete first.");
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to continue?", "Deleting Chosen City", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        int i = (Dgd_MainGrid.SelectedIndex);
+                        cityList.RemoveAt(i); //Lor:todo
+                        break;
+                    case MessageBoxResult.No:
+                        MessageBox.Show("The city is still here.", "Deleting Chosen City");
+                        break;
+                }
+            }
+
+            Dgd_MainGrid.Items.Refresh();                   // refresh the datagrid (after deleting the selected city)
+        }
+
+        private void btn_UpdEntry_Click(object sender, RoutedEventArgs e)
+        {
+            if (Dgd_MainGrid.SelectedValue != null)
+            {
+
+                InputMask editCityWindow = new InputMask(cityList[Dgd_MainGrid.SelectedIndex]);
+                editCityWindow.ShowDialog();
+                Dgd_MainGrid.Items.Refresh();
+            }
+            else
+                MessageBox.Show("Please first select a city that you would like to edit");
+        }
+
     }
 }
