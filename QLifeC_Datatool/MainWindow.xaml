@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLifeC_Datatool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000">
+        Title="QLifeC-Datatool" Height="600" Width="1000">
     <Window.Background>
-        <ImageBrush ImageSource="/backgroundQLifeC.jpg" Opacity="1"/>
+        <ImageBrush ImageSource="/backgroundQLifeC.jpg" Opacity="0.9"/>
     </Window.Background>
 
     <Grid Opacity="0.85">
@@ -48,7 +48,7 @@
             <Label Content="Welcome to QLifeC - Datatool" Height="44" Opacity="0.9" FontSize="30" HorizontalAlignment="Center" FontFamily="Lucida Sans Unicode" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="2" Grid.RowSpan="1" Grid.ColumnSpan="4" HorizontalAlignment="Center">
-            <TextBox Text="A simple tool to get useful information on interesting cities of the world or to add your own data. Have some fun!" Height="44" FontSize="13" HorizontalAlignment="Center" FontFamily="Lucida Sans Unicode" FontWeight="Bold" TextWrapping="Wrap" HorizontalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Width="402"/>
+            <TextBox Text="A simple tool to get useful information on interesting cities of the world or to add your own data. Have some fun!" IsReadOnly="True" Height="44" FontSize="13" HorizontalAlignment="Center" FontFamily="Lucida Sans Unicode" FontWeight="Bold" TextWrapping="Wrap" HorizontalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Width="402"/>
         </StackPanel>
 
         <StackPanel Grid.Column="6" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="1">
@@ -61,18 +61,21 @@
         <!--All the main buttons are in this stack panel. Easier to make changes to multiple buttons at once-->
         <StackPanel Grid.Column="6" Grid.ColumnSpan="1" Grid.Row="4" Grid.RowSpan="8">
             <Button x:Name="btn_NewEntry" Content="Add" Height="30" Margin="20 10 20 10" Click="btn_NewEntry_Click" FontWeight="Bold"/>
-            <Button x:Name="btn_UpdEntry" Content="Edit" Height="30" Margin="20 5 20 10" Click="btn_UpdEntry_Click" FontWeight="Bold"/>
-            <Button x:Name="btn_DelEntry" Content="Delete" Height="30" Margin="20 5 20 10" Click="btn_DelEntry_Click" FontWeight="Bold"/>
-            <Button x:Name="btn_Export" Content="Export" Height="30" Margin="20 40 20 10" Click="btn_Export_Click" FontWeight="Bold"/>
-            <Button x:Name="btn_Import" Content="Import" Height="30" Margin="20 5 20 10" Click="btn_Import_Click" FontWeight="Bold"/>
-            <Button x:Name="btn_LoadAPIData" Content="Load API Data" Height="30" Margin="20 5 20 10" Click="btn_LoadAPIData_Click" FontWeight="Bold"/>
-            <Button x:Name="btn_Reset" Content="Reset" Height="30" Margin="20 5 20 10" Click="btn_Reset_Click" FontWeight="Bold"/>
-            <Grid Grid.RowSpan="2">
-                <!--<Label Content="Number of Cites" Width="100" HorizontalAlignment="Left" Margin="20 5 20 10"/>
-                <TextBox x:Name ="tbx_CityCount" Text="20" Width="25" HorizontalAlignment="Right" Margin="20 5 20 10" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>-->
-            </Grid>
+            <Button x:Name="btn_UpdEntry" Content="Edit" Height="30" Margin="20 5 15 10" Click="btn_UpdEntry_Click" FontWeight="Bold"/>
+            <Button x:Name="btn_DelEntry" Content="Delete" Height="30" Margin="20 5 15 10" Click="btn_DelEntry_Click" FontWeight="Bold"/>
+            <Button x:Name="btn_Export" Content="Export" Height="30" Margin="20 40 15 10" Click="btn_Export_Click" FontWeight="Bold"/>
+            <Button x:Name="btn_Import" Content="Import" Height="30" Margin="20 5 15 10" Click="btn_Import_Click" FontWeight="Bold"/>
+            <Button x:Name="btn_Reset" Content="Reset" Height="30" Margin="20 5 15 10" Click="btn_Reset_Click" FontWeight="Bold"/>
+            <Button x:Name="btn_LoadAPIData" Content="Load API Data" Height="30" Margin="20 5 15 10" Click="btn_LoadAPIData_Click" FontWeight="Bold"/>
         </StackPanel>
 
+        <StackPanel Grid.Column="6" Grid.ColumnSpan="1" Grid.Row="12" Grid.RowSpan="2" Margin="20,5,0,0">
+            <Label Content="Cities to upload" Width="100"  Height="30" Background="#FFC3C4C4" HorizontalAlignment="Left" FontWeight="Bold" VerticalContentAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="6" Grid.ColumnSpan="1" Grid.Row="12" Grid.RowSpan="2" Margin="0,5,15,0">
+            <TextBox x:Name ="tbx_CityCount" Text="20" Width="20"  Height="30" HorizontalAlignment="Right" FontWeight="Bold" Background="#FF83D27B" VerticalContentAlignment="Center"/>
+        </StackPanel>
 
         <!--Main Grid-->
         <DataGrid x:Name="Dgd_MainGrid"                
@@ -89,7 +92,7 @@
                   CanUserAddRows="False"
                   CanUserReorderColumns="False" 
                   CanUserResizeColumns="False"
-                  CanUserSortColumns="False" Margin="1,9,159,43">
+                  CanUserSortColumns="False" Margin="1,9,159,11">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}">
@@ -114,7 +117,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Button Name="btn_SortCoL" Content="Cost of Living" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="#FF0D2F60" Click="SortButton_Click" FontSize="11" FontWeight="Bold"/>
-                                <Slider Name="sl_CoLFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
+                                <Slider Name="sl_CoLFilter" Margin="0 2 0 0" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
                                 <CheckBox Name="cb_CoLFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
                                 <Label Name="lbl_CoL" Content="Filtervalue: 0.0"  Grid.Row="2" HorizontalAlignment="Right"/>
 
@@ -139,7 +142,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Button Name="btn_SortHC" Content="Healthcare" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="#FF0D2F60" Click="SortButton_Click" FontSize="11" FontWeight="Bold"/>
-                                <Slider Name="sl_HCFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
+                                <Slider Name="sl_HCFilter" Margin="0 2 0 0" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
                                 <CheckBox Name="cb_HCFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
                                 <Label Name="lbl_HC" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
 
@@ -164,7 +167,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Button Name="btn_SortIA" Content="Internet Access" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="#FF0D2F60" Click="SortButton_Click" FontSize="11" FontWeight="Bold"/>
-                                <Slider Name="sl_IAFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
+                                <Slider Name="sl_IAFilter" Margin="0 2 0 0" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
                                 <CheckBox Name="cb_IAFilter" Grid.Row="2" VerticalAlignment="Center"/>
                                 <Label Name="lbl_IA" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
 
@@ -191,7 +194,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Button Name="btn_SortEQ" Content="Environm. Quality" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="#FF0D2F60" Click="SortButton_Click" FontSize="10.5" FontWeight="Bold"/>
-                                <Slider Name="sl_EQFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
+                                <Slider Name="sl_EQFilter" Margin="0 2 0 0" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
                                 <CheckBox Name="cb_EQFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
                                 <Label Name="lbl_EQ" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
 
@@ -217,7 +220,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Button Name="btn_SortTC" Content="Travel Connectivity" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="#FF0D2F60" Click="SortButton_Click" FontSize="10.5" FontWeight="Bold"/>
-                                <Slider Name="sl_TCFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
+                                <Slider Name="sl_TCFilter" Margin="0 2 0 0" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
                                 <CheckBox Name="cb_TCFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
                                 <Label Name="lbl_TC" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
 
@@ -243,7 +246,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Button Name="btn_SortO" Content="Outdoors" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="#FF0D2F60" Click="SortButton_Click" FontSize="11" FontWeight="Bold"/>
-                                <Slider Name="sl_OFilter" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
+                                <Slider Name="sl_OFilter" Margin="0 2 0 0" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
                                 <CheckBox Name="cb_OFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
                                 <Label Name="lbl_O" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
 
@@ -261,5 +264,17 @@
 
             </DataGrid.Columns>
         </DataGrid>
+
+        <Button x:Name="btn_Undo" Content="Undo" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="94,18,0,0" Grid.Row="3" VerticalAlignment="Top" Width="56" RenderTransformOrigin="0.5,0.5" Click="btn_Undo_Click" Background="Black" Foreground="#FFBECFE9" FontWeight="Bold">
+            <Button.RenderTransform>
+                <TransformGroup x:Name="undo_bt">
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <ComboBox x:Name="cb_undo" Grid.Column="1" HorizontalAlignment="Left" Margin="0,18,0,0" Grid.Row="3" VerticalAlignment="Top" Width="240" Height="25" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
