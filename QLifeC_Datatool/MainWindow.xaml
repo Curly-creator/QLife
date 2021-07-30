@@ -9,6 +9,7 @@
     <Window.Background>
         <ImageBrush ImageSource="/backgroundQLifeC.jpg" Opacity="0.9"/>
     </Window.Background>
+    
 
     <Grid Opacity="0.85">
 
@@ -52,15 +53,15 @@
         </StackPanel>
 
         <StackPanel Grid.Column="6" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="1">
-            <Expander IsExpanded="False" FontWeight="Normal" Background="#FF01040A" Foreground="#FFC9D7EE" FontSize="12">
+            <Expander IsExpanded="False" FontWeight="Normal" Background="#FF031D33" Foreground="#FFC9D7EE" FontSize="12">
                 <Expander.Header>About</Expander.Header>
-                <TextBlock TextWrapping="Wrap" Text="QLifeC - Datatool was happily developed by Jonas Burger, Lor Galm, Antonio Schmusch, Tanvi Sharma, Ivonne Giske in 2021" Foreground="#FF76D168" Margin="2,2,2,2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock TextWrapping="Wrap" Text="QLifeC - Datatool was happily developed by Jonas Burger, Lor Galm, Antonio Schmusch, Tanvi Sharma, Ivonne Giske in 2021" Foreground="#FFCAA480" Margin="2,2,2,2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Expander>
         </StackPanel>
 
         <!--All the main buttons are in this stack panel. Easier to make changes to multiple buttons at once-->
         <StackPanel Grid.Column="6" Grid.ColumnSpan="1" Grid.Row="4" Grid.RowSpan="8">
-            <Button x:Name="btn_NewEntry" Content="Add" Height="30" Margin="20 10 20 10" Click="btn_NewEntry_Click" FontWeight="Bold"/>
+            <Button x:Name="btn_NewEntry" Content="Add" Height="30" Margin="20 10 15 10" Click="btn_NewEntry_Click" FontWeight="Bold"/>
             <Button x:Name="btn_UpdEntry" Content="Edit" Height="30" Margin="20 5 15 10" Click="btn_UpdEntry_Click" FontWeight="Bold"/>
             <Button x:Name="btn_DelEntry" Content="Delete" Height="30" Margin="20 5 15 10" Click="btn_DelEntry_Click" FontWeight="Bold"/>
             <Button x:Name="btn_Export" Content="Export" Height="30" Margin="20 40 15 10" Click="btn_Export_Click" FontWeight="Bold"/>
@@ -74,7 +75,7 @@
         </StackPanel>
 
         <StackPanel Grid.Column="6" Grid.ColumnSpan="1" Grid.Row="12" Grid.RowSpan="2" Margin="0,5,15,0">
-            <TextBox x:Name ="tbx_CityCount" Text="20" Width="20"  Height="30" HorizontalAlignment="Right" FontWeight="Bold" Background="#FF83D27B" VerticalContentAlignment="Center"/>
+            <TextBox x:Name ="tbx_CityCount" Text="20" Width="20"  Height="30" HorizontalAlignment="Right" FontWeight="Bold" Background="#FFDAB995" VerticalContentAlignment="Center"/>
         </StackPanel>
 
         <!--Main Grid-->
@@ -101,14 +102,14 @@
                         <StackPanel Width="100">
                             <Button Name="btn_SortCity" Content="City" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="#FF0D2F60" Click="SortCityButton_Click" FontSize="11" FontWeight="Bold"/>
                             <TextBlock />
-                            <TextBox Name="tbx_SearchBar" TextAlignment="Left" TextChanged="tbx_SearchBar_TextChanged" BorderBrush="#FF0D2F60" Background="#FF76D168" />
+                            <TextBox Name="tbx_SearchBar" TextAlignment="Left" TextChanged="tbx_SearchBar_TextChanged" BorderBrush="#FF0D2F60" Background="#FFE9C59D" />
                         </StackPanel>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Binding="{Binding Categories[0]}" Foreground="Black">
                     <DataGridTextColumn.Header>
-                        <StackPanel Width="100" Background="#FFC1D1EC">
+                        <StackPanel Width="100" Background="#FF82AEB3">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
@@ -133,7 +134,7 @@
 
                 <DataGridTextColumn Binding="{Binding Categories[1]}">
                     <DataGridTextColumn.Header>
-                        <StackPanel Width="100" Background="#FFC1D1EC">
+                        <StackPanel Width="100" Background="#FF82AEB3">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
@@ -158,7 +159,7 @@
 
                 <DataGridTextColumn Binding="{Binding Categories[2]}">
                     <DataGridTextColumn.Header>
-                        <StackPanel Width="100" Background="#FFC1D1EC">
+                        <StackPanel Width="100" Background="#FF82AEB3">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
@@ -185,7 +186,7 @@
 
                 <DataGridTextColumn Binding="{Binding Categories[3]}">
                     <DataGridTextColumn.Header>
-                        <StackPanel Width="100" Background="#FFC1D1EC">
+                        <StackPanel Width="100" Background="#FF82AEB3">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
@@ -211,7 +212,7 @@
 
                 <DataGridTextColumn Binding="{Binding Categories[4]}">
                     <DataGridTextColumn.Header>
-                        <StackPanel Width="100" Background="#FFC1D1EC">
+                        <StackPanel Width="100" Background="#FF82AEB3">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
@@ -237,7 +238,7 @@
 
                 <DataGridTextColumn Binding="{Binding Categories[5]}">
                     <DataGridTextColumn.Header>
-                        <StackPanel Width="100" Background="#FFC1D1EC">
+                        <StackPanel Width="100" Background="#FF82AEB3">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
@@ -265,7 +266,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="btn_Undo" Content="Undo" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="94,18,0,0" Grid.Row="3" VerticalAlignment="Top" Width="56" RenderTransformOrigin="0.5,0.5" Click="btn_Undo_Click" Background="Black" Foreground="#FFBECFE9" FontWeight="Bold">
+        <Button x:Name="btn_Undo" Content="Undo" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="94,18,0,0" Grid.Row="3" VerticalAlignment="Top" Width="56" RenderTransformOrigin="0.5,0.5" Click="btn_Undo_Click" Background="#FF031D33" Foreground="#FFCAA480" FontWeight="Bold">
             <Button.RenderTransform>
                 <TransformGroup x:Name="undo_bt">
                     <ScaleTransform ScaleY="1"/>

@@ -1,11 +1,18 @@
-﻿<Window x:Class="QLifeC_Datatool.InputMask"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLifeC_Datatool"
+        x:Class="QLifeC_Datatool.InputMask"
         mc:Ignorable="d"
         Title="AddCity" Height="617" Width="1242">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF82AEB3"/>
+            <GradientStop Color="#FFE8C7A1" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid x:Name="col_sl">
         <!--Defining the grid structure with number of columns and rows-->
         <Grid.ColumnDefinitions>
@@ -31,13 +38,13 @@
 
         <!--All the labels are in this stack panel - not yet
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Grid.RowSpan="7"> -->
-            <Label Content="City Name:" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left"/>
-            <Label Content="COST OF LIVING:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-            <Label Content="Healthcare:" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-            <Label Content="Internet Access:" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-            <Label Content="Enviromental Quality:" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-            <Label Content="Travel Connectivity:" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-            <Label Content="Outdoors:" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <Label Content="City Name:" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontWeight="Bold"/>
+        <Label Content="COST OF LIVING:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold"/>
+        <Label Content="Healthcare:" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold"/>
+        <Label Content="Internet Access:" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold"/>
+        <Label Content="Enviromental Quality:" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold"/>
+        <Label Content="Travel Connectivity:" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold"/>
+        <Label Content="Outdoors:" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold"/>
         <!--</StackPanel>-->
 
         <!--Defining the meta grid structure of cost of living.-->
@@ -147,7 +154,7 @@
                 <TextBox x:Name="ia4_tb" Text="0" Grid.Column="2" Grid.Row="4" Background="Beige" Width="40" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             </Grid>
         </StackPanel>
-        
+
         <!--Defining the meta grid structure of enviromental quality.-->
         <StackPanel Orientation="Vertical" Grid.Column="3" Grid.Row="3" Grid.RowSpan="2" >
             <Grid x:Name="eq_grid" >
@@ -201,12 +208,12 @@
                 <TextBox x:Name="tc1_tb" Text="0" Grid.Column="2" Grid.Row="1" Background="Beige" Width="40" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                 <TextBox x:Name="tc2_tb" Text="0" Grid.Column="2" Grid.Row="2" Background="Beige" Width="40" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 <TextBox x:Name="tc3_tb" Text="0" Grid.Column="2" Grid.Row="3" Background="Beige" Width="40" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
-            </Grid>                       
+            </Grid>
         </StackPanel>
 
         <!--Defining the meta grid structure of outdoors.-->
         <StackPanel Orientation="Vertical" Grid.Column="4" Grid.Row="3" Grid.RowSpan="3" >
-            <Grid x:Name="o_grid" >
+            <Grid x:Name="o_grid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20"/>
                     <ColumnDefinition Width="*"/>
@@ -239,17 +246,16 @@
                 <TextBox x:Name="o5_tb" Text="0" Grid.Column="2" Grid.Row="5" Background="Beige" Width="40" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 <TextBox x:Name="o6_tb" Text="0" Grid.Column="2" Grid.Row="6" Background="Beige" Width="40" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                 <TextBox x:Name="o7_tb" Text="0" Grid.Column="2" Grid.Row="7" Background="Beige" Width="40" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            </Grid>                      
+            </Grid>
         </StackPanel>
 
         <!--All the textboxes are in this stack panel-->
         <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="1" Grid.RowSpan="7">
-            <TextBox x:Name="cityName_tb" Background="Beige" TextAlignment="Left" Margin="10 22 10 10"/>
+            <TextBox x:Name="cityName_tb" Background="#FFE8C7A1" TextAlignment="Left" Margin="10 22 10 10"/>
         </StackPanel>
 
-        <!--All the Sliders and the button are in this grid column 3 (or 2)-->
-        <Button x:Name="add_bt" Content="Add To List" Click="ButtonAdd_Click" Grid.Column="3" Grid.Row="1" Width="120" Height="30"/>
-        <Button x:Name="edit_bt" Content="Save changes" Visibility="Hidden" Click="ButtonEdit_Click" Grid.Column="3" Grid.Row="1" Width="120" Height="30"/>
+        <Button x:Name="add_bt" Content="Add To List" Click="ButtonAdd_Click" Grid.Column="3" Grid.Row="1" Width="120" Height="30" Background="#FF031D33" Foreground="#FFCAA480" FontWeight="Bold"/>
+        <Button x:Name="edit_bt" Content="Save changes" Visibility="Hidden" Click="ButtonEdit_Click" Grid.Column="3" Grid.Row="1" Width="120" Height="30" Background="#FF031D33" Foreground="#FFCAA480" FontWeight="Bold"/>
 
         <Slider x:Name="col_sd" Grid.Column="1" Grid.Row="7" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="col_sd_ValueChanged"/>
         <Label x:Name="col_lb" Content="0" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="7" VerticalAlignment="Center"/>
@@ -268,11 +274,11 @@
         <CheckBox x:Name="eq_cb" Content="N/A" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="eq_cb_Checked" Unchecked="eq_cb_Unchecked"/>
 
         <Slider x:Name="tc_sd" Grid.Row="7" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="tc_sd_ValueChanged"/>
-        <Label Name="tc_lb" Content="0" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Label x:Name="tc_lb" Content="0" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <CheckBox x:Name="tc_cb" Content="N/A" Grid.Column="3" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="tc_cb_Checked" Unchecked="tc_cb_Unchecked"/>
 
         <Slider x:Name="o_sd" Grid.Row="7" Grid.Column="4" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="o_sd_ValueChanged"/>
-        <Label Name="o_lb" Content="0" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Label x:Name="o_lb" Content="0" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <CheckBox x:Name="o_cb" Content="N/A" Grid.Column="4" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="o_cb_Checked" Unchecked="o_cb_Unchecked"/>
 
     </Grid>
