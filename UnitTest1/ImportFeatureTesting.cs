@@ -90,21 +90,6 @@ namespace UnitTest
             Assert.True(TestCSV.MethodStatus, TestCSV.StatusNotification);
         }
 
-        [Fact]
-        public void Should_Parse_CSVFile_ReturnsFalse()
-        {
-            //Arrange: Setting up Path of the csv file as the passing parameter for the method ReadParseCSV.
-            string pathstart = System.IO.Directory.GetCurrentDirectory();
-            //This is the full path with the name of the file in the current directory.
-            string path = pathstart + "\\Unit_Test_Files\\CityList_Backup_XML.xml";
-
-            //Act: Performing the actual test of running the method ReadParseCSV.
-            TestCSV.ReadParseCSV(path);
-
-            //Assert: This should be false in accordance with the MethodStatus which should also be false.
-            Assert.False(TestCSV.MethodStatus, TestCSV.StatusNotification);
-        }
-
         //[Fact]
         //public void Should_CheckFileExtandCallAdapter_ReturnsTrue()
         //{
