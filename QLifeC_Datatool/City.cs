@@ -10,6 +10,7 @@ namespace QLifeC_Datatool
         private string _Url;
     
         Category[] _Categories;
+        //private 
         private int index;
         private int changetype;
 

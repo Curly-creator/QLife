@@ -99,7 +99,7 @@ namespace QLifeC_Datatool
 
         public void FilterStatusChanged(object sender, RoutedEventArgs e)
         {
-            Dgd_MainGrid.ItemsSource = cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));          
+            cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));          
             Dgd_MainGrid.Items.Refresh();
         }
 
@@ -190,13 +190,13 @@ namespace QLifeC_Datatool
                 if (FileExt == FileTypeAllowed[0])
                 {
                     target = new AdapterXML(FilePath);
-                    cityList = target.cityList;
+                    cityList.UpdateCityList(target.cityList);
                 }
                 //File Type is CSV.
                 else if (FileExt == FileTypeAllowed[1])
                 {
                     target = new AdapterCSV(FilePath);
-                    cityList = target.cityList;
+                    cityList.UpdateCityList(target.cityList);
                     MessageBox.Show(target.StatusNotification, "Import Window", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 //File Type is invalid.
@@ -341,19 +341,19 @@ namespace QLifeC_Datatool
             Dgd_MainGrid.Items.Refresh();                   // refresh the datagrid (after deleting the selected city)
         }
 
-        private void btn_UpdEntry_Click(object sender, RoutedEventArgs e)
+        private void btn_UpdEdit_Click(object sender, RoutedEventArgs e)
         {
             if (Dgd_MainGrid.SelectedValue != null)
             {
-
-                InputMask editCityWindow = new InputMask(cityList[Dgd_MainGrid.SelectedIndex]);
+                City editCity = (City)Dgd_MainGrid.SelectedItem;
+                InputMask editCityWindow = new InputMask((City)Dgd_MainGrid.SelectedItem);
                 editCityWindow.ShowDialog();
+                cityList.Backup[cityList.Backup.IndexOf(editCity)] = editCityWindow.cityToBeEdit;
+                cityList.Reset();
                 Dgd_MainGrid.Items.Refresh();
             }
             else
                 MessageBox.Show("Please first select a city that you would like to edit");
-        }
-
         }
         public void Reverse(int count)
         {
@@ -366,7 +366,18 @@ namespace QLifeC_Datatool
                 }
                 else if (changeCityStack.Peek().Changetype == 2)
                 {
-                    cityList.RemoveAt(changeCityStack.Pop().Index-1);
+                    foreach (var city in cityList)
+                    {
+                        int test = cityList[0].GetHashCode();
+                        if (city.Index == changeCityStack.Peek().Index)
+                        {
+                            cityList.Remove(city);
+                            changeCityStack.Pop();
+                        }
+                    }
+                    //int test = cityList.IndexOf(changeCityStack.Peek()) + 1;
+                    //cityList.Remove(changeCityStack.Pop());
+                    //cityList.RemoveAt(cityList.IndexOf(changeCityStack.Pop()) + 1);
                 }
                 else if (changeCityStack.Peek().Changetype == 1)
                 {
@@ -376,7 +387,7 @@ namespace QLifeC_Datatool
                 {
                     MessageBox.Show("Undo failed ERROR: unknown changetype");
                 }
-                cb_undo.Items.RemoveAt(0);
+                //cb_undo.Items.RemoveAt(0);
                 if (cb_undo.Items.Count != 0)
                 {
                     cb_undo.SelectedItem = cb_undo.Items[0];
@@ -385,6 +396,7 @@ namespace QLifeC_Datatool
                 {
                     cb_undo.SelectedItem = cb_undo.Items.Count - 1;
                 }
+                cb_undo.Items.Refresh();
                 i--;
             }
             Dgd_MainGrid.Items.Refresh();
@@ -393,7 +405,7 @@ namespace QLifeC_Datatool
         {
             City changeCity = city;
 
-            changeCity.Index = index;
+            //changeCity.Index = city.GetHashCode();
             changeCity.Changetype = changeType;
             string changeTypeStr;
             if (changeType == 1)
@@ -414,7 +426,9 @@ namespace QLifeC_Datatool
             }
 
             changeCityStack.Push(changeCity);
-            cb_undo.Items.Insert(0, changeTypeStr + changeCityStack.Peek().Name);
+            cb_undo.ItemsSource = changeCityStack;
+            cb_undo.Items.Refresh();
+            //cb_undo.Items.Insert(0, changeTypeStr + changeCityStack.Peek().Name);
             cb_undo.SelectedItem = cb_undo.Items[0];
         }
 

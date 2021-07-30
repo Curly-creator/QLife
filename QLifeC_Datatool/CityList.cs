@@ -16,27 +16,43 @@ namespace QLifeC_Datatool
 
         public List<City> Backup { get => _Backup; set => _Backup = value; }
 
-        public void UpdateBackup()
+        public void AddCity(City city)
         {
-            Backup = this;
+            Backup.Add(city);
+            this.Clear();
+            this.AddRange(Backup);
         }
+        public void RemoveCity(City city)
+        {
+            Backup.Remove(city);
+            this.Clear();
+            this.AddRange(Backup);
+        }
+
+        public void UpdateCityList(CityList cityList)
+        {
+            this.Clear();
+            Backup.Clear();
+            this.AddRange(cityList);
+            Backup.AddRange(cityList);
+        }
+
 
         public void GetCityScores(string url, int numberOfCities)
         {
             API_Request aPI_Request = new API_Request(url, numberOfCities);
-            this.AddRange(aPI_Request.GetCityData());
-            UpdateBackup();
+            this.UpdateCityList(aPI_Request.GetCityData());
         }
 
-        public List<City> FilterByCategoryScore(double[] valueOfFilter, bool[] filterIsActive)
+        public void FilterByCategoryScore(double[] valueOfFilter, bool[] filterIsActive)
         {
             List<City> FilterList = new List<City>();
 
-            foreach (var city in this)
+            foreach (var city in Backup)
                 if (Filter(city, 0, valueOfFilter, filterIsActive))
                     FilterList.Add(city);
-            
-            return FilterList;
+            this.Clear();
+            this.AddRange(FilterList);
         }
 
         private bool Filter(City city, int indexOfCategory, double[] valueOfFilter, bool[] filterIsActive)
@@ -85,11 +101,11 @@ namespace QLifeC_Datatool
             }       
         }
 
-        //public void Reset()
-        //{
-        //    this.Clear();
-        //    this.AddRange(Backup);
-        //}
+        public void Reset()
+        {
+            this.Clear();
+            this.AddRange(Backup);
+        }
 
     }
 }

@@ -101,15 +101,13 @@ namespace QLifeC_Datatool
                     catTextBoxListOfList[j][i].Text = cityToBeEdit.Categories[j].SubCategories[i].Value.ToString();
                 }
             }
-            ((MainWindow)Application.Current.MainWindow).AddChangeCity(AddCityToList(), ((MainWindow)Application.Current.MainWindow).Dgd_MainGrid.SelectedIndex, 1);
+            ((MainWindow)Application.Current.MainWindow).AddChangeCity(CityToList(), ((MainWindow)Application.Current.MainWindow).Dgd_MainGrid.SelectedIndex, 1);
 
         }
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
-        {
-            //((MainWindow)Application.Current.MainWindow).cityList.Add(AddCityToList()); //here the city is manually added to your testCityList
-            ((MainWindow)Application.Current.MainWindow).cityList[((MainWindow)Application.Current.MainWindow).Dgd_MainGrid.SelectedIndex] = AddCityToList();
+        {           
+            cityToBeEdit = CityToList();
             this.Close();
-            //cityList[changeCityList[i].Index] = changeCityList[i]
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {     
@@ -165,8 +163,8 @@ namespace QLifeC_Datatool
             {
                 CityToList(); //at this point the city is a checkedCity 
             }
-            ((MainWindow)Application.Current.MainWindow).cityList.Add(AddCityToList());//here the city is manually added to your testCityList
-            ((MainWindow)Application.Current.MainWindow).AddChangeCity(AddCityToList(), ((MainWindow)Application.Current.MainWindow).cityList.Count, 2);
+            ((MainWindow)Application.Current.MainWindow).cityList.Add(CityToList());//here the city is manually added to your testCityList
+            ((MainWindow)Application.Current.MainWindow).AddChangeCity(CityToList(), ((MainWindow)Application.Current.MainWindow).cityList.Count, 2);
             this.Close();
         }
         public bool CheckIfContainsOnlyNumbers()
@@ -257,7 +255,13 @@ namespace QLifeC_Datatool
         {
             try
             {
-                cityToBeAdded = new City { Name = cityName_tb.Text };
+                cityToBeAdded = new City
+                {
+                    Name = cityName_tb.Text,
+                    Index = 5 //this.GetHashCode()
+
+                };
+
 
                 for(int i=0; i<6; i++)
                 {

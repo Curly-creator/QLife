@@ -29,6 +29,7 @@ namespace QLifeC_Datatool
             GetCityList(NumberOfCities);
             foreach (var city in CityList)
             {
+                city.Index = city.GetHashCode();
                 GetCategoryScores(city);
                 GetCategoryDetails(city);
             }
