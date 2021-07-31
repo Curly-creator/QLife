@@ -19,21 +19,28 @@ namespace QLifeC_Datatool
         public void AddCity(City city)
         {
             Backup.Add(city);
-            this.Clear();
-            this.AddRange(Backup);
+            Clear();
+            AddRange(Backup);
         }
         public void RemoveCity(City city)
         {
             Backup.Remove(city);
-            this.Clear();
-            this.AddRange(Backup);
+            Clear();
+            AddRange(Backup);
+        }
+        public void EditCity(City city, int index)
+        {
+            Backup[index] = city;
+            Clear();
+            AddRange(Backup);
+
         }
 
         public void UpdateCityList(CityList cityList)
         {
-            this.Clear();
+            Clear();
             Backup.Clear();
-            this.AddRange(cityList);
+            AddRange(cityList);
             Backup.AddRange(cityList);
         }
 
@@ -41,7 +48,7 @@ namespace QLifeC_Datatool
         public void GetCityScores(string url, int numberOfCities)
         {
             API_Request aPI_Request = new API_Request(url, numberOfCities);
-            this.UpdateCityList(aPI_Request.GetCityData());
+            UpdateCityList(aPI_Request.GetCityData());
         }
 
         public void FilterByCategoryScore(double[] valueOfFilter, bool[] filterIsActive)
@@ -51,8 +58,8 @@ namespace QLifeC_Datatool
             foreach (var city in Backup)
                 if (Filter(city, 0, valueOfFilter, filterIsActive))
                     FilterList.Add(city);
-            this.Clear();
-            this.AddRange(FilterList);
+            Clear();
+            AddRange(FilterList);
         }
 
         private bool Filter(City city, int indexOfCategory, double[] valueOfFilter, bool[] filterIsActive)

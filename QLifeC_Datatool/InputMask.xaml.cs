@@ -42,11 +42,15 @@ namespace QLifeC_Datatool
 
         public List<List<Label>> catLabelListOfList;
         public List<List<TextBox>> catTextBoxListOfList;
-        public bool editedCity = false;
+
+        public List<CheckBox> allCheckBox;
+
+        public bool cityToBeEdit;
+
         public InputMask()
         {
             InitializeComponent();
-            editedCity = false;
+            cityToBeEdit = false;
             enter_bt.Content = "Add To List";
 
             allSliders = new List<Slider> { col_sd, h_sd, ia_sd, eq_sd, tc_sd, o_sd };
@@ -72,14 +76,16 @@ namespace QLifeC_Datatool
 
             catLabelListOfList = new List<List<Label>> { cat0labellist, cat1labellist, cat2labellist, cat3labellist, cat4labellist, cat5labellist };
             catTextBoxListOfList = new List<List<TextBox>> { cat0tblist, cat1tblist, cat2tblist, cat3tblist, cat4tblist, cat5tblist };
+            allCheckBox = new List<CheckBox> { col_cb, h_cb, ia_cb, eq_cb, tc_cb, o_cb };
 
         }
+
         public InputMask(City city) : this()
         {
             enter_bt.Content = "Save change";
-            editedCity = true;
-            cityToBeAdded = city;
-            List<CheckBox> allCheckBox = new List<CheckBox> { col_cb, h_cb, ia_cb, eq_cb, tc_cb, o_cb };
+            cityToBeEdit = true;
+
+            cityToBeAdded = city;           
 
             cityName_tb.Text = city.Name;
             for (int i = 0; i < 6; i++)
@@ -103,84 +109,64 @@ namespace QLifeC_Datatool
                     catTextBoxListOfList[j][i].Text = city.Categories[j].SubCategories[i].Value.ToString();
                 }
             }
-        }
-
-        //private void ButtonEdit_Click(object sender, RoutedEventArgs e)
-        //{           
-        //    cityToBeEdit = CityToList();
-        //    this.Close();
-        //}
+        }     
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {     
-            int errorCounter = 0;
+        {
+            bool error = false;
 
             //testen ob name schon existiert.
-            for (int i = 0; i < ((MainWindow)Application.Current.MainWindow).cityList.Count; i++)   //mit schleife durch alle namen der bisherigen liste gehen
+            if (!cityToBeEdit)
             {
-                if (((MainWindow)Application.Current.MainWindow).cityList[i].Name == cityName_tb.Text)  //if it is same as in nametextbox -> frage mit result
+                for (int i = 0; i < ((MainWindow)Application.Current.MainWindow).cityList.Count; i++)   //mit schleife durch alle namen der bisherigen liste gehen
                 {
-                    MessageBoxResult result = MessageBox.Show("This City Name already exists, do you still want to add the city?", "City Name Already Exists", MessageBoxButton.YesNo);
-                    switch (result)
+                    if (((MainWindow)Application.Current.MainWindow).cityList[i].Name == cityName_tb.Text)  //if it is same as in nametextbox -> frage mit result
                     {
-                        case MessageBoxResult.Yes:
-                            break;
-                        case MessageBoxResult.No:
-                            errorCounter++;
-                            break;
+                        MessageBoxResult result = MessageBox.Show("This City Name already exists, do you still want to add the city?", "City Name Already Exists", MessageBoxButton.YesNo);
+                        switch (result)
+                        {
+                            case MessageBoxResult.Yes:
+                                break;
+                            case MessageBoxResult.No:
+                                error = true;
+                                break;
+                        }
                     }
                 }
             }
 
             if (CheckIfNameIsEmpty(cityName_tb.Text))
-            {
-                errorCounter++;
+            {               
                 MessageBox.Show("Please type in a valid city name.");
+                error = true;
             }
-
-                if (!CheckIfNameIsInTitleCase(cityName_tb.Text))
+            else if (!CheckIfNameIsInTitleCase(cityName_tb.Text))
+            {
+                MessageBoxResult result = MessageBox.Show("The City Name was in a wrong format, should this automatically be fixed?", "City Name to Title Case", MessageBoxButton.YesNo);
+                switch (result)
                 {
-                    MessageBoxResult result = MessageBox.Show("The City Name was in a wrong format, should this automatically be fixed?", "City Name to Title Case", MessageBoxButton.YesNo);
-                    switch (result)
-                    {
-                        case MessageBoxResult.Yes:
-                            ConvertToTitleCase(cityName_tb.Text);
-                            break;
-                        case MessageBoxResult.No:
-                            break;
-                    }
+                    case MessageBoxResult.Yes:
+                        ConvertToTitleCase(cityName_tb.Text);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
                 }
-            
-            if (!CheckIfContainsNoSymbols(cityName_tb.Text))   //if NAME contains symbols which are not letters:
-            { 
-                errorCounter++;
+                error = true;
             }
-
-            if (!CheckIfContainsOnlyNumbers())
+            else if (!CheckIfContainsNoSymbols(cityName_tb.Text)) error = true; //if NAME contains symbols which are not letters:
+            else if (!CheckIfContainsOnlyNumbers()) error = true;
+            else
             {
-                errorCounter++;
-            }
-
-            if (errorCounter == 0)
-            {
-                if (!editedCity)
+                if (!cityToBeEdit)
                     cityToBeAdded.Index = cityToBeAdded.GetHashCode();
                 cityToBeAdded = CityToList(cityToBeAdded.Index);
-            }
-            //((MainWindow)Application.Current.MainWindow).cityList.Add(CityToList());//here the city is manually added to your testCityList
-            //((MainWindow)Application.Current.MainWindow).AddChangeCity(CityToList(), ((MainWindow)Application.Current.MainWindow).cityList.Count, 2);
-            this.Close();
+                DialogResult = true;
+                Close();
+            }      
         }
+
         public bool CheckIfContainsOnlyNumbers()
         {
-            bool containsOnlyNumbers=true;
-            List<TextBox> cat0tblist = new List<TextBox> { col1_tb, col2_tb, col3_tb, col4_tb, col5_tb, col6_tb, col7_tb, col8_tb, col9_tb, col10_tb, col11_tb };
-            List<TextBox> cat1tblist = new List<TextBox> { h1_tb, h2_tb, h3_tb, h4_tb };
-            List<TextBox> cat2tblist = new List<TextBox> { ia1_tb, ia2_tb, ia3_tb, ia4_tb };
-            List<TextBox> cat3tblist = new List<TextBox> { eq1_tb, eq2_tb, eq3_tb, eq4_tb };
-            List<TextBox> cat4tblist = new List<TextBox> { tc1_tb, tc2_tb, tc3_tb };
-            List<TextBox> cat5tblist = new List<TextBox> { o1_tb, o2_tb, o3_tb, o4_tb, o5_tb, o6_tb, o7_tb };
-            List<List<TextBox>> catTextBoxListOfList = new List<List<TextBox>> { cat0tblist, cat1tblist, cat2tblist, cat3tblist, cat4tblist, cat5tblist };
             for (int j = 0; j < catTextBoxListOfList.Count; j++)
             {
                 for (int i = 0; i < catTextBoxListOfList[j].Count; i++)
@@ -190,37 +176,40 @@ namespace QLifeC_Datatool
                     {
                         if (catTextBoxListOfList[j][i].Text.Contains(alphabet[k]))
                         {
-                            MessageBox.Show("Values for Subcategories can only contain numbers. But it is:"+catTextBoxListOfList[j][i].Text);                 
-                            containsOnlyNumbers = false;
+                            MessageBox.Show("Values for Subcategories can only contain numbers. But it is: " + catTextBoxListOfList[j][i].Text);                 
+                            return false;
                         }
                     }
                 }
             }
-            return containsOnlyNumbers;
+            return true; 
         }
+
         public bool CheckIfContainsNoSymbols(string cityName)
         {
-           char[] symbols = new char[] { '?', '!', '.', '°', '^', '"', '§', '$', '%', '&', '/', '(', ')', '=', '`', '´', '+', '*', '~', '}', ']', '[', '{', '#', '-', '_', ':', ',', ';', '<', '>', '}' };// ohne backslash ohne '\
-           bool containsNoSymbol = true;
+           char[] symbols = new char[] { '?', '!', '.', '°', '^', '"', '§', '$', '%', '&', '/', '(', ')', '=', '`', '´', '+', '*', '~', '}', ']', '[', '{', '#', '_', ':', ';', '<', '>', '}' };// ohne backslash ohne '\
+
            for(int i=0; i<cityName.Length; i++)
            {
                 for(int c=0; c<symbols.Length; c++)
                 {
                     if (symbols[c] == cityName[i])
-                    {
-                        containsNoSymbol = false;
+                    {                       
                         MessageBox.Show("Oh, your City Name contained a not-valid Symbol: " + cityName[i]);
+                        return false;
                     }
                 }
            }
-           return containsNoSymbol;
+           return true;
         }
+
         public void ConvertToTitleCase(string cityName)
         {
             string nameInTitleCase = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(cityName.ToLower());
             cityName_tb.Text = nameInTitleCase;
             MessageBox.Show("The City Name has been changed to Title Case.");
         }
+
         public bool CheckIfNameIsInTitleCase(string cityName)
         {
             bool firstLetterIsUp;
@@ -240,25 +229,23 @@ namespace QLifeC_Datatool
                     break;
                 }
             }
-
             if (firstLetterIsUp && otherLettersAreLow) return true;
             else return false;
         }
+
         public bool CheckIfNameIsEmpty(string cityName)
         {
-            bool tmp_isEmpty;
-            if (cityName == "")
-            {
-                tmp_isEmpty = true;
-            }
-            else tmp_isEmpty = false;
-               // AddCityToList();
-            return tmp_isEmpty;
+            if (cityName == "") return true;
+            else return false;  
         }
+
         private City CityToList(int index)
         {
-            City AddCity = new City();
-            AddCity.Index = index;
+            City AddCity = new City
+            {
+                Index = index
+            };
+
             try
             {
                 AddCity.Name = cityName_tb.Text;
@@ -291,101 +278,37 @@ namespace QLifeC_Datatool
 
         public void AddSubcategory(City city, int indexOfCcat, string label, double value)
         {
-            SubCategory tmp_subcat = new SubCategory(label);
-            tmp_subcat.Value = value;
-            cityToBeAdded.Categories[indexOfCcat].SubCategories.Add(tmp_subcat);
+            SubCategory tmp_subcat = new SubCategory(label)
+            {
+                Value = value
+            };
+
+            city.Categories[indexOfCcat].SubCategories.Add(tmp_subcat);
         }
 
-        private void col_sd_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        public void SliderValueChanged(object slider, RoutedPropertyChangedEventArgs<double> e)
         {
-            col_lb.Content = Math.Round(col_sd.Value, 1);
+            Slider actSlider = (Slider)slider;
+
+            for (int i = 0; i < allSliders.Count; i++)
+            {
+                if (actSlider == allSliders[i])               
+                    allLabelSliders[i].Content =  Math.Round(allSliders[i].Value, 1);   
+            }
         }
 
-        private void h_sd_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
         {
-            h_lb.Content = Math.Round(h_sd.Value, 1);
-        }
-
-        private void ia_sd_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            ia_lb.Content = Math.Round(ia_sd.Value, 1);
-        }
-
-        private void eq_sd_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            eq_lb.Content = Math.Round(eq_sd.Value, 1);
-        }
-
-        private void tc_sd_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            tc_lb.Content = Math.Round(tc_sd.Value, 1);
-        }
-
-        private void o_sd_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            o_lb.Content = Math.Round(o_sd.Value, 1);
-        }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            col_sd.IsEnabled = false;
-            col_sd.Value = 0;
-        }
-        private void col_cb_Unchecked(object sender, RoutedEventArgs e)
-        {
-            col_sd.IsEnabled = true;
-        }
-
-        private void h_cb_Checked(object sender, RoutedEventArgs e)
-        {
-            h_sd.IsEnabled = false;
-            h_sd.Value = 0;
-        }
-        private void h_cb_Unchecked(object sender, RoutedEventArgs e)
-        {
-            h_sd.IsEnabled = true;
-        }
-
-        private void ia_cb_Checked(object sender, RoutedEventArgs e)
-        {
-            ia_sd.IsEnabled = false;
-            ia_sd.Value = 0;
-        }
-        private void ia_cb_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ia_sd.IsEnabled = true;
-        }
-
-        private void eq_cb_Checked(object sender, RoutedEventArgs e)
-        {
-            eq_sd.IsEnabled = false;
-            eq_sd.Value = 0;
-        }
-        private void eq_cb_Unchecked(object sender, RoutedEventArgs e)
-        {
-            eq_sd.IsEnabled = true;
-        }
-
-        private void tc_cb_Checked(object sender, RoutedEventArgs e)
-        {
-            tc_sd.IsEnabled = false;
-            tc_sd.Value = 0;
-        }
-        private void tc_cb_Unchecked(object sender, RoutedEventArgs e)
-        {
-            tc_sd.IsEnabled = true;
-        }
-
-        private void o_cb_Checked(object sender, RoutedEventArgs e)
-        {
-            o_sd.IsEnabled = false;
-            o_sd.Value = 0;
-        }
-        private void o_cb_Unchecked(object sender, RoutedEventArgs e)
-        {
-            o_sd.IsEnabled = true;
-        }
-
-
+            CheckBox checkBox = (CheckBox)sender;
+            for (int i = 0; i < allCheckBox.Count; i++)
+            {
+                if ((bool)checkBox.IsChecked)
+                {
+                    allSliders[i].IsEnabled = false;
+                    allSliders[i].Value = 0;
+                }
+                else allSliders[i].IsEnabled = true;
+            }
+        }       
     }
 }

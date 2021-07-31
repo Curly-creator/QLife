@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:QLifeC_Datatool"
         x:Class="QLifeC_Datatool.InputMask"
         mc:Ignorable="d"
-        Title="AddCity" Height="617" Width="1242">
+        Title="AddCity" Height="617" Width="1242" ResizeMode="NoResize">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF82AEB3"/>
@@ -255,29 +255,29 @@
         </StackPanel>
 
         <Button x:Name="enter_bt" Content="Add To List" Click="Button_Click" Grid.Column="3" Grid.Row="1" Width="120" Height="30"/>
-        <Slider x:Name="col_sd" Grid.Column="1" Grid.Row="7" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="col_sd_ValueChanged"/>
+        <Slider x:Name="col_sd" Grid.Column="1" Grid.Row="7" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="SliderValueChanged"/>
         <Label x:Name="col_lb" Content="0" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="7" VerticalAlignment="Center" Margin="251,0,0,0" FontWeight="Bold"/>
-        <CheckBox x:Name="col_cb" Content="N/A" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="CheckBox_Checked" Unchecked="col_cb_Unchecked"/>
+        <CheckBox x:Name="col_cb" Content="N/A" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Click="CheckBox_Click"/>
 
-        <Slider x:Name="h_sd" Grid.Row="4" Grid.Column="2" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="h_sd_ValueChanged"/>
+        <Slider x:Name="h_sd" Grid.Row="4" Grid.Column="2" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="SliderValueChanged"/>
         <Label x:Name="h_lb" Content="0" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="252,0,0,0" FontWeight="Bold"/>
-        <CheckBox x:Name="h_cb" Content="N/A" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="h_cb_Checked" Unchecked="h_cb_Unchecked"/>
+        <CheckBox x:Name="h_cb" Content="N/A" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Click="CheckBox_Click"/>
 
-        <Slider x:Name="ia_sd" Grid.Row="7" Grid.Column="2" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="ia_sd_ValueChanged"/>
+        <Slider x:Name="ia_sd" Grid.Row="7" Grid.Column="2" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="SliderValueChanged"/>
         <Label x:Name="ia_lb" Content="0" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="252,0,0,0" FontWeight="Bold"/>
-        <CheckBox x:Name="ia_cb" Content="N/A" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="ia_cb_Checked" Unchecked="ia_cb_Unchecked"/>
+        <CheckBox x:Name="ia_cb" Content="N/A" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Click="CheckBox_Click"/>
 
-        <Slider x:Name="eq_sd" Grid.Row="4" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="eq_sd_ValueChanged"/>
+        <Slider x:Name="eq_sd" Grid.Row="4" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="SliderValueChanged"/>
         <Label x:Name="eq_lb" Content="0" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="253,0,0,0" FontWeight="Bold"/>
-        <CheckBox x:Name="eq_cb" Content="N/A" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="eq_cb_Checked" Unchecked="eq_cb_Unchecked"/>
+        <CheckBox x:Name="eq_cb" Content="N/A" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Click="CheckBox_Click"/>
 
-        <Slider x:Name="tc_sd" Grid.Row="7" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="tc_sd_ValueChanged"/>
+        <Slider x:Name="tc_sd" Grid.Row="7" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="SliderValueChanged"/>
         <Label x:Name="tc_lb" Content="0" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="253,0,0,0" FontWeight="Bold"/>
-        <CheckBox x:Name="tc_cb" Content="N/A" Grid.Column="3" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="tc_cb_Checked" Unchecked="tc_cb_Unchecked"/>
+        <CheckBox x:Name="tc_cb" Content="N/A" Grid.Column="3" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Click="CheckBox_Click"/>
 
-        <Slider x:Name="o_sd" Grid.Row="7" Grid.Column="4" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="o_sd_ValueChanged"/>
+        <Slider x:Name="o_sd" Grid.Row="7" Grid.Column="4" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="SliderValueChanged"/>
         <Label x:Name="o_lb" Content="0" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="252,0,0,0" FontWeight="Bold"/>
-        <CheckBox x:Name="o_cb" Content="N/A" Grid.Column="4" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="o_cb_Checked" Unchecked="o_cb_Unchecked"/>
+        <CheckBox x:Name="o_cb" Content="N/A" Grid.Column="4" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Click="CheckBox_Click"/>
 
     </Grid>
 </Window>

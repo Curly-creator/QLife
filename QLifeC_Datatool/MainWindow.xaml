@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLifeC_Datatool"
         mc:Ignorable="d"
-        Title="QLifeC-Datatool" Height="600" Width="1000">
+        Title="QLifeC-Datatool" Height="600" Width="1000" ResizeMode="NoResize">
     <Window.Background>
         <ImageBrush ImageSource="/backgroundQLifeC.jpg" Opacity="0.9"/>
     </Window.Background>
@@ -66,7 +66,7 @@
             <Button x:Name="btn_DelEntry" Content="Delete" Height="30" Margin="20 5 15 10" Click="btn_DelEntry_Click" FontWeight="Bold"/>
             <Button x:Name="btn_Export" Content="Export" Height="30" Margin="20 40 15 10" Click="btn_Export_Click" FontWeight="Bold"/>
             <Button x:Name="btn_Import" Content="Import" Height="30" Margin="20 5 15 10" Click="btn_Import_Click" FontWeight="Bold"/>
-            <Button x:Name="btn_Reset" Content="Reset" Height="30" Margin="20 5 15 10" Click="btn_Reset_Click" FontWeight="Bold"/>
+            <Button x:Name="btn_Reset" Content="Reset Filter" Height="30" Margin="20 5 15 10" Click="btn_Reset_Click" FontWeight="Bold"/>
             <Button x:Name="btn_LoadAPIData" Content="Load API Data" Height="30" Margin="20 5 15 10" Click="btn_LoadAPIData_Click" FontWeight="Bold"/>
         </StackPanel>
 
@@ -119,7 +119,7 @@
 
                                 <Button Name="btn_SortCoL" Content="Cost of Living" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="#FF0D2F60" Click="SortButton_Click" FontSize="11" FontWeight="Bold"/>
                                 <Slider Name="sl_CoLFilter" Margin="0 2 0 0" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
-                                <CheckBox Name="cb_CoLFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
+                                <CheckBox Name="cb_CoLFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStateChanged"/>
                                 <Label Name="lbl_CoL" Content="Filtervalue: 0.0"  Grid.Row="2" HorizontalAlignment="Right"/>
 
                             </Grid>
@@ -144,7 +144,7 @@
 
                                 <Button Name="btn_SortHC" Content="Healthcare" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="#FF0D2F60" Click="SortButton_Click" FontSize="11" FontWeight="Bold"/>
                                 <Slider Name="sl_HCFilter" Margin="0 2 0 0" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
-                                <CheckBox Name="cb_HCFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
+                                <CheckBox Name="cb_HCFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStateChanged"/>
                                 <Label Name="lbl_HC" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
 
                             </Grid>
@@ -196,7 +196,7 @@
 
                                 <Button Name="btn_SortEQ" Content="Environm. Quality" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="#FF0D2F60" Click="SortButton_Click" FontSize="10.5" FontWeight="Bold"/>
                                 <Slider Name="sl_EQFilter" Margin="0 2 0 0" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
-                                <CheckBox Name="cb_EQFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
+                                <CheckBox Name="cb_EQFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStateChanged"/>
                                 <Label Name="lbl_EQ" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
 
                             </Grid>
@@ -222,7 +222,7 @@
 
                                 <Button Name="btn_SortTC" Content="Travel Connectivity" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="#FF0D2F60" Click="SortButton_Click" FontSize="10.5" FontWeight="Bold"/>
                                 <Slider Name="sl_TCFilter" Margin="0 2 0 0" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
-                                <CheckBox Name="cb_TCFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
+                                <CheckBox Name="cb_TCFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStateChanged"/>
                                 <Label Name="lbl_TC" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
 
                             </Grid>
@@ -248,7 +248,7 @@
 
                                 <Button Name="btn_SortO" Content="Outdoors" Grid.Row="0" HorizontalAlignment="Center" Width="100" Background="{x:Null}" BorderBrush="#FF0D2F60" Click="SortButton_Click" FontSize="11" FontWeight="Bold"/>
                                 <Slider Name="sl_OFilter" Margin="0 2 0 0" Grid.Row="1" Orientation="Horizontal" ValueChanged="SliderValueChanged"/>
-                                <CheckBox Name="cb_OFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStatusChanged"/>
+                                <CheckBox Name="cb_OFilter" Grid.Row="2" VerticalAlignment="Center" Click="FilterStateChanged"/>
                                 <Label Name="lbl_O" Content="Filtervalue: 0.0" Grid.Row="2" HorizontalAlignment="Right"/>
 
                             </Grid>

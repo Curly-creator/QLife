@@ -24,7 +24,6 @@ namespace QLifeC_Datatool
         public Button[] SortButtonArray;
 
         public CityList cityList = new CityList();
-        //public Stack<City> changeCityStack = new Stack<City>();
 
         public string[] FileTypeAllowed = { ".xml", ".csv" };
 
@@ -56,7 +55,7 @@ namespace QLifeC_Datatool
             return FilterValues;
         }
 
-        public bool[] GetFilterStatus(CheckBox[] ArrayOfCheckbox)
+        public bool[] GetFilterState(CheckBox[] ArrayOfCheckbox)
         {
             bool[] FilterStatus = new bool[ArrayOfCheckbox.Length];
             for (int i = 0; i < ArrayOfCheckbox.Length; i++)
@@ -67,11 +66,18 @@ namespace QLifeC_Datatool
         }
 
         private void btn_LoadAPIData_Click(object sender, RoutedEventArgs e)
-        {
-            cityList.Clear();
-            cityList.GetCityScores("https://api.teleport.org/api/urban_areas/", 20);
-            Dgd_MainGrid.ItemsSource = cityList;
-            Dgd_MainGrid.Items.Refresh();
+        {            
+            try
+            {
+                cityList.Clear();
+                cityList.GetCityScores("https://api.teleport.org/api/urban_areas/", int.Parse(tbx_CityCount.Text));
+                Dgd_MainGrid.ItemsSource = cityList;
+                Dgd_MainGrid.Items.Refresh();
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show( ex.Message + " Please insert an integer number");
+            }
         }
 
         private void tbx_SearchBar_TextChanged(object sender, TextChangedEventArgs e)
@@ -92,23 +98,21 @@ namespace QLifeC_Datatool
                 }
                 if (actSlider.Name == FilterSliderArray[i].Name && (bool)FilterCheckBoxArray[i].IsChecked)
                 {
-                    cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));
+                    cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterState(FilterCheckBoxArray));
                     Dgd_MainGrid.Items.Refresh();
                     break;
                 }
             }
         }
 
-        public void FilterStatusChanged(object sender, RoutedEventArgs e)
+        public void FilterStateChanged(object sender, RoutedEventArgs e)
         {
-            cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterStatus(FilterCheckBoxArray));          
+            cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterState(FilterCheckBoxArray));          
             Dgd_MainGrid.Items.Refresh();
         }
 
         private void btn_Reset_Click(object sender, RoutedEventArgs e)
         {
-          
-            //cityList.Reset();
             FilterReset();
             tbx_SearchBar.Text = "";
             Dgd_MainGrid.ItemsSource = cityList;
@@ -315,9 +319,11 @@ namespace QLifeC_Datatool
         private void btn_NewEntry_Click(object sender, RoutedEventArgs e)
         {
             InputMask addingCityWindow = new InputMask();
-            addingCityWindow.ShowDialog();
-            cityList.AddCity(addingCityWindow.cityToBeAdded);
-            AddChangeCity(addingCityWindow.cityToBeAdded, "Undo_Add"); ;
+            if(addingCityWindow.ShowDialog() == true)
+            {
+                cityList.AddCity(addingCityWindow.cityToBeAdded);
+                AddChangeCity(addingCityWindow.cityToBeAdded, "Undo_Add");
+            }    
             Dgd_MainGrid.Items.Refresh();              //refresh CityList im View
         }
 
@@ -350,13 +356,14 @@ namespace QLifeC_Datatool
             if (Dgd_MainGrid.SelectedValue != null)
             {
                 City editCity = (City)Dgd_MainGrid.SelectedItem;
-
-                InputMask editCityWindow = new InputMask((City)Dgd_MainGrid.SelectedItem);
-                AddChangeCity(editCityWindow.cityToBeAdded, "Undo_Edit");
-                editCityWindow.ShowDialog();
-                cityList[cityList.IndexOf(editCity)] = editCityWindow.cityToBeAdded;
-                
-                //cityList.Reset();
+                InputMask editCityWindow = new InputMask(editCity);
+               
+                if(editCityWindow.ShowDialog() == true)
+                {
+                    AddChangeCity(editCity, "Undo_Edit");
+                    cityList.EditCity(editCityWindow.cityToBeAdded, cityList.IndexOf(editCity));
+                }
+                    
                 Dgd_MainGrid.Items.Refresh();
             }
             else
@@ -376,7 +383,7 @@ namespace QLifeC_Datatool
         private void btn_Undo_Click(object sender, RoutedEventArgs e)
         {
             changeCityStack.cityList.Clear();
-            changeCityStack.cityList.AddRange(cityList);
+            changeCityStack.cityList.AddRange(cityList.Backup);
 
             cityList.UpdateCityList(changeCityStack.Undo(cb_undo.SelectedIndex));
 

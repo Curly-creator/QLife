@@ -58,18 +58,7 @@ namespace QLifeC_Datatool
             {
                 if (city.Index == this.Peek().Index)
                 {
-                    //cityList.Insert(cityList.IndexOf(city), Pop());
-                    //cityList.Remove(city);
-
-                    //City test = new City();
-                    //test = this.Pop();
-
-                    //cityList[cityList.IndexOf(city)] = test;
-
-                    //cityList[cityList.IndexOf(city)] = this.Pop();
-                    //cityList.Insert(cityList.IndexOf(city), Pop());
                     cityList[cityList.IndexOf(city)] = Pop();
-                    //((MainWindow)Application.Current.MainWindow).Dgd_MainGrid.Items.Refresh();
                     ((MainWindow)Application.Current.MainWindow).cb_undo.Items.RemoveAt(0);
                     break;
                 }
