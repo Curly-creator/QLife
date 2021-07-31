@@ -24,13 +24,15 @@ namespace QLifeC_Datatool
         public Button[] SortButtonArray;
 
         public CityList cityList = new CityList();
-        public Stack<City> changeCityStack = new Stack<City>();
+        //public Stack<City> changeCityStack = new Stack<City>();
 
         public string[] FileTypeAllowed = { ".xml", ".csv" };
 
         public API_Request test = new API_Request("https://api.teleport.org/api/urban_areas", 20);
 
         public double[] FilterValues;
+
+        public ChangeCityStack changeCityStack = new ChangeCityStack();
         public MainWindow()
         {
             InitializeComponent();
@@ -314,6 +316,8 @@ namespace QLifeC_Datatool
         {
             InputMask addingCityWindow = new InputMask();
             addingCityWindow.ShowDialog();
+            cityList.AddCity(addingCityWindow.cityToBeAdded);
+            AddChangeCity(addingCityWindow.cityToBeAdded, "Undo_Add"); ;
             Dgd_MainGrid.Items.Refresh();              //refresh CityList im View
         }
 
@@ -329,8 +333,8 @@ namespace QLifeC_Datatool
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
-                        int i = (Dgd_MainGrid.SelectedIndex);
-                        cityList.RemoveAt(i); //Lor:todo
+                        cityList.RemoveCity((City)Dgd_MainGrid.SelectedItem);
+                        AddChangeCity((City)Dgd_MainGrid.SelectedItem, "Undo_Delete");
                         break;
                     case MessageBoxResult.No:
                         MessageBox.Show("The city is still here.", "Deleting Chosen City");
@@ -347,94 +351,41 @@ namespace QLifeC_Datatool
             {
                 City editCity = (City)Dgd_MainGrid.SelectedItem;
                 InputMask editCityWindow = new InputMask((City)Dgd_MainGrid.SelectedItem);
+                AddChangeCity(editCityWindow.cityToBeAdded, "Undo_Edit");
                 editCityWindow.ShowDialog();
-                cityList.Backup[cityList.Backup.IndexOf(editCity)] = editCityWindow.cityToBeEdit;
-                cityList.Reset();
+                cityList[cityList.IndexOf(editCity)] = editCityWindow.cityToBeAdded;
+                
+                //       cityList.Reset();
                 Dgd_MainGrid.Items.Refresh();
             }
             else
                 MessageBox.Show("Please first select a city that you would like to edit");
         }
-        public void Reverse(int count)
-        {
-            int i = count;
-            while (i >= 0 && i <= count && changeCityStack.Count > 0)
-            {
-                if (changeCityStack.Peek().Changetype == 3)
-                {
-                    cityList.Insert(changeCityStack.Peek().Index, changeCityStack.Pop());
-                }
-                else if (changeCityStack.Peek().Changetype == 2)
-                {
-                    foreach (var city in cityList)
-                    {
-                        int test = cityList[0].GetHashCode();
-                        if (city.Index == changeCityStack.Peek().Index)
-                        {
-                            cityList.Remove(city);
-                            changeCityStack.Pop();
-                        }
-                    }
-                    //int test = cityList.IndexOf(changeCityStack.Peek()) + 1;
-                    //cityList.Remove(changeCityStack.Pop());
-                    //cityList.RemoveAt(cityList.IndexOf(changeCityStack.Pop()) + 1);
-                }
-                else if (changeCityStack.Peek().Changetype == 1)
-                {
-                    cityList[changeCityStack.Peek().Index] = changeCityStack.Pop();
-                }
-                else
-                {
-                    MessageBox.Show("Undo failed ERROR: unknown changetype");
-                }
-                //cb_undo.Items.RemoveAt(0);
-                if (cb_undo.Items.Count != 0)
-                {
-                    cb_undo.SelectedItem = cb_undo.Items[0];
-                }
-                else
-                {
-                    cb_undo.SelectedItem = cb_undo.Items.Count - 1;
-                }
-                cb_undo.Items.Refresh();
-                i--;
-            }
-            Dgd_MainGrid.Items.Refresh();
-        }
-        public void AddChangeCity(City city, int index, int changeType)
+        public void AddChangeCity(City city, string changeType)
         {
             City changeCity = city;
-
-            //changeCity.Index = city.GetHashCode();
             changeCity.Changetype = changeType;
-            string changeTypeStr;
-            if (changeType == 1)
-            {
-                changeTypeStr = "Edit; ";
-            }
-            else if (changeType == 2)
-            {
-                changeTypeStr = "Add; ";
-            }
-            else if (changeType == 3)
-            {
-                changeTypeStr = "Delete; ";
-            }
-            else
-            {
-                changeTypeStr = "";
-            }
-
             changeCityStack.Push(changeCity);
-            cb_undo.ItemsSource = changeCityStack;
             cb_undo.Items.Refresh();
-            //cb_undo.Items.Insert(0, changeTypeStr + changeCityStack.Peek().Name);
+            cb_undo.Items.Insert(0, city.Name + " : " + city.Changetype);
+
             cb_undo.SelectedItem = cb_undo.Items[0];
         }
 
         private void btn_Undo_Click(object sender, RoutedEventArgs e)
         {
-            Reverse(cb_undo.SelectedIndex);
+            changeCityStack.cityList.Clear();
+            changeCityStack.cityList.AddRange(cityList);
+
+            cityList.UpdateCityList(changeCityStack.Undo(cb_undo.SelectedIndex));
+
+            cb_undo.Items.Refresh();
+
+            if (cb_undo.Items.Count > 0)
+                cb_undo.SelectedItem = cb_undo.Items[0];
+            else cb_undo.SelectedItem = -1; ;
+
+            Dgd_MainGrid.Items.Refresh();
         }
     }
 }

@@ -125,11 +125,14 @@ namespace QLifeC_Datatool
 
                 for (int i = 1; i < csvlines.Length; i++)
                 {
-                    string[] data = csvlines[i].Split(",");
-
-                    for (int y = 0; y < data.Length; y++)
+                    if (csvlines[i].Contains(","))
                     {
-                        csvtable[i - 1, y] = data[y];
+                        string[] data = csvlines[i].Split(",");
+
+                        for (int y = 0; y < data.Length; y++)
+                        {
+                            csvtable[i - 1, y] = data[y];
+                        }
                     }
                 }
 

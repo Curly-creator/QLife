@@ -17,8 +17,7 @@ namespace QLifeC_Datatool
     /// </summary>
     public partial class InputMask : Window
     {
-        public City cityToBeAdded;
-        public City cityToBeEdit;
+        public City cityToBeAdded = new City();
         public List<Slider> allSliders;
         public List<Label> allLabelSliders;
 
@@ -43,9 +42,12 @@ namespace QLifeC_Datatool
 
         public List<List<Label>> catLabelListOfList;
         public List<List<TextBox>> catTextBoxListOfList;
+        public bool editedCity = false;
         public InputMask()
         {
             InitializeComponent();
+            editedCity = false;
+            enter_bt.Content = "Add To List";
 
             allSliders = new List<Slider> { col_sd, h_sd, ia_sd, eq_sd, tc_sd, o_sd };
             allLabelSliders = new List<Label> { col_lb, h_lb, ia_lb, eq_lb, tc_lb, o_lb };
@@ -74,42 +76,42 @@ namespace QLifeC_Datatool
         }
         public InputMask(City city) : this()
         {
-            edit_bt.Visibility = Visibility.Visible;
-            add_bt.Visibility = Visibility.Hidden;
-            cityToBeEdit = (City)city;
+            enter_bt.Content = "Save change";
+            editedCity = true;
+            cityToBeAdded = city;
             List<CheckBox> allCheckBox = new List<CheckBox> { col_cb, h_cb, ia_cb, eq_cb, tc_cb, o_cb };
 
-            cityName_tb.Text = cityToBeEdit.Name;
+            cityName_tb.Text = city.Name;
             for (int i = 0; i < 6; i++)
             {
-                if (Math.Round(cityToBeEdit.Categories[i].Score, 1) == 0)
+                if (Math.Round(city.Categories[i].Score, 1) == 0)
                 {
                     allCheckBox[i].IsChecked = true;
                 }
                 else
                 {
                     allCheckBox[i].IsChecked = false;
-                    allSliders[i].Value = cityToBeEdit.Categories[i].Score;
+                    allSliders[i].Value = city.Categories[i].Score;
                     allLabelSliders[i].Content = Math.Round(allSliders[i].Value, 1);
                 }
 
             }
             for (int j = 0; j < catTextBoxListOfList.Count; j++)
             {
-                for (int i = 0; i < cityToBeEdit.Categories[j].SubCategories.Count; i++)
+                for (int i = 0; i < city.Categories[j].SubCategories.Count; i++)
                 {
-                    catTextBoxListOfList[j][i].Text = cityToBeEdit.Categories[j].SubCategories[i].Value.ToString();
+                    catTextBoxListOfList[j][i].Text = city.Categories[j].SubCategories[i].Value.ToString();
                 }
             }
-            ((MainWindow)Application.Current.MainWindow).AddChangeCity(CityToList(), ((MainWindow)Application.Current.MainWindow).Dgd_MainGrid.SelectedIndex, 1);
+        }
 
-        }
-        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
-        {           
-            cityToBeEdit = CityToList();
-            this.Close();
-        }
-        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        //private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        //{           
+        //    cityToBeEdit = CityToList();
+        //    this.Close();
+        //}
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {     
             int errorCounter = 0;
 
@@ -161,10 +163,12 @@ namespace QLifeC_Datatool
 
             if (errorCounter == 0)
             {
-                CityToList(); //at this point the city is a checkedCity 
+                if (!editedCity)
+                    cityToBeAdded.Index = cityToBeAdded.GetHashCode();
+                cityToBeAdded = CityToList(cityToBeAdded.Index);
             }
-            ((MainWindow)Application.Current.MainWindow).cityList.Add(CityToList());//here the city is manually added to your testCityList
-            ((MainWindow)Application.Current.MainWindow).AddChangeCity(CityToList(), ((MainWindow)Application.Current.MainWindow).cityList.Count, 2);
+            //((MainWindow)Application.Current.MainWindow).cityList.Add(CityToList());//here the city is manually added to your testCityList
+            //((MainWindow)Application.Current.MainWindow).AddChangeCity(CityToList(), ((MainWindow)Application.Current.MainWindow).cityList.Count, 2);
             this.Close();
         }
         public bool CheckIfContainsOnlyNumbers()
@@ -251,21 +255,16 @@ namespace QLifeC_Datatool
                // AddCityToList();
             return tmp_isEmpty;
         }
-        private City CityToList()
+        private City CityToList(int index)
         {
+            City AddCity = new City();
+            AddCity.Index = index;
             try
             {
-                cityToBeAdded = new City
-                {
-                    Name = cityName_tb.Text,
-                    Index = 5 //this.GetHashCode()
-
-                };
-
-
+                AddCity.Name = cityName_tb.Text;
                 for(int i=0; i<6; i++)
                 {
-                    cityToBeAdded.Categories[i].Score = allSliders[i].Value;
+                    AddCity.Categories[i].Score = allSliders[i].Value;
                 }
 
                 for (int j = 0; j < catTextBoxListOfList.Count; j++)
@@ -276,7 +275,7 @@ namespace QLifeC_Datatool
                         {
                             catTextBoxListOfList[j][i].Text = catTextBoxListOfList[j][i].Text.Replace('.', ',');//direct change from . to , in XAML selectionchange //check whats wrong                   
                         }
-                        AddSubcategory(j, catLabelListOfList[j][i].Content.ToString().Remove(catLabelListOfList[j][i].Content.ToString().Length - 1), double.Parse(catTextBoxListOfList[j][i].Text));     //so complicated because 'Inflation::' -> 'Inflation:'
+                        AddSubcategory(AddCity, j, catLabelListOfList[j][i].Content.ToString().Remove(catLabelListOfList[j][i].Content.ToString().Length - 1), double.Parse(catTextBoxListOfList[j][i].Text));     //so complicated because 'Inflation::' -> 'Inflation:'
                     //j counts from 0-5 to go through the 6 big Categories =indexOfCat
                     //catLabelListOfList[j].Count is how many subcategories (11,4,4,4,3,7) the current cat has
                     //the [i] goes through the 11 subcategories and adds them to the city'Datensatz'
@@ -287,10 +286,10 @@ namespace QLifeC_Datatool
             {
                 MessageBox.Show("Nice try. Every subcategorie has to has a value, even if it's 0. AND NO LETTERS.");
             }
-            return cityToBeAdded;
+            return AddCity;
         }
 
-        public void AddSubcategory(int indexOfCcat, string label, double value)
+        public void AddSubcategory(City city, int indexOfCcat, string label, double value)
         {
             SubCategory tmp_subcat = new SubCategory(label);
             tmp_subcat.Value = value;

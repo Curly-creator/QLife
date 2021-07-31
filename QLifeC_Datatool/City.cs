@@ -10,9 +10,8 @@ namespace QLifeC_Datatool
         private string _Url;
     
         Category[] _Categories;
-        //private 
         private int index;
-        private int changetype;
+        private string changetype;
 
         public City()
         {
@@ -31,7 +30,7 @@ namespace QLifeC_Datatool
         public string Url { get => _Url; set => _Url = value; }
         public Category[] Categories { get => _Categories; set => _Categories = value; }
         public int Index { get => index; set => index = value; }
-        public int Changetype { get => changetype; set => changetype = value; }
+        public string Changetype { get => changetype; set => changetype = value; }
     }
 }
 
