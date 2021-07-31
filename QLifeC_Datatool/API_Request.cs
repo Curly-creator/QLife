@@ -13,9 +13,19 @@ namespace QLifeC_Datatool
         private string _Url;
         private CityList _CityList;
         private int _NumberOfCities;
+        private bool _ConnectionError = false;
+        private bool _UrlFormatError = false;
+        private bool _IntervallError = false;
+
         public CityList CityList { get => _CityList; set => _CityList = value; }
         public string Url { get => _Url; set => _Url = value; }
         public int NumberOfCities { get => _NumberOfCities; set => _NumberOfCities = value; }
+        public bool ConnectionError { get => _ConnectionError; set => _ConnectionError = value; }
+        public bool UrlFormatError { get => _UrlFormatError; set => _UrlFormatError = value; }
+        public bool IntervallError { get => _IntervallError; set => _IntervallError = value; }
+
+        readonly Exception NullIntervall = new Exception("Intervall is 0. Function can not be performed");
+        readonly Exception NegativIntervall = new Exception("Intervall is negativ. Function can not be performed");
 
         public API_Request(string url, int numberOfCities) 
         {
@@ -24,20 +34,49 @@ namespace QLifeC_Datatool
             NumberOfCities = numberOfCities;
         }
 
-        public CityList GetCityData()
+        public CityList GetCityScores()
         {
-            GetCityList(NumberOfCities);
-            foreach (var city in CityList)
+            try
             {
-                city.Index = city.GetHashCode();
-                GetCategoryScores(city);
-                GetCategoryDetails(city);
+                GetCityList(NumberOfCities);
+                foreach (var city in CityList)
+                {
+                    GetCategoryScores(city);
+                    GetCategoryDetails(city);
+                }
+                return CityList;
             }
-            return CityList;
+            catch (DivideByZeroException e)
+            {
+                MessageBox.Show("Error: " + e.Message);
+                IntervallError = true;
+                return null;
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                MessageBox.Show("Error: " + e.Message);
+                IntervallError = true;
+                return null;
+            }
+            catch (FormatException e)
+            {
+                MessageBox.Show("Error: " + e.Message);
+                IntervallError = true;
+                return null;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error: " + e.Message);
+                IntervallError = true;
+                return null;
+            }
         }
 
         private dynamic UrlToJsonObj(string url)
         {
+            UrlFormatError = false;
+            ConnectionError = false;
+
             try
             {
                 WebRequest request = WebRequest.Create(url);
@@ -48,9 +87,16 @@ namespace QLifeC_Datatool
                 dynamic jsonObj = new JavaScriptSerializer().Deserialize<Object>(responseString);
                 return jsonObj;
             }
-            catch (WebException)
+            catch (WebException e)
             {
-                MessageBox.Show("No Connection to Server. Please check your Internet Connection.");
+                MessageBox.Show("Error: " + e.Message);
+                ConnectionError = true;
+                return null;
+            }
+            catch (UriFormatException e)
+            {
+                MessageBox.Show("Error: " + e.Message);
+                UrlFormatError = true;
                 return null;
             }
         }
@@ -64,8 +110,6 @@ namespace QLifeC_Datatool
                 var jsonCities = jsonObj["_links"]["ua:item"];
                 int intervall = jsonCities.Count / numberOfCities;
 
-                if (intervall < 1) intervall = 1;
-                
                 for (int i = 0; i < jsonCities.Count; i += intervall)
                 {
                     City city = new City

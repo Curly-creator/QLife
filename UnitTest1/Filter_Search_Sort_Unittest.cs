@@ -67,14 +67,12 @@ namespace Unittest
             bool result = true;
             for (int i = 0; i < city.Count; i++)
             {
-                for (int j = 0; j < city[j].Categories.Length; i++)
+                for (int j = 0; j < city[j].Categories.Length; j++)
                 {
                     if (filterStatus[j])
                     {
-                        if (filterValue[j] <= city[i].Categories[j].Score)
-                        {
-                            result = true;
-                        }
+                        if (filterValue[j] <= city[i].Categories[j].Score)                       
+                            result = true;                      
                         else return false;
                     }
                 }

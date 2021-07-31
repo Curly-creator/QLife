@@ -48,7 +48,7 @@ namespace QLifeC_Datatool
         public void GetCityScores(string url, int numberOfCities)
         {
             API_Request aPI_Request = new API_Request(url, numberOfCities);
-            UpdateCityList(aPI_Request.GetCityData());
+            UpdateCityList(aPI_Request.GetCityScores());
         }
 
         public void FilterByCategoryScore(double[] valueOfFilter, bool[] filterIsActive)
