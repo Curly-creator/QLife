@@ -350,12 +350,13 @@ namespace QLifeC_Datatool
             if (Dgd_MainGrid.SelectedValue != null)
             {
                 City editCity = (City)Dgd_MainGrid.SelectedItem;
+
                 InputMask editCityWindow = new InputMask((City)Dgd_MainGrid.SelectedItem);
                 AddChangeCity(editCityWindow.cityToBeAdded, "Undo_Edit");
                 editCityWindow.ShowDialog();
                 cityList[cityList.IndexOf(editCity)] = editCityWindow.cityToBeAdded;
                 
-                //       cityList.Reset();
+                //cityList.Reset();
                 Dgd_MainGrid.Items.Refresh();
             }
             else
