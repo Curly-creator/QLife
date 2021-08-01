@@ -380,11 +380,11 @@ namespace QLifeC_Datatool
         {
             changeCityStack.cityList.Clear();
             changeCityStack.cityList.AddRange(cityList.Backup);
-
             cityList.UpdateCityList(changeCityStack.Undo(cb_undo.SelectedIndex));
-
-            cb_undo.Items.Refresh();
-
+            for (int i =0; i<= cb_undo.SelectedIndex; i++)
+            {
+                cb_undo.Items.RemoveAt(0);
+            }
             if (cb_undo.Items.Count > 0)
                 cb_undo.SelectedItem = cb_undo.Items[0];
             else cb_undo.SelectedItem = -1; ;

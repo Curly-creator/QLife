@@ -15,7 +15,7 @@ namespace QLifeC_Datatool
             {
                 switch (Peek().Changetype)
                 {
-                    case "Undo_Add":
+                    case "Undo_Add": 
                         Undo_Add();
                         break;
                     case "Undo_Delete":
@@ -35,7 +35,7 @@ namespace QLifeC_Datatool
         public void Undo_Delete()
         {
             cityList.Add(Pop());
-            ((MainWindow)Application.Current.MainWindow).cb_undo.Items.RemoveAt(0);
+            
         }
 
         public void Undo_Add()
@@ -45,8 +45,7 @@ namespace QLifeC_Datatool
                 if (city.Index == Peek().Index)
                 {
                     cityList.Remove(city);
-                    this.Pop();
-                    ((MainWindow)Application.Current.MainWindow).cb_undo.Items.RemoveAt(0);
+                    Pop();
                     break;
                 }
             }
@@ -56,19 +55,12 @@ namespace QLifeC_Datatool
         {
             foreach (var city in cityList)
             {
-                if (city.Index == this.Peek().Index)
+                if (city.Index == Peek().Index)
                 {
                     cityList[cityList.IndexOf(city)] = Pop();
-                    ((MainWindow)Application.Current.MainWindow).cb_undo.Items.RemoveAt(0);
                     break;
                 }
             }
-        }
-
-        public override string ToString()
-        {
-            string result = Peek().Name + " : " + Peek().Changetype;
-            return result;
         }
     }
 }
