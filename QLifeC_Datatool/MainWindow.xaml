@@ -61,9 +61,9 @@
 
         <!--All the main buttons are in this stack panel. Easier to make changes to multiple buttons at once-->
         <StackPanel Grid.Column="6" Grid.ColumnSpan="1" Grid.Row="4" Grid.RowSpan="8">
-            <Button x:Name="btn_NewEntry" Content="Add" Height="30" Margin="20 10 15 10" Click="btn_NewEntry_Click" FontWeight="Bold"/>
-            <Button x:Name="btn_UpdEdit" Content="Edit" Height="30" Margin="20 5 15 10" Click="btn_UpdEdit_Click" FontWeight="Bold"/>
-            <Button x:Name="btn_DelEntry" Content="Delete" Height="30" Margin="20 5 15 10" Click="btn_DelEntry_Click" FontWeight="Bold"/>
+            <Button x:Name="btn_Add" Content="Add" Height="30" Margin="20 10 15 10" Click="btn_Add_Click" FontWeight="Bold"/>
+            <Button x:Name="btn_Edit" Content="Edit" Height="30" Margin="20 5 15 10" Click="btn_Edit_Click" FontWeight="Bold"/>
+            <Button x:Name="btn_Delete" Content="Delete" Height="30" Margin="20 5 15 10" Click="btn_Delete_Click" FontWeight="Bold"/>
             <Button x:Name="btn_Export" Content="Export" Height="30" Margin="20 40 15 10" Click="btn_Export_Click" FontWeight="Bold"/>
             <Button x:Name="btn_Import" Content="Import" Height="30" Margin="20 5 15 10" Click="btn_Import_Click" FontWeight="Bold"/>
             <Button x:Name="btn_Reset" Content="Reset Filter" Height="30" Margin="20 5 15 10" Click="btn_Reset_Click" FontWeight="Bold"/>
