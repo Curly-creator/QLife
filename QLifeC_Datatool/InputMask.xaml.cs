@@ -366,7 +366,7 @@ namespace QLifeC_Datatool
             CheckBox checkBox = (CheckBox)sender;
             for (int i = 0; i < allCheckBox.Count; i++)
             {
-                if ((bool)checkBox.IsChecked)
+                if ((bool)allCheckBox[i].IsChecked)
                 {
                     allSliders[i].IsEnabled = false;
                     allSliders[i].Value = 0;

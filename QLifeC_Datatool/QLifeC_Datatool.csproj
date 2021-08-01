@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Backup Files\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="backgroundQLifeC.jpg" />
   </ItemGroup>
 
