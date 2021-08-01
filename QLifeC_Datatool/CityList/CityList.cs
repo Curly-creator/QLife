@@ -58,8 +58,13 @@ namespace QLifeC_Datatool
             {
                 Clear();
                 Backup.Clear();
-                AddRange(cityList);
-                Backup.AddRange(cityList);
+                foreach(var city in cityList)
+                {
+                    city.Id = city.GetHashCode();
+                    Add(city);
+                    Backup.Add(city);
+
+                }
             }
             catch(ArgumentNullException e)
             {
