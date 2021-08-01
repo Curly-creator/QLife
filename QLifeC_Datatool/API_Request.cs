@@ -17,15 +17,19 @@ namespace QLifeC_Datatool
 
         public CityList CityList { get => _CityList; set => _CityList = value; }
         public string Url { get => _Url; set => _Url = value; }
+
+        //Errors
         public int NumberOfCities { get => _NumberOfCities; set => _NumberOfCities = value; }
         public bool ConnectionError { get => _ConnectionError; set => _ConnectionError = value; }
         public bool UrlFormatError { get => _UrlFormatError; set => _UrlFormatError = value; }
         public bool NumberOfCitiesError { get => _NumberOfCitiesError; set => _NumberOfCitiesError = value; }
 
+        //Exeptions
         readonly Exception NullCityNumber = new Exception("Number of City is 0. Function can not be performed");
         readonly Exception NegativCityNumber = new Exception("Number of City is negativ. Function can not be performed");
         readonly Exception TooBigCityNumber = new Exception("Number of City is too big. Maximum number is 266");
 
+        //Konstruktor
         public API_Request(string url, int numberOfCities) 
         {
             Url = url;
@@ -33,6 +37,10 @@ namespace QLifeC_Datatool
             NumberOfCities = numberOfCities;
         }
 
+        /// <summary>
+        /// Get List of Cities and CityScores
+        /// </summary>
+        /// <returns></returns>
         public CityList GetCityScores()
         {
             try
@@ -54,6 +62,11 @@ namespace QLifeC_Datatool
             }
         }
 
+        /// <summary>
+        /// Serialize Data from API request to json Object
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns>json Object</returns>
         private dynamic UrlToJsonObj(string url)
         {
             UrlFormatError = false;
@@ -83,6 +96,10 @@ namespace QLifeC_Datatool
             }
         }
 
+        /// <summary>
+        /// Gets Random Cities from API and adds them to CityList. Max NumberOfCities 266.
+        /// </summary>
+        /// <param name="numberOfCities"></param>
         private void GetCityList(int numberOfCities)
         {
             if (numberOfCities < 0) throw NegativCityNumber;
@@ -115,6 +132,10 @@ namespace QLifeC_Datatool
             }
         }
 
+        /// <summary>
+        /// Gets the CategoryScores for a City from API and saves them in  City
+        /// </summary>
+        /// <param name="city"></param>
         private void GetCategoryScores(City city)
         {
             var url = CityList[CityList.IndexOf(city)].Url + "scores/";
@@ -143,6 +164,10 @@ namespace QLifeC_Datatool
             }
         }
 
+        /// <summary>
+        /// Gets the SubCategoryScores for a City from API and saves them in City
+        /// </summary>
+        /// <param name="city"></param>
         private void GetCategoryDetails(City city)
         {
             var url = CityList[CityList.IndexOf(city)].Url + "details/";
@@ -171,6 +196,11 @@ namespace QLifeC_Datatool
             }
         }
 
+        /// <summary>
+        /// Gets Scores for Subcategories from API and saves them in Category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <param name="jsonCategory"></param>
         private void AddSubCategories(Category category, dynamic jsonCategory)
         {
             foreach (var jsonSubCategory in jsonCategory["data"])

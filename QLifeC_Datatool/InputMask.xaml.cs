@@ -320,30 +320,24 @@ namespace QLifeC_Datatool
                 Index = index
             };
 
-            try
+            AddCity.Name = cityName_tb.Text;
+            for (int i = 0; i < 6; i++)
             {
-                AddCity.Name = cityName_tb.Text;
-                for(int i=0; i<6; i++)
-                {
-                    AddCity.Categories[i].Score = allSliders[i].Value;
-                }
-                
-                //j counts from 0-5 to go through the 6 big Categories =indexOfCat
-                for (int j = 0; j < catTextBoxListOfList.Count; j++)
-                {
-                    //.Count is how many subcategories (11,4,4,4,3,7) the current cat has
-                    //the [i] goes through the 11 subcategories and adds them to the city dataset
-                    for (int i = 0; i < catTextBoxListOfList[j].Count; i++)
-                    {                       
-                        AddSubcategory(AddCity, j, catLabelListOfList[j][i].Content.ToString().Remove(catLabelListOfList[j][i].Content.ToString().Length - 1), double.Parse(catTextBoxListOfList[j][i].Text));     //so complicated because 'Inflation::' -> 'Inflation:'
-                    } 
-                }
-                return AddCity;
+                AddCity.Categories[i].Score = allSliders[i].Value;
             }
-            catch(System.FormatException)
+
+            //j counts from 0-5 to go through the 6 big Categories =indexOfCat
+            for (int j = 0; j < catTextBoxListOfList.Count; j++)
             {
-                MessageBox.Show("?\nSomething went wrong: Subcategory Textboxes input is invalid.");
+                //.Count is how many subcategories (11,4,4,4,3,7) the current cat has
+                //the [i] goes through the 11 subcategories and adds them to the city dataset
+                for (int i = 0; i < catTextBoxListOfList[j].Count; i++)
+                {
+                    AddSubcategory(AddCity, j, catLabelListOfList[j][i].Content.ToString().Remove(catLabelListOfList[j][i].Content.ToString().Length - 1), double.Parse(catTextBoxListOfList[j][i].Text));     //so complicated because 'Inflation::' -> 'Inflation:'
+                }
             }
+            return AddCity;
+
         }
 
         public void AddSubcategory(City city, int indexOfCcat, string label, double value)
