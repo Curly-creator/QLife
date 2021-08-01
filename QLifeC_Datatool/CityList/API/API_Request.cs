@@ -51,6 +51,7 @@ namespace QLifeC_Datatool
                 {
                     GetCategoryScores(city);
                     GetCategoryDetails(city);
+                    city.Id = city.GetHashCode();
                 }
                 return CityList;
             }
