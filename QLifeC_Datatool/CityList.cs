@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Windows.Controls;
-using System.Windows.Documents;
+using System.Windows;
 
 namespace QLifeC_Datatool
 {
@@ -48,7 +46,14 @@ namespace QLifeC_Datatool
         public void GetCityScores(string url, int numberOfCities)
         {
             API_Request aPI_Request = new API_Request(url, numberOfCities);
-            UpdateCityList(aPI_Request.GetCityScores());
+            try
+            {
+                UpdateCityList(aPI_Request.GetCityScores());
+            }
+            catch (ArgumentNullException e)
+            {
+                MessageBox.Show(e.Message);
+            }            
         }
 
         public void FilterByCategoryScore(double[] valueOfFilter, bool[] filterIsActive)

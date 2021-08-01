@@ -104,20 +104,25 @@ namespace QLifeC_Datatool
         private void GetCityList(int numberOfCities)
         {
             dynamic jsonObj = UrlToJsonObj(Url);
-            
+            Random random = new Random();
             if (jsonObj != null)
             {
                 var jsonCities = jsonObj["_links"]["ua:item"];
+
                 int intervall = jsonCities.Count / numberOfCities;
 
-                for (int i = 0; i < jsonCities.Count; i += intervall)
+                for (int i = 0; i < numberOfCities; i ++)
                 {
+                    int randomCity = intervall * i + random.Next(0, intervall - 1);
+
+                    if (randomCity > jsonCities.Count-1) randomCity = jsonCities.Count;
+
                     City city = new City
                     {
-                        Url = jsonCities[i]["href"],
-                        Name = jsonCities[i]["name"]
+                        Url = jsonCities[randomCity]["href"],
+                        Name = jsonCities[randomCity]["name"]
                     };
-                    CityList.Add(city);
+                    CityList.Add(city);                
                 }
             }
         }
