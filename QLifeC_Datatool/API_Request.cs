@@ -1,9 +1,7 @@
 ﻿using Nancy.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Text;
 using System.Windows;
 
 namespace QLifeC_Datatool
@@ -15,17 +13,18 @@ namespace QLifeC_Datatool
         private int _NumberOfCities;
         private bool _ConnectionError = false;
         private bool _UrlFormatError = false;
-        private bool _IntervallError = false;
+        private bool _NumberOfCitiesError = false;
 
         public CityList CityList { get => _CityList; set => _CityList = value; }
         public string Url { get => _Url; set => _Url = value; }
         public int NumberOfCities { get => _NumberOfCities; set => _NumberOfCities = value; }
         public bool ConnectionError { get => _ConnectionError; set => _ConnectionError = value; }
         public bool UrlFormatError { get => _UrlFormatError; set => _UrlFormatError = value; }
-        public bool IntervallError { get => _IntervallError; set => _IntervallError = value; }
+        public bool NumberOfCitiesError { get => _NumberOfCitiesError; set => _NumberOfCitiesError = value; }
 
-        readonly Exception NullIntervall = new Exception("Intervall is 0. Function can not be performed");
-        readonly Exception NegativIntervall = new Exception("Intervall is negativ. Function can not be performed");
+        readonly Exception NullCityNumber = new Exception("Number of City is 0. Function can not be performed");
+        readonly Exception NegativCityNumber = new Exception("Number of City is negativ. Function can not be performed");
+        readonly Exception TooBigCityNumber = new Exception("Number of City is too big. Maximum number is 266");
 
         public API_Request(string url, int numberOfCities) 
         {
@@ -38,6 +37,7 @@ namespace QLifeC_Datatool
         {
             try
             {
+                NumberOfCitiesError = false;
                 GetCityList(NumberOfCities);
                 foreach (var city in CityList)
                 {
@@ -46,28 +46,10 @@ namespace QLifeC_Datatool
                 }
                 return CityList;
             }
-            catch (DivideByZeroException e)
-            {
-                MessageBox.Show("Error: " + e.Message);
-                IntervallError = true;
-                return null;
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                MessageBox.Show("Error: " + e.Message);
-                IntervallError = true;
-                return null;
-            }
-            catch (FormatException e)
-            {
-                MessageBox.Show("Error: " + e.Message);
-                IntervallError = true;
-                return null;
-            }
             catch (Exception e)
             {
                 MessageBox.Show("Error: " + e.Message);
-                IntervallError = true;
+                NumberOfCitiesError = true;
                 return null;
             }
         }
@@ -103,11 +85,17 @@ namespace QLifeC_Datatool
 
         private void GetCityList(int numberOfCities)
         {
+            if (numberOfCities < 0) throw NegativCityNumber;
+            if (numberOfCities == 0) throw NullCityNumber;
+            
+
             dynamic jsonObj = UrlToJsonObj(Url);
             Random random = new Random();
             if (jsonObj != null)
             {
                 var jsonCities = jsonObj["_links"]["ua:item"];
+
+                if (numberOfCities > jsonCities.Count) throw TooBigCityNumber;
 
                 int intervall = jsonCities.Count / numberOfCities;
 

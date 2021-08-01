@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace QLifeC_Datatool
 {
@@ -11,10 +9,7 @@ namespace QLifeC_Datatool
             City city1 = (City)x;
             City city2 = (City)y;
 
-            return city2.Name.CompareTo(city1.Name);
-
-
-            
+            return city2.Name.CompareTo(city1.Name);           
         }
     }
 }

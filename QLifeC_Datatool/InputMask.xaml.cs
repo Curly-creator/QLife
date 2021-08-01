@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace QLifeC_Datatool
 {
@@ -155,7 +148,10 @@ namespace QLifeC_Datatool
             }
             else if (!CheckIfContainsNoSymbols(cityName_tb.Text)) error = true; //if NAME contains symbols which are not letters:
             else if (!CheckIfContainsOnlyNumbers()) error = true;
-            else
+
+            
+           
+            if (!error)
             {
                 if (!cityToBeEdit)
                     cityToBeAdded.Index = cityToBeAdded.GetHashCode();
@@ -268,12 +264,13 @@ namespace QLifeC_Datatool
                     //the [i] goes through the 11 subcategories and adds them to the city'Datensatz'
                     } 
                 }
+                return AddCity;
             }
             catch(System.FormatException)
             {
                 MessageBox.Show("Nice try. Every subcategorie has to has a value, even if it's 0. AND NO LETTERS.");
+                return null;
             }
-            return AddCity;
         }
 
         public void AddSubcategory(City city, int indexOfCcat, string label, double value)

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
-using QLifeC_Datatool;
-using System.Xml.Schema;
-using System.Xml;
+﻿using QLifeC_Datatool;
 using System.IO;
+using Xunit;
 
 namespace UnitTest
 {
