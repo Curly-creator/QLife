@@ -14,22 +14,22 @@ namespace QLifeC_Datatool
         public List<Slider> allSliders;
         public List<Label> allLabelSliders;
 
-        //Adding Numbers in Data/Subcategories for Cat[0]/col.
+        //Adding Numbers in Data/Subcategories for Cat[0]/col. =Cost of living
         public List<Label> cat0labellist;
         public List<TextBox> cat0tblist;
-        //Adding Numbers in Data/Subcategories for Cat[1]/col.
+        //Adding Numbers in Data/Subcategories for Cat[1]/h. =Healthcare
         public List<Label> cat1labellist;
         public List<TextBox> cat1tblist;
-        //Adding Numbers in Data/Subcategories for Cat[2]/ia.
+        //Adding Numbers in Data/Subcategories for Cat[2]/ia. =Internet Access
         public List<Label> cat2labellist;
         public List<TextBox> cat2tblist;
-        //Adding Numbers in Data/Subcategories for Cat[3]/eq.
+        //Adding Numbers in Data/Subcategories for Cat[3]/eq. =Enviromentall Quality
         public List<Label> cat3labellist;
         public List<TextBox> cat3tblist;
-        //Adding Numbers in Data/Subcategories for Cat[4]/tc.
+        //Adding Numbers in Data/Subcategories for Cat[4]/tc. =Travel Connectivity
         public List<Label> cat4labellist;
         public List<TextBox> cat4tblist;
-        //Adding Numbers in Data/Subcategories for Cat[5]/o.
+        //Adding Numbers in Data/Subcategories for Cat[5]/o. =Outdoors
         public List<Label> cat5labellist;
         public List<TextBox> cat5tblist;
 
@@ -70,7 +70,6 @@ namespace QLifeC_Datatool
             catLabelListOfList = new List<List<Label>> { cat0labellist, cat1labellist, cat2labellist, cat3labellist, cat4labellist, cat5labellist };
             catTextBoxListOfList = new List<List<TextBox>> { cat0tblist, cat1tblist, cat2tblist, cat3tblist, cat4tblist, cat5tblist };
             allCheckBox = new List<CheckBox> { col_cb, h_cb, ia_cb, eq_cb, tc_cb, o_cb };
-
         }
 
         public InputMask(City city) : this()
@@ -93,7 +92,6 @@ namespace QLifeC_Datatool
                     allSliders[i].Value = city.Categories[i].Score;
                     allLabelSliders[i].Content = Math.Round(allSliders[i].Value, 1);
                 }
-
             }
             for (int j = 0; j < catTextBoxListOfList.Count; j++)
             {
@@ -108,7 +106,7 @@ namespace QLifeC_Datatool
         {
             bool error = false;
 
-            //testen ob name schon existiert.
+            //Check Name No 1
             if (!cityToBeEdit)
             {
                 for (int i = 0; i < ((MainWindow)Application.Current.MainWindow).cityList.Count; i++)   //mit schleife durch alle namen der bisherigen liste gehen
@@ -128,11 +126,13 @@ namespace QLifeC_Datatool
                 }
             }
 
+            //Check Name No 2
             if (CheckIfNameIsEmpty(cityName_tb.Text))
-            {               
+            {
                 MessageBox.Show("Please type in a valid city name.");
                 error = true;
             }
+            //Check Name No 3
             else if (!CheckIfNameIsInTitleCase(cityName_tb.Text))
             {
                 MessageBoxResult result = MessageBox.Show("The City Name was in a wrong format, should this automatically be fixed?", "City Name to Title Case", MessageBoxButton.YesNo);
@@ -146,12 +146,13 @@ namespace QLifeC_Datatool
                 }
                 error = true;
             }
-            else if (!CheckIfContainsNoSymbols(cityName_tb.Text)) error = true; //if NAME contains symbols which are not letters:
+            //Check Name No 4
+            else if (!CheckIfContainsNoSymbols(cityName_tb.Text)) error = true; //if name contains symbols which are not letters:
+            //Check Subcats No 1
             else if (!CheckIfContainsOnlyNumbers()) error = true;
-
-            
-           
-            if (!error)
+            //Check Subcats No 2
+            else if (CheckIfSubcatTextboxesContainInvalidSymbols(cityName_tb.Text)) error = true;
+            if(!error)
             {
                 if (!cityToBeEdit)
                     cityToBeAdded.Index = cityToBeAdded.GetHashCode();
@@ -161,29 +162,17 @@ namespace QLifeC_Datatool
             }      
         }
 
-        public bool CheckIfContainsOnlyNumbers()
+        //3 Checking Methods for Name Textbox:
+        public bool CheckIfNameIsEmpty(string cityName)
         {
-            for (int j = 0; j < catTextBoxListOfList.Count; j++)
-            {
-                for (int i = 0; i < catTextBoxListOfList[j].Count; i++)
-                {
-                    string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜabcdefghijklmnopqrstuvwxyzäöüß";
-                    for (int k = 0; k < alphabet.Length; k++)
-                    {
-                        if (catTextBoxListOfList[j][i].Text.Contains(alphabet[k]))
-                        {
-                            MessageBox.Show("Values for Subcategories can only contain numbers. But it is: " + catTextBoxListOfList[j][i].Text);                 
-                            return false;
-                        }
-                    }
-                }
-            }
-            return true; 
+            if (cityName == "") return true;
+            else return false;
         }
 
         public bool CheckIfContainsNoSymbols(string cityName)
         {
-           char[] symbols = new char[] { '?', '!', '.', '°', '^', '"', '§', '$', '%', '&', '/', '(', ')', '=', '`', '´', '+', '*', '~', '}', ']', '[', '{', '#', '_', ':', ';', '<', '>', '}' };// ohne backslash ohne '\
+            //accepting: '-' '()' ',' '.' 
+           char[] symbols = new char[] { '?', '!', '°', '^', '"', '§', '$', '%', '&', '/', '=', '`', '´', '+', '*', '~', '}', ']', '[', '{', '#', '_', ':', ';', '<', '>', '}' };
 
            for(int i=0; i<cityName.Length; i++)
            {
@@ -199,6 +188,67 @@ namespace QLifeC_Datatool
            return true;
         }
 
+        public bool CheckIfNameIsInTitleCase(string cityName)
+        {
+            if (cityName.Contains(". ")) //Bsp: Mt. Cook
+            {
+                string[] splittedName = cityName.Split(". ");
+                foreach (string partOfName in splittedName)
+                {
+                    if (!CheckIfNameIsInTitleCase(partOfName)) return false;
+                }
+                return true;
+            }
+            else if (cityName.Contains(' ')) //Bsp: Bad Neustadt 
+            {
+                string[] splittedName = cityName.Split(' ');
+                foreach (string partOfName in splittedName)
+                {
+                    if (!CheckIfNameIsInTitleCase(partOfName)) return false;
+                    //else return true;
+                }
+                return true;
+            }
+            else if (cityName.Contains('-')) //Bsp: Bad-Neustadt
+            {
+                string[] splittedName = cityName.Split('-');
+                foreach (string partOfName in splittedName)
+                {
+                    if (!CheckIfNameIsInTitleCase(partOfName)) return false;
+                }
+                return true;
+            }
+            else if (cityName.Contains("(")) //Bsp: Halle (Saale)
+            {
+                cityName = cityName.Replace("(", "");
+                cityName = cityName.Replace(")", "");
+                if (!CheckIfNameIsInTitleCase(cityName)) return false;                
+                else return true;
+            }
+            else
+            {
+                bool firstLetterIsUp;
+                bool otherLettersAreLow = false;
+                if (cityName_tb.Text.Length == 1) otherLettersAreLow = true;
+
+                if (char.IsUpper(cityName[0]))
+                    firstLetterIsUp = true;
+                else firstLetterIsUp = false;
+
+                for (int i = 1; i < cityName.Length; i++)
+                {
+                    if (char.IsLower(cityName[i])) otherLettersAreLow = true;
+                    else
+                    {
+                        otherLettersAreLow = false;
+                        break;
+                    }
+                }
+                if (firstLetterIsUp && otherLettersAreLow) return true;
+                else return false;
+            }
+        }
+
         public void ConvertToTitleCase(string cityName)
         {
             string nameInTitleCase = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(cityName.ToLower());
@@ -206,33 +256,61 @@ namespace QLifeC_Datatool
             MessageBox.Show("The City Name has been changed to Title Case.");
         }
 
-        public bool CheckIfNameIsInTitleCase(string cityName)
+        //2 Checking Methods for Subcategory Textboxes:
+        public bool CheckIfContainsOnlyNumbers()
         {
-            bool firstLetterIsUp;
-            bool otherLettersAreLow = false;
-            if (cityName_tb.Text.Length == 1) otherLettersAreLow = true;
-
-            if (char.IsUpper(cityName[0])) //methode for cities with easy names - not yet for 'Bad Mergentheim' ->string an leerstelle aufteilen in array
-                firstLetterIsUp = true;
-            else firstLetterIsUp = false;
-
-            for (int i = 1; i < cityName.Length; i++)
+            for (int j = 0; j < catTextBoxListOfList.Count; j++)
             {
-                if (char.IsLower(cityName[i])) otherLettersAreLow = true;
-                else
+                for (int i = 0; i < catTextBoxListOfList[j].Count; i++)
                 {
-                    otherLettersAreLow = false;
-                    break;
+                    string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜabcdefghijklmnopqrstuvwxyzäöüß";
+                    for (int k = 0; k < alphabet.Length; k++)
+                    {
+                        if (catTextBoxListOfList[j][i].Text.Contains(alphabet[k]))
+                        {
+                            MessageBox.Show("Values for Subcategories can only contain numbers. But it is: " + catTextBoxListOfList[j][i].Text);
+                            return false;
+                        }
+                    }
                 }
             }
-            if (firstLetterIsUp && otherLettersAreLow) return true;
-            else return false;
+            return true;
         }
 
-        public bool CheckIfNameIsEmpty(string cityName)
+        public bool CheckIfSubcatTextboxesContainInvalidSymbols(string cityName)
         {
-            if (cityName == "") return true;
-            else return false;  
+            //j counts from 0-5 to go through the 6 big Categories =indexOfCat
+            for (int j = 0; j < catTextBoxListOfList.Count; j++)
+            {
+                //.Count is how many subcategories (11,4,4,4,3,7) the current cat has
+                //the [i] goes through the 11 subcategories and adds them to the city dataset
+                for (int i = 0; i < catTextBoxListOfList[j].Count; i++)
+                {
+                    if (catTextBoxListOfList[j][i].Text == "")
+                    {
+                        MessageBox.Show("Nice try, du Schlingel. \nSomething went wrong: Subcategory Textboxes shouldn't \n-be empty.");
+                        return true;
+                    }
+
+                    if (catTextBoxListOfList[j][i].Text.Contains(",,"))
+                    {
+                        MessageBox.Show("Nice try, du Schlingel. \nSomething went wrong: Subcategory Textboxes shouldn't \n-contain invalid symbols.");
+                        return true;
+                    }
+
+                    if (catTextBoxListOfList[j][i].Text.Contains(".."))
+                    {
+                        MessageBox.Show("Nice try, du Schlingel. \nSomething went wrong: Subcategory Textboxes shouldn't \n-contain invalid symbols.");
+                        return true;
+                    }
+
+                    if (catTextBoxListOfList[j][i].Text.Contains('.'))
+                    {
+                        catTextBoxListOfList[j][i].Text = catTextBoxListOfList[j][i].Text.Replace('.', ',');                   
+                    }
+                }
+            }
+            return false;
         }
 
         private City CityToList(int index)
@@ -249,27 +327,22 @@ namespace QLifeC_Datatool
                 {
                     AddCity.Categories[i].Score = allSliders[i].Value;
                 }
-
+                
+                //j counts from 0-5 to go through the 6 big Categories =indexOfCat
                 for (int j = 0; j < catTextBoxListOfList.Count; j++)
                 {
+                    //.Count is how many subcategories (11,4,4,4,3,7) the current cat has
+                    //the [i] goes through the 11 subcategories and adds them to the city dataset
                     for (int i = 0; i < catTextBoxListOfList[j].Count; i++)
-                    {
-                        if (catTextBoxListOfList[j][i].Text.Contains('.'))
-                        {
-                            catTextBoxListOfList[j][i].Text = catTextBoxListOfList[j][i].Text.Replace('.', ',');//direct change from . to , in XAML selectionchange //check whats wrong                   
-                        }
+                    {                       
                         AddSubcategory(AddCity, j, catLabelListOfList[j][i].Content.ToString().Remove(catLabelListOfList[j][i].Content.ToString().Length - 1), double.Parse(catTextBoxListOfList[j][i].Text));     //so complicated because 'Inflation::' -> 'Inflation:'
-                    //j counts from 0-5 to go through the 6 big Categories =indexOfCat
-                    //catLabelListOfList[j].Count is how many subcategories (11,4,4,4,3,7) the current cat has
-                    //the [i] goes through the 11 subcategories and adds them to the city'Datensatz'
                     } 
                 }
                 return AddCity;
             }
             catch(System.FormatException)
             {
-                MessageBox.Show("Nice try. Every subcategorie has to has a value, even if it's 0. AND NO LETTERS.");
-                return null;
+                MessageBox.Show("?\nSomething went wrong: Subcategory Textboxes input is invalid.");
             }
         }
 
