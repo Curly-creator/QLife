@@ -362,6 +362,7 @@ namespace QLifeC_Datatool
             }
         }
 
+
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
             InputMask addingCityWindow = new InputMask();
@@ -399,8 +400,14 @@ namespace QLifeC_Datatool
             Dgd_MainGrid.Items.Refresh();                   
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Edit_Click(object sender, RoutedEventArgs e)
         {
+            //check if a city is selected
             if (Dgd_MainGrid.SelectedValue != null)
             {
                 City editCity = (City)Dgd_MainGrid.SelectedItem;
@@ -417,12 +424,20 @@ namespace QLifeC_Datatool
             else
                 MessageBox.Show("Please first select a city that you would like to edit");
         }
+
+        /// <summary>
+        /// Method for saving changes into stack for later undo function of ChangeCityStack. Used change types: "Undo_Add"; "Undo_Delete"; "Undo_Edit"
+        /// </summary>
+        /// <param name="city"></param>
+        /// <param name="changeType"></param>
         public void AddChangeCity(City city, string changeType)
         {
             City changeCity = city;
             changeCity.Changetype = changeType;
+
             changeCityStack.Push(changeCity);
             cb_undo.Items.Refresh();
+            //set useful information about changes in cb_undo
             cb_undo.Items.Insert(0, city.Name + " : " + city.Changetype);
 
             cb_undo.SelectedItem = cb_undo.Items[0];
@@ -432,11 +447,13 @@ namespace QLifeC_Datatool
         {
             changeCityStack.cityList.Clear();
             changeCityStack.cityList.AddRange(cityList.Backup);
-
             cityList.UpdateCityList(changeCityStack.Undo(cb_undo.SelectedIndex));
-
-            cb_undo.Items.Refresh();
-
+            //remove Item from cb_undo after undo completed
+            for (int i =0; i<= cb_undo.SelectedIndex; i++)
+            {
+                cb_undo.Items.RemoveAt(0);
+            }
+            //cb_undo.SelectedIterm should always be the last change. Empty (-1) if no history
             if (cb_undo.Items.Count > 0)
                 cb_undo.SelectedItem = cb_undo.Items[0];
             else cb_undo.SelectedItem = -1; ;

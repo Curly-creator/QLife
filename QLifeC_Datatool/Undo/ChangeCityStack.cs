@@ -6,13 +6,13 @@ namespace QLifeC_Datatool
     public class ChangeCityStack : Stack<City>
     {
         public CityList cityList = new CityList();
-        public CityList Undo(int count)
+        public CityList Undo(int ItemCount)
         {
-            for (int i = 0; i <= count; i++)
+            for (int i = 0; i <= ItemCount; i++)
             {
                 switch (Peek().Changetype)
                 {
-                    case "Undo_Add":
+                    case "Undo_Add": 
                         Undo_Add();
                         break;
                     case "Undo_Delete":
@@ -32,18 +32,17 @@ namespace QLifeC_Datatool
         public void Undo_Delete()
         {
             cityList.Add(Pop());
-            ((MainWindow)Application.Current.MainWindow).cb_undo.Items.RemoveAt(0);
+            
         }
 
         public void Undo_Add()
         {
             foreach (var city in cityList)
             {
-                if (city.Index == Peek().Index)
+                if (city.Id == Peek().Id)
                 {
                     cityList.Remove(city);
-                    this.Pop();
-                    ((MainWindow)Application.Current.MainWindow).cb_undo.Items.RemoveAt(0);
+                    Pop();
                     break;
                 }
             }
@@ -53,19 +52,12 @@ namespace QLifeC_Datatool
         {
             foreach (var city in cityList)
             {
-                if (city.Index == this.Peek().Index)
+                if (city.Id == Peek().Id)
                 {
                     cityList[cityList.IndexOf(city)] = Pop();
-                    ((MainWindow)Application.Current.MainWindow).cb_undo.Items.RemoveAt(0);
                     break;
                 }
             }
-        }
-
-        public override string ToString()
-        {
-            string result = Peek().Name + " : " + Peek().Changetype;
-            return result;
         }
     }
 }

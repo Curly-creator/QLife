@@ -179,23 +179,6 @@ namespace QLifeC_Datatool
                 if (reader != null) reader.Close();
             }
         }
-
-        ///// <summary>
-        ///// If there is an error in the validation settings event handler, this method will be called.
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //static void CityArraySettingsValidationEventHandler(object sender, ValidationEventArgs e)
-        //{
-        //    if (e.Severity == XmlSeverityType.Warning)
-        //    {
-        //        MessageBox.Show("WARNING: " + e.Message);
-        //    }
-        //    else if (e.Severity == XmlSeverityType.Error)
-        //    {
-        //        MessageBox.Show("ERROR: " + e.Message);
-        //    }
-        //}
     }
 
 }
