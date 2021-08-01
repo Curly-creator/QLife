@@ -9,7 +9,8 @@ namespace Unittest
         [Fact]
         public void InvalidURL_Empty_Test()
         {
-            API_Request Request = new API_Request("", 20);
+            //Sends an Request to API with an Empthy URL
+            API_Request Request = new API_Request("", 1);
             Request.GetCityScores();
 
             Assert.True(Request.UrlFormatError);
@@ -18,7 +19,8 @@ namespace Unittest
         [Fact]
         public void InvalidURL_WrongFormat_Test()
         {
-            API_Request Request = new API_Request("asdfvdsfhfdsgfv", 20);
+            //Sends an Request to API with a wrong URL format
+            API_Request Request = new API_Request("THIS IS NOT AN URL", 1);
             Request.GetCityScores();
 
             Assert.True(Request.UrlFormatError);
@@ -28,28 +30,41 @@ namespace Unittest
 
         public void Connection_ServerNotFound_Test()
         {
-            API_Request Request = new API_Request("https://api.t.org/api/urban_areas", 20);
+            //Sends an Request to API with an wrong URL
+            API_Request Request = new API_Request("https://wrongurl.org/this_is_not_correct", 1);
             Request.GetCityScores();
 
             Assert.True(Request.ConnectionError);
         }
 
         [Fact]
-        public void IntervallError_Null_Test()
+        public void NumberOfCities_Null_Test()
         {
+            //Sends an Request to API with 0 cities
             API_Request Request = new API_Request("https://api.teleport.org/api/urban_areas", 0);
             Request.GetCityScores();
 
-            Assert.True(Request.IntervallError);
+            Assert.True(Request.NumberOfCitiesError);
         }
 
         [Fact]
-        public void IntervallError_Negativ_Test()
+        public void NumberOfCities_Negativ_Test()
         {
+            //Sends an Request to API with -1 cities
             API_Request Request = new API_Request("https://api.teleport.org/api/urban_areas", -1);
             Request.GetCityScores();
 
-            Assert.True(Request.IntervallError);
+            Assert.True(Request.NumberOfCitiesError);
+        }
+
+        [Fact]
+        public void NumberOfCities_TooBig_Test()
+        {
+            //Sends an Request to API with too many cities
+            API_Request Request = new API_Request("https://api.teleport.org/api/urban_areas", 666);
+            Request.GetCityScores();
+
+            Assert.True(Request.NumberOfCitiesError);
         }
     }
 }

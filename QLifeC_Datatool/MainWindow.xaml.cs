@@ -14,20 +14,21 @@ namespace QLifeC_Datatool
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Array for Sort/Filter GUI-Elements
         public Slider[] FilterSliderArray;
         public CheckBox[] FilterCheckBoxArray;
         public Label[] FilterLabelArray;
         public Button[] SortButtonArray;
 
-        public CityList cityList = new CityList();
-
+        //Allowed FileTypes (".xml", ".csv")
         public string[] FileTypeAllowed = { ".xml", ".csv" };
 
-        public API_Request test = new API_Request("https://api.teleport.org/api/urban_areas", 20);
+        //List of Cities
+        public CityList cityList = new CityList();
 
-        public double[] FilterValues;
-
+        //Stack of Changes
         public ChangeCityStack changeCityStack = new ChangeCityStack();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -38,9 +39,14 @@ namespace QLifeC_Datatool
             SortButtonArray = new Button[] { btn_SortCoL, btn_SortHC, btn_SortIA, btn_SortEQ, btn_SortTC, btn_SortO };
 
             Dgd_MainGrid.ItemsSource = cityList;
-            Dgd_MainGrid.Items.Refresh();
+            Dgd_MainGrid.Items.Refresh();       
         }
 
+        /// <summary>
+        /// This Method gets the values of Sliders[] and returns the values in double[]
+        /// </summary>
+        /// <param name="ArrayOfSlider"></param>
+        /// <returns>FilterValues in double[]</returns>
         public double[] GetFilterValues(Slider[] ArrayOfSlider)
         {
             double[] FilterValues = new double[ArrayOfSlider.Length];
@@ -51,16 +57,27 @@ namespace QLifeC_Datatool
             return FilterValues;
         }
 
+        /// <summary>
+        /// This Method gets the states of Checkbox[] and returns the states in bool[]
+        /// </summary>
+        /// <param name="ArrayOfCheckbox"></param>
+        /// <returns>Filterstates in bool[]</returns>
         public bool[] GetFilterState(CheckBox[] ArrayOfCheckbox)
         {
-            bool[] FilterStatus = new bool[ArrayOfCheckbox.Length];
+            bool[] FilterStates = new bool[ArrayOfCheckbox.Length];
             for (int i = 0; i < ArrayOfCheckbox.Length; i++)
             {
-                FilterStatus[i] = (bool)ArrayOfCheckbox[i].IsChecked;
+                FilterStates[i] = (bool)ArrayOfCheckbox[i].IsChecked;
             }
-            return FilterStatus;
+            return FilterStates;
         }
 
+        /// <summary>
+        /// Performs the GetCityScore() Method with the actual Number of Cities.
+        /// Throws an Exception if Number of Cities is not an Integer.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_LoadAPIData_Click(object sender, RoutedEventArgs e)
         {            
             try
@@ -76,12 +93,22 @@ namespace QLifeC_Datatool
             }
         }
 
+        /// <summary>
+        /// If the text in the Searchbar has changed this Mehtod will perform the SerchByCityname() Method with the actual SearchBar Text.
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbx_SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             Dgd_MainGrid.ItemsSource = cityList.SearchByCityName(tbx_SearchBar.Text);
             Dgd_MainGrid.Items.Refresh();
         }
 
+        /// <summary>
+        /// If the value of an Slider is changed this method will set the actual value to the FilterLabel[]. 
+        /// If the Filter is active it will also perform the FilterByCategoryScore Method with the actual setting.
+        /// </summary>
+        /// <param name="slider"></param>
+        /// <param name="e"></param>
         public void SliderValueChanged(object slider, RoutedPropertyChangedEventArgs<double> e)
         {
             Slider actSlider = (Slider)slider;
@@ -101,12 +128,22 @@ namespace QLifeC_Datatool
             }
         }
 
+        /// <summary>
+        /// If the state of a filter is changed this Method will perfom the FilterByCategoryScore Method with the actual setting.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void FilterStateChanged(object sender, RoutedEventArgs e)
         {
             cityList.FilterByCategoryScore(GetFilterValues(FilterSliderArray), GetFilterState(FilterCheckBoxArray));          
             Dgd_MainGrid.Items.Refresh();
         }
 
+        /// <summary>
+        /// Performs FilterReset() and empthys the searchbar. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Reset_Click(object sender, RoutedEventArgs e)
         {
             FilterReset();
@@ -115,6 +152,9 @@ namespace QLifeC_Datatool
             Dgd_MainGrid.Items.Refresh();
         }
 
+        /// <summary>
+        /// Sets all FilterSliders to 0 and unchecks all FilterCheckboxes
+        /// </summary>
         private void FilterReset()
         {
             for (int i = 0; i < FilterSliderArray.Length; i++)
@@ -128,6 +168,11 @@ namespace QLifeC_Datatool
             }
         }
 
+        /// <summary>
+        /// Performs the SortByCategoryScore() Method for the selected category
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SortButton_Click(object sender, RoutedEventArgs e)
         {
             for (int i = 0; i < SortButtonArray.Length; i++)
@@ -141,6 +186,11 @@ namespace QLifeC_Datatool
             Dgd_MainGrid.Items.Refresh();
         }
 
+        /// <summary>
+        /// Performs the SortByCityName() Method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SortCityButton_Click(object sender, RoutedEventArgs e)
         {
             cityList.SortByCityName();
@@ -312,19 +362,21 @@ namespace QLifeC_Datatool
             }
         }
 
-        private void btn_NewEntry_Click(object sender, RoutedEventArgs e)
+        private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
             InputMask addingCityWindow = new InputMask();
             if(addingCityWindow.ShowDialog() == true)
             {
                 cityList.AddCity(addingCityWindow.cityToBeAdded);
                 AddChangeCity(addingCityWindow.cityToBeAdded, "Undo_Add");
-            }    
-            Dgd_MainGrid.Items.Refresh();              //refresh CityList im View
+            }
+            //refresh CityList im View after adding a city
+            Dgd_MainGrid.Items.Refresh();             
         }
 
-        private void btn_DelEntry_Click(object sender, RoutedEventArgs e)
+        private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {
+            // check if a city is selected
             if (Dgd_MainGrid.SelectedValue == null)
             {
                 MessageBox.Show("Please select a city you want to delete first.");
@@ -343,11 +395,11 @@ namespace QLifeC_Datatool
                         break;
                 }
             }
-
-            Dgd_MainGrid.Items.Refresh();                   // refresh the datagrid (after deleting the selected city)
+            // refresh the datagrid (after deleting the selected city)
+            Dgd_MainGrid.Items.Refresh();                   
         }
 
-        private void btn_UpdEdit_Click(object sender, RoutedEventArgs e)
+        private void btn_Edit_Click(object sender, RoutedEventArgs e)
         {
             if (Dgd_MainGrid.SelectedValue != null)
             {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QLifeC_Datatool
+﻿namespace QLifeC_Datatool
 {
     public class City
     {

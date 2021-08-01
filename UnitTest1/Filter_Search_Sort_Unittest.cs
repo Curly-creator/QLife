@@ -8,26 +8,31 @@ namespace Unittest
 {
     public class Filter_Search_Sort_Unittest
     {
-        readonly CityList cityList = new CityList();
-
+        readonly CityList TestCityList = new CityList();
+        
+        //Names for TestCityList
         readonly string[] cityNames = new string[]
         {
             "Berlin", "Brisbane", "Dubai", "Kiev", "Cork", "Aarhus"
         };
 
-        readonly bool[] filterStatus = new bool[5];
-        readonly double[] filterValue = new double[5];
+        //Values and States for Filter
+        readonly bool[] filterStatus = new bool[6];
+        readonly double[] filterValue = new double[6];
 
+        /// <summary>
+        /// This Mehtod fills the TestCityList with random values 
+        /// </summary>
         internal void FillCityList()
         {
             var score = new Random();
             for (int i = 0; i <= 5; i++)
             {
                 City city = new City { Name = cityNames[i] };
-                cityList.Add(city);
+                TestCityList.Add(city);
             }
 
-            foreach (var city in cityList)
+            foreach (var city in TestCityList)
             {
                 for (int i = 0; i < city.Categories.Length; i++)
                 {
@@ -36,18 +41,26 @@ namespace Unittest
             }
         }
 
+        /// <summary>
+        /// This Mehtod fills the Filter with random values and sets all Filters to active
+        /// </summary>
         internal void FillFilterArrays()
         {
             var value = new Random();
             
-            for(int i = 0; i < 5; i++)
+            for(int i = 0; i < 6; i++)
             {                
                 filterValue[i] = value.NextDouble() * 10;
-                if(value.NextDouble() < 0.5) filterStatus[i] = true;
-                else filterStatus[i] = false;
+                filterStatus[i] = true;
             }
         }
 
+        /// <summary>
+        /// Checks if the order in TestCityList is decending
+        /// </summary>
+        /// <param name="city"></param>
+        /// <param name="counter"></param>
+        /// <returns></returns>
         internal bool CheckOrderCategoryScore(CityList city, int counter)
         {
             while( counter+1 < city.Count)
@@ -62,12 +75,17 @@ namespace Unittest
             return true;
         }
 
+        /// <summary>
+        /// Checks if the TestCityList contains only Cities with Scores higher oder equal than the FilterValues.
+        /// </summary>
+        /// <param name="city"></param>
+        /// <returns></returns>
         internal bool CheckFilterCategoryScore(CityList city)
         {
             bool result = true;
             for (int i = 0; i < city.Count; i++)
             {
-                for (int j = 0; j < city[j].Categories.Length; j++)
+                for (int j = 0; j < city[0].Categories.Length; j++)
                 {
                     if (filterStatus[j])
                     {
@@ -75,6 +93,7 @@ namespace Unittest
                             result = true;                      
                         else return false;
                     }
+                    else result = true;
                 }
             }
             return result;
@@ -83,51 +102,44 @@ namespace Unittest
         [Fact]
         public void Test_FilterByCityScore_True()
         {
+            //Arrange
             FillCityList();
             FillFilterArrays();
-  
-            //Arrange
-            bool expected = true;
 
             //Act
-            cityList.FilterByCategoryScore(filterValue, filterStatus);
-
-            bool actual = CheckFilterCategoryScore(cityList);
+            TestCityList.FilterByCategoryScore(filterValue, filterStatus);
 
             //Assert
-            Assert.Equal(expected, actual);
+            Assert.True(CheckFilterCategoryScore(TestCityList));
         }
 
         [Fact]
         public void Test_FilterByCityScore_False()
         {
+            //Arrange
             FillCityList();
             FillFilterArrays();         
-
-            //Arrange
-            bool expected = false;
-
+            
             //Act
-            bool actual = CheckFilterCategoryScore(cityList);
 
             //Assert
-            Assert.Equal(expected, actual);
+            Assert.False(CheckFilterCategoryScore(TestCityList));
         }
 
         [Fact]
         public void Test_SearchByCityName_Random()
         {
+            //Arrange
             FillCityList();
-
-            //Arrange            
+         
             var name = new Random();
             int index = name.Next(cityNames.Length);
             string expected = cityNames[index];
 
             //Act
-            List<City> searchList = cityList.SearchByCityName(cityNames[index]);
+            List<City> searchList = TestCityList.SearchByCityName(cityNames[index]);
             string actual = searchList[0].Name;
-
+         
             //Assert
             Assert.Equal(expected, actual);
         }
@@ -135,13 +147,13 @@ namespace Unittest
         [Fact]
         public void Test_SearchByCityName_Empty()
         {
+            //Arrange
             FillCityList();
 
-            //Arrange
-            List<City> expected = cityList;
-
-            //Act           
-            List<City> actual = cityList.SearchByCityName("");
+            List<City> expected = TestCityList;
+      
+            //Act
+            List<City> actual = TestCityList.SearchByCityName("");
 
             //Assert
             Assert.Equal(expected, actual);
@@ -150,32 +162,26 @@ namespace Unittest
         [Fact]
         public void Test_SortByCategoryScore_True()
         {
+            //Arrange
             FillCityList();
 
-            //Arrange
-            bool expected = true;
-
             //Act
-            cityList.SortByCategoryScore(0);
-            bool actual = CheckOrderCategoryScore(cityList, 0);
+            TestCityList.SortByCategoryScore(0);
 
             //Assert
-            Assert.Equal(expected, actual);
+            Assert.True(CheckOrderCategoryScore(TestCityList, 0));
         }
 
         [Fact]
         public void Test_SortByCategoryScore_False()
         {
-            FillCityList();
-
             //Arrange
-            bool expected = false;
-
+            FillCityList();
+          
             //Act
-            bool actual = CheckOrderCategoryScore(cityList, 0);
 
             //Assert
-            Assert.Equal(expected, actual);
+            Assert.False(CheckOrderCategoryScore(TestCityList, 0));
         }
     }
 }

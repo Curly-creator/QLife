@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Navigation;
 
 namespace QLifeC_Datatool
 {

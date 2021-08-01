@@ -8,27 +8,66 @@ namespace UnitTest
 {
     public class AddingDeletingFeatureTesting
     {
+        //Initializing all three Checking-Methods. Which are to be tested.
         public bool CheckIfNameIsInTitleCase(string cityName)
         {
-            bool firstLetterIsUp;
-            bool otherLettersAreLow=false;
-
-            if (char.IsUpper(cityName[0])) //methode for cities with easy names - not yet for 'Bad Mergentheim' ->string an leerstelle aufteilen in array
-                firstLetterIsUp = true;
-            else firstLetterIsUp = false;
-
-            for (int i = 1; i < cityName.Length; i++)
+            if (cityName.Contains(". ")) //Bsp: Mt. Cook
             {
-                if (char.IsLower(cityName[i])) otherLettersAreLow = true;
-                else
+                string[] splittedName = cityName.Split(". ");
+                foreach (string partOfName in splittedName)
                 {
-                    otherLettersAreLow = false;
-                    break;
+                    if (!CheckIfNameIsInTitleCase(partOfName)) return false;
                 }
+                return true;
             }
+            else if (cityName.Contains(' ')) //Bsp: Bad Neustadt 
+            {
+                string[] splittedName = cityName.Split(' ');
+                foreach (string partOfName in splittedName)
+                {
+                    if (!CheckIfNameIsInTitleCase(partOfName)) return false;
+                    //else return true;
+                }
+                return true;
+            }
+            else if (cityName.Contains('-')) //Bsp: Bad-Neustadt
+            {
+                string[] splittedName = cityName.Split('-');
+                foreach (string partOfName in splittedName)
+                {
+                    if (!CheckIfNameIsInTitleCase(partOfName)) return false;
+                }
+                return true;
+            }
+            else if (cityName.Contains("(")) //Bsp: Halle (Saale)
+            {
+                cityName = cityName.Replace("(", "");
+                cityName = cityName.Replace(")", "");
+                if (!CheckIfNameIsInTitleCase(cityName)) return false;
+                else return true;
+            }
+            else
+            {
+                bool firstLetterIsUp;
+                bool otherLettersAreLow = false;
+                if (cityName.Length == 1) otherLettersAreLow = true;
 
-            if (firstLetterIsUp && otherLettersAreLow) return true;
-            else return false;
+                if (char.IsUpper(cityName[0]))
+                    firstLetterIsUp = true;
+                else firstLetterIsUp = false;
+
+                for (int i = 1; i < cityName.Length; i++)
+                {
+                    if (char.IsLower(cityName[i])) otherLettersAreLow = true;
+                    else
+                    {
+                        otherLettersAreLow = false;
+                        break;
+                    }
+                }
+                if (firstLetterIsUp && otherLettersAreLow) return true;
+                else return false;
+            }
         }
 
         public bool CheckIfNameIsEmpty(string cityName)
@@ -38,21 +77,30 @@ namespace UnitTest
             {
                 tmp_isEmpty = true;
             }
+            else tmp_isEmpty = false;
             return tmp_isEmpty;
         }
+
         public bool CheckIfContainsNoSymbols(string cityName)
         {
-            char[] symbols = new char[] { '?', '!', '.', '°', '^', '"', '§', '$', '%', '&', '/', '(', ')', '=', '`', '´', '+', '*', '~', '}', ']', '[', '{', '#', '-', '_', ':', ',', ';', '<', '>', '}' };// ohne backslash ohne '\
             bool containsNoSymbol = true;
+            //accepting: '-' '()' ',' '.' 
+            char[] symbols = new char[] { '?', '!', '°', '^', '"', '§', '$', '%', '&', '/', '=', '`', '´', '+', '*', '~', '}', ']', '[', '{', '#', '_', ':', ';', '<', '>', '}' };
+
             for (int i = 0; i < cityName.Length; i++)
             {
                 for (int c = 0; c < symbols.Length; c++)
                 {
-                    if (symbols[c] == cityName[i]) containsNoSymbol = false;
+                    if (symbols[c] == cityName[i])
+                    {
+                        containsNoSymbol = false;
+                    }
                 }
             }
             return containsNoSymbol;
         }
+
+        //4 unit tests:
         [Fact]
         public void TestTitleCaseMethod()
         {
@@ -61,7 +109,7 @@ namespace UnitTest
 
             //Act
             bool actual = CheckIfNameIsInTitleCase("berlin");
-            
+
             //Assert:
             Assert.Equal(expected, actual);
         }
@@ -104,18 +152,5 @@ namespace UnitTest
             //Assert
             Assert.Equal(expected, actual);
         }
-        /*[Fact]
-        public void TestDeleting()
-        {
-            //Arrange
-            double expected = 13.0;
-
-            //Act
-            double actual = 
-            //CheckIfNameIsEmpty()
-
-            //Assert
-            Assert.Equal(expected, actual);
-        }*/
     }
 }
