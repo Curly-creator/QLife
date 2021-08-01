@@ -54,10 +54,21 @@ namespace QLifeC_Datatool
         /// <param name="cityList"></param>
         public void UpdateCityList(CityList cityList)
         {
-            Clear();
-            Backup.Clear();
-            AddRange(cityList);
-            Backup.AddRange(cityList);
+            try
+            {
+                Clear();
+                Backup.Clear();
+                AddRange(cityList);
+                Backup.AddRange(cityList);
+            }
+            catch(ArgumentNullException e)
+            {
+                MessageBox.Show("File import fail. Data corrupt.");
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         /// <summary>

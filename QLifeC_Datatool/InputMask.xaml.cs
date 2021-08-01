@@ -43,6 +43,7 @@ namespace QLifeC_Datatool
         public InputMask()
         {
             InitializeComponent();
+            
             cityToBeEdit = false;
             enter_bt.Content = "Add To List";
 
@@ -363,13 +364,13 @@ namespace QLifeC_Datatool
 
         private void CheckBox_Click(object sender, RoutedEventArgs e)
         {
-            CheckBox checkBox = (CheckBox)sender;
             for (int i = 0; i < allCheckBox.Count; i++)
             {
                 if ((bool)allCheckBox[i].IsChecked)
                 {
                     allSliders[i].IsEnabled = false;
                     allSliders[i].Value = 0;
+                    break;
                 }
                 else allSliders[i].IsEnabled = true;
             }
