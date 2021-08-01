@@ -20,21 +20,21 @@ namespace UnitTest
         {
             for (int i = 0; i < cityNames.Length; i++)
             {
-                City city = new City { Name = cityNames[i], Index=i };
+                City city = new City { Name = cityNames[i], Id=i };
                 cityList.Add(city);
             }
             changeCityStack.cityList.AddRange(cityList);
         }
         internal void AddToStack(string changetype, int id)
         {
-            City test = new City { Changetype = changetype, Index = id };
+            City test = new City { Changetype = changetype, Id = id };
             changeCityStack.Push(test);
         }
         internal bool CheckUndoAdd(CityList cities)
         {
             foreach (var city in cities)
             {
-                if (city.Index == 0) return false;
+                if (city.Id == 0) return false;
             }
             return true;
         }
@@ -42,7 +42,7 @@ namespace UnitTest
         {
             foreach (var city in cities)
             {
-                if (city.Index == 3) return true;
+                if (city.Id == 3) return true;
             }
             return false;
         }

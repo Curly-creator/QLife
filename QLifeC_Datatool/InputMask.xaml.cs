@@ -155,8 +155,8 @@ namespace QLifeC_Datatool
             if(!error)
             {
                 if (!cityToBeEdit)
-                    cityToBeAdded.Index = cityToBeAdded.GetHashCode();
-                cityToBeAdded = CityToList(cityToBeAdded.Index);
+                    cityToBeAdded.Id = cityToBeAdded.GetHashCode();
+                cityToBeAdded = CityToList(cityToBeAdded.Id);
                 DialogResult = true;
                 Close();
             }      
@@ -317,7 +317,7 @@ namespace QLifeC_Datatool
         {
             City AddCity = new City
             {
-                Index = index
+                Id = index
             };
 
             AddCity.Name = cityName_tb.Text;

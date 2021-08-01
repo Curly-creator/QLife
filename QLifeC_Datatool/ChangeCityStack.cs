@@ -6,9 +6,9 @@ namespace QLifeC_Datatool
     public class ChangeCityStack : Stack<City>
     {
         public CityList cityList = new CityList();
-        public CityList Undo(int count)
+        public CityList Undo(int ItemCount)
         {
-            for (int i = 0; i <= count; i++)
+            for (int i = 0; i <= ItemCount; i++)
             {
                 switch (Peek().Changetype)
                 {
@@ -39,7 +39,7 @@ namespace QLifeC_Datatool
         {
             foreach (var city in cityList)
             {
-                if (city.Index == Peek().Index)
+                if (city.Id == Peek().Id)
                 {
                     cityList.Remove(city);
                     Pop();
@@ -52,7 +52,7 @@ namespace QLifeC_Datatool
         {
             foreach (var city in cityList)
             {
-                if (city.Index == Peek().Index)
+                if (city.Id == Peek().Id)
                 {
                     cityList[cityList.IndexOf(city)] = Pop();
                     break;

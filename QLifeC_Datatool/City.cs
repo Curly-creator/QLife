@@ -6,7 +6,7 @@
         private string _Url;
     
         Category[] _Categories;
-        private int index;
+        private int id;
         private string changetype;
 
         public City()
@@ -25,7 +25,7 @@
         public string Name { get => _Name; set => _Name = value; }
         public string Url { get => _Url; set => _Url = value; }
         public Category[] Categories { get => _Categories; set => _Categories = value; }
-        public int Index { get => index; set => index = value; }
+        public int Id { get => id; set => id = value; }
         public string Changetype { get => changetype; set => changetype = value; }
     }
 }
