@@ -60,7 +60,7 @@ namespace QLifeC_Datatool
                 Backup.Clear();
                 foreach(var city in cityList)
                 {
-                    city.Id = city.GetHashCode();
+                    if (city.Id == 0) city.Id = city.GetHashCode();
                     Add(city);
                     Backup.Add(city);
 
